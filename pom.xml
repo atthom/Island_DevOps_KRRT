@@ -3,12 +3,14 @@
 	 xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
   <modelVersion>4.0.0</modelVersion>
 
-  <groupId>fr.unice.polytech.3a.qgl</groupId>
-  <artifactId>islxx</artifactId> <!-- CHANGE ME -->
+  <groupId>fr.unice.polytech.3a.ae</groupId>
+  <artifactId>islae</artifactId> <!-- CHANGE ME -->
   <version>0.1-SNAPSHOT</version>
   <packaging>jar</packaging>
 
-  <name>ISLXX :: Nom de l'equipe</name> <!-- CHANGE ME -->
+  <name>Amazing Explorer</name> <!-- CHANGE ME 
+Internet Exploreur
+Accurate Exploreur-->
   <url>http://www.i3s.unice.fr/~mosser/teaching/15_16/se</url>
 
   <properties>
