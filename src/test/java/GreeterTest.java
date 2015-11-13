@@ -1,6 +1,8 @@
 import org.junit.Before;
 import org.junit.Test;
 
+import eu.ace_design.island.mvp.Greeter;
+
 import static org.junit.Assert.*;
 
 public class GreeterTest {
