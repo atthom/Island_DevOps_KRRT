@@ -1,4 +1,3 @@
-package eu.ace_design.island.mvp;
 /**
  * A simple class to say hello
  */
