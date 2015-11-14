@@ -30,7 +30,16 @@ public class Objectif {
         return budget;
     }
     
-     public void enleve_ressource(Ressource r) {
+    public Ressource getRessource(String name) {
+         for(Ressource res : this.contract) {
+             if(res.getName().equals(name)) {
+                return res;
+             }
+         }
+        return new Ressource(0, "");
+    }
+    
+    public void enleve_ressource(Ressource r) {
         for(Ressource res : this.contract) {
             if(res.getName().equals(r.getName())) {
                 if(res.getNb() > r.getNb()) {

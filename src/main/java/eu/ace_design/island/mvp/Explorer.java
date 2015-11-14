@@ -1,6 +1,7 @@
 package eu.ace_design.island.mvp;
 
 import eu.ace_design.island.bot.IExplorerRaid;
+import java.util.ArrayList;
 import org.json.JSONObject;
 
 public class Explorer implements IExplorerRaid {
@@ -10,7 +11,6 @@ public class Explorer implements IExplorerRaid {
     @Override
     public void initialize(String string) {
         JSONObject obj = new JSONObject(string);
-        
         
     }
 

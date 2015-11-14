@@ -1,5 +1,8 @@
 
 
+import eu.ace_design.island.mvp.Objectif;
+import eu.ace_design.island.mvp.Ressource;
+import java.util.ArrayList;
 import org.json.JSONObject;
 
 /*
@@ -25,5 +28,15 @@ public class App {
         obj.put("is_vip", new Boolean(true));
 
         System.out.print(obj.get("balance"));
+         ArrayList<Ressource> a = new ArrayList<>();
+        a.add(new Ressource(600, "WOOD"));
+        a.add(new Ressource(200, "GLASS"));
+        Objectif o = new Objectif(12, 10000, a);
+        Ressource r = o.getRessource("WOOD");
+        Ressource r2 = new Ressource(600, "WOOD");
+        
+         
+        
+        
   }
 }
