@@ -37,5 +37,14 @@ public class App {
                 + "}";
         Explorer e = new Explorer();
         e.initialize(contract);
+
+        // Gerer le parsing des informations lie a l'action fly
+
+        String test = "{ \n"
+                + "  \"cost\": 1,\n"
+                + "  \"extras\": \n"
+                + "    { \"range\": 2, \"found\": \"GROUND\" }, \n"
+                + " \"status\": \"OK\" \n"
+                + "}";
     }
 }
