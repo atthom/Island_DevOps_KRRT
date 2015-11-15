@@ -28,6 +28,11 @@ public class Ressource {
         }      
     }
 
+    @Override
+    public String toString() {
+        return "Ressource{" + "nb=" + nb + ", name=" + name + '}';
+    }
+
     public String getName() {
         return name;
     }

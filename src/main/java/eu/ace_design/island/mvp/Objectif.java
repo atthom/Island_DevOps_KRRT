@@ -29,6 +29,13 @@ public class Objectif {
     public int getBudget() {
         return budget;
     }
+
+    @Override
+    public String toString() {
+        return "Objectif{" + "nb_mens=" + nb_mens + ", budget=" + budget + ", contract=" + contract + '}';
+    }
+   
+    
     
     public Ressource getRessource(String name) {
          for(Ressource res : this.contract) {
