@@ -10,7 +10,7 @@ public class Explorer implements IExplorerRaid {
     public void initialize(String string) {
        jfk = new JSONFactory();
        Objectif o = jfk.build_obj(string);
-      
+       Prototype p = new Prototype(o);
        
         
         
