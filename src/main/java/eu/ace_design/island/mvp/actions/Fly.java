@@ -5,7 +5,7 @@ package eu.ace_design.island.mvp.actions;
  */
 public class Fly extends AbstractAction {
 
-
+    private String head; // EAST, WEST, NORTH, EAST
 
     public Fly(int cost){
         super();
@@ -14,8 +14,24 @@ public class Fly extends AbstractAction {
         // TODO influence factor maybe
     }
 
+    private String getHead(){
+        return this.head;
+    }
+
 
     public void actionExecute(){
-        // TODO
+        // TODO - le drone avance de 3 case
+
+        /*
+            We need to know the position of the drone
+         */
+        switch (this.getHead()){
+            case "EAST":
+                // The drone just go to the east, so we have to reduce his Xpos
+                break;
+            case "WEST":
+                //
+                break;
+        }
     }
 }
