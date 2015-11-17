@@ -3,7 +3,7 @@ package eu.ace_design.island.mvp.actions;
 /**
  * Created by Lo�c on 11/15/2015.
  *
- * Classe abstraite qui sera la classe mere de toutes les classe particulieres aux commandes
+ * Classe abstraite qui sera la classe mere de toutes les classe particulieres aux commandes!
  */
 abstract class AbstractAction {
 
