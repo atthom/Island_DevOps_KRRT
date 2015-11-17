@@ -3,14 +3,15 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package eu.ace_design.island.mvp.exceptions;
+package fr.unice.polytech.qgl.qae.exceptions;
 
 /**
  *
  * @author user
  */
-public abstract class ExplorerExeption extends Exception {
-  public ExplorerExeption(String message) {
-    super(message);
+public class JSONExeption extends ExplorerExeption {
+    
+  public JSONExeption(String object) {
+    super("L'objet " + object + " n'a pas pu être créer !");
   }
 }

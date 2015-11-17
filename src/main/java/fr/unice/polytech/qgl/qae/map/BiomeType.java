@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package eu.ace_design.island.mvp.map;
+package fr.unice.polytech.qgl.qae.map;
 
 /**
  *

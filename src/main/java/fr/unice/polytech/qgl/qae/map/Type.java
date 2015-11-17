@@ -3,15 +3,13 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package eu.ace_design.island.mvp.map.resources;
-
+package fr.unice.polytech.qgl.qae.map;
 /**
  *
  * @author user
  */
-public enum Amount {
-    HIGH,
-    MEDIUM,
-    LOW,
-    UNKNOWN_AMOUNT
+public enum Type {
+    GROUND,
+    OUT_OF_RANGE,
+    UNKNOWN_TYPE
 }

@@ -5,7 +5,7 @@
  */
 package eu.ace_design.island.mvp;
 
-import eu.ace_design.island.mvp.map.resources.ExtractedResource;
+import fr.unice.polytech.qgl.qae.resources.ExtractedResource;
 import org.junit.Before;
 import org.junit.Test;
 import static org.junit.Assert.*;
@@ -32,7 +32,7 @@ public class RessourceTest {
      */
     @Test
     public void testGetNb() {
-        assertEquals(10, r.getNb()); 
+        assertEquals(10, r.getNb());
     }
 
     /**
@@ -43,7 +43,7 @@ public class RessourceTest {
         r.enleve(2);
         assertEquals(8, r.getNb());
         r.enleve(20);
-        assertEquals(8, r.getNb());
+        assertEquals(0, r.getNb());
     }
 
     /**
@@ -51,7 +51,7 @@ public class RessourceTest {
      */
     @Test
     public void testGetName() {
-           assertEquals("WOOD", r.getName()); 
+        assertEquals("WOOD", r.getName());
     }
 
 }

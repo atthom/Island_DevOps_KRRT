@@ -7,7 +7,7 @@ package eu.ace_design.island.mvp;
 
 import fr.unice.polytech.qgl.qae.Objectif;
 import fr.unice.polytech.qgl.qae.JSONFactory;
-import eu.ace_design.island.mvp.map.resources.ExtractedResource;
+import fr.unice.polytech.qgl.qae.resources.ExtractedResource;
 import java.util.ArrayList;
 import org.json.JSONArray;
 import org.json.JSONObject;
@@ -21,6 +21,7 @@ import static org.junit.Assert.*;
  * @author user
  */
 public class JSONFactoryTest {
+
     JSONFactory jfk;
 
     @BeforeClass
@@ -37,18 +38,17 @@ public class JSONFactoryTest {
      */
     @Test
     public void testBuild_res() {
-        String res = "{ \"amount\": 600, \"resource\": \"WOOD\" }";       
+        String res = "{ \"amount\": 600, \"resource\": \"WOOD\" }";
         assertEquals(jfk.build_res(res).toString(), new ExtractedResource(600, "WOOD").toString());
-        
+
     }
-   
 
     /**
      * Test of build_obj method, of class JSONFactory.
      */
     @Test
     public void testBuild_obj() {
-         String contract = "{ \n"
+        String contract = "{ \n"
                 + "  \"men\": 12,\n"
                 + "  \"budget\": 10000,\n"
                 + "  \"contracts\": [\n"
@@ -56,20 +56,20 @@ public class JSONFactoryTest {
                 + "    { \"amount\": 200, \"resource\": \"GLASS\" }\n"
                 + "  ],\n"
                 + "  \"heading\": \"W\"\n"
-                + "}";   
+                + "}";
         JSONObject obj = new JSONObject(contract);
         int men = obj.getInt("men");
         int budget = obj.getInt("budget");
-       
+
         JSONArray arr = obj.getJSONArray("contracts");
         ArrayList<ExtractedResource> res = new ArrayList<>();
-        for(int i=0; i< arr.length();i++) {
+        for (int i = 0; i < arr.length(); i++) {
             JSONObject o = arr.getJSONObject(i);
             res.add(new ExtractedResource(o.getInt("amount"), o.getString("resource")));
         }
-        
+
         assertEquals(jfk.build_obj(contract).toString(), new Objectif(men, budget, res).toString());
-         
+
     }
-    
+
 }

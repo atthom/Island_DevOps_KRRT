@@ -3,14 +3,14 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package eu.ace_design.island.mvp.map;
+package fr.unice.polytech.qgl.qae.exceptions;
 
 /**
  *
  * @author user
  */
-public enum Type {
-    GROUND,
-    OUT_OF_RANGE,
-    UNKNOWN_TYPE
+public abstract class ExplorerExeption extends Exception {
+  public ExplorerExeption(String message) {
+    super(message);
+  }
 }

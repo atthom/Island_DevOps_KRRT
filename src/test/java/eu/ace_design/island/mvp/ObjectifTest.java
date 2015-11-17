@@ -6,7 +6,8 @@
 package eu.ace_design.island.mvp;
 
 import fr.unice.polytech.qgl.qae.Objectif;
-import eu.ace_design.island.mvp.map.resources.ExtractedResource;
+import fr.unice.polytech.qgl.qae.resources.ExtractedResource;
+
 import java.util.ArrayList;
 import org.junit.Before;
 import org.junit.BeforeClass;
@@ -69,8 +70,7 @@ public class ObjectifTest {
     public void testGetRessource() {
         assertEquals(o.getRessource("WOOD").getName(), new ExtractedResource(600, "WOOD").getName());
         assertEquals(o.getRessource("WOOD").getNb(), new ExtractedResource(600, "WOOD").getNb());
-        
-        
+
         assertEquals(o.getRessource("NOPE").getName(), new ExtractedResource(0, "").getName());
         assertEquals(o.getRessource("NOPE").getNb(), new ExtractedResource(0, "").getNb());
     }
@@ -87,6 +87,7 @@ public class ObjectifTest {
         o.enleve_ressource(new ExtractedResource(1000, "WOOD"));
         assertEquals(o.getRessource("WOOD").getName(), new ExtractedResource(0, "").getName());
         assertEquals(o.getRessource("WOOD").getNb(), new ExtractedResource(0, "").getNb());
+        
     }
 
 }

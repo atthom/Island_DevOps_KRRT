@@ -3,17 +3,15 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package eu.ace_design.island.mvp.strategy;
+package fr.unice.polytech.qgl.qae.actions;
 
 /**
  *
  * @author user
  */
-public abstract class Strategy {
-    public Strategy() {
-        
-    }
-    
-    abstract void execute();
-    
+public enum Direction {
+   E,
+   W,
+   S,
+   N
 }

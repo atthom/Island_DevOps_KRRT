@@ -3,16 +3,16 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package eu.ace_design.island.mvp.map.resources;
+package fr.unice.polytech.qgl.qae.resources;
 
 /**
  *
  * @author user
  */
 public class ExtractedResource {
+
     private int nb;
     private String name;
-
 
     public ExtractedResource(int nb, String name) {
         this.nb = nb;
@@ -24,11 +24,11 @@ public class ExtractedResource {
     }
 
     public void enleve(int nb) {
-        if(this.nb >= nb ) {
-              this.nb =this.nb - nb;
+        if (this.nb >= nb) {
+            this.nb = this.nb - nb;
         } else {
             this.nb = 0;
-        }     
+        }
     }
 
     @Override
@@ -39,7 +39,5 @@ public class ExtractedResource {
     public String getName() {
         return name;
     }
-    
-    
-    
+
 }

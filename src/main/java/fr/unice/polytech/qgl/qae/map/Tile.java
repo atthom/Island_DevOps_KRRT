@@ -3,10 +3,9 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package eu.ace_design.island.mvp.map;
-
-import eu.ace_design.island.mvp.map.resources.ExtractedResource;
-import eu.ace_design.island.mvp.map.resources.UnextractedResource;
+package fr.unice.polytech.qgl.qae.map;
+import static fr.unice.polytech.qgl.qae.map.Type.*;
+import fr.unice.polytech.qgl.qae.resources.UnextractedResource;
 import java.util.ArrayList;
 
 /**
@@ -25,7 +24,15 @@ public class Tile {
         creeks = false;
         altitude = -1;
         res = new ArrayList<>();
-        t.UNKNOWN_TYPE
+        t = UNKNOWN_TYPE;
+    }
+
+    public Type getT() {
+        return t;
+    }
+
+    public void setT(Type t) {
+        this.t = t;
     }
     
     void addResource(UnextractedResource r) {
