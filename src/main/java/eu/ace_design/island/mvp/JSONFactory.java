@@ -19,6 +19,7 @@ public class JSONFactory {
     public ExtractedResource build_res(String s) {
         JSONObject o = new JSONObject(s);
         return new ExtractedResource(o.getInt("amount"), o.getString("resource"));
+               
     }
     
     public Objectif build_obj(String s) {

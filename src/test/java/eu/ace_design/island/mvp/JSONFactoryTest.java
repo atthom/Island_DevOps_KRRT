@@ -39,6 +39,7 @@ public class JSONFactoryTest {
         assertEquals(jfk.build_res(res).toString(), new ExtractedResource(600, "WOOD").toString());
         
     }
+   
 
     /**
      * Test of build_obj method, of class JSONFactory.
