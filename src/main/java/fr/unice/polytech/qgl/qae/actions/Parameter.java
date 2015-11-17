@@ -5,6 +5,8 @@
  */
 package fr.unice.polytech.qgl.qae.actions;
 
+import org.json.JSONObject;
+
 /**
  *
  * @author user
@@ -25,5 +27,6 @@ public class Parameter {
     public String getValeur() {
         return valeur;
     }
+    
     
 }

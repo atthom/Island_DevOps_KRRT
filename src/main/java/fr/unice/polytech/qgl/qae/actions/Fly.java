@@ -10,8 +10,4 @@ public class Fly extends AbstractAction {
         super();
     }
 
-    @Override
-    public String actionExecute(){
-         return "";
-    }
 }

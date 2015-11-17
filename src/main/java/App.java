@@ -1,5 +1,8 @@
 
 import fr.unice.polytech.qgl.qae.Explorer;
+import fr.unice.polytech.qgl.qae.actions.Direction;
+import fr.unice.polytech.qgl.qae.actions.Echo;
+import fr.unice.polytech.qgl.qae.actions.Parameter;
 import org.json.JSONObject;
 
 /*
@@ -14,18 +17,6 @@ import org.json.JSONObject;
 public class App {
 
     public static void main(String[] args) {
-        System.out.println("Hello World!!");
-        Greeter g = new Greeter();
-
-        JSONObject obj = new JSONObject();
-
-        obj.put("name", "foo");
-        obj.put("num", new Integer(100));
-        obj.put("balance", new Double(1000.21));
-        obj.put("is_vip", new Boolean(true));
-
-        System.out.print(obj.get("balance"));
-
         String contract = "{ \n"
                 + "  \"men\": 12,\n"
                 + "  \"budget\": 10000,\n"
@@ -35,18 +26,12 @@ public class App {
                 + "  ],\n"
                 + "  \"heading\": \"W\"\n"
                 + "}";
-        Explorer e = new Explorer();
-        e.initialize(contract);
-
-        // Gerer le parsing des informations lie a l'action fly
-
-        String test = "{ \n"
-                + "  \"cost\": 1,\n"
-                + "  \"extras\": \n"
-                + "    { \"range\": 2, \"found\": \"GROUND\" }, \n"
-                + " \"status\": \"OK\" \n"
-                + "}";
-
-        System.out.println("TEST COMMIT");
+     //   Explorer e = new Explorer();
+      //  e.initialize(contract);
+       
+        Echo dz = new Echo(Direction.E);
+       
+        System.out.println(dz.toJSON().toString());
+    
     }
 }

@@ -6,26 +6,39 @@
 package fr.unice.polytech.qgl.qae.actions;
 
 import java.util.ArrayList;
+import org.json.JSONArray;
+import org.json.JSONObject;
 
 /**
  *
  * @author user
  */
 abstract public class ActionWithParameters extends AbstractAction {
-    ArrayList<Parameter> parameters;
+    private ArrayList<Parameter> parameters;
+    private String name;
     
-    public ActionWithParameters(ArrayList<Parameter> p) {
+    public ActionWithParameters(ArrayList<Parameter> p, String name) {
         super();
         parameters = new ArrayList<>();
         parameters.addAll(p);
+        this.name = name;
     }
-    
-    public ActionWithParameters(Parameter p) {
+
+     public ActionWithParameters(Parameter p, String name) {
         super();
         parameters = new ArrayList<>();
         parameters.add(p);
     }
-    
-    @Override
-    abstract String actionExecute();
+
+     public JSONObject toJSON() {
+         JSONObject o = new JSONObject();
+         o.put("action", "echo");
+         JSONObject a = new JSONObject();
+         for(Parameter p : this.parameters) {
+            a.put(p.getArgument(), p.getValeur());
+         }
+        
+         o.put("parameters", a);
+         return o;
+     }
 }

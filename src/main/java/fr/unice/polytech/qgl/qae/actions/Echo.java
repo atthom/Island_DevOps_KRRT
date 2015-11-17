@@ -5,17 +5,9 @@ package fr.unice.polytech.qgl.qae.actions;
  */
 public class Echo extends ActionWithParameters {
 
-
     public Echo(Direction d){
-      super(new Parameter("direction", d.toString()));
+      super(new Parameter("direction", d.toString()), "echo");
     }
 
-    /**
-     *
-     * @return 
-     */
-    @Override
-    public String actionExecute(){
-       return this.toString();
-    }
+    
 }

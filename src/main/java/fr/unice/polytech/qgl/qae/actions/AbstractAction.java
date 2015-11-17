@@ -15,6 +15,4 @@ abstract class AbstractAction {
     protected void setActionCost(int cost){
         this.actionCost = cost;
     }
-
-    abstract String actionExecute();
 }

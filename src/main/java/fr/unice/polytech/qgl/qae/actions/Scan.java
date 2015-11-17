@@ -10,9 +10,5 @@ public class Scan extends AbstractAction {
      
     }
 
-    @Override
-    public String actionExecute(){
-        return "{ \"action\": \"scan\" }";
-    }
 }
 

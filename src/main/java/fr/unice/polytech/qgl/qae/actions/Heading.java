@@ -10,10 +10,4 @@ public class Heading extends AbstractAction {
         super();
     }
 
-    
-    @Override
-    String actionExecute() {
-        return "";
-    }
-
 }

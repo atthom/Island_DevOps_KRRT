@@ -34,5 +34,5 @@ public class JSONFactory {
 
         return new Objectif(o.getInt("men"), o.getInt("budget"), res);
     }
-
+    
 }
