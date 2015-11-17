@@ -18,12 +18,14 @@ public class Tile {
     private Boolean creeks;
     private int altitude;
     private ArrayList<UnextractedResource> res;
+    private Type t;
     
     public Tile() {
         b = new Biome();
         creeks = false;
         altitude = -1;
         res = new ArrayList<>();
+        t.UNKNOWN_TYPE
     }
     
     void addResource(UnextractedResource r) {

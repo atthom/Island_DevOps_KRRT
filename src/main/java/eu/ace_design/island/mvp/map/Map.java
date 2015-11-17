@@ -28,6 +28,10 @@ public class Map {
    
    // public int getDistance(Tile t1, Tile t2) 
     
+     // public ArrayList<Tile>> getPath(Tile t1, Tile t2) 
+    
+    
+    
 //    private ArrayList<ArrayList<Tile>> map;
 //    
 //    public Map(int longeur, int largeur, Tile origin) {

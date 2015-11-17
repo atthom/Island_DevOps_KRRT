@@ -3,7 +3,7 @@ package eu.ace_design.island.mvp.actions;
 /**
  * Created by Lo�c on 11/15/2015.
  *
- * Classe abstraite qui sera la classe mere de toutes les classe particulieres aux commandes!
+ * Classe abstraite qui sera la classe mere de toutes les classe particulieres aux commandes
  */
 abstract class AbstractAction {
 
@@ -11,6 +11,9 @@ abstract class AbstractAction {
     private int actionCost;
     private int influenceFactor;
 
+    public AbstractAction(){
+        // No need
+    }
 
     protected void setActionName(String name){
         this.actionName = name;

@@ -5,6 +5,8 @@
  */
 package eu.ace_design.island.mvp;
 
+import fr.unice.polytech.qgl.qae.Objectif;
+import fr.unice.polytech.qgl.qae.JSONFactory;
 import eu.ace_design.island.mvp.map.resources.ExtractedResource;
 import java.util.ArrayList;
 import org.json.JSONArray;

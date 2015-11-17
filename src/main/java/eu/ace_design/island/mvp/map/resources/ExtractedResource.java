@@ -24,9 +24,11 @@ public class ExtractedResource {
     }
 
     public void enleve(int nb) {
-        if(nb < this.nb ) {
+        if(this.nb >= nb ) {
               this.nb =this.nb - nb;
-        }      
+        } else {
+            this.nb = 0;
+        }     
     }
 
     @Override

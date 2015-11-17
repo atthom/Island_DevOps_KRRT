@@ -1,4 +1,4 @@
-package eu.ace_design.island.mvp;
+package fr.unice.polytech.qgl.qae;
 
 import eu.ace_design.island.bot.IExplorerRaid;
 import eu.ace_design.island.mvp.strategy.Strategy;
