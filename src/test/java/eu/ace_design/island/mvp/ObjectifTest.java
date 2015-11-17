@@ -5,6 +5,7 @@
  */
 package eu.ace_design.island.mvp;
 
+import eu.ace_design.island.mvp.map.resources.ExtractedResource;
 import java.util.ArrayList;
 import org.junit.Before;
 import org.junit.BeforeClass;
@@ -28,9 +29,9 @@ public class ObjectifTest {
 
     @Before
     public void setUp() {
-        ArrayList<Ressource> a = new ArrayList<>();
-        a.add(new Ressource(600, "WOOD"));
-        a.add(new Ressource(200, "GLASS"));
+        ArrayList<ExtractedResource> a = new ArrayList<>();
+        a.add(new ExtractedResource(600, "WOOD"));
+        a.add(new ExtractedResource(200, "GLASS"));
         o = new Objectif(12, 10000, a);
 
     }
@@ -65,12 +66,12 @@ public class ObjectifTest {
      */
     @Test
     public void testGetRessource() {
-        assertEquals(o.getRessource("WOOD").getName(), new Ressource(600, "WOOD").getName());
-        assertEquals(o.getRessource("WOOD").getNb(), new Ressource(600, "WOOD").getNb());
+        assertEquals(o.getRessource("WOOD").getName(), new ExtractedResource(600, "WOOD").getName());
+        assertEquals(o.getRessource("WOOD").getNb(), new ExtractedResource(600, "WOOD").getNb());
         
         
-        assertEquals(o.getRessource("NOPE").getName(), new Ressource(0, "").getName());
-        assertEquals(o.getRessource("NOPE").getNb(), new Ressource(0, "").getNb());
+        assertEquals(o.getRessource("NOPE").getName(), new ExtractedResource(0, "").getName());
+        assertEquals(o.getRessource("NOPE").getNb(), new ExtractedResource(0, "").getNb());
     }
 
     /**
@@ -78,13 +79,13 @@ public class ObjectifTest {
      */
     @Test
     public void testEnleve_ressource() {
-        o.enleve_ressource(new Ressource(100, "WOOD"));
-        assertEquals(o.getRessource("WOOD").getName(), new Ressource(500, "WOOD").getName());
-        assertEquals(o.getRessource("WOOD").getNb(), new Ressource(500, "WOOD").getNb());
+        o.enleve_ressource(new ExtractedResource(100, "WOOD"));
+        assertEquals(o.getRessource("WOOD").getName(), new ExtractedResource(500, "WOOD").getName());
+        assertEquals(o.getRessource("WOOD").getNb(), new ExtractedResource(500, "WOOD").getNb());
 
-        o.enleve_ressource(new Ressource(1000, "WOOD"));
-        assertEquals(o.getRessource("WOOD").getName(), new Ressource(0, "").getName());
-        assertEquals(o.getRessource("WOOD").getNb(), new Ressource(0, "").getNb());
+        o.enleve_ressource(new ExtractedResource(1000, "WOOD"));
+        assertEquals(o.getRessource("WOOD").getName(), new ExtractedResource(0, "").getName());
+        assertEquals(o.getRessource("WOOD").getNb(), new ExtractedResource(0, "").getNb());
     }
 
 }

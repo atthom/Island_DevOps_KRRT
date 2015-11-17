@@ -3,17 +3,18 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package eu.ace_design.island.mvp;
+package eu.ace_design.island.mvp.map.resources;
 
 /**
  *
  * @author user
  */
-public class Ressource {
-    int nb;
-    String name;
+public class ExtractedResource {
+    private int nb;
+    private String name;
 
-    public Ressource(int nb, String name) {
+
+    public ExtractedResource(int nb, String name) {
         this.nb = nb;
         this.name = name;
     }
@@ -36,5 +37,7 @@ public class Ressource {
     public String getName() {
         return name;
     }
+    
+    
     
 }

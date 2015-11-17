@@ -5,6 +5,7 @@
  */
 package eu.ace_design.island.mvp;
 
+import eu.ace_design.island.mvp.map.resources.ExtractedResource;
 import org.junit.Before;
 import org.junit.Test;
 import static org.junit.Assert.*;
@@ -15,7 +16,7 @@ import static org.junit.Assert.*;
  */
 public class RessourceTest {
 
-    Ressource r;
+    ExtractedResource r;
 
     public RessourceTest() {
 
@@ -23,7 +24,7 @@ public class RessourceTest {
 
     @Before
     public void setUp() {
-        r = new Ressource(10, "WOOD");
+        r = new ExtractedResource(10, "WOOD");
     }
 
     /**

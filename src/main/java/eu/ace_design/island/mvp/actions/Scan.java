@@ -1,12 +1,12 @@
-package Actions;
+package eu.ace_design.island.mvp.actions;
 
 /**
- * Created by Loïc on 11/15/2015.
+ * Created by Loï¿½c on 11/15/2015.
  */
-public class Heading extends AbstractAction {
+public class Scan extends AbstractAction {
 
 
-    public Heading(int cost){
+    public Scan(int cost){
         super();
         this.setActionName("Fly");
         this.setActionCost(cost);
@@ -18,3 +18,4 @@ public class Heading extends AbstractAction {
         // TODO
     }
 }
+

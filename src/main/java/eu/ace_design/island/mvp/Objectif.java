@@ -5,6 +5,7 @@
  */
 package eu.ace_design.island.mvp;
 
+import eu.ace_design.island.mvp.map.resources.ExtractedResource;
 import java.util.ArrayList;
 
 /**
@@ -14,9 +15,9 @@ import java.util.ArrayList;
 public class Objectif {
     private final int nb_mens;
     private int budget;
-    private ArrayList<Ressource> contract;
+    private ArrayList<ExtractedResource> contract;
 
-    public Objectif(int nb_mens, int budget, ArrayList<Ressource> contract) {
+    public Objectif(int nb_mens, int budget, ArrayList<ExtractedResource> contract) {
         this.nb_mens = nb_mens;
         this.budget = budget;
         this.contract = contract;
@@ -37,17 +38,17 @@ public class Objectif {
    
     
     
-    public Ressource getRessource(String name) {
-         for(Ressource res : this.contract) {
+    public ExtractedResource getRessource(String name) {
+         for(ExtractedResource res : this.contract) {
              if(res.getName().equals(name)) {
                 return res;
              }
          }
-        return new Ressource(0, "");
+        return new ExtractedResource(0, "");
     }
     
-    public void enleve_ressource(Ressource r) {
-        for(Ressource res : this.contract) {
+    public void enleve_ressource(ExtractedResource r) {
+        for(ExtractedResource res : this.contract) {
             if(res.getName().equals(r.getName())) {
                 if(res.getNb() > r.getNb()) {
                       res.enleve(r.getNb());

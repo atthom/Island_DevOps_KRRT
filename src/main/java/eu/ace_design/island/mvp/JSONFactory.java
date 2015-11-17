@@ -4,6 +4,7 @@
  * and open the template in the editor.
  */
 package eu.ace_design.island.mvp;
+import eu.ace_design.island.mvp.map.resources.ExtractedResource;
 import java.util.ArrayList;
 import org.json.*;
 /**
@@ -15,15 +16,15 @@ public class JSONFactory {
     public JSONFactory() {
     }
     
-    public Ressource build_res(String s) {
+    public ExtractedResource build_res(String s) {
         JSONObject o = new JSONObject(s);
-        return new Ressource(o.getInt("amount"), o.getString("resource"));
+        return new ExtractedResource(o.getInt("amount"), o.getString("resource"));
     }
     
     public Objectif build_obj(String s) {
         JSONObject o = new JSONObject(s);
         JSONArray arr = o.getJSONArray("contracts");
-        ArrayList<Ressource> res = new ArrayList<>();
+        ArrayList<ExtractedResource> res = new ArrayList<>();
         for(int i=0; i< arr.length();i++) {       
             res.add(build_res(arr.getJSONObject(i).toString()));
         }

@@ -1,7 +1,7 @@
-package Actions;
+package eu.ace_design.island.mvp.actions;
 
 /**
- * Created by Loïc on 11/15/2015.
+ * Created by Loï¿½c on 11/15/2015.
  *
  * Classe abstraite qui sera la classe mere de toutes les classe particulieres aux commandes
  */

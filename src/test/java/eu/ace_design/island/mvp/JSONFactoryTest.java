@@ -5,6 +5,7 @@
  */
 package eu.ace_design.island.mvp;
 
+import eu.ace_design.island.mvp.map.resources.ExtractedResource;
 import java.util.ArrayList;
 import org.json.JSONArray;
 import org.json.JSONObject;
@@ -35,7 +36,7 @@ public class JSONFactoryTest {
     @Test
     public void testBuild_res() {
         String res = "{ \"amount\": 600, \"resource\": \"WOOD\" }";       
-        assertEquals(jfk.build_res(res).toString(), new Ressource(600, "WOOD").toString());
+        assertEquals(jfk.build_res(res).toString(), new ExtractedResource(600, "WOOD").toString());
         
     }
 
@@ -58,10 +59,10 @@ public class JSONFactoryTest {
         int budget = obj.getInt("budget");
        
         JSONArray arr = obj.getJSONArray("contracts");
-        ArrayList<Ressource> res = new ArrayList<>();
+        ArrayList<ExtractedResource> res = new ArrayList<>();
         for(int i=0; i< arr.length();i++) {
             JSONObject o = arr.getJSONObject(i);
-            res.add(new Ressource(o.getInt("amount"), o.getString("resource")));
+            res.add(new ExtractedResource(o.getInt("amount"), o.getString("resource")));
         }
         
         assertEquals(jfk.build_obj(contract).toString(), new Objectif(men, budget, res).toString());

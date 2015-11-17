@@ -1,13 +1,12 @@
-package Actions;
+package eu.ace_design.island.mvp.actions;
 
 /**
- * Created by Loïc on 11/15/2015.
+ * Created by Loï¿½c on 11/15/2015.
  */
-public class Fly extends AbstractAction {
+public class Echo extends AbstractAction {
 
 
-
-    public Fly(int cost){
+    public Echo(int cost){
         super();
         this.setActionName("Fly");
         this.setActionCost(cost);
