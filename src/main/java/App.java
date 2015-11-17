@@ -46,5 +46,7 @@ public class App {
                 + "    { \"range\": 2, \"found\": \"GROUND\" }, \n"
                 + " \"status\": \"OK\" \n"
                 + "}";
+
+        System.out.println("TEST COMMIT");
     }
 }
