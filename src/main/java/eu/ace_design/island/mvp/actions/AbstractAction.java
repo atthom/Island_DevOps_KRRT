@@ -11,9 +11,6 @@ abstract class AbstractAction {
     private int actionCost;
     private int influenceFactor;
 
-    public AbstractAction(){
-        // No need
-    }
 
     protected void setActionName(String name){
         this.actionName = name;
