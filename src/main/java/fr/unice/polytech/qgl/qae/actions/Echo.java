@@ -7,7 +7,5 @@ public class Echo extends ActionWithParameters {
 
     public Echo(Direction d){
       super(new Parameter("direction", d.toString()), "echo");
-    }
-
-    
+    } 
 }

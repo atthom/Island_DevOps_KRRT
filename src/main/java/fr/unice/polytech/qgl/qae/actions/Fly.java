@@ -7,7 +7,7 @@ public class Fly extends AbstractAction {
 
 
     public Fly(){
-        super();
+        super("fly");
     }
 
 }

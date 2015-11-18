@@ -5,9 +5,8 @@ package fr.unice.polytech.qgl.qae.actions;
  */
 public class Scan extends AbstractAction {
 
-
     public Scan(){
-     
+      super("scan");
     }
 
 }

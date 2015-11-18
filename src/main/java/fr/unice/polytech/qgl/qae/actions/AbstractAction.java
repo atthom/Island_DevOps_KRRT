@@ -1,5 +1,7 @@
 package fr.unice.polytech.qgl.qae.actions;
 
+import org.json.JSONObject;
+
 /**
  * Created by Lo�c on 11/15/2015.
  *
@@ -8,11 +10,28 @@ package fr.unice.polytech.qgl.qae.actions;
 abstract class AbstractAction {
 
     private int actionCost;
+    private final String name;
 
-    public AbstractAction(){
+    public AbstractAction(String name){
+        this.name = name;
+        actionCost=0;
+    }
+
+    public String getName() {
+        return name;
     }
     
-    protected void setActionCost(int cost){
+    public void setActionCost(int cost){
         this.actionCost = cost;
     }
+    public int getActionCost() {
+        return this.actionCost;
+    }
+    
+    public JSONObject toJSON() {
+        JSONObject o = new JSONObject();
+        o.put("action", name);
+        return o;
+    }
+    
 }
