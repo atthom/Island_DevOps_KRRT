@@ -3,9 +3,8 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package eu.ace_design.island.mvp;
+package fr.unice.polytech.qgl.qae.resources;
 
-import fr.unice.polytech.qgl.qae.resources.ExtractedResource;
 import org.junit.Before;
 import org.junit.Test;
 import static org.junit.Assert.*;
@@ -14,14 +13,14 @@ import static org.junit.Assert.*;
  *
  * @author user
  */
-public class RessourceTest {
-
+public class ExtractedResourceTest {
+    
     ExtractedResource r;
-
-    public RessourceTest() {
-
+    
+    public ExtractedResourceTest() {
     }
-
+    
+   
     @Before
     public void setUp() {
         r = new ExtractedResource(10, "WOOD");
@@ -54,4 +53,5 @@ public class RessourceTest {
         assertEquals("WOOD", r.getName());
     }
 
+    
 }

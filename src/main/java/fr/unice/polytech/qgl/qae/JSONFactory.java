@@ -5,6 +5,8 @@
  */
 package fr.unice.polytech.qgl.qae;
 
+import fr.unice.polytech.qgl.qae.map.Biome;
+import fr.unice.polytech.qgl.qae.map.BiomeType;
 import fr.unice.polytech.qgl.qae.resources.ExtractedResource;
 import java.util.ArrayList;
 import org.json.*;
@@ -34,5 +36,11 @@ public class JSONFactory {
 
         return new Objectif(o.getInt("men"), o.getInt("budget"), res);
     }
+    
+    public Biome build_biome(String s) {
+        return new Biome(BiomeType.valueOf(s));
+    }
+    
+    
     
 }

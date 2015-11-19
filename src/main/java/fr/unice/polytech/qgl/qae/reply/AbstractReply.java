@@ -33,16 +33,12 @@ public abstract class AbstractReply {
             this.status = false;
         }
         extras = new ArrayList<>();
+              
     }
     
-    public AbstractReply(String s, String a, String b) {
-        this(s);
-        addextra(a, b);
-       
-    }
-
-    public void addextra(String a, String b) {
-        extras.add(new Parameter(a, b));
+    
+    public void getextras() {
+        
     }
 
     public int getCost() {

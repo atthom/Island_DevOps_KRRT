@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package eu.ace_design.island.mvp;
+package fr.unice.polytech.qgl.qae;
 
 import fr.unice.polytech.qgl.qae.Objectif;
 import fr.unice.polytech.qgl.qae.resources.ExtractedResource;

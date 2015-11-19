@@ -14,14 +14,12 @@ import java.util.ArrayList;
  */
 public class Tile {
     private Biome b;
-    private Boolean creeks;
     private int altitude;
     private ArrayList<UnextractedResource> res;
     private Type t;
     
     public Tile() {
         b = new Biome();
-        creeks = false;
         altitude = -1;
         res = new ArrayList<>();
         t = UNKNOWN_TYPE;
@@ -45,14 +43,6 @@ public class Tile {
 
     public void setB(Biome b) {
         this.b = b;
-    }
-
-    public Boolean getCreeks() {
-        return creeks;
-    }
-
-    public void setCreeks(Boolean creeks) {
-        this.creeks = creeks;
     }
 
     public int getAltitude() {

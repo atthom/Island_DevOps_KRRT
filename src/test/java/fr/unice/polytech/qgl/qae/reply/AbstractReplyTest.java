@@ -48,4 +48,19 @@ public class AbstractReplyTest {
         
     }
     
+    @Test
+    public void testEchoReply() {
+        ar = new EchoReply("{ \"cost\": 1, \"extras\": { \"range\": 2, \"found\": \"GROUND\" }, \"status\": \"OK\" }");
+        
+    }
+    
+    /**
+     *
+     */
+    @Test
+    public void testScanReply() {
+        ar = new ScanReply("{\"cost\": 2, \"extras\": { \"biomes\": [\"GLACIER\", \"ALPINE\"], \"creeks\": []}, \"status\": \"OK\"}");
+    }
+    
+    
 }
