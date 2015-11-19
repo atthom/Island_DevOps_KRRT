@@ -15,11 +15,12 @@ public class Map {
     private HashMap<Coordinates, Tile> map;
     
     
-    public Map(GroundTile origin) {
+    public Map(Tile origin) {
+        map = new HashMap<>();
         map.put(new Coordinates(0, 0), origin);
     }
     
-    public void add(int longeur, int largeur, GroundTile t) {
+    public void add(int longeur, int largeur, Tile t) {
         map.putIfAbsent(new Coordinates(longeur, largeur), t);
     }
     

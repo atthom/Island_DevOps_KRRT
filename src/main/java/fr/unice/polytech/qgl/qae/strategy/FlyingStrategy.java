@@ -7,6 +7,8 @@ package fr.unice.polytech.qgl.qae.strategy;
 
 import fr.unice.polytech.qgl.qae.JSONFactory;
 import fr.unice.polytech.qgl.qae.actions.Heading;
+import fr.unice.polytech.qgl.qae.map.Map;
+import fr.unice.polytech.qgl.qae.map.Tile;
 
 /**
  *
@@ -14,10 +16,14 @@ import fr.unice.polytech.qgl.qae.actions.Heading;
  */
 public class FlyingStrategy  extends Strategy{
     Heading h;
+    int nbtours;
+    Map flyingMap;
     
     public FlyingStrategy(String heading) {
         JSONFactory j = new JSONFactory();
         h = j.build_heading(heading);
+        nbtours =0;
+        flyingMap = new Map(new Tile());
     }
 
     public FlyingStrategy(Heading heading) {
@@ -25,9 +31,17 @@ public class FlyingStrategy  extends Strategy{
     }
     
     @Override
-    void execute() {
+    String execute() {
+      
+      
+      return "";
+    }
+
+    @Override
+    void acknowledge() {
         
     }
+    
     
     
     

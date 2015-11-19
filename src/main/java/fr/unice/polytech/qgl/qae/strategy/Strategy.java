@@ -5,16 +5,46 @@
  */
 package fr.unice.polytech.qgl.qae.strategy;
 
+import fr.unice.polytech.qgl.qae.actions.Direction;
+
 /**
  *
  * @author user
  */
 public abstract class Strategy {
-    
+
     public Strategy() {
-        
+
     }
-    
-    abstract void execute();
-    
+
+    Direction gauche(Direction d) {
+        switch (d) {
+            case N:
+                return Direction.W;
+            case E:
+                return Direction.N;
+            case W:
+                return Direction.S;
+            default:
+                return Direction.E; //pour Direction.S   
+        }
+    }
+
+    Direction droite(Direction d) {
+        switch (d) {
+            case N:
+                return Direction.E;
+            case E:
+                return Direction.S;
+            case W:
+                return Direction.N;
+            default:
+                return Direction.W; //pour Direction.S   
+        }
+    }
+
+    abstract String execute();
+
+    abstract void acknowledge();
+
 }

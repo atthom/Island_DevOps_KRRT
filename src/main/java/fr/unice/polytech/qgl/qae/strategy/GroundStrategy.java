@@ -16,8 +16,14 @@ public class GroundStrategy  extends Strategy {
     public GroundStrategy() {
 
     }
+    
     @Override
-    void execute() {
+    String execute() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    void acknowledge() {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
     
