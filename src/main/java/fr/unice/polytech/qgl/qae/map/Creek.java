@@ -9,7 +9,7 @@ package fr.unice.polytech.qgl.qae.map;
  *
  * @author user
  */
-public class Creek extends Tile{
+public class Creek extends GroundTile{
     String id;
     
     

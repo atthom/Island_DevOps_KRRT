@@ -7,6 +7,10 @@ package fr.unice.polytech.qgl.qae;
 
 import fr.unice.polytech.qgl.qae.Objectif;
 import fr.unice.polytech.qgl.qae.JSONFactory;
+import fr.unice.polytech.qgl.qae.actions.Direction;
+import fr.unice.polytech.qgl.qae.actions.Heading;
+import fr.unice.polytech.qgl.qae.map.Biome;
+import fr.unice.polytech.qgl.qae.map.BiomeType;
 import fr.unice.polytech.qgl.qae.resources.ExtractedResource;
 import java.util.ArrayList;
 import org.json.JSONArray;
@@ -70,6 +74,25 @@ public class JSONFactoryTest {
 
         assertEquals(jfk.build_obj(contract).toString(), new Objectif(men, budget, res).toString());
 
+    }
+
+    /**
+     * Test of build_biome method, of class JSONFactory.
+     */
+    @Test
+    public void testBuild_biome() {
+        
+        assertEquals(jfk.build_biome("GLACIER").getB(), new Biome(BiomeType.GLACIER).getB());
+        
+    }
+
+    /**
+     * Test of build_heading method, of class JSONFactory.
+     */
+    @Test
+    public void testBuild_heading() {
+        assertEquals(jfk.build_heading("{ \"action\": \"heading\", \"parameters\": { \"direction\": \"N\" } }").toJSON().toString(), new Heading(Direction.N).toJSON().toString());
+        
     }
 
 }

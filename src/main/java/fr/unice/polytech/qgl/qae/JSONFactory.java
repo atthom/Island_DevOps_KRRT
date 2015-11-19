@@ -5,6 +5,8 @@
  */
 package fr.unice.polytech.qgl.qae;
 
+import fr.unice.polytech.qgl.qae.actions.Direction;
+import fr.unice.polytech.qgl.qae.actions.Heading;
 import fr.unice.polytech.qgl.qae.map.Biome;
 import fr.unice.polytech.qgl.qae.map.BiomeType;
 import fr.unice.polytech.qgl.qae.resources.ExtractedResource;
@@ -39,6 +41,19 @@ public class JSONFactory {
     
     public Biome build_biome(String s) {
         return new Biome(BiomeType.valueOf(s));
+    }
+    
+    public Heading build_heading(String s) {
+        JSONObject o = new JSONObject(s);
+        String head;
+        if(o.has("heading")) {
+            head = new JSONObject(s).getString("heading");
+        } else{
+            JSONObject para = new JSONObject(s).getJSONObject("parameters");
+            head = para.getString("direction");
+        }  
+
+        return new Heading(Direction.valueOf(head));
     }
     
     

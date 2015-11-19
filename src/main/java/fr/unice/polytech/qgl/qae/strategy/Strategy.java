@@ -10,6 +10,7 @@ package fr.unice.polytech.qgl.qae.strategy;
  * @author user
  */
 public abstract class Strategy {
+    
     public Strategy() {
         
     }

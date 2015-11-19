@@ -5,7 +5,6 @@
  */
 package fr.unice.polytech.qgl.qae.map;
 
-import java.util.ArrayList;
 import java.util.HashMap;
 
 /**
@@ -16,11 +15,11 @@ public class Map {
     private HashMap<Coordinates, Tile> map;
     
     
-    public Map(Tile origin) {
+    public Map(GroundTile origin) {
         map.put(new Coordinates(0, 0), origin);
     }
     
-    public void add(int longeur, int largeur, Tile t) {
+    public void add(int longeur, int largeur, GroundTile t) {
         map.putIfAbsent(new Coordinates(longeur, largeur), t);
     }
     
