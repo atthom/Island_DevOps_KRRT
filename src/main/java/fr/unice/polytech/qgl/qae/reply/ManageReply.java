@@ -35,6 +35,7 @@ public class ManageReply {
     }
     public void manage_scan(JSONObject js, Map map) {
 
+
         JSONObject extras = js.getJSONObject("extras");
         JSONArray biomes = extras.getJSONArray("biomes");
 
