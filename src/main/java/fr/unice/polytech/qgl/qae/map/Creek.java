@@ -17,7 +17,5 @@ public class Creek extends GroundTile{
         super();
         this.id = id;
     }
-
-
     
 }
