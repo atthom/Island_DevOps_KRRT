@@ -5,12 +5,14 @@
  */
 package fr.unice.polytech.qgl.qae.map;
 
+import fr.unice.polytech.qgl.qae.actions.Direction;
+
 /**
  *
  * @author user
  */
 public class Coordinates {
-    int x,y;
+    private int x,y;
 
     public Coordinates(int x, int y) {
         this.x = x;
@@ -25,9 +27,11 @@ public class Coordinates {
         return y;
     }
     
-    public int distance(Coordinates a, Coordinates b) {
+    
+    
+    public int distance(Coordinates a) {
         // distance de manhatan
-        return Math.abs(b.x - a.x) + Math.abs(b.y - a.y);
+        return Math.abs(a.x - this.x) + Math.abs(a.y - this.y);
     }
     
 }

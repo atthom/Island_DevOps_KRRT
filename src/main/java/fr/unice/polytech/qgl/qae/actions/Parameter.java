@@ -5,17 +5,15 @@
  */
 package fr.unice.polytech.qgl.qae.actions;
 
-import org.json.JSONObject;
-
 /**
  *
  * @author user
  */
-public class Parameter {
+public class Parameter<T> {
     private String argument;
-    private String valeur;
+    private T valeur;
 
-    public Parameter(String argument, String valeur) {
+    public Parameter(String argument, T valeur) {
         this.argument = argument;
         this.valeur = valeur;
     }
@@ -24,9 +22,10 @@ public class Parameter {
         return argument;
     }
 
-    public String getValeur() {
+    public T getValeur() {
         return valeur;
     }
+    
     
     
 }

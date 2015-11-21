@@ -15,7 +15,7 @@ import org.json.JSONObject;
  */
 abstract public class ActionWithParameters extends AbstractAction {
 
-    private ArrayList<Parameter> parameters;
+    protected ArrayList<Parameter> parameters;
 
     public ActionWithParameters(ArrayList<Parameter> p, String name) {
         super(name);
@@ -42,6 +42,10 @@ abstract public class ActionWithParameters extends AbstractAction {
         o.put("parameters", a);
         return o;
     }
+
+    abstract public Object getValueParameter(); 
+    
+    
 }
 
 

@@ -6,6 +6,11 @@ package fr.unice.polytech.qgl.qae.actions;
 public class Echo extends ActionWithParameters {
 
     public Echo(Direction d){
-      super(new Parameter("direction", d.toString()), "echo");
+      super(new Parameter("direction", d), "echo");
     } 
+
+    @Override
+    public Object getValueParameter() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
 }

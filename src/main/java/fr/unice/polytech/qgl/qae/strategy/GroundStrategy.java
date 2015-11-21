@@ -5,6 +5,8 @@
  */
 package fr.unice.polytech.qgl.qae.strategy;
 
+import org.json.JSONObject;
+
 /**
  *
  * @author user
@@ -18,12 +20,12 @@ public class GroundStrategy  extends Strategy {
     }
     
     @Override
-    String execute() {
+    public String execute() {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     @Override
-    void acknowledge() {
+    public void acknowledge(JSONObject s) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
     

@@ -6,7 +6,6 @@
 package fr.unice.polytech.qgl.qae.map;
 
 import static fr.unice.polytech.qgl.qae.map.Type.UNKNOWN_TYPE;
-import fr.unice.polytech.qgl.qae.resources.UnextractedResource;
 import java.util.ArrayList;
 
 /**
@@ -19,9 +18,17 @@ public class FlyTile extends Tile {
     private ArrayList<Biome> res;
 
     public FlyTile() {
-        t = UNKNOWN_TYPE;
-        res = new ArrayList<>();
+        super();
+        this.t = UNKNOWN_TYPE;
+        this.res = new ArrayList<>();
     }
+    
+    public FlyTile(Type t) {
+        super();
+        this.t = t;
+        this.res = new ArrayList<>();
+    }
+    
 
     public Type getT() {
         return t;

@@ -9,27 +9,34 @@ public class Explorer implements IExplorerRaid {
    
     private JSONFactory jfk;
     private Strategy strat;
-    
+    private Objectif o; 
     
     
     @Override
     public void initialize(String string) {
        jfk = new JSONFactory();
-       Objectif o = jfk.build_obj(string);
+       o = jfk.build_obj(string);
        //Prototype p = new Prototype(o);
        
-       //OBJECT HEADING
        strat = new FlyingStrategy(jfk.build_heading(string));
     }
-
+    
+    private void manage_cost(Objectif o, JSONObject js) {
+        o.enleve_PA(js.getInt("cost"));
+    }
+    
+    
     @Override
     public String takeDecision() {
-        return "{ \"action\": \"stop\" }";
+        return strat.execute();
     }
 
     @Override
-    public void acknowledgeResults(String string) {     
+    public void acknowledgeResults(String string) { 
+        JSONObject js = new JSONObject(string);
+        manage_cost(o, js);
         System.out.println(string);
+        strat.acknowledge(js);
     }
     
 }

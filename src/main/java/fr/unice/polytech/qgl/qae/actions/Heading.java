@@ -9,13 +9,19 @@ public class Heading extends ActionWithParameters {
 
 
     public Heading(Direction d){
-        super(new Parameter("direction", d.toString()), "heading");
+        super(new Parameter("direction", d), "heading");
     }
     
     
     public Heading(String s) {
-        super(new Parameter("direction", new JSONObject(s).get("direction").toString()), "heading");
-        
+        super(new Parameter("direction", new JSONObject(s).get("direction")), "heading");
     }
+
+    @Override
+    public Direction getValueParameter() {
+        return (Direction) parameters.get(0).getValeur();
+    }
+    
+    
 
 }

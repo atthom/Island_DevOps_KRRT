@@ -6,6 +6,7 @@
 package fr.unice.polytech.qgl.qae.strategy;
 
 import fr.unice.polytech.qgl.qae.actions.Direction;
+import org.json.JSONObject;
 
 /**
  *
@@ -43,8 +44,8 @@ public abstract class Strategy {
         }
     }
 
-    abstract String execute();
+    public abstract String execute();
 
-    abstract void acknowledge();
+    public abstract void acknowledge(JSONObject s);
 
 }

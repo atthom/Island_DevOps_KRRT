@@ -7,7 +7,7 @@ import org.json.JSONObject;
  *
  * Classe abstraite qui sera la classe mere de toutes les classe particulieres aux commandes
  */
-abstract class AbstractAction {
+public abstract class AbstractAction {
 
     private int actionCost;
     private final String name;

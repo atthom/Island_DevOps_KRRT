@@ -11,5 +11,7 @@ package fr.unice.polytech.qgl.qae.map;
 public enum Type {
     GROUND,
     OUT_OF_RANGE,
-    UNKNOWN_TYPE
+    UNKNOWN_TYPE;
+
+   
 }
