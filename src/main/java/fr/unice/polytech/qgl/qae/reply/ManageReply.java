@@ -6,12 +6,11 @@
 package fr.unice.polytech.qgl.qae.reply;
 
 import fr.unice.polytech.qgl.qae.actions.Direction;
-import fr.unice.polytech.qgl.qae.map.FlyTile;
-import fr.unice.polytech.qgl.qae.map.Map;
-import fr.unice.polytech.qgl.qae.map.Tile;
-import fr.unice.polytech.qgl.qae.map.Type;
-import fr.unice.polytech.qgl.qae.map.Vect;
+import fr.unice.polytech.qgl.qae.map.*;
+import org.json.JSONArray;
 import org.json.JSONObject;
+
+import java.util.ArrayList;
 
 /**
  *
@@ -34,5 +33,18 @@ public class ManageReply {
         map.add(v,t );
 
     }
+    public void manage_scan(JSONObject js, Map map) {
 
+        JSONObject extras = js.getJSONObject("extras");
+        JSONArray biomes = extras.getJSONArray("biomes");
+
+        String id = String.valueOf(extras.get("creek").toString());
+
+        for (int i = 0; i < biomes.length(); i++) {
+            //map.getTile();
+        }
+
+        Creek c = new Creek(id);
+
+    }
 }

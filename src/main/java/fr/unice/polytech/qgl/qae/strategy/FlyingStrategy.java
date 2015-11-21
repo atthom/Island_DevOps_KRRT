@@ -6,10 +6,7 @@
 package fr.unice.polytech.qgl.qae.strategy;
 
 import fr.unice.polytech.qgl.qae.JSONFactory;
-import fr.unice.polytech.qgl.qae.actions.AbstractAction;
-import fr.unice.polytech.qgl.qae.actions.Echo;
-import fr.unice.polytech.qgl.qae.actions.Heading;
-import fr.unice.polytech.qgl.qae.actions.Stop;
+import fr.unice.polytech.qgl.qae.actions.*;
 import fr.unice.polytech.qgl.qae.map.FlyTile;
 
 import fr.unice.polytech.qgl.qae.map.Map;
@@ -55,8 +52,11 @@ public class FlyingStrategy extends Strategy {
             case 1:
                 lastaction = new Echo(droite(h.getValueParameter()));
                 return lastaction.toJSON().toString();
+            case 2:
+                lastaction = new Echo(h.getValueParameter());
+                return lastaction.toJSON().toString();
             default:
-                lastaction = new Stop();
+                lastaction = new Fly();
                 return lastaction.toJSON().toString();
         }
 
@@ -71,13 +71,13 @@ public class FlyingStrategy extends Strategy {
     public void acknowledge(JSONObject s) {
         nbtours++;
         if (nbtours == 1) {
-           
             manager.manage_echo(s, flyingMap, gauche(h.getValueParameter()));
         } else if (nbtours == 2) {
-
             manager.manage_echo(s, flyingMap, droite(h.getValueParameter()));
         }
-
+        else if (nbtours == 3) {
+            manager.manage_echo(s, flyingMap, h.getValueParameter());
+        }
     }
 
 }

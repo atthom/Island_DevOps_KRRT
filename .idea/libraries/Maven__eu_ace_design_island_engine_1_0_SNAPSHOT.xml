@@ -1,0 +1,13 @@
+<component name="libraryTable">
+  <library name="Maven: eu.ace-design:island-engine:1.0-SNAPSHOT">
+    <CLASSES>
+      <root url="jar://$MAVEN_REPOSITORY$/eu/ace-design/island-engine/1.0-SNAPSHOT/island-engine-1.0-20151120.143429-26.jar!/" />
+    </CLASSES>
+    <JAVADOC>
+      <root url="jar://$MAVEN_REPOSITORY$/eu/ace-design/island-engine/1.0-SNAPSHOT/island-engine-1.0-20151120.143429-26-javadoc.jar!/" />
+    </JAVADOC>
+    <SOURCES>
+      <root url="jar://$MAVEN_REPOSITORY$/eu/ace-design/island-engine/1.0-SNAPSHOT/island-engine-1.0-20151120.143429-26-sources.jar!/" />
+    </SOURCES>
+  </library>
+</component>
