@@ -6,6 +6,7 @@
 package fr.unice.polytech.qgl.qae.map;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.HashMap;
 
 /**
@@ -56,7 +57,7 @@ public class Map {
 
     public Tile getTile(Vect v1, Vect v2) {
         Coordinates coord = convert(v1, v2);
-        
+
         for (Coordinates c : coordinates) {
             if (c.getX() == coord.getX() & c.getY() == coord.getY()) {
                 return map.get(c);
@@ -66,6 +67,28 @@ public class Map {
         return map.get(new Coordinates(0, 0));
     }
 
+    public HashMap<Coordinates, Tile> getMap() {
+        return map;
+    }
+    public int getMaxXCord() {
+        int max = -1;
+        for(int i = 0; i<coordinates.size(); i++) {
+            if(coordinates.get(i).getX() > max) {
+                max = coordinates.get(i).getX();
+            }
+        }
+        return max;
+    }
+
+    public int getMinXCord() {
+        int min = 1000;
+        for(int i = 0; i<coordinates.size(); i++) {
+            if(coordinates.get(i).getX() < min) {
+                min = coordinates.get(i).getX();
+            }
+        }
+        return min;
+    }
 //    public Tile getTile(int longeur, Direction d) {
 //        for(Coordinates c : coordinates) {
 //            if(c.getX()==longeur &c.getY() == largeur) {

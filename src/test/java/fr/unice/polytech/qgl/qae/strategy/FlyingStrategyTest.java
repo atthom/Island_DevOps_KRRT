@@ -28,7 +28,7 @@ public class FlyingStrategyTest {
 
     public FlyingStrategyTest() {
     }
-
+/*
     @Before
     public void setUp() {
         fstrat = new FlyingStrategy(new Heading(Direction.E));

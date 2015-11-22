@@ -18,7 +18,7 @@ public class Explorer implements IExplorerRaid {
        o = jfk.build_obj(string);
        //Prototype p = new Prototype(o);
        
-       strat = new FlyingStrategy(jfk.build_heading(string));
+       strat = new FlyingStrategy(jfk.build_heading(string), o);
     }
     
     private void manage_cost(Objectif o, JSONObject js) {

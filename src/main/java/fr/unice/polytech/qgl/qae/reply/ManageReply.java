@@ -5,6 +5,7 @@
  */
 package fr.unice.polytech.qgl.qae.reply;
 
+import fr.unice.polytech.qgl.qae.Objectif;
 import fr.unice.polytech.qgl.qae.actions.Direction;
 import fr.unice.polytech.qgl.qae.map.*;
 import org.json.JSONArray;
@@ -21,12 +22,15 @@ public class ManageReply {
     public ManageReply() {
     }
 
-    public void manage_echo(JSONObject js, Map map, Direction d) {
+    public void manage_echo(JSONObject js, Map map, Direction d, Objectif o) {
         JSONObject extras = js.getJSONObject("extras");
         int range = extras.getInt("range");
 
+        int cost = js.getInt("cost");
+        o.enleve_PA(cost);
+
         Type found = Type.valueOf(extras.get("found").toString());
-        
+
         Vect v = new Vect(range, d);
         Tile t = new FlyTile(found);
 
@@ -34,7 +38,6 @@ public class ManageReply {
 
     }
     public void manage_scan(JSONObject js, Map map) {
-
 
         JSONObject extras = js.getJSONObject("extras");
         JSONArray biomes = extras.getJSONArray("biomes");
