@@ -19,6 +19,7 @@ import org.json.JSONObject;
  */
 public class FlyingStrategy extends Strategy {
     int move = 0;
+    Coordinates c = new Coordinates(0,0);
     Heading h;
     int nbtours;
     Map flyingMap;
@@ -57,19 +58,37 @@ public class FlyingStrategy extends Strategy {
                 lastaction = new Echo(h.getValueParameter());
                 return lastaction.toJSON().toString();
             default:
+                /*
                 if(o.getBudget() < 6990)
                     lastaction = new Stop();
                 if(h.getValueParameter() == Direction.E && move == flyingMap.getMaxXCord()-2 ) {
-                    lastaction = new Heading(Direction.S);
+                    lastaction = new Heading(h.getValueParameter());
+                    lastaction = new Stop();
+
                     move = 0;
                 }
-                if(h.getValueParameter() == Direction.W && move == flyingMap.getMinXCord()-2 ) {
-                    lastaction = new Heading(Direction.S);
+                else if(h.getValueParameter() == Direction.W && move == flyingMap.getMinXCord()-2 ) {
+                   // lastaction = new Heading(Direction.S);
+                    lastaction = new Stop();
+
+                    move = 0;
+                }
+                else if(h.getValueParameter() == Direction.N && move == flyingMap.getMaxYCord()-2 ) {
+                   // lastaction = new Heading(Direction.S);
+                    lastaction = new Stop();
+
+                    move = 0;
+                }
+                else if(h.getValueParameter() == Direction.S && move == flyingMap.getMinYCord()-2 ) {
+                   // lastaction = new Heading(Direction.S);
+                    lastaction = new Stop();
+
                     move = 0;
                 }
                 else
                     lastaction = new Fly();
-                move++;
+                move++;*/
+                lastaction = new Stop();
                 return lastaction.toJSON().toString();
         }
 

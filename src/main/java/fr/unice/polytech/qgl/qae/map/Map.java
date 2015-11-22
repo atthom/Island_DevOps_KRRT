@@ -5,6 +5,8 @@
  */
 package fr.unice.polytech.qgl.qae.map;
 
+import eu.ace_design.island.game.actions.Heading;
+
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashMap;
@@ -70,6 +72,7 @@ public class Map {
     public HashMap<Coordinates, Tile> getMap() {
         return map;
     }
+
     public int getMaxXCord() {
         int max = -1;
         for(int i = 0; i<coordinates.size(); i++) {
@@ -88,6 +91,30 @@ public class Map {
             }
         }
         return min;
+    }
+
+    public int getMaxYCord() {
+        int max = -1;
+        for(int i = 0; i<coordinates.size(); i++) {
+            if(coordinates.get(i).getY() > max) {
+                max = coordinates.get(i).getY();
+            }
+        }
+        return max;
+    }
+
+    public int getMinYCord() {
+        int min = 1000;
+        for(int i = 0; i<coordinates.size(); i++) {
+            if(coordinates.get(i).getY() < min) {
+                min = coordinates.get(i).getY();
+            }
+        }
+        return min;
+    }
+    // Combien de case disponible jusqu'a out of range a partir de notre coordonnée
+    public int getMaxXCord(Coordinates c, Heading h) {
+        return 0;
     }
 //    public Tile getTile(int longeur, Direction d) {
 //        for(Coordinates c : coordinates) {
