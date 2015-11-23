@@ -5,6 +5,7 @@
  */
 package fr.unice.polytech.qgl.qae.strategy;
 
+import fr.unice.polytech.qgl.qae.Objectif;
 import fr.unice.polytech.qgl.qae.actions.Direction;
 import fr.unice.polytech.qgl.qae.actions.Echo;
 import fr.unice.polytech.qgl.qae.actions.Heading;
@@ -13,9 +14,13 @@ import fr.unice.polytech.qgl.qae.map.FlyTile;
 import fr.unice.polytech.qgl.qae.map.Tile;
 import fr.unice.polytech.qgl.qae.map.Type;
 import fr.unice.polytech.qgl.qae.map.Vect;
+import fr.unice.polytech.qgl.qae.resources.ExtractedResource;
 import org.json.JSONObject;
 import org.junit.Before;
 import org.junit.Test;
+
+import java.util.ArrayList;
+
 import static org.junit.Assert.*;
 
 /**
@@ -24,20 +29,19 @@ import static org.junit.Assert.*;
  */
 public class FlyingStrategyTest {
 
-    FlyingStrategy fstrat;
+    FlyingStrategy fstrat,fstratString;
 
     public FlyingStrategyTest() {
     }
-/*
+
     @Before
     public void setUp() {
-        fstrat = new FlyingStrategy(new Heading(Direction.E));
-
-    }
-
-    @Test
-    public void setUpString() {
-        fstrat = new FlyingStrategy("{ \n"
+        ArrayList<ExtractedResource> a = new ArrayList<>();
+        a.add(new ExtractedResource(600, "WOOD"));
+        a.add(new ExtractedResource(200, "GLASS"));
+        Objectif ob = new Objectif(12, 10000, a);
+        fstrat = new FlyingStrategy(new Heading(Direction.E), ob);
+        fstratString = new FlyingStrategy("{ \n"
                 + "  \"men\": 12,\n"
                 + "  \"budget\": 10000,\n"
                 + "  \"contracts\": [\n"
@@ -45,7 +49,7 @@ public class FlyingStrategyTest {
                 + "    { \"amount\": 200, \"resource\": \"GLASS\" }\n"
                 + "  ],\n"
                 + "  \"heading\": \"W\"\n"
-                + "}");
+                + "}", ob);
     }
 
     /**

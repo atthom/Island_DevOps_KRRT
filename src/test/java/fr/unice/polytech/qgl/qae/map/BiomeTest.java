@@ -12,17 +12,15 @@ public class BiomeTest {
 
     Biome b;
 
-    public BiomeTest(){}
-
     @Before
     public void setUp(){b = new Biome();}
 
     @Test
-    public void testGetB(){assertEquals(BiomeType.UNKNOWN_BIOME, b.getB());}
+    public void testGetB(){assertEquals(BiomeType.UNKNOWN_BIOME, b.getType());}
 
     @Test
     public void testSetB(){
-        b.setB(BiomeType.ALPINE);
-        assertEquals(BiomeType.UNKNOWN_BIOME, b.getB());
+        b.setType(BiomeType.ALPINE);
+        assertEquals(BiomeType.ALPINE, b.getType());
     }
 }

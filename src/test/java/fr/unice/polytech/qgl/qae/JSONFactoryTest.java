@@ -82,7 +82,7 @@ public class JSONFactoryTest {
     @Test
     public void testBuild_biome() {
         
-        assertEquals(jfk.build_biome("GLACIER").getB(), new Biome(BiomeType.GLACIER).getB());
+        assertEquals(jfk.build_biome("GLACIER").getType(), new Biome(BiomeType.GLACIER).getType());
         
     }
 

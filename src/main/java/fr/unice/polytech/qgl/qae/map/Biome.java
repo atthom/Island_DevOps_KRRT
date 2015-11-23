@@ -10,22 +10,22 @@ package fr.unice.polytech.qgl.qae.map;
  * @author user
  */
 public class Biome {
-    private BiomeType b;
+    private BiomeType bt;
     
     public Biome() {
-        b = BiomeType.UNKNOWN_BIOME;
+        bt = BiomeType.UNKNOWN_BIOME;
     }
 
-    public Biome(BiomeType b) {
-        this.b = b;
+    public Biome(BiomeType bt) {
+        this.bt = bt;
     }
 
-    public BiomeType getB() {
-        return b;
+    public BiomeType getType() {
+        return bt;
     }
 
-    public void setB(BiomeType b) {
-        this.b = b;
+    public void setType(BiomeType bt) {
+        this.bt = bt;
     }
     
 }

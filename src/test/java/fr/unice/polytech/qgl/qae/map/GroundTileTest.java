@@ -12,13 +12,13 @@ import static org.junit.Assert.assertEquals;
 public class GroundTileTest {
 
     GroundTile gt;
-
-    GroundTileTest(){
-
-    }
+    Biome b;
 
     @Before
-    public void setUp(){gt = new GroundTile();}
+    public void setUp(){
+        b =new Biome();
+        gt = new GroundTile();
+    }
 
     @Test
     public void testAddRessource(){
@@ -27,7 +27,7 @@ public class GroundTileTest {
 
     @Test
     public void testGetB(){
-        assertEquals(new Biome(), gt.getB());
+        assertEquals(b.getType(), gt.getB().getType());
     }
 
     @Test
