@@ -6,10 +6,10 @@
 package fr.unice.polytech.qgl.qae.map;
 
 /**
- *
+ * Classe de case de base
  * @author user
  */
-public class Tile {
+abstract public class Tile {
 
     public Tile() {
     }

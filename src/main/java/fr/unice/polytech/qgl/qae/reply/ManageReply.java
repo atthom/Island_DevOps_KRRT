@@ -14,14 +14,23 @@ import fr.unice.polytech.qgl.qae.map.Vect;
 import org.json.JSONObject;
 
 /**
- *
+ * Classe qui gère toutes les réponses du moteur de jeu
  * @author user
  */
 public class ManageReply {
 
+    /**
+     *
+     */
     public ManageReply() {
     }
 
+    /**
+     * gère la réponse de l'action Echo
+     * @param js un objet JSON
+     * @param map la carte utilisée
+     * @param d la direction de l'appel à echo
+     */
     public void manage_echo(JSONObject js, Map map, Direction d) {
         JSONObject extras = js.getJSONObject("extras");
         int range = extras.getInt("range");

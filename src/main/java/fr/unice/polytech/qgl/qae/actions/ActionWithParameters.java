@@ -6,24 +6,36 @@
 package fr.unice.polytech.qgl.qae.actions;
 
 import java.util.ArrayList;
-import org.json.JSONArray;
 import org.json.JSONObject;
 
 /**
- *
+ * Permet de créer facilement des réponse JSON
+ * pour des  actions avec parametres
  * @author user
  */
 abstract public class ActionWithParameters extends AbstractAction {
 
+    /**
+     * 
+     */
     protected ArrayList<Parameter> parameters;
 
+    /**
+     *
+     * @param p : liste de paramètres (nom du parametre, valeur)
+     * @param name : nom de l'action
+     */
     public ActionWithParameters(ArrayList<Parameter> p, String name) {
         super(name);
         parameters = new ArrayList<>();
         parameters.addAll(p);
-
     }
 
+    /**
+     *
+     * @param p parametre(nom, valeur)
+     * @param name nom de l'action
+     */
     public ActionWithParameters(Parameter p, String name) {
         super(name);
         parameters = new ArrayList<>();
@@ -43,6 +55,10 @@ abstract public class ActionWithParameters extends AbstractAction {
         return o;
     }
 
+    /**
+     *
+     * @return la valeur du parametre
+     */
     abstract public Object getValueParameter(); 
     
     

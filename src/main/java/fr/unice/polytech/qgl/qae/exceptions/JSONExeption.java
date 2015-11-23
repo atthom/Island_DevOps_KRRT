@@ -6,7 +6,7 @@
 package fr.unice.polytech.qgl.qae.exceptions;
 
 /**
- *
+ * Gere les exeptions JSON
  * @author user
  */
 public class JSONExeption extends ExplorerExeption {

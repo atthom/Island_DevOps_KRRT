@@ -9,7 +9,8 @@ import java.util.ArrayList;
 import java.util.HashMap;
 
 /**
- *
+ * Classe Map permettant de stocker les informations sur les cases
+ * et les organiser selon un repère en 2D
  * @author user
  */
 public class Map {
@@ -17,6 +18,10 @@ public class Map {
     private HashMap<Coordinates, Tile> map;
     private ArrayList<Coordinates> coordinates;
 
+    /**
+     *
+     * @param origin case origine de l'explorer
+     */
     public Map(Tile origin) {
         map = new HashMap<>();
         coordinates = new ArrayList<>();
@@ -28,14 +33,30 @@ public class Map {
         coordinates.add(c);
     }
 
+    /**
+     * Converti un vecteur et le rentre dans le repère.
+     * @param v1 premier vecteur (int dist, direction d )
+     * @param v2 second vecteur
+     * @param t la case à ajouter à la map
+     */
     public void add(Vect v1, Vect v2, Tile t) {
         map.put(convert(v1, v2), t);
     }
 
+    /**
+     * Idem avec un seul vecteur 
+     * @param v1
+     * @param t
+     */
     public void add(Vect v1, Tile t) {
-        put(convert(v1), t);
+       put(convert(v1), t);
     }
 
+    /**
+     * Converit un vecteur en Coordonnée
+     * @param v1 vecteur à convertir
+     * @return
+     */
     public Coordinates convert(Vect v1) {
         if (v1.is_xaxis()) {
             return new Coordinates(v1.getValeur(), 0);
@@ -44,8 +65,14 @@ public class Map {
         }
     }
 
+    /**
+     * Convertit deux vecteur (non colinéaire) en coordonnée
+     * @param v1
+     * @param v2
+     * @return
+     */
     public Coordinates convert(Vect v1, Vect v2) {
-        if (v1.issimilare(v2)) {
+        if (v1.colinear(v2)) {
             return new Coordinates(0, 0);
         } else if (v1.is_xaxis()) {
             return new Coordinates(v1.getValeur(), v2.getValeur());
@@ -54,6 +81,12 @@ public class Map {
         }
     }
 
+    /**
+     * Renvoie la case si elle existe 
+     * @param v1 
+     * @param v2
+     * @return
+     */
     public Tile getTile(Vect v1, Vect v2) {
         Coordinates coord = convert(v1, v2);
         

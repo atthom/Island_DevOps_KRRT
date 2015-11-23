@@ -5,6 +5,10 @@ package fr.unice.polytech.qgl.qae.actions;
  */
 public class Echo extends ActionWithParameters {
 
+    /**
+     * Classe Action Echo
+     * @param d parametre de l'action
+     */
     public Echo(Direction d){
       super(new Parameter("direction", d), "echo");
     } 

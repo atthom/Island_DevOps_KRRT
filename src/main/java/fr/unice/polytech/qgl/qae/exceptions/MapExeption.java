@@ -6,7 +6,7 @@
 package fr.unice.polytech.qgl.qae.exceptions;
 
 /**
- *
+ * Gere les exeptions de la carte
  * @author user
  */
 public class MapExeption extends ExplorerExeption {

@@ -19,15 +19,29 @@ import org.json.*;
  */
 public class JSONFactory {
 
+    /** 
+     * Classe de transfere entre une chaine de caractères
+     * formaté JSON et un objet utilisé par l'explorer.
+     */
     public JSONFactory() {
     }
 
+    /**
+     * String => ExtractedResource
+     * @param s chaine convertible
+     * @return un objet de ressource extraite
+     */
     public ExtractedResource build_res(String s) {
         JSONObject o = new JSONObject(s);
         return new ExtractedResource(o.getInt("amount"), o.getString("resource"));
 
     }
 
+    /**
+     * String => Objectif
+     * @param s chaine convertible
+     * @return un objet objectif
+     */
     public Objectif build_obj(String s) {
         JSONObject o = new JSONObject(s);
         JSONArray arr = o.getJSONArray("contracts");
@@ -39,10 +53,20 @@ public class JSONFactory {
         return new Objectif(o.getInt("men"), o.getInt("budget"), res);
     }
     
+    /**
+     * String => Biome
+     * @param s chaine convertible
+     * @return un objet Biome
+     */
     public Biome build_biome(String s) {
         return new Biome(BiomeType.valueOf(s));
     }
     
+    /**
+     * String => Heading
+     * @param s chaine convertible
+     * @return un objet Heading
+     */
     public Heading build_heading(String s) {
         JSONObject o = new JSONObject(s);
         String head;

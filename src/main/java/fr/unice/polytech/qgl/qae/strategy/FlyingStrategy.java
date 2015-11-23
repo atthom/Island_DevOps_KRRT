@@ -13,12 +13,12 @@ import fr.unice.polytech.qgl.qae.actions.Stop;
 import fr.unice.polytech.qgl.qae.map.FlyTile;
 
 import fr.unice.polytech.qgl.qae.map.Map;
-import fr.unice.polytech.qgl.qae.map.Tile;
 import fr.unice.polytech.qgl.qae.reply.ManageReply;
 import org.json.JSONObject;
 
 /**
- *
+ * Classe travaillant sur la stratégie du drone pour se déplacer
+ * et scanner la map et trouver des points d'abordage avec un cout minimum
  * @author user
  */
 public class FlyingStrategy extends Strategy {
@@ -29,6 +29,10 @@ public class FlyingStrategy extends Strategy {
     AbstractAction lastaction;
     ManageReply manager;
 
+    /**
+     *
+     * @param heading
+     */
     public FlyingStrategy(String heading) {
         super();
         JSONFactory j = new JSONFactory();
@@ -39,6 +43,10 @@ public class FlyingStrategy extends Strategy {
 
     }
 
+    /**
+     *
+     * @param heading
+     */
     public FlyingStrategy(Heading heading) {
         super();
         h = heading;
@@ -62,19 +70,25 @@ public class FlyingStrategy extends Strategy {
 
     }
 
+    /**
+     * execute les actions du drone
+     * @return
+     */
     @Override
     public String execute() {
         return phase1();
     }
 
+    /**
+     *
+     * @param s l'object JSON (réponse) renvoyé par le moteur de jeu
+     */
     @Override
     public void acknowledge(JSONObject s) {
         nbtours++;
         if (nbtours == 1) {
-           
             manager.manage_echo(s, flyingMap, gauche(h.getValueParameter()));
         } else if (nbtours == 2) {
-
             manager.manage_echo(s, flyingMap, droite(h.getValueParameter()));
         }
 

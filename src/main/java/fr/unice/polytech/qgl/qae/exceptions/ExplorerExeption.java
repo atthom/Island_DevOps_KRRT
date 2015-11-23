@@ -6,7 +6,7 @@
 package fr.unice.polytech.qgl.qae.exceptions;
 
 /**
- *
+ * Classe Regroupant toutes les exeptions de l'exporer
  * @author user
  */
 public abstract class ExplorerExeption extends Exception {

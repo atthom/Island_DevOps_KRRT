@@ -48,8 +48,8 @@ public class VectTest {
      */
     @Test
     public void testIssimilare() {
-        assertTrue(v.issimilare(v));
-        assertTrue(v.issimilare(new Vect(4, Direction.W)));
+        assertTrue(v.colinear(v));
+        assertTrue(v.colinear(new Vect(4, Direction.W)));
     }
     
 }

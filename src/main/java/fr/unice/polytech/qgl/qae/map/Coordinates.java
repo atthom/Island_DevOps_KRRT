@@ -5,32 +5,45 @@
  */
 package fr.unice.polytech.qgl.qae.map;
 
-import fr.unice.polytech.qgl.qae.actions.Direction;
-
 /**
- *
+ * Classe coordonée 2D
  * @author user
  */
 public class Coordinates {
     private int x,y;
 
+    /**
+     *
+     * @param x
+     * @param y
+     */
     public Coordinates(int x, int y) {
         this.x = x;
         this.y = y;
     }
 
+    /**
+     *
+     * @return
+     */
     public int getX() {
         return x;
     }
 
+    /**
+     *
+     * @return
+     */
     public int getY() {
         return y;
     }
     
-    
-    
+    /**
+     * Permet de calculer la distance manhatan entre deux coordonnées
+     * @param a la seconde coordonnée
+     * @return
+     */
     public int distance(Coordinates a) {
-        // distance de manhatan
         return Math.abs(a.x - this.x) + Math.abs(a.y - this.y);
     }
     

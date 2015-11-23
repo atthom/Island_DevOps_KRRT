@@ -7,12 +7,18 @@ import org.json.JSONObject;
  */
 public class Heading extends ActionWithParameters {
 
-
+    /**
+     * Action Heading avec une direction comme parametre
+     * @param d
+     */
     public Heading(Direction d){
         super(new Parameter("direction", d), "heading");
     }
     
-    
+    /**
+     * Créer un object Heading à partir d'une chaine de caractères.
+     * @param s
+     */
     public Heading(String s) {
         super(new Parameter("direction", new JSONObject(s).get("direction")), "heading");
     }

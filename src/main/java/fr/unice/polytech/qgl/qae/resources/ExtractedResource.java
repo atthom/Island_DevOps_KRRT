@@ -6,7 +6,7 @@
 package fr.unice.polytech.qgl.qae.resources;
 
 /**
- *
+ * Ressource exploitée ou objectif de ressource à exploiter
  * @author user
  */
 public class ExtractedResource {
@@ -14,15 +14,29 @@ public class ExtractedResource {
     private int nb;
     private String name;
 
+    /**
+     * 
+     * @param nb quantitée de ressource
+     * @param name nom de la ressource
+     */
     public ExtractedResource(int nb, String name) {
         this.nb = nb;
         this.name = name;
     }
 
+    /**
+     *
+     * @return la quantiée de ressource
+     */
     public int getNb() {
         return nb;
     }
 
+    /**
+     *
+     * @param nb retire nb quantitée de la ressource
+     * TODO : throw exeption si enelve plus que possible
+     */
     public void enleve(int nb) {
         if (this.nb >= nb) {
             this.nb = this.nb - nb;
@@ -36,6 +50,10 @@ public class ExtractedResource {
         return "Ressource{" + "nb=" + nb + ", name=" + name + '}';
     }
 
+    /**
+     *
+     * @return le nom de la ressource
+     */
     public String getName() {
         return name;
     }

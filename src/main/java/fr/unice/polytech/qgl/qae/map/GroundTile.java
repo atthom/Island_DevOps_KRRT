@@ -9,7 +9,7 @@ import fr.unice.polytech.qgl.qae.resources.UnextractedResource;
 import java.util.ArrayList;
 
 /**
- *
+ * Classe GroundTile utilisée lors de la phrase d'extraction
  * @author user
  */
 public class GroundTile extends Tile {
@@ -18,6 +18,9 @@ public class GroundTile extends Tile {
     private int altitude;
     private ArrayList<UnextractedResource> res;
 
+    /**
+     *
+     */
     public GroundTile() {
         b = new Biome();
         altitude = -1;
@@ -29,18 +32,34 @@ public class GroundTile extends Tile {
         res.add(r);
     }
 
+    /**
+     *
+     * @return le biome de la case
+     */
     public Biome getB() {
         return b;
     }
 
+    /**
+     *
+     * @param b Biome à mettre à jour
+     */
     public void setB(Biome b) {
         this.b = b;
     }
 
+    /**
+     *
+     * @return l'altitde de la case
+     */
     public int getAltitude() {
         return altitude;
     }
 
+    /**
+     *
+     * @param altitude a mettre à jour
+     */
     public void setAltitude(int altitude) {
         this.altitude = altitude;
     }

@@ -5,7 +5,9 @@ package fr.unice.polytech.qgl.qae.actions;
  */
 public class Fly extends AbstractAction {
 
-
+    /**
+     * Action Fly
+     */
     public Fly(){
         super("fly");
     }
