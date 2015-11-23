@@ -14,5 +14,5 @@ public enum Condition {
     HARSH,
     FAIR,
     EASY,
-    COND_UNKNOWN
+    COND_UNKNOWN;
 }

@@ -14,5 +14,5 @@ public enum Amount {
     HIGH,
     MEDIUM,
     LOW,
-    UNKNOWN_AMOUNT
+    UNKNOWN_AMOUNT;
 }

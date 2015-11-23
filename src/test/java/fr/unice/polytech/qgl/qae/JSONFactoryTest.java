@@ -50,6 +50,7 @@ public class JSONFactoryTest {
     /**
      * Test of build_obj method, of class JSONFactory.
      */
+ 
     @Test
     public void testBuild_obj() {
         String contract = "{ \n"
@@ -82,7 +83,7 @@ public class JSONFactoryTest {
     @Test
     public void testBuild_biome() {
         
-        assertEquals(jfk.build_biome("GLACIER").getB(), new Biome(BiomeType.GLACIER).getB());
+        assertEquals(jfk.build_biome("GLACIER").getBiomeType(), new Biome(BiomeType.GLACIER).getBiomeType());
         
     }
 

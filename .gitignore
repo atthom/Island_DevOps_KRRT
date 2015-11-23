@@ -3,3 +3,4 @@ target/*
 outputs/log.json
 outputs/log.json
 outputs/log.json
+outputs/*

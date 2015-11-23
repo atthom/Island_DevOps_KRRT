@@ -31,7 +31,7 @@ public class Biome {
      *
      * @return le type de biome
      */
-    public BiomeType getBiomeType() {
+    public BiomeType getB() {
         return b;
     }
 
@@ -39,7 +39,7 @@ public class Biome {
      *
      * @param b le nouveau type de biome
      */
-    public void setBiomeType(BiomeType b) {
+    public void setB(BiomeType b) {
         this.b = b;
     }
     
