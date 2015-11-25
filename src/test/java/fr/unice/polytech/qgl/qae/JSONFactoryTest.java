@@ -43,7 +43,7 @@ public class JSONFactoryTest {
     @Test
     public void testBuild_res() {
         String res = "{ \"amount\": 600, \"resource\": \"WOOD\" }";
-        assertEquals(jfk.build_res(res).toString(), new ExtractedResource(600, "WOOD").toString());
+        assertEquals(jfk.build_res(res), new ExtractedResource(600, "WOOD"));
 
     }
 
@@ -73,8 +73,8 @@ public class JSONFactoryTest {
             res.add(new ExtractedResource(o.getInt("amount"), o.getString("resource")));
         }
 
-        assertEquals(jfk.build_obj(contract).toString(), new Objectif(men, budget, res).toString());
-
+        assertEquals(jfk.build_obj(contract), new Objectif(men, budget, res));
+ 
     }
 
     /**
@@ -92,8 +92,10 @@ public class JSONFactoryTest {
      */
     @Test
     public void testBuild_heading() {
-        assertEquals(jfk.build_heading("{ \"action\": \"heading\", \"parameters\": { \"direction\": \"N\" } }").toJSON().toString(), new Heading(Direction.N).toJSON().toString());
+        assertEquals(jfk.build_heading("{ \"action\": \"heading\", \"parameters\": { \"direction\": \"N\" } }"), new Heading(Direction.N));
         
     }
+    
+    
 
 }

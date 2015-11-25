@@ -5,6 +5,7 @@
  */
 package fr.unice.polytech.qgl.qae.map;
 
+import fr.unice.polytech.qgl.qae.map.geometry.Vect;
 import fr.unice.polytech.qgl.qae.actions.Direction;
 import fr.unice.polytech.qgl.qae.actions.Heading;
 import org.junit.Before;

@@ -5,13 +5,11 @@
  */
 package fr.unice.polytech.qgl.qae.reply;
 
-import fr.unice.polytech.qgl.qae.Objectif;
 import fr.unice.polytech.qgl.qae.actions.Direction;
-import fr.unice.polytech.qgl.qae.actions.Heading;
-import fr.unice.polytech.qgl.qae.map.FlyTile;
+import fr.unice.polytech.qgl.qae.map.tile.FlyTile;
 import fr.unice.polytech.qgl.qae.map.Map;
 import fr.unice.polytech.qgl.qae.map.Type;
-import fr.unice.polytech.qgl.qae.map.Vect;
+import fr.unice.polytech.qgl.qae.map.geometry.Vect;
 import fr.unice.polytech.qgl.qae.resources.ExtractedResource;
 import org.json.JSONObject;
 import org.junit.Before;

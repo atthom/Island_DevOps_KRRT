@@ -1,5 +1,6 @@
 package fr.unice.polytech.qgl.qae.map;
 
+import fr.unice.polytech.qgl.qae.map.tile.GroundTile;
 import fr.unice.polytech.qgl.qae.resources.UnextractedResource;
 import org.junit.*;
 

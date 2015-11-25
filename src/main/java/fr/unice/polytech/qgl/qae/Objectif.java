@@ -7,6 +7,7 @@ package fr.unice.polytech.qgl.qae;
 
 import fr.unice.polytech.qgl.qae.resources.ExtractedResource;
 import java.util.ArrayList;
+import java.util.Objects;
 
 /**
  *
@@ -76,7 +77,7 @@ public class Objectif {
      * @param r ressource à extraire.
      */
     public void enleve_ressource(ExtractedResource r) {
-       for(ExtractedResource res : this.contract) {
+        for(ExtractedResource res : contract) {
             if (res.getNb() > r.getNb()) {
                 res.enleve(r.getNb());
             } else {
@@ -93,7 +94,33 @@ public class Objectif {
         if (budget < this.budget) {
             this.budget = this.budget - budget;
         }
-
     }
+
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (obj == null) {
+            return false;
+        }
+        if (getClass() != obj.getClass()) {
+            return false;
+        }
+        final Objectif other = (Objectif) obj;
+        if (this.nb_mens != other.nb_mens) {
+            return false;
+        }
+        if (this.budget != other.budget) {
+            return false;
+        }
+        if (!Objects.equals(this.contract, other.contract)) {
+            return false;
+        }
+        return true;
+    }
+    
+    
 
 }

@@ -1,6 +1,7 @@
 package fr.unice.polytech.qgl.qae.map;
 
 
+import fr.unice.polytech.qgl.qae.map.tile.FlyTile;
 import org.junit.*;
 
 import static org.junit.Assert.assertEquals;

@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package fr.unice.polytech.qgl.qae.map;
+package fr.unice.polytech.qgl.qae.map.geometry;
 
 /**
  * Classe coordonée 2D

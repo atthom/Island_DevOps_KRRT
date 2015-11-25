@@ -6,6 +6,7 @@
 package fr.unice.polytech.qgl.qae.actions;
 
 import java.util.ArrayList;
+import java.util.Objects;
 import org.json.JSONObject;
 
 /**
@@ -60,6 +61,23 @@ abstract public class ActionWithParameters extends AbstractAction {
      * @return la valeur du parametre
      */
     abstract public Object getValueParameter(); 
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (obj == null) {
+            return false;
+        }
+        if (getClass() != obj.getClass()) {
+            return false;
+        }
+        final ActionWithParameters other = (ActionWithParameters) obj;
+        return Objects.equals(this.parameters, other.parameters);
+    }
+    
+    
     
     
 }

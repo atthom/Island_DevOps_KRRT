@@ -5,6 +5,9 @@
  */
 package fr.unice.polytech.qgl.qae.map;
 
+import fr.unice.polytech.qgl.qae.map.tile.Tile;
+import fr.unice.polytech.qgl.qae.map.geometry.Coordinates;
+import fr.unice.polytech.qgl.qae.map.geometry.Vect;
 import eu.ace_design.island.game.actions.Heading;
 
 import java.util.ArrayList;

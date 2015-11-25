@@ -3,10 +3,11 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package fr.unice.polytech.qgl.qae.map;
+package fr.unice.polytech.qgl.qae.map.geometry;
 
 import fr.unice.polytech.qgl.qae.actions.Direction;
 import fr.unice.polytech.qgl.qae.actions.Heading;
+import fr.unice.polytech.qgl.qae.exceptions.VectorExeption;
 
 /**
  * Classe de vecteur qui facilite le passage entre
@@ -37,6 +38,15 @@ public class Vect {
         this.valeur = valeur;
         this.d = h.getValueParameter();
     }
+    
+    public void add(Vect v) {
+        if(this.colinear(v)) {
+            this.valeur = this.valeur + v.getValeur(); 
+        } else {
+        //    throw new VectorExeption("Les deux vecteurs ne sont pas colinéaire");
+        }
+    }
+    
 
     /**
      * 

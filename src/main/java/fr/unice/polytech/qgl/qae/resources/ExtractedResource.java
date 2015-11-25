@@ -5,6 +5,8 @@
  */
 package fr.unice.polytech.qgl.qae.resources;
 
+import java.util.Objects;
+
 /**
  * Ressource exploitée ou objectif de ressource à exploiter
  * @author user
@@ -57,5 +59,25 @@ public class ExtractedResource {
     public String getName() {
         return name;
     }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (obj == null) {
+            return false;
+        }
+        if (getClass() != obj.getClass()) {
+            return false;
+        }
+        final ExtractedResource other = (ExtractedResource) obj;
+        if (this.nb != other.nb) {
+            return false;
+        }
+        return Objects.equals(this.name, other.name);
+    }
+    
+    
 
 }

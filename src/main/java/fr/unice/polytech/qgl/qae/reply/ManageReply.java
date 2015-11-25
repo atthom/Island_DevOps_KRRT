@@ -6,11 +6,11 @@
 package fr.unice.polytech.qgl.qae.reply;
 
 import fr.unice.polytech.qgl.qae.actions.Direction;
-import fr.unice.polytech.qgl.qae.map.FlyTile;
+import fr.unice.polytech.qgl.qae.map.tile.FlyTile;
 import fr.unice.polytech.qgl.qae.map.Map;
-import fr.unice.polytech.qgl.qae.map.Tile;
+import fr.unice.polytech.qgl.qae.map.tile.Tile;
 import fr.unice.polytech.qgl.qae.map.Type;
-import fr.unice.polytech.qgl.qae.map.Vect;
+import fr.unice.polytech.qgl.qae.map.geometry.Vect;
 import org.json.JSONObject;
 
 /**

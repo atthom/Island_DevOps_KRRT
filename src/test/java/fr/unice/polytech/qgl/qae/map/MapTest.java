@@ -5,6 +5,9 @@
  */
 package fr.unice.polytech.qgl.qae.map;
 
+import fr.unice.polytech.qgl.qae.map.tile.FlyTile;
+import fr.unice.polytech.qgl.qae.map.geometry.Coordinates;
+import fr.unice.polytech.qgl.qae.map.geometry.Vect;
 import fr.unice.polytech.qgl.qae.actions.Direction;
 import org.junit.Before;
 import org.junit.Test;

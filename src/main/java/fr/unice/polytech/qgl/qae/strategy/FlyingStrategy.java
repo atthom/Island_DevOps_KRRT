@@ -10,7 +10,7 @@ import fr.unice.polytech.qgl.qae.actions.AbstractAction;
 import fr.unice.polytech.qgl.qae.actions.Echo;
 import fr.unice.polytech.qgl.qae.actions.Heading;
 import fr.unice.polytech.qgl.qae.actions.Stop;
-import fr.unice.polytech.qgl.qae.map.FlyTile;
+import fr.unice.polytech.qgl.qae.map.tile.FlyTile;
 
 import fr.unice.polytech.qgl.qae.map.Map;
 import fr.unice.polytech.qgl.qae.reply.ManageReply;

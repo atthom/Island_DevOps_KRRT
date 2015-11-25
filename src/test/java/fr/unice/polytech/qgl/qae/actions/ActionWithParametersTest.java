@@ -30,8 +30,11 @@ public class ActionWithParametersTest {
     @Test
     public void testEchoToJSON() {
         awp = (ActionWithParameters) new Echo(Direction.E); 
-        String b = "{\"action\":\"echo\",\"parameters\":{\"direction\":\"E\"}}";
-        assertEquals(awp.toJSON().toString(), new JSONObject(b).toString());
+        JSONObject o = new JSONObject("{\"action\":\"echo\",\"parameters\":{\"direction\":\"E\"}}");
+         
+        assertEquals(o.get("action"), awp.toJSON().get("action"));
+        
+        assertEquals(o.getJSONObject("parameters").getEnum(Direction.class, "direction"), awp.toJSON().getJSONObject("parameters").get("direction"));
     }
     
      /**

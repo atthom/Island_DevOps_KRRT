@@ -48,8 +48,8 @@ public class AbstractActionTest {
      */
     @Test
     public void testScanToJSON() {
-        JSONObject o = new JSONObject("{ \"action\": \"scan\" }");
-        assertEquals(aa.toJSON().toString(), o.toString());
+        JSONObject o = new JSONObject("{\"action\":\"scan\"}");
+        assertEquals( o.get("action"), aa.toJSON().get("action"));
     }
     
     /**
@@ -59,17 +59,17 @@ public class AbstractActionTest {
     public void testFlyToJSON() {
         JSONObject o = new JSONObject("{ \"action\": \"fly\" }");
         aa = new Fly();
-        assertEquals(aa.toJSON().toString(), o.toString());
+        assertEquals( o.get("action"), aa.toJSON().get("action"));
     }
     
-        /**
+     /**
      * Test of toJSON method, of class AbstractAction.
      */
     @Test
     public void testStopToJSON() {
         JSONObject o = new JSONObject("{ \"action\": \"stop\" }");
         aa = new Stop();
-        assertEquals(aa.toJSON().toString(), o.toString());
+        assertEquals( o.get("action"), aa.toJSON().get("action"));
     }
     
 }

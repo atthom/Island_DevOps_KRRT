@@ -3,8 +3,10 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package fr.unice.polytech.qgl.qae.map;
+package fr.unice.polytech.qgl.qae.map.tile;
 
+import fr.unice.polytech.qgl.qae.map.Biome;
+import fr.unice.polytech.qgl.qae.map.tile.Tile;
 import fr.unice.polytech.qgl.qae.resources.UnextractedResource;
 import java.util.ArrayList;
 
