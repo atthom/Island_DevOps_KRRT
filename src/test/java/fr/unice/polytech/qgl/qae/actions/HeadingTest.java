@@ -22,12 +22,16 @@ public class HeadingTest {
     @Before
     public void setUp() {
         h = new Heading(Direction.E);
+        h = new Heading("{\"direction\":\"N\"}");
     }
 
     @Test
     public void testSomeMethod() {
-        h = new Heading("{\"direction\":\"N\"}");
-        assertEquals(h.toJSON().toString(), new JSONObject("{\"action\":\"heading\",\"parameters\":{\"direction\":\"N\"}}").toString());
+               
+        JSONObject o = new JSONObject("{\"action\":\"heading\",\"parameters\":{\"direction\":\"N\"}}");
+        assertEquals(o.get("action"), h.toJSON().get("action"));
+        assertEquals(o.getJSONObject("parameters").getEnum(Direction.class, "direction"),
+                h.toJSON().getJSONObject("parameters").getEnum(Direction.class, "direction"));
     }
     
 }

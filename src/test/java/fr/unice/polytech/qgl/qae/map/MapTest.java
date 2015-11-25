@@ -72,9 +72,7 @@ public class MapTest {
      */
     @Test
     public void testGetTile() {
-        assertEquals(map.getTile(new Vect(0, Direction.E), new Vect(0, Direction.S)).getClass().toString(), new FlyTile().getClass().toString());
-        
-        
+        assertEquals(map.getTile(new Vect(0, Direction.E), new Vect(0, Direction.S)), new FlyTile());
     }
 
 

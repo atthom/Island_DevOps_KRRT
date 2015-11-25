@@ -9,6 +9,7 @@ import fr.unice.polytech.qgl.qae.map.Biome;
 import fr.unice.polytech.qgl.qae.map.tile.Tile;
 import fr.unice.polytech.qgl.qae.resources.UnextractedResource;
 import java.util.ArrayList;
+import java.util.Objects;
 
 /**
  * Classe GroundTile utilisée lors de la phrase d'extraction
@@ -65,5 +66,28 @@ public class GroundTile extends Tile {
     public void setAltitude(int altitude) {
         this.altitude = altitude;
     }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (obj == null) {
+            return false;
+        }
+        if (getClass() != obj.getClass()) {
+            return false;
+        }
+        final GroundTile other = (GroundTile) obj;
+        if (this.altitude != other.altitude) {
+            return false;
+        }
+        if (!Objects.equals(this.b, other.b)) {
+            return false;
+        }
+        return Objects.equals(this.res, other.res);
+    }
+    
+    
 
 }

@@ -10,6 +10,7 @@ import fr.unice.polytech.qgl.qae.map.Type;
 import fr.unice.polytech.qgl.qae.map.tile.Tile;
 import static fr.unice.polytech.qgl.qae.map.Type.UNKNOWN_TYPE;
 import java.util.ArrayList;
+import java.util.Objects;
 
 /**
  * Case Aérienne utilisée lors de la phase aérienne
@@ -47,6 +48,25 @@ public class FlyTile extends Tile {
         return t;
     }
 
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (obj == null) {
+            return false;
+        }
+        if (getClass() != obj.getClass()) {
+            return false;
+        }
+        final FlyTile other = (FlyTile) obj;
+        if (this.t != other.t) {
+            return false;
+        }
+        return Objects.equals(this.res, other.res);
+    }
+
+    
     /**
      *
      * @param t type à metre à jour

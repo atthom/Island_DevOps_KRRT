@@ -38,6 +38,29 @@ public class Vect {
         this.valeur = valeur;
         this.d = h.getValueParameter();
     }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (obj == null) {
+            return false;
+        }
+        if (getClass() != obj.getClass()) {
+            return false;
+        }
+        final Vect other = (Vect) obj;
+        if (this.valeur != other.valeur) {
+            return false;
+        }
+        if (this.d != other.d) {
+            return false;
+        }
+        return true;
+    }
+    
+    
     
     public void add(Vect v) {
         if(this.colinear(v)) {
