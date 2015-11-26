@@ -5,14 +5,18 @@
  */
 package fr.unice.polytech.qgl.qae.map;
 
+import fr.unice.polytech.qgl.qae.actions.Fly;
 import fr.unice.polytech.qgl.qae.map.tile.Tile;
 import fr.unice.polytech.qgl.qae.map.geometry.Coordinates;
 import fr.unice.polytech.qgl.qae.map.geometry.Vect;
 import eu.ace_design.island.game.actions.Heading;
 
+import java.security.Key;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashMap;
+import java.util.concurrent.ConcurrentHashMap;
+import fr.unice.polytech.qgl.qae.map.tile.FlyTile;
 
 /**
  * Classe Map permettant de stocker les informations sur les cases
@@ -22,8 +26,8 @@ import java.util.HashMap;
 public class Map {
 
     private HashMap<Coordinates, Tile> map;
+    private HashMap<Coordinates, FlyTile> flymap;
     private ArrayList<Coordinates> coordinates;
-
     /**
      *
      * @param origin case origine de l'explorer
@@ -59,7 +63,7 @@ public class Map {
     }
 
     /**
-     * Converit un vecteur en Coordonnée
+     * Convertis un vecteur en Coordonnée
      * @param v1 vecteur à convertir
      * @return
      */
@@ -70,6 +74,19 @@ public class Map {
             return new Coordinates(0, v1.getValeur());
         }
     }
+
+    /**
+     * Obtenir la dernière Coordonnée ajouté
+     * @return
+     */
+     public Coordinates get_lastcoordinate() {
+         return coordinates.get(coordinates.size()-1);
+     }
+
+
+     public Tile getTile(Coordinates c) {
+         return map.get(c);
+     }
 
     /**
      * Convertit deux vecteur (non colinéaire) en coordonnée
@@ -105,53 +122,13 @@ public class Map {
         return map.get(new Coordinates(0, 0));
     }
 
-    public HashMap<Coordinates, Tile> getMap() {
-        return map;
-    }
-
-    public int getMaxXCord() {
-        int max = -1;
-        for(int i = 0; i<coordinates.size(); i++) {
-            if(coordinates.get(i).getX() > max) {
-                max = coordinates.get(i).getX();
-            }
-        }
-        return max;
-    }
-
-    public int getMinXCord() {
-        int min = 1000;
-        for(int i = 0; i<coordinates.size(); i++) {
-            if(coordinates.get(i).getX() < min) {
-                min = coordinates.get(i).getX();
-            }
-        }
-        return min;
-    }
-
-    public int getMaxYCord() {
-        int max = -1;
-        for(int i = 0; i<coordinates.size(); i++) {
-            if(coordinates.get(i).getY() > max) {
-                max = coordinates.get(i).getY();
-            }
-        }
-        return max;
-    }
-
-    public int getMinYCord() {
-        int min = 1000;
-        for(int i = 0; i<coordinates.size(); i++) {
-            if(coordinates.get(i).getY() < min) {
-                min = coordinates.get(i).getY();
-            }
-        }
-        return min;
-    }
     // Combien de case disponible jusqu'a out of range a partir de notre coordonnée
+
     public int getMaxXCord(Coordinates c, Heading h) {
         return 0;
     }
+
+
 //    public Tile getTile(int longeur, Direction d) {
 //        for(Coordinates c : coordinates) {
 //            if(c.getX()==longeur &c.getY() == largeur) {

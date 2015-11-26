@@ -46,5 +46,9 @@ public class Coordinates {
     public int distance(Coordinates a) {
         return Math.abs(a.x - this.x) + Math.abs(a.y - this.y);
     }
-    
+
+    public void setX(int value) {
+        x=value;
+    }
+
 }
