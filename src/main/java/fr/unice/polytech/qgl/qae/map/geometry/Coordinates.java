@@ -47,4 +47,9 @@ public class Coordinates {
         return Math.abs(a.x - this.x) + Math.abs(a.y - this.y);
     }
     
+    
+    public int distance() {
+        return Math.abs(this.x) + Math.abs(this.y);
+    }
+    
 }

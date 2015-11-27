@@ -17,11 +17,11 @@ public enum Direction {
    
     /**
      *
-     * @param d une direction
      * @return la direction opposée
      */
-    public Direction opposite(Direction d) {
-       switch (d) {
+    
+    public Direction opposite() {
+       switch (this) {
            case E:
                return W;
            case W:
@@ -39,6 +39,6 @@ public enum Direction {
      * @return si la direction est alignée ou opposé.
      */
     public boolean is_aligned(Direction d) {
-       return this==d | opposite(d)==this;
+       return this==d | d.opposite()==this;
    }
 }

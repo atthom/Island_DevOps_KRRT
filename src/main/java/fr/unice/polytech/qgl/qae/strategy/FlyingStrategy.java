@@ -8,7 +8,9 @@ package fr.unice.polytech.qgl.qae.strategy;
 import fr.unice.polytech.qgl.qae.JSONFactory;
 import fr.unice.polytech.qgl.qae.actions.AbstractAction;
 import fr.unice.polytech.qgl.qae.actions.Echo;
+import fr.unice.polytech.qgl.qae.actions.Fly;
 import fr.unice.polytech.qgl.qae.actions.Heading;
+import fr.unice.polytech.qgl.qae.actions.Scan;
 import fr.unice.polytech.qgl.qae.actions.Stop;
 import fr.unice.polytech.qgl.qae.map.tile.FlyTile;
 
@@ -17,8 +19,9 @@ import fr.unice.polytech.qgl.qae.reply.ManageReply;
 import org.json.JSONObject;
 
 /**
- * Classe travaillant sur la stratégie du drone pour se déplacer
- * et scanner la map et trouver des points d'abordage avec un cout minimum
+ * Classe travaillant sur la stratégie du drone pour se déplacer et scanner la
+ * map et trouver des points d'abordage avec un cout minimum
+ *
  * @author user
  */
 public class FlyingStrategy extends Strategy {
@@ -28,6 +31,8 @@ public class FlyingStrategy extends Strategy {
     Map flyingMap;
     AbstractAction lastaction;
     ManageReply manager;
+    boolean phase1 = true, phase3 = true;
+    int turnback = 0, flyandscan = 0;
 
     /**
      *
@@ -64,19 +69,68 @@ public class FlyingStrategy extends Strategy {
                 lastaction = new Echo(droite(h.getValueParameter()));
                 return lastaction.toJSON().toString();
             default:
-                lastaction = new Stop();
+                lastaction = new Echo(h.getValueParameter());
+                phase1 = false;
                 return lastaction.toJSON().toString();
         }
+    }
 
+    String turnback() {
+        switch (turnback) {
+            case 0:
+                turnback++;
+                return new Heading(gauche(h.getValueParameter())).toJSON().toString();
+            case 1:
+                turnback++;
+                return new Fly().toJSON().toString();
+            case 2:
+                turnback++;
+                return new Heading(gauche(h.getValueParameter())).toJSON().toString();
+            default:
+                turnback = 0;
+                return new Fly().toJSON().toString();
+        }
+    }
+    
+    String flyandScan() {
+                
+        if(flyandscan == 0) {
+            flyandscan++;
+           return new Fly().toJSON().toString();
+        } else {
+            flyandscan =0;
+            return new Scan().toJSON().toString();
+        }
+         
+    }
+
+    String phase3() {
+        //etat initial :  on connais une case de terre
+        
+
+        return "";
     }
 
     /**
      * execute les actions du drone
+     *
      * @return
      */
     @Override
     public String execute() {
-        return phase1();
+        if (turnback > 0) {
+            return turnback();
+        }
+        if(flyandscan > 0) {
+            return flyandScan();
+        }
+
+        if (phase1) {
+            return phase1();
+        } else if (phase3) {
+            return phase3();
+        }
+        return phase3();
     }
 
     /**

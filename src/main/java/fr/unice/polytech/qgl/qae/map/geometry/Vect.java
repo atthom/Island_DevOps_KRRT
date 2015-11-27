@@ -10,8 +10,9 @@ import fr.unice.polytech.qgl.qae.actions.Heading;
 import fr.unice.polytech.qgl.qae.exceptions.VectorExeption;
 
 /**
- * Classe de vecteur qui facilite le passage entre
- * les coordonnée de la map et la position relative de l'explorateur
+ * Classe de vecteur qui facilite le passage entre les coordonnée de la map et
+ * la position relative de l'explorateur
+ *
  * @author user
  */
 public class Vect {
@@ -21,11 +22,12 @@ public class Vect {
 
     /**
      * Un vecteur avec une norme et une direction
-     * @param valeur 
+     *
+     * @param valeur
      * @param d
      */
     public Vect(int valeur, Direction d) {
-        this.valeur = valeur;
+        this.valeur = Math.abs(valeur);
         this.d = d;
     }
 
@@ -54,25 +56,22 @@ public class Vect {
         if (this.valeur != other.valeur) {
             return false;
         }
-        if (this.d != other.d) {
-            return false;
-        }
-        return true;
+        return this.d == other.d;
     }
-    
-    
-    
-    public void add(Vect v) {
-        if(this.colinear(v)) {
-            this.valeur = this.valeur + v.getValeur(); 
+
+    public void add(Vect v) throws VectorExeption {
+        if (this.colinear(v)) {
+            if (Math.abs(v.valeur) > Math.abs(valeur) && d.opposite() == v.d) {
+                d = v.d;
+            }
+            this.valeur = Math.abs(this.valeur + v.getValeur());
         } else {
-        //    throw new VectorExeption("Les deux vecteurs ne sont pas colinéaire");
+            throw new VectorExeption("Les deux vecteurs ne sont pas colinéaire");
         }
     }
-    
 
     /**
-     * 
+     *
      * @return la norme du vecteur en fonction de sa direction
      */
     public int getValeur() {
@@ -82,23 +81,23 @@ public class Vect {
             return valeur;
         }
     }
-    
+
     /**
      *
      * @return true si le vecteur represente l'axe des ordonnées
      */
     public boolean is_xaxis() {
-        return d.equals(Direction.W)|d.equals(Direction.E);
+        return d.equals(Direction.W) | d.equals(Direction.E);
     }
 
     /**
-     * 
+     *
      * @return la direction du vecteur
      */
     public Direction getD() {
         return d;
     }
-    
+
     /**
      *
      * @param v un autre vecteur

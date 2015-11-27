@@ -9,14 +9,16 @@ import fr.unice.polytech.qgl.qae.map.tile.Tile;
 import fr.unice.polytech.qgl.qae.map.geometry.Coordinates;
 import fr.unice.polytech.qgl.qae.map.geometry.Vect;
 import eu.ace_design.island.game.actions.Heading;
+import fr.unice.polytech.qgl.qae.map.tile.FlyTile;
 
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashMap;
 
 /**
- * Classe Map permettant de stocker les informations sur les cases
- * et les organiser selon un repère en 2D
+ * Classe Map permettant de stocker les informations sur les cases et les
+ * organiser selon un repère en 2D
+ *
  * @author user
  */
 public class Map {
@@ -41,6 +43,7 @@ public class Map {
 
     /**
      * Converti un vecteur et le rentre dans le repère.
+     *
      * @param v1 premier vecteur (int dist, direction d )
      * @param v2 second vecteur
      * @param t la case à ajouter à la map
@@ -50,16 +53,18 @@ public class Map {
     }
 
     /**
-     * Idem avec un seul vecteur 
+     * Idem avec un seul vecteur
+     *
      * @param v1
      * @param t
      */
     public void add(Vect v1, Tile t) {
-       put(convert(v1), t);
+        put(convert(v1), t);
     }
 
     /**
      * Converit un vecteur en Coordonnée
+     *
      * @param v1 vecteur à convertir
      * @return
      */
@@ -73,6 +78,7 @@ public class Map {
 
     /**
      * Convertit deux vecteur (non colinéaire) en coordonnée
+     *
      * @param v1
      * @param v2
      * @return
@@ -88,8 +94,9 @@ public class Map {
     }
 
     /**
-     * Renvoie la case si elle existe 
-     * @param v1 
+     * Renvoie la case si elle existe
+     *
+     * @param v1
      * @param v2
      * @return
      */
@@ -101,8 +108,17 @@ public class Map {
                 return map.get(c);
             }
         }
-
         return map.get(new Coordinates(0, 0));
+    }
+
+    public boolean groundpath() {
+        Coordinates last = coordinates.get(coordinates.size() - 1);
+        Coordinates soon = coordinates.get(coordinates.size() - 2);
+
+        return ((FlyTile) map.get(last)).getT()
+                == Type.GROUND
+                && Type.GROUND
+                == ((FlyTile) map.get(soon)).getT();
     }
 
     public HashMap<Coordinates, Tile> getMap() {
@@ -111,8 +127,8 @@ public class Map {
 
     public int getMaxXCord() {
         int max = -1;
-        for(int i = 0; i<coordinates.size(); i++) {
-            if(coordinates.get(i).getX() > max) {
+        for (int i = 0; i < coordinates.size(); i++) {
+            if (coordinates.get(i).getX() > max) {
                 max = coordinates.get(i).getX();
             }
         }
@@ -121,8 +137,8 @@ public class Map {
 
     public int getMinXCord() {
         int min = 1000;
-        for(int i = 0; i<coordinates.size(); i++) {
-            if(coordinates.get(i).getX() < min) {
+        for (int i = 0; i < coordinates.size(); i++) {
+            if (coordinates.get(i).getX() < min) {
                 min = coordinates.get(i).getX();
             }
         }
@@ -131,8 +147,8 @@ public class Map {
 
     public int getMaxYCord() {
         int max = -1;
-        for(int i = 0; i<coordinates.size(); i++) {
-            if(coordinates.get(i).getY() > max) {
+        for (int i = 0; i < coordinates.size(); i++) {
+            if (coordinates.get(i).getY() > max) {
                 max = coordinates.get(i).getY();
             }
         }
@@ -141,13 +157,14 @@ public class Map {
 
     public int getMinYCord() {
         int min = 1000;
-        for(int i = 0; i<coordinates.size(); i++) {
-            if(coordinates.get(i).getY() < min) {
+        for (int i = 0; i < coordinates.size(); i++) {
+            if (coordinates.get(i).getY() < min) {
                 min = coordinates.get(i).getY();
             }
         }
         return min;
     }
+
     // Combien de case disponible jusqu'a out of range a partir de notre coordonnée
     public int getMaxXCord(Coordinates c, Heading h) {
         return 0;
