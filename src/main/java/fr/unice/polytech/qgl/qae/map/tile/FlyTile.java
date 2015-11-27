@@ -80,7 +80,7 @@ public class FlyTile extends Tile {
      *
      * @param b ajouter un biome dans la liste
      */
-    void addBiome(Biome b) {
+    public void addBiome(Biome b) {
         res.add(b);
     }
 

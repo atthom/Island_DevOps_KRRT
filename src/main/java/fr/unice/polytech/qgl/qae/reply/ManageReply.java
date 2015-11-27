@@ -6,12 +6,16 @@
 package fr.unice.polytech.qgl.qae.reply;
 
 import fr.unice.polytech.qgl.qae.actions.Direction;
+import fr.unice.polytech.qgl.qae.map.Biome;
 import fr.unice.polytech.qgl.qae.map.tile.FlyTile;
 import fr.unice.polytech.qgl.qae.map.Map;
 import fr.unice.polytech.qgl.qae.map.tile.Tile;
+import fr.unice.polytech.qgl.qae.map.tile.Creek;
 import fr.unice.polytech.qgl.qae.map.Type;
 import fr.unice.polytech.qgl.qae.map.geometry.Vect;
-import org.json.JSONObject;
+import fr.unice.polytech.qgl.qae.resources.ExtractedResource;
+import org.json.*;
+import java.util.ArrayList;
 
 /**
  * Classe qui gère toutes les réponses du moteur de jeu
@@ -43,5 +47,17 @@ public class ManageReply {
         map.add(v,t );
 
     }
+    public void manage_scan(JSONObject js, Map map) {
+        JSONObject extras = js.getJSONObject("extras");
 
+        JSONArray arr = js.getJSONArray("biomes");
+        ArrayList<Biome> biomes = new ArrayList<Biome>();
+
+
+        Creek c = new Creek(js.getString("creeks"));
+
+        /*FlyTile t = new FlyTile();
+        t.addBiome();
+        */
+    }
 }

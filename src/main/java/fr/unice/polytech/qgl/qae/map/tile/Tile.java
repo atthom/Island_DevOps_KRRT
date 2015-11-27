@@ -5,6 +5,8 @@
  */
 package fr.unice.polytech.qgl.qae.map.tile;
 
+import fr.unice.polytech.qgl.qae.map.Biome;
+
 /**
  * Classe de case de base
  * @author user
