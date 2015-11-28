@@ -11,15 +11,11 @@ import fr.unice.polytech.qgl.qae.map.tile.GroundTile;
  * Classe criques provient de GroundTile 
  * @author user
  */
-public class Creek extends GroundTile{
+public class Creek {
     String id;
-    
-    /**
-     *
-     * @param id
-     */
+ 
     public Creek(String id) {
-        super();
+       
         this.id = id;
     }
     

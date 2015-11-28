@@ -6,6 +6,7 @@
 package fr.unice.polytech.qgl.qae.map.geometry;
 
 import fr.unice.polytech.qgl.qae.actions.Direction;
+import java.util.Objects;
 
 /**
  * Classe de vecteur en deux dimention pour representer les mouvements sur la
@@ -60,18 +61,73 @@ public class Vect2D {
         }
     }
 
+    public Vect getV_x() {
+        return v_x;
+    }
+
+    public Vect getV_y() {
+        return v_y;
+    }
+
+    
+    public Vect2D(Coordinates c) {
+        int x = c.getX();
+        int y = c.getY();
+        if(x < 0) {
+            v_x = new Vect(x*-1, Direction.W);
+        }else {
+            v_x = new Vect(x, Direction.E);
+        }
+        
+        if(y < 0) {
+            v_y = new Vect(y*-1, Direction.S);
+        } else {
+            v_y = new Vect(y, Direction.N);
+        }
+        
+    }
+    
+    
+    
+    public Vect2D(Coordinates c, Coordinates c2) {
+        int x1 = c2.getX() + c.getX();
+        Direction d;
+        if (x1 < 0) {
+            x1 = x1 * -1;
+            d = Direction.W;
+        } else {
+            d = Direction.E;
+        }
+
+        Vect v1 = new Vect(x1, d);
+        
+        int y1 = c2.getY() + c.getY();
+        Direction d2;
+        if (y1 < 0) {
+            y1 = y1 * -1;
+            d2 = Direction.S;
+        } else {
+            d2 = Direction.N;
+        }
+
+        Vect v2 = new Vect(y1, d2);
+
+        this.v_x = v1;
+        this.v_y = v2;
+    }
+
     /**
      * Ajoute la valeur d'un vecteur 1 dimention dans le vecteur
      *
      * @param v1
      */
     public void add(Vect v1) {
-        if(v_x.is_xaxis()) {
+        if (v_x.is_xaxis()) {
             v_x.add(v1);
         } else {
             v_y.add(v1);
         }
-       
+
     }
 
     /**
@@ -112,4 +168,25 @@ public class Vect2D {
         return new Coordinates(v_x.getValeur(), v_y.getValeur());
     }
 
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (obj == null) {
+            return false;
+        }
+        if (getClass() != obj.getClass()) {
+            return false;
+        }
+        final Vect2D other = (Vect2D) obj;
+        if (!Objects.equals(this.v_x, other.v_x)) {
+            return false;
+        }
+        return Objects.equals(this.v_y, other.v_y);
+    }
+
+    
+    
 }

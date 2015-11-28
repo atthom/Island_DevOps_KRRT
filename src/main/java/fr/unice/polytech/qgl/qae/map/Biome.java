@@ -42,5 +42,25 @@ public class Biome {
     public void setBiomeType(BiomeType b) {
         this.b = b;
     }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (obj == null) {
+            return false;
+        }
+        if (getClass() != obj.getClass()) {
+            return false;
+        }
+        final Biome other = (Biome) obj;
+        if (this.b != other.b) {
+            return false;
+        }
+        return true;
+    }
+    
+    
     
 }

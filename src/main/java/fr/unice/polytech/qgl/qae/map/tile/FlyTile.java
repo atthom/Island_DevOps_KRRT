@@ -14,32 +14,40 @@ import java.util.Objects;
 
 /**
  * Case Aérienne utilisée lors de la phase aérienne
+ *
  * @author user
  */
 public class FlyTile extends Tile {
 
     private Type t;
-    private ArrayList<Biome> res;
+    private ArrayList<Creek> creeks;
 
     /**
      * Case par défaut (type non connu et sans biomes)
      */
     public FlyTile() {
         super();
+        creeks = new ArrayList<>();
         this.t = UNKNOWN_TYPE;
-        this.res = new ArrayList<>();
     }
     
+    public FlyTile(ArrayList<Biome> bs, ArrayList<Creek> cs, Type t) {
+        super(bs);
+        this.t = t;
+        creeks = new ArrayList<>(cs);
+        
+    }
+
     /**
      * Case avec un type connu
+     *
      * @param t
      */
     public FlyTile(Type t) {
         super();
         this.t = t;
-        this.res = new ArrayList<>();
     }
-    
+
     /**
      *
      * @return le type de la case
@@ -48,6 +56,14 @@ public class FlyTile extends Tile {
         return t;
     }
 
+    /**
+     *
+     * @param t type à metre à jour
+     */
+    public void setT(Type t) {
+        this.t = t;
+    }
+    
     @Override
     public boolean equals(Object obj) {
         if (this == obj) {
@@ -63,25 +79,8 @@ public class FlyTile extends Tile {
         if (this.t != other.t) {
             return false;
         }
-        return Objects.equals(this.res, other.res);
+        return Objects.equals(this.creeks, other.creeks);
     }
 
     
-    /**
-     *
-     * @param t type à metre à jour
-     */
-    public void setT(Type t) {
-        this.t = t;
-    }
-
-   
-     /**
-     *
-     * @param b ajouter un biome dans la liste
-     */
-    public void addBiome(Biome b) {
-        res.add(b);
-    }
-
 }

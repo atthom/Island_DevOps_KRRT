@@ -13,8 +13,12 @@
 
 ### Week 47
 
+The bot can fly and informations of the scan function are saved.
+
+### Week 47
+
 The bot can act several Echos to avoid the end of the map.
-All information are saved in a map with the coordinate of each tile.
+Informations of the echo function are saved in a map with the coordinate of each tile.
 Coordinates are based on the origin point of the bot when it spawned.
 
 ### Week 46

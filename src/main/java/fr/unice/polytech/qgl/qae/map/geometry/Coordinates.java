@@ -5,12 +5,16 @@
  */
 package fr.unice.polytech.qgl.qae.map.geometry;
 
+import fr.unice.polytech.qgl.qae.actions.Direction;
+
 /**
  * Classe coordonée 2D
+ *
  * @author user
  */
 public class Coordinates {
-    private int x,y;
+
+    private int x, y;
 
     /**
      *
@@ -20,6 +24,47 @@ public class Coordinates {
     public Coordinates(int x, int y) {
         this.x = x;
         this.y = y;
+    }
+
+    public void add(Coordinates c) {
+        addX(c.x);
+        addY(c.y);
+    }
+
+    public Coordinates coords_between(Coordinates c) {
+        return new Coordinates(c.x - this.x, c.y - this.y);
+    }
+
+    public Vect2D vectorize() {
+        Direction dx;
+        Direction dy;
+        Vect v1;
+        Vect v2;
+        if (x < 0) {
+            dx = Direction.W;
+            v1 = new Vect(x * -1, dx);
+        } else {
+            dx = Direction.E;
+            v1 = new Vect(x, dx);
+        }
+
+        if (y < 0) {
+            dy = Direction.S;
+            v2 = new Vect(y * -1, dy);
+        } else {
+            dy = Direction.N;
+            v2 = new Vect(y, dy);
+        }
+
+        return new Vect2D(v1, v2);
+    }
+
+    public void addX(int x) {
+        this.x = this.x + x;
+    }
+
+    public void addY(int y) {
+        this.y = this.x + y;
     }
 
     /**
@@ -37,19 +82,39 @@ public class Coordinates {
     public int getY() {
         return y;
     }
-    
+
     /**
      * Permet de calculer la distance manhatan entre deux coordonnées
+     *
      * @param a la seconde coordonnée
      * @return
      */
     public int distance(Coordinates a) {
         return Math.abs(a.x - this.x) + Math.abs(a.y - this.y);
     }
-    
-    
+
     public int distance() {
         return Math.abs(this.x) + Math.abs(this.y);
     }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (obj == null) {
+            return false;
+        }
+        if (getClass() != obj.getClass()) {
+            return false;
+        }
+        final Coordinates other = (Coordinates) obj;
+        if (this.x != other.x) {
+            return false;
+        }
+        return this.y == other.y;
+    }
     
+    
+
 }

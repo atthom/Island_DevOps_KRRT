@@ -63,6 +63,12 @@ abstract public class ActionWithParameters extends AbstractAction {
     abstract public Object getValueParameter(); 
 
     @Override
+    public int hashCode() {
+        int hash = 5;
+        return hash;
+    }
+
+    @Override
     public boolean equals(Object obj) {
         if (this == obj) {
             return true;
@@ -76,6 +82,9 @@ abstract public class ActionWithParameters extends AbstractAction {
         final ActionWithParameters other = (ActionWithParameters) obj;
         return Objects.equals(this.parameters, other.parameters);
     }
+
+
+    
     
     
     

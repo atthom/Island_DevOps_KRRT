@@ -5,6 +5,8 @@
  */
 package fr.unice.polytech.qgl.qae.resources;
 
+import java.util.Objects;
+
 /**
  * Classe de ressouce non exploitée sur une case
  * @author user
@@ -12,14 +14,25 @@ package fr.unice.polytech.qgl.qae.resources;
 public class UnextractedResource {
     private Amount a;
     private Condition cond;
+    private String name;
     
     /**
      * quantitée et condition d'exploitation non connue
      */
-    public UnextractedResource() {
+    public UnextractedResource(String s) {
         this.a = Amount.UNKNOWN_AMOUNT;
         this.cond = Condition.COND_UNKNOWN;
+        this.name = s;
     }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+    
     
     /**
      *
@@ -61,6 +74,27 @@ public class UnextractedResource {
      */
     public void setCond(Condition cond) {
         this.cond = cond;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (obj == null) {
+            return false;
+        }
+        if (getClass() != obj.getClass()) {
+            return false;
+        }
+        final UnextractedResource other = (UnextractedResource) obj;
+        if (!Objects.equals(this.name, other.name)) {
+            return false;
+        }
+        if (this.a != other.a) {
+            return false;
+        }
+        return this.cond == other.cond;
     }
      
      

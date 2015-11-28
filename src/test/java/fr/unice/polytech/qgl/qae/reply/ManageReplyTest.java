@@ -43,7 +43,7 @@ public class ManageReplyTest {
         a.add(new ExtractedResource(600, "WOOD"));
         a.add(new ExtractedResource(200, "GLASS"));
         JSONObject o = new JSONObject("{ \"cost\": 1, \"extras\": { \"range\": 2, \"found\": \"GROUND\" }, \"status\": \"OK\" }");
-        manager.manage_echo(o, map,Direction.E);
+        manager.manage(o, map,Direction.E);
         assertEquals(map.getTile(new Vect(2, Direction.E), new Vect(0, Direction.S)).getClass(), new FlyTile(Type.GROUND).getClass());
 
         
