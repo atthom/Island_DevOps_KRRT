@@ -40,13 +40,14 @@ public class FlyingStrategy extends Strategy {
     ManageReply manager;
     boolean phase1 = true, phase2 = true, phase3 = true;
     int turnback = 0, flyandscan = 0, flyuntil = 0;
-
+    int ind = 1;
     /**
      *
      * @param heading
      */
     public FlyingStrategy(String heading) {
         super();
+        int i = 0;
         JSONFactory j = new JSONFactory();
         h = j.build_heading(heading);
         manager = new ManageReply();
@@ -75,11 +76,67 @@ public class FlyingStrategy extends Strategy {
                 lastaction = new Echo(gauche(h.getValueParameter()));
                 return lastaction.toJSON().toString();
             case 1:
+                ind++;
                 lastaction = new Echo(droite(h.getValueParameter()));
                 return lastaction.toJSON().toString();
-            default:
+            case 2:
+                ind++;
                 lastaction = new Echo(h.getValueParameter());
-                phase1 = false;
+                return lastaction.toJSON().toString();
+            default:
+                Coordinates c = flyingMap.get_coordinate(ind);
+                //Coordinates c = flyingMap.get_lastcoordinate();
+                FlyTile t = (FlyTile) flyingMap.getTile(c);
+
+                if(t.getT() == Type.OUT_OF_RANGE) {
+                    flyingMap.generate();
+                    phase2();
+                }
+
+                if(h.getValueParameter() == Direction.E) {
+                    if(currents_coords.getX() < 10) {
+                        lastaction = new Fly();
+                        currents_coords.setX(currents_coords.getX() + 1);
+                    }
+                    else
+                        phase1 = false;
+                        phase2();
+                        //lastaction = new Echo(h.getValueParameter());
+                }
+
+                if(h.getValueParameter() == Direction.N) {
+                    if(currents_coords.getY() < c.getY()) {
+                        lastaction = new Fly();
+                        currents_coords.setY(currents_coords.getY()+1);
+                    }
+                    else {
+                        phase1 = false;
+                        phase2();
+                    }
+                }
+
+                if(h.getValueParameter() == Direction.W) {
+                    if(currents_coords.getX() < c.getX()) {
+                        lastaction = new Fly();
+                        currents_coords.setX(currents_coords.getX()-1);
+                    }
+                    else {
+                        phase1 = false;
+                        phase2();
+                    }
+                }
+
+                if(h.getValueParameter() == Direction.S) {
+                    if(currents_coords.getY() < c.getY()) {
+                        lastaction = new Fly();
+                        currents_coords.setY(currents_coords.getY()-1);
+                    }
+                    else {
+                        phase1 = false;
+                        phase2();
+                    }
+                }
+
                 return lastaction.toJSON().toString();
         }
     }
@@ -206,8 +263,12 @@ public class FlyingStrategy extends Strategy {
         if (lastaction!=null && lastaction.getName().equals("fly")) {
             maj_coord();
         }
-
-        manager.manage(s, flyingMap, gauche(h.getValueParameter()));
+        if(nbtours == 1)
+            manager.manage(s, flyingMap, gauche(h.getValueParameter()));
+        else if(nbtours == 2)
+            manager.manage(s, flyingMap, droite(h.getValueParameter()));
+        else if(nbtours == 3)
+            manager.manage(s, flyingMap, h.getValueParameter());
 
     }
 

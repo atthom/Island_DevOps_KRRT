@@ -28,7 +28,7 @@ public class Map {
     private HashMap<Coordinates, Tile> map;
     private HashMap<Coordinates, FlyTile> flymap;
     private ArrayList<Coordinates> coordinates;
-
+    private Coordinates [][] generateMap;
     /**
      *
      * @param origin case origine de l'explorer
@@ -107,12 +107,16 @@ public class Map {
     }
 
     /**
-     * Obtenir la dernière Coordonnée ajouté
+     * Obtenir la i eme coordonnée
      *
      * @return
      */
+    public Coordinates get_coordinate(int i) {
+        return coordinates.get(i);
+    }
+
     public Coordinates get_lastcoordinate() {
-        return coordinates.get(coordinates.size() - 1);
+        return coordinates.get(coordinates.size()-1);
     }
 
     public Tile getTile(Coordinates c) {
@@ -154,7 +158,16 @@ public class Map {
 
         return map.get(new Coordinates(0, 0));
     }
-public boolean groundpath() {
+
+    public void generate() {
+        for(int i = 0; i<getMaxXCord(); i++) {
+            for(int j = 0; j<getMaxYCord(); j++) {
+                generateMap[i][j] = new Coordinates(i,j);
+            }
+        }
+    }
+
+    public boolean groundpath() {
         Coordinates last = coordinates.get(coordinates.size() - 1);
         Coordinates soon = coordinates.get(coordinates.size() - 2);
 
@@ -206,6 +219,10 @@ public boolean groundpath() {
             }
         }
         return min;
+    }
+
+    public Coordinates[][] getGenerateMap() {
+        return generateMap;
     }
 
     // Combien de case disponible jusqu'a out of range a partir de notre coordonnée

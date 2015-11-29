@@ -10,7 +10,11 @@ import fr.unice.polytech.qgl.qae.map.geometry.Coordinates;
 import fr.unice.polytech.qgl.qae.map.geometry.Vect;
 import fr.unice.polytech.qgl.qae.actions.Direction;
 import org.junit.Before;
+import org.junit.Ignore;
 import org.junit.Test;
+
+import java.util.ArrayList;
+
 import static org.junit.Assert.*;
 
 /**
@@ -27,6 +31,17 @@ public class MapTest {
     @Before
     public void setUp() {
         map = new Map(new FlyTile());
+    }
+
+    /**
+     * Test of put method, of class Map.
+     */
+    @Test
+    public void put() {
+        map.put(new Coordinates(10,5), new FlyTile(Type.GROUND));
+        //assertEquals(10, map.get_lastcoordinate().getX());
+        assertEquals(10, map.get_coordinate(1).getX());
+        assertEquals(5, map.get_coordinate(1).getY());
     }
 
     /**
@@ -75,5 +90,42 @@ public class MapTest {
         assertEquals(map.getTile(new Vect(0, Direction.E), new Vect(0, Direction.S)), new FlyTile());
     }
 
+    /**
+     * Test of getMaxXCord method, of class Map.
+     */
+    @Test
+    public void getMaxXCord() {
+        map.put(new Coordinates(10,5), new FlyTile(Type.GROUND));
+        map.put(new Coordinates(20,5), new FlyTile(Type.GROUND));
+
+        //map.add(new Vect(10,Direction.E), new Vect(15,Direction.N),new FlyTile(Type.GROUND));
+        //map.add(new Vect(20,Direction.E), new Vect(0,Direction.N),new FlyTile(Type.GROUND));
+        assertEquals(20, map.getMaxXCord());
+    }
+
+    /**
+     * Test of getMaxYCord method, of class Map.
+     */
+    @Ignore
+    public void getMaxYCord() {
+        map.add(new Vect(10,Direction.E), new Vect(15,Direction.N),new FlyTile(Type.GROUND));
+        map.add(new Vect(20,Direction.E), new Vect(0,Direction.N),new FlyTile(Type.GROUND));
+        assertEquals(15, map.getMaxYCord());
+    }
+
+    /**
+     * Test of generate method, of class Map.
+     */
+    @Test
+    public void generate() {
+        map.add(new Vect(10,Direction.E), new Vect(0,Direction.N),new FlyTile(Type.GROUND));
+        map.add(new Vect(0,Direction.E), new Vect(10,Direction.N),new FlyTile(Type.GROUND));
+
+        map.generate();
+        /*
+        int tab[][]  = new int[100][10];
+        assertEquals(100, tab.length);
+        */
+    }
 
 }
