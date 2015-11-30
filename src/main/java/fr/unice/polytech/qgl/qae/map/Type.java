@@ -7,6 +7,7 @@ package fr.unice.polytech.qgl.qae.map;
 /**
  *
  * @author user
+ * Represents the information returned by the Radar
  */
 public enum Type {
     GROUND,

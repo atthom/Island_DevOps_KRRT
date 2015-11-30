@@ -5,7 +5,6 @@
  */
 package fr.unice.polytech.qgl.qae.strategy;
 
-import com.vividsolutions.jts.geom.Coordinate;
 import fr.unice.polytech.qgl.qae.JSONFactory;
 import fr.unice.polytech.qgl.qae.actions.AbstractAction;
 import fr.unice.polytech.qgl.qae.actions.Direction;
@@ -70,7 +69,7 @@ public class FlyingStrategy extends Strategy {
         
     }
 
-    String phase1() {
+    private String phase1() {
         switch (nbtours) {
             case 0:
                 lastaction = new Echo(gauche(h.getValueParameter()));

@@ -151,7 +151,7 @@ public class Map {
         Coordinates coord = convert(v1, v2);
 
         for (Coordinates c : coordinates) {
-            if (c.getX() == coord.getX() & c.getY() == coord.getY()) {
+            if (c.getX() == coord.getX() && c.getY() == coord.getY()) {
                 return map.get(c);
             }
         }
