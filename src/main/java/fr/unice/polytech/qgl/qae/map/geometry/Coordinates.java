@@ -55,10 +55,15 @@ public class Coordinates {
         return x;
     }
 
-    /**
-     *
-     * @return
-     */
+
+    public void setX(int value) {
+        this.x = value;
+    }
+
+    public void setY(int value) {
+        this.y = value;
+    }
+
     public int getY() {
         return y;
     }

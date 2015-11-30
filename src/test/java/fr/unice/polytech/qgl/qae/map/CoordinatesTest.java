@@ -24,4 +24,11 @@ public class CoordinatesTest {
 
     @Test
     public void testGetY(){assertEquals(0, c.getY());}
+
+    @Test
+    public void setX(){
+        c.setX(5);
+        assertEquals(5, c.getX());
+    }
+
 }
