@@ -3,8 +3,9 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package fr.unice.polytech.qgl.qae.actions;
+package fr.unice.polytech.qgl.qae.actions.withparams;
 
+import fr.unice.polytech.qgl.qae.actions.simple.AbstractAction;
 import java.util.ArrayList;
 import java.util.Objects;
 import org.json.JSONObject;
@@ -62,11 +63,6 @@ abstract public class ActionWithParameters extends AbstractAction {
      */
     abstract public Object getValueParameter(); 
 
-    @Override
-    public int hashCode() {
-        int hash = 5;
-        return hash;
-    }
 
     @Override
     public boolean equals(Object obj) {
@@ -83,12 +79,6 @@ abstract public class ActionWithParameters extends AbstractAction {
         return Objects.equals(this.parameters, other.parameters);
     }
 
-
-    
-    
-    
-    
-    
 }
 
 

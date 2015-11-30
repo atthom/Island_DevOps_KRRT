@@ -5,12 +5,14 @@
  */
 package fr.unice.polytech.qgl.qae.strategy;
 
-import fr.unice.polytech.qgl.qae.actions.Direction;
+import fr.unice.polytech.qgl.qae.actions.withparams.Direction;
+import fr.unice.polytech.qgl.qae.map.geometry.Coordinates;
 import org.json.JSONObject;
 
 /**
- * Classe de base des différentes stratégies de l'explorateur
- * aux différentes étapes du processus d'exploitation
+ * Classe de base des différentes stratégies de l'explorateur aux différentes
+ * étapes du processus d'exploitation
+ *
  * @author user
  */
 public abstract class Strategy {
@@ -22,38 +24,27 @@ public abstract class Strategy {
 
     }
 
-    /**
-     * Renvoie la "gauche" d'une direction donnée
-     */
-    Direction gauche(Direction d) {
+   
+
+    protected void maj_pos(Coordinates c, Direction d) {
         switch (d) {
-            case N:
-                return Direction.W;
             case E:
-                return Direction.N;
+                c.addX(1);
+                break;
+            case N:
+                c.addY(1);
+                break;
+            case S:
+                c.addY(-1);
+                break;
             case W:
-                return Direction.S;
+                c.addX(-1);
+                break;
             default:
-                return Direction.E; //pour Direction.S   
+                break;
         }
     }
-
-    /**
-     * Renvoie la "droite" d'une direction donnée
-     */
-    Direction droite(Direction d) {
-        switch (d) {
-            case N:
-                return Direction.E;
-            case E:
-                return Direction.S;
-            case W:
-                return Direction.N;
-            default:
-                return Direction.W; //pour Direction.S   
-        }
-    }
-
+  
     /**
      *
      * @return execution d'une action de l'explorateur

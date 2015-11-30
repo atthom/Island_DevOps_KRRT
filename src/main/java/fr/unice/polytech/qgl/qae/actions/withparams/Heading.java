@@ -1,4 +1,4 @@
-package fr.unice.polytech.qgl.qae.actions;
+package fr.unice.polytech.qgl.qae.actions.withparams;
 
 import org.json.JSONObject;
 

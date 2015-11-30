@@ -9,6 +9,7 @@ import fr.unice.polytech.qgl.qae.exceptions.MapExeption;
 import fr.unice.polytech.qgl.qae.map.Biome;
 import fr.unice.polytech.qgl.qae.map.BiomeType;
 import java.util.ArrayList;
+import java.util.Objects;
 
 /**
  * Classe de case de base
@@ -24,7 +25,8 @@ abstract public class Tile {
     }
     
     public Tile(ArrayList<Biome> biomes) {
-        biomes = new ArrayList<>(biomes);
+        this.biomes = new ArrayList<>(biomes);
+        this.biomes.addAll(biomes);
     }
 
     /**
@@ -42,6 +44,21 @@ abstract public class Tile {
             }
         }
         throw new MapExeption("Biome non trouvée");
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (obj == null) {
+            return false;
+        }
+        if (getClass() != obj.getClass()) {
+            return false;
+        }
+        final Tile other = (Tile) obj;
+        return Objects.equals(this.biomes, other.biomes);
     }
 
 }

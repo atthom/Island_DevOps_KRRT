@@ -5,7 +5,7 @@
  */
 package fr.unice.polytech.qgl.qae.map.geometry;
 
-import fr.unice.polytech.qgl.qae.actions.Direction;
+import fr.unice.polytech.qgl.qae.actions.withparams.Direction;
 import java.util.Objects;
 
 /**
@@ -19,63 +19,14 @@ public class Vect2D {
     private Vect v_x;
     private Vect v_y;
 
-    /**
-     * Construit un vecteur 2D avec deux vecteurs
-     *
-     * @param v1
-     * @param v2
-     *
-     */
-    public Vect2D(Vect v1, Vect v2) {
-        if (v1.colinear(v2)) {
-            v1.add(v2);
-            if (v1.is_xaxis()) {
-                this.v_x = v1;
-                this.v_y = new Vect(0, Direction.S);
-            } else {
-                this.v_x = new Vect(0, Direction.E);
-                this.v_y = v1;
-            }
-        } else if (v1.is_xaxis()) {
-            this.v_x = v1;
-            this.v_y = v2;
-        } else {
-            this.v_x = v2;
-            this.v_y = v1;
-        }
-
-    }
-
-    /**
-     * Construit un vecteur2D avec un vecteur1D
-     *
-     * @param v1
-     */
-    public Vect2D(Vect v1) {
-        if (v1.is_xaxis()) {
-            v_x = v1;
-            v_y = new Vect(0, Direction.S);
-        } else {
-            v_x = new Vect(0, Direction.E);
-            v_y = v1;
-        }
-    }
-
-    public Vect getV_x() {
-        return v_x;
-    }
-
-    public Vect getV_y() {
-        return v_y;
-    }
-
-    
+        
     public Vect2D(Coordinates c) {
         int x = c.getX();
         int y = c.getY();
+        
         if(x < 0) {
             v_x = new Vect(x*-1, Direction.W);
-        }else {
+        } else {
             v_x = new Vect(x, Direction.E);
         }
         
@@ -84,13 +35,10 @@ public class Vect2D {
         } else {
             v_y = new Vect(y, Direction.N);
         }
-        
     }
-    
-    
-    
+
     public Vect2D(Coordinates c, Coordinates c2) {
-        int x1 = c2.getX() + c.getX();
+        int x1 = c2.getX() - c.getX();
         Direction d;
         if (x1 < 0) {
             x1 = x1 * -1;
@@ -100,8 +48,9 @@ public class Vect2D {
         }
 
         Vect v1 = new Vect(x1, d);
+        this.v_x = v1;
         
-        int y1 = c2.getY() + c.getY();
+        int y1 = c2.getY() - c.getY();
         Direction d2;
         if (y1 < 0) {
             y1 = y1 * -1;
@@ -111,23 +60,15 @@ public class Vect2D {
         }
 
         Vect v2 = new Vect(y1, d2);
-
-        this.v_x = v1;
         this.v_y = v2;
     }
 
-    /**
-     * Ajoute la valeur d'un vecteur 1 dimention dans le vecteur
-     *
-     * @param v1
-     */
-    public void add(Vect v1) {
-        if (v_x.is_xaxis()) {
-            v_x.add(v1);
-        } else {
-            v_y.add(v1);
-        }
+    public Vect getV_x() {
+        return v_x;
+    }
 
+    public Vect getV_y() {
+        return v_y;
     }
 
     /**
@@ -146,18 +87,20 @@ public class Vect2D {
      * @return
      */
     public boolean is_colinear(Vect2D v) {
-        return (this.v_x.colinear(v.v_x) && this.v_y.equals(v.v_y))
-                | (this.v_y.colinear(v.v_y) && this.v_x.equals(v.v_x));
-    }
-
-    /**
-     * Ajoute un vecteur 2D
-     *
-     * @param v
-     */
-    public void add(Vect2D v) {
-        add(v.v_x);
-        add(v.v_y);
+        if(this.equals(v)) {
+            return true;
+        } 
+        if(this.toCoord().equals(new Coordinates(0, 0)) | v.toCoord().equals(new Coordinates(0, 0))) {
+            return true;
+        }
+               
+        if(this.v_y.getValeur() == 0 && 0 == v.v_y.getValeur() ) {
+            return true;
+        }
+        
+        float coeff1 = this.v_x.getValeur() / this.v_y.getValeur();
+        float coeff2 = v.v_x.getValeur() / v.v_y.getValeur();
+        return coeff1 == coeff2;    
     }
 
     /**
@@ -185,8 +128,5 @@ public class Vect2D {
             return false;
         }
         return Objects.equals(this.v_y, other.v_y);
-    }
-
-    
-    
+    }  
 }

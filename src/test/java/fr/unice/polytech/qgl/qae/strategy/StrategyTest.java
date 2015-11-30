@@ -5,17 +5,14 @@
  */
 package fr.unice.polytech.qgl.qae.strategy;
 
-import fr.unice.polytech.qgl.qae.Objectif;
-import fr.unice.polytech.qgl.qae.actions.Direction;
-import fr.unice.polytech.qgl.qae.actions.Heading;
+import fr.unice.polytech.qgl.qae.actions.withparams.Direction;
+import fr.unice.polytech.qgl.qae.actions.withparams.Heading;
 import fr.unice.polytech.qgl.qae.resources.ExtractedResource;
-import org.json.JSONObject;
 import org.junit.Before;
 import org.junit.Test;
 
 import java.util.ArrayList;
 
-import static org.junit.Assert.*;
 
 /**
  *

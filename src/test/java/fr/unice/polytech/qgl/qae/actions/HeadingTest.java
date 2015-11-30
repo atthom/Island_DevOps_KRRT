@@ -5,6 +5,8 @@
  */
 package fr.unice.polytech.qgl.qae.actions;
 
+import fr.unice.polytech.qgl.qae.actions.withparams.Direction;
+import fr.unice.polytech.qgl.qae.actions.withparams.Heading;
 import org.json.JSONObject;
 import org.junit.Before;
 import org.junit.Test;

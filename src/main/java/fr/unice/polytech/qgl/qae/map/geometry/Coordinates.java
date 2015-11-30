@@ -5,7 +5,7 @@
  */
 package fr.unice.polytech.qgl.qae.map.geometry;
 
-import fr.unice.polytech.qgl.qae.actions.Direction;
+import fr.unice.polytech.qgl.qae.actions.withparams.Direction;
 
 /**
  * Classe coordonée 2D
@@ -36,27 +36,7 @@ public class Coordinates {
     }
 
     public Vect2D vectorize() {
-        Direction dx;
-        Direction dy;
-        Vect v1;
-        Vect v2;
-        if (x < 0) {
-            dx = Direction.W;
-            v1 = new Vect(x * -1, dx);
-        } else {
-            dx = Direction.E;
-            v1 = new Vect(x, dx);
-        }
-
-        if (y < 0) {
-            dy = Direction.S;
-            v2 = new Vect(y * -1, dy);
-        } else {
-            dy = Direction.N;
-            v2 = new Vect(y, dy);
-        }
-
-        return new Vect2D(v1, v2);
+        return new Vect2D(this);
     }
 
     public void addX(int x) {
@@ -64,7 +44,7 @@ public class Coordinates {
     }
 
     public void addY(int y) {
-        this.y = this.x + y;
+        this.y = this.y + y;
     }
 
     /**

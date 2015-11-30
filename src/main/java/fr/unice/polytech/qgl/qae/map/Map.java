@@ -5,8 +5,8 @@
  */
 package fr.unice.polytech.qgl.qae.map;
 
-import fr.unice.polytech.qgl.qae.actions.Direction;
-import fr.unice.polytech.qgl.qae.actions.Heading;
+import fr.unice.polytech.qgl.qae.actions.withparams.Direction;
+import fr.unice.polytech.qgl.qae.actions.withparams.Heading;
 import fr.unice.polytech.qgl.qae.exceptions.MapExeption;
 import fr.unice.polytech.qgl.qae.map.tile.Tile;
 import fr.unice.polytech.qgl.qae.map.geometry.Coordinates;
@@ -26,7 +26,7 @@ import fr.unice.polytech.qgl.qae.map.tile.FlyTile;
 public class Map {
 
     private HashMap<Coordinates, Tile> map;
-    private HashMap<Coordinates, FlyTile> flymap;
+
     private ArrayList<Coordinates> coordinates;
 
     /**
@@ -44,66 +44,42 @@ public class Map {
         coordinates.add(c);
     }
 
-    /**
-     * Converti un vecteur et le rentre dans le repère.
-     *
-     * @param v1 premier vecteur (int dist, direction d )
-     * @param v2 second vecteur
-     * @param t la case à ajouter à la map
-     */
-    public void add(Vect v1, Vect v2, Tile t) {
-        map.put(convert(v1, v2), t);
+    public void printCoordinates() {
+        coordinates.stream().forEach((coordinate) -> {
+            System.out.println("X : " + coordinate.getX() + " Y = " + coordinate.getY());
+        });
+
     }
 
-    /**
-     * Idem avec un seul vecteur
-     *
-     * @param v1
-     * @param t
-     */
-    public void add(Vect v1, Tile t) {
-        put(convert(v1), t);
-    }
-
-    public Direction goaway(Coordinates current) {
+    public Direction go_ground(Coordinates current) {
         for (Coordinates coordinate : coordinates) {
             if (((FlyTile) map.get(coordinate)).getT() == Type.GROUND) {
                 if (current.equals(coordinate)) {
                     throw new MapExeption("Coordonnées égales !");
                 }
 
+//                if(current.vectorize().is_colinear(coordinate.vectorize()) && current.vectorize())  {
+//                    // si les deux vecteurs sont sur la même ligne 
+//                }
+                
+                
                 Vect2D v = new Vect2D(current, coordinate);
-
+                
                 
                 Vect v1 = v.getV_x();
                 Vect v2 = v.getV_y();
+                System.out.println("X : "+ v1.getValeur() + " Y : " +  v2.getValeur());
+                System.out.println("Dx : "+ v1.getD() + " Y : " +  v2.getD());
                 
-                
-                if (v1.getValeur() != 1) {
+                if (v1.getValeur() > 1) {
                     return v1.getD();
                 } else {
-                    return v2.getD();
+                    return v2.getD();     
                 }
-
             }
         }
 
         throw new MapExeption("Coordonnées GROUND non trouvé !");
-
-    }
-
-    /**
-     * Convertis un vecteur en Coordonnée
-     *
-     * @param v1 vecteur à convertir
-     * @return
-     */
-    public Coordinates convert(Vect v1) {
-        if (v1.is_xaxis()) {
-            return new Coordinates(v1.getValeur(), 0);
-        } else {
-            return new Coordinates(0, v1.getValeur());
-        }
     }
 
     /**
@@ -115,46 +91,24 @@ public class Map {
         return coordinates.get(coordinates.size() - 1);
     }
 
-    public Tile getTile(Coordinates c) {
-        return map.get(c);
-    }
-
-    /**
-     * Convertit deux vecteur (non colinéaire) en coordonnée
-     *
-     * @param v1
-     * @param v2
-     * @return
-     */
-    public Coordinates convert(Vect v1, Vect v2) {
-        if (v1.colinear(v2)) {
-            return new Coordinates(0, 0);
-        } else if (v1.is_xaxis()) {
-            return new Coordinates(v1.getValeur(), v2.getValeur());
-        } else {
-            return new Coordinates(v2.getValeur(), v1.getValeur());
-        }
-    }
-
     /**
      * Renvoie la case si elle existe
      *
-     * @param v1
-     * @param v2
+     * @param c2
      * @return
      */
-    public Tile getTile(Vect v1, Vect v2) {
-        Coordinates coord = convert(v1, v2);
+    
+    public Tile getTile(Coordinates c2) {
 
         for (Coordinates c : coordinates) {
-            if (c.getX() == coord.getX() & c.getY() == coord.getY()) {
+            if (c.equals(c2)) {
                 return map.get(c);
             }
         }
-
         return map.get(new Coordinates(0, 0));
     }
-public boolean groundpath() {
+
+    public boolean groundpath() {
         Coordinates last = coordinates.get(coordinates.size() - 1);
         Coordinates soon = coordinates.get(coordinates.size() - 2);
 
@@ -164,48 +118,33 @@ public boolean groundpath() {
                 == ((FlyTile) map.get(soon)).getT();
     }
 
-    public HashMap<Coordinates, Tile> getMap() {
-        return map;
-    }
-
-    public int getMaxXCord() {
-        int max = -1;
+    public Coordinates getMaxCord() {
+        int max_x = -1;
+        int max_y = -1;
         for (int i = 0; i < coordinates.size(); i++) {
-            if (coordinates.get(i).getX() > max) {
-                max = coordinates.get(i).getX();
+            if (coordinates.get(i).getX() > max_x) {
+                max_x = coordinates.get(i).getX();
+            }
+            if (coordinates.get(i).getY() > max_y) {
+                max_y = coordinates.get(i).getY();
             }
         }
-        return max;
+
+        return new Coordinates(max_x, max_y);
     }
 
-    public int getMinXCord() {
-        int min = 1000;
+    public Coordinates getMinCord() {
+        int min_x = 1000;
+        int min_y = 1000;
         for (int i = 0; i < coordinates.size(); i++) {
-            if (coordinates.get(i).getX() < min) {
-                min = coordinates.get(i).getX();
+            if (coordinates.get(i).getX() < min_x) {
+                min_x = coordinates.get(i).getX();
+            }
+            if (coordinates.get(i).getY() < min_y) {
+                min_y = coordinates.get(i).getY();
             }
         }
-        return min;
-    }
-
-    public int getMaxYCord() {
-        int max = -1;
-        for (int i = 0; i < coordinates.size(); i++) {
-            if (coordinates.get(i).getY() > max) {
-                max = coordinates.get(i).getY();
-            }
-        }
-        return max;
-    }
-
-    public int getMinYCord() {
-        int min = 1000;
-        for (int i = 0; i < coordinates.size(); i++) {
-            if (coordinates.get(i).getY() < min) {
-                min = coordinates.get(i).getY();
-            }
-        }
-        return min;
+        return new Coordinates(min_x, min_y);
     }
 
     // Combien de case disponible jusqu'a out of range a partir de notre coordonnée

@@ -3,8 +3,6 @@
 import java.io.File;
 import static eu.ace_design.island.runner.Runner.*;
 import fr.unice.polytech.qgl.qae.Explorer;
-import java.net.URI;
-import java.util.Arrays;
 
 public class Runner {
 

@@ -1,4 +1,4 @@
-package fr.unice.polytech.qgl.qae.actions;
+package fr.unice.polytech.qgl.qae.actions.simple;
 
 import java.util.Objects;
 import org.json.JSONObject;
@@ -58,28 +58,26 @@ public abstract class AbstractAction {
         o.put("action", name);
         return o;
     }
-
-    @Override
-    public boolean equals(Object obj) {
-        if (this == obj) {
-            return true;
-        }
-        if (obj == null) {
-            return false;
-        }
-        if (getClass() != obj.getClass()) {
-            return false;
-        }
-        final AbstractAction other = (AbstractAction) obj;
-        if (this.moy_actionCost != other.moy_actionCost) {
-            return false;
-        }
-        if (this.nb_set != other.nb_set) {
-            return false;
-        }
-        return Objects.equals(this.name, other.name);
-    }
-    
-    
+//
+//    @Override
+//    public boolean equals(Object obj) {
+//        if (this == obj) {
+//            return true;
+//        }
+//        if (obj == null) {
+//            return false;
+//        }
+//        if (getClass() != obj.getClass()) {
+//            return false;
+//        }
+//        final AbstractAction other = (AbstractAction) obj;
+//        if (this.moy_actionCost != other.moy_actionCost) {
+//            return false;
+//        }
+//        if (this.nb_set != other.nb_set) {
+//            return false;
+//        }
+//        return Objects.equals(this.name, other.name);
+//    }
     
 }

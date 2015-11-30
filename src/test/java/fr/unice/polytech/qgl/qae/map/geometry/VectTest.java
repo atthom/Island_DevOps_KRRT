@@ -1,15 +1,13 @@
-w/*
+/*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
 package fr.unice.polytech.qgl.qae.map.geometry;
 
-import fr.unice.polytech.qgl.qae.actions.Direction;
-import fr.unice.polytech.qgl.qae.actions.Heading;
+import fr.unice.polytech.qgl.qae.actions.withparams.Direction;
+import fr.unice.polytech.qgl.qae.actions.withparams.Heading;
 import fr.unice.polytech.qgl.qae.exceptions.VectorExeption;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import org.junit.Before;
 import org.junit.Test;
 import static org.junit.Assert.*;
@@ -20,17 +18,22 @@ import static org.junit.Assert.*;
  */
 public class VectTest {
 
-    Vect v;
+    Vect v1, v2, v3, v4, v5, v6;
 
     public VectTest() {
     }
 
     @Before
     public void setUp() {
-        v = new Vect(5, Direction.E);
-        v = new Vect(-5, Direction.E);
+        v1 = new Vect(5, Direction.E);
+        v2 = new Vect(-5, Direction.E);
+
         // valeur negative non cohérente donc valeur absolue 
-        v = new Vect(5, new Heading(Direction.E));
+        v3 = new Vect(5, new Heading(Direction.E));
+        v4 = new Vect(5, Direction.W);
+        v5 = new Vect(5, new Heading(Direction.S));
+
+        v6 = new Vect(5, new Heading(Direction.N));
     }
 
     /**
@@ -38,8 +41,9 @@ public class VectTest {
      */
     @Test
     public void testEquals() {
-        assertEquals(v, new Vect(5, Direction.E));
-
+        assertEquals(v1, v3);
+        assertEquals(v1, v2);
+        assertNotEquals(v1, v4);
     }
 
     /**
@@ -47,10 +51,10 @@ public class VectTest {
      */
     @Test
     public void testColinear() {
-        assertTrue(v.colinear(new Vect(5, Direction.W)));
-        assertTrue(v.colinear(new Vect(2, Direction.E)));
-        assertFalse(v.colinear(new Vect(2, Direction.N)));
-        assertFalse(v.colinear(new Vect(0, Direction.S)));
+        assertTrue(v1.colinear(v4));
+        assertTrue(v1.colinear(v3));
+        assertFalse(v1.colinear(v5));
+        assertFalse(v1.colinear(v6));
 
     }
 
@@ -59,44 +63,11 @@ public class VectTest {
      */
     @Test
     public void testGetValeur() {
-         v = new Vect(5, new Heading(Direction.E));
-        assertEquals(5, v.getValeur());
 
-        v = new Vect(5, new Heading(Direction.W));
-        assertEquals(-5, v.getValeur());
+        assertEquals(5, v1.getValeur());
+        assertEquals(5, v2.getValeur());
 
-       
-    }
-
-    /**
-     * Test of add method, of class Vect.
-     */
-    @Test
-    public void testAdd() {
-        v = new Vect(5, new Heading(Direction.E));
-        try {
-            v.add(new Vect(3, Direction.E));
-            assertEquals(8, v.getValeur());
-            assertEquals(v.getD(), Direction.E);
-
-            v.add(new Vect(5, Direction.W));
-            assertEquals(3, v.getValeur());
-            assertEquals(v.getD(), Direction.E);
-
-            v.add(new Vect(5, Direction.W));
-            assertEquals(-2, v.getValeur());
-            assertEquals(v.getD(), Direction.W);
-        } catch (VectorExeption ex) {
-            fail("Should not fail");
-        }
-
-        try {
-            v.add(new Vect(5, Direction.S));
-            fail("This should fail !");
-        } catch (Exception e) {
-
-        }
-
+        assertEquals(-5, v4.getValeur());
     }
 
     /**
@@ -104,15 +75,13 @@ public class VectTest {
      */
     @Test
     public void testIs_xaxis() {
-         v = new Vect(5, new Heading(Direction.E));
-        assertTrue(v.is_xaxis());
-        v = new Vect(5, new Heading(Direction.W));
-       assertTrue(v.is_xaxis());
 
-        v = new Vect(5, Direction.S);
-        assertFalse(v.is_xaxis());
-        v = new Vect(5, Direction.N);
-        assertFalse(v.is_xaxis());
+        assertTrue(v1.is_xaxis());
+        assertTrue(v2.is_xaxis());
+        assertTrue(v3.is_xaxis());
+
+        assertFalse(v5.is_xaxis());
+        assertFalse(v6.is_xaxis());
     }
 
     /**
@@ -120,8 +89,25 @@ public class VectTest {
      */
     @Test
     public void testGetD() {
-        v = new Vect(5, Direction.S);
-        assertEquals(v.getD(), Direction.S);
+
+        assertEquals(Direction.S, v5.getD());
+        assertEquals(Direction.N, v6.getD());
+        assertEquals(Direction.E, v2.getD());
+    }
+
+    /**
+     * Test of toCoord method, of class Vect.
+     */
+    @Test
+    public void testToCoord() {
+        assertEquals(new Coordinates(5, 0), v1.toCoord());
+        assertEquals(new Coordinates(5, 0), v2.toCoord());
+
+        assertEquals(new Coordinates(-5, 0), v4.toCoord());
+
+        assertEquals(new Coordinates(0, -5), v5.toCoord());
+        assertEquals(new Coordinates(0, 5), v6.toCoord());
+
     }
 
 }

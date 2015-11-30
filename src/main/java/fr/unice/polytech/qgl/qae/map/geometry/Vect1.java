@@ -15,7 +15,7 @@ import fr.unice.polytech.qgl.qae.exceptions.VectorExeption;
  *
  * @author user
  */
-public class Vect {
+public class Vect1 {
 
     private int valeur;
     private Direction d;
@@ -26,7 +26,7 @@ public class Vect {
      * @param valeur
      * @param d
      */
-    public Vect(int valeur, Direction d) {
+    public Vect1(int valeur, Direction d) {
         this.valeur = Math.abs(valeur);
         this.d = d;
     }
@@ -36,9 +36,20 @@ public class Vect {
      * @param valeur
      * @param h
      */
-    public Vect(int valeur, Heading h) {
+    public Vect1(int valeur, Heading h) {
         this.valeur = valeur;
         this.d = h.getValueParameter();
+    }
+
+    public void add(Vect1 v) throws VectorExeption {
+        if (this.colinear(v)) {
+            if (Math.abs(v.getValeur()) > Math.abs(this.getValeur()) && d.opposite() == v.d) {
+                d = v.d;
+            }
+            this.valeur = Math.abs(this.getValeur() + v.getValeur());
+        } else {
+            throw new VectorExeption("Les deux vecteurs ne sont pas colinéaire");
+        }
     }
 
     /**
@@ -74,19 +85,16 @@ public class Vect {
      * @param v un autre vecteur
      * @return true si les deux vecteurs sont colinéaire
      */
-    public boolean colinear(Vect v) {
+    public boolean colinear(Vect1 v) {
         return d.is_aligned(v.d);
     }
-    
-    public Coordinates toCoord() {
-        if(this.is_xaxis()) {
-            return new Coordinates(this.getValeur(), 0);
-        } else {
-            return new Coordinates(0, this.getValeur());
-        }
+
+    @Override
+    public int hashCode() {
+        int hash = 3;
+        return hash;
     }
-    
-   
+
     @Override
     public boolean equals(Object obj) {
         if (this == obj) {
@@ -98,7 +106,7 @@ public class Vect {
         if (getClass() != obj.getClass()) {
             return false;
         }
-        final Vect other = (Vect) obj;
+        final Vect1 other = (Vect1) obj;
         if (this.valeur != other.valeur) {
             return false;
         }

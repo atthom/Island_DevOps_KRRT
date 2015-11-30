@@ -5,7 +5,7 @@
  */
 package fr.unice.polytech.qgl.qae.map.geometry;
 
-import fr.unice.polytech.qgl.qae.actions.Direction;
+import fr.unice.polytech.qgl.qae.actions.withparams.Direction;
 import org.junit.Before;
 import org.junit.Test;
 import static org.junit.Assert.*;
@@ -16,36 +16,28 @@ import static org.junit.Assert.*;
  */
 public class Vect2DTest {
 
-    Vect2D v2, v3, v4, v5;
+    Vect2D v1, v2, v3, v4, v5, v6, v7,v8;
 
     public Vect2DTest() {
     }
 
     @Before
     public void setUp() {
-        v2 = new Vect2D(new Vect(5, Direction.E));
-        v3 = new Vect2D(new Vect(4, Direction.E), new Vect(7, Direction.S));
+        v1 = new Vect2D(new Coordinates(0, 0));
+        v2 = new Vect2D(new Coordinates(5, 0));
+        v3 = new Vect2D(new Coordinates(4, -7));
+        v4 = new Vect2D(new Coordinates(-1, 1), new Coordinates(5, -8));
+        
+        v5 = new Vect2D(new Coordinates(4, -5));
+        
+        v6 = new Vect2D(new Coordinates(8, -12));
+        
+        v7 = new Vect2D(new Coordinates(-1, 1), new Coordinates(3, -6));
+        
+        v8 = new Vect2D(new Coordinates(-2, 3));
        
         
-        v4 = new Vect2D(new Coordinates(-1, 1), new Coordinates(5, -8));
-      
-        v5 = new Vect2D(new Vect(5, Direction.S), new Vect(4, Direction.E));
-               
-        assertEquals(v3, v4);
         
-        
-    }
-
-    /**
-     * Test of add method, of class Vect2D.
-     */
-    @Test
-    public void testAdd_Vect() {
-        v3.add(v5);
-        assertEquals(new Vect2D(new Vect(8, Direction.E), new Vect(12, Direction.S)), v3);
-        v3.add(new Vect(5, Direction.N));
-        assertEquals(new Vect2D(new Vect(8, Direction.E), new Vect(17, Direction.S)), v3);
-    
     }
 
     /**
@@ -54,6 +46,7 @@ public class Vect2DTest {
     @Test
     public void testGetDistance() {
         assertEquals(9, v5.getDistance());
+        assertEquals(6 + 9, v4.getDistance());
     }
 
     /**
@@ -64,16 +57,9 @@ public class Vect2DTest {
         assertTrue(v3.is_colinear(v5));
         
         assertTrue(v3.is_colinear(v4));
-    }
-
-    /**
-     * Test of add method, of class Vect2D.
-     */
-    @Test
-    public void testAdd_Vect2D() {
-        v3.add(v5);
+        assertTrue(v4.is_colinear(v8));
         
-        assertEquals(new Vect2D(new Coordinates(8, -12)), v3);
+        assertTrue(v3.is_colinear(v1));
     }
 
     /**
@@ -82,7 +68,7 @@ public class Vect2DTest {
     @Test
     public void testToCoord() {
         Coordinates c = v5.toCoord();
-        System.out.println("V5 x : " + v5.getV_x().getValeur() + " y :" + v5.getV_y().getValeur() );
+      
         assertEquals(new Coordinates(4, -5), c);
     
     }
@@ -92,7 +78,6 @@ public class Vect2DTest {
      */
     @Test
     public void testGetV_x() {
-        
     }
 
     /**
@@ -100,6 +85,16 @@ public class Vect2DTest {
      */
     @Test
     public void testGetV_y() {
+    }
+
+    /**
+     * Test of equals method, of class Vect2D.
+     */
+    @Test
+    public void testEquals() {
+        
+        
+         assertEquals(v3, v7);
     }
 
 }

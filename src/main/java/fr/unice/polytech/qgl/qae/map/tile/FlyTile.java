@@ -56,6 +56,13 @@ public class FlyTile extends Tile {
         return t;
     }
 
+    @Override
+    public String toString() {
+        return "FlyTile{" + "t=" + t + ", creeks=" + creeks + '}';
+    }
+    
+    
+
     /**
      *
      * @param t type à metre à jour

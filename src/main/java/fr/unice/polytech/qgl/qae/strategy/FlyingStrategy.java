@@ -5,22 +5,20 @@
  */
 package fr.unice.polytech.qgl.qae.strategy;
 
-import com.vividsolutions.jts.geom.Coordinate;
 import fr.unice.polytech.qgl.qae.JSONFactory;
-import fr.unice.polytech.qgl.qae.actions.AbstractAction;
-import fr.unice.polytech.qgl.qae.actions.Direction;
-import fr.unice.polytech.qgl.qae.actions.Echo;
-import fr.unice.polytech.qgl.qae.actions.Fly;
-import fr.unice.polytech.qgl.qae.actions.Heading;
-import fr.unice.polytech.qgl.qae.actions.Scan;
-import fr.unice.polytech.qgl.qae.actions.Stop;
+import fr.unice.polytech.qgl.qae.actions.simple.AbstractAction;
+import fr.unice.polytech.qgl.qae.actions.withparams.Direction;
+import fr.unice.polytech.qgl.qae.actions.withparams.Echo;
+import fr.unice.polytech.qgl.qae.actions.simple.Fly;
+import fr.unice.polytech.qgl.qae.actions.withparams.Heading;
+import fr.unice.polytech.qgl.qae.actions.simple.Scan;
+import fr.unice.polytech.qgl.qae.actions.simple.Stop;
 import fr.unice.polytech.qgl.qae.exceptions.MapExeption;
 import fr.unice.polytech.qgl.qae.map.tile.FlyTile;
 
 import fr.unice.polytech.qgl.qae.map.Map;
 import fr.unice.polytech.qgl.qae.map.Type;
 import fr.unice.polytech.qgl.qae.map.geometry.Coordinates;
-import fr.unice.polytech.qgl.qae.map.tile.Tile;
 import fr.unice.polytech.qgl.qae.reply.ManageReply;
 import org.json.JSONObject;
 
@@ -38,6 +36,7 @@ public class FlyingStrategy extends Strategy {
     Map flyingMap;
     AbstractAction lastaction;
     ManageReply manager;
+    Direction old_direction;
     boolean phase1 = true, phase2 = true, phase3 = true;
     int turnback = 0, flyandscan = 0, flyuntil = 0;
 
@@ -53,6 +52,13 @@ public class FlyingStrategy extends Strategy {
         nbtours = 0;
         flyingMap = new Map(new FlyTile());
         currents_coords = new Coordinates(0, 0);
+        old_direction = null;
+    }
+
+    private Heading change_heading(Direction d) {
+         old_direction = h.getValueParameter();
+        h = new Heading(d);
+        return h;
     }
 
     /**
@@ -64,18 +70,19 @@ public class FlyingStrategy extends Strategy {
         h = heading;
         nbtours = 0;
         flyingMap = new Map(new FlyTile());
-        manager = new ManageReply(); 
-       currents_coords = new Coordinates(0, 0);
-        
+        manager = new ManageReply();
+        currents_coords = new Coordinates(0, 0);
+        old_direction = null;
+
     }
 
     String phase1() {
         switch (nbtours) {
             case 0:
-                lastaction = new Echo(gauche(h.getValueParameter()));
+                lastaction = new Echo(h.getValueParameter().gauche());
                 return lastaction.toJSON().toString();
             case 1:
-                lastaction = new Echo(droite(h.getValueParameter()));
+                lastaction = new Echo(h.getValueParameter().droite());
                 return lastaction.toJSON().toString();
             default:
                 lastaction = new Echo(h.getValueParameter());
@@ -88,59 +95,65 @@ public class FlyingStrategy extends Strategy {
         switch (turnback) {
             case 0:
                 turnback++;
-                return new Heading(gauche(h.getValueParameter())).toJSON().toString();
+                lastaction = change_heading(h.getValueParameter().gauche());
+                return lastaction.toJSON().toString();
             case 1:
                 turnback++;
-                return new Fly().toJSON().toString();
+                lastaction = new Fly();
+                return lastaction.toJSON().toString();
             case 2:
                 turnback++;
-                return new Heading(gauche(h.getValueParameter())).toJSON().toString();
+                lastaction = change_heading(h.getValueParameter().gauche());
+                return lastaction.toJSON().toString();
             default:
                 turnback = 0;
-                return new Fly().toJSON().toString();
+                lastaction = new Fly();
+                return lastaction.toJSON().toString();
         }
     }
-    
+
     String phase2() {
         //si on ne connais pas d'endoit ground ou aller...
-        
-        
+
         // sinon
         //Tile map.getTileground()
-       // Donc comme ce n'est pas encore codé on part du principe qu'il y a de la terre dans notre map
+        // Donc comme ce n'est pas encore codé on part du principe qu'il y a de la terre dans notre map
         Direction d = Direction.E;
         try {
-            d = flyingMap.goaway(currents_coords);
-            System.out.println(d);
+            d = flyingMap.go_ground(currents_coords);
         } catch (MapExeption ex) {
             phase2 = false;
             return phase3();
-        }     
-        
-        if(d==h.getValueParameter()) {
+        }
+
+        if (d == h.getValueParameter()) {
             lastaction = new Fly();
             return lastaction.toJSON().toString();
         } else {
-            lastaction = new Heading(d);
+            if(d.opposite() ==  h.getValueParameter()) {
+                turnaround();
+            }
+            lastaction = change_heading(d);
             return lastaction.toJSON().toString();
         }
-
     }
 
     String flyandScan() {
         if (flyandscan == 0) {
             flyandscan++;
-            return new Fly().toJSON().toString();
+            lastaction = new Fly();
+            return lastaction.toJSON().toString();
         } else {
             flyandscan = 0;
-            return new Scan().toJSON().toString();
+            lastaction = new Scan();
+            return lastaction.toJSON().toString();
         }
     }
 
     String phase3() {
         //etat initial :  on connais une case de terre
-
-        return new Stop().toJSON().toString();
+        lastaction = new Stop();
+        return lastaction.toJSON().toString();
     }
 
     /**
@@ -157,41 +170,45 @@ public class FlyingStrategy extends Strategy {
             return flyandScan();
         }
 
+        //  flyingtest();
         if (phase1) {
             return phase1();
         } else if (phase2) {
             return phase2();
-        }else if (phase3) {
+        } else if (phase3) {
             return phase3();
         }
         return phase3();
     }
-    
-    private String flyaway(Coordinates c) {
-        while(currents_coords.equals(c)) {
-            return new Fly().toJSON().toString();
+
+    private String flyingtest() {
+        for (int i = 0; i < 10; i++) {
+            return flyandScan();
+        }
+        h = change_heading(h.getValueParameter());
+        lastaction = h;
+
+        for (int i = 0; i < 10; i++) {
+            return flyandScan();
         }
         return new Stop().toJSON().toString();
     }
 
-    private void maj_coord() {
-
-        switch (h.getValueParameter()) {
-            case E:
-                currents_coords.addX(1);
-                break;
-            case N:
-                currents_coords.addY(1);
-                break;
-            case S:
-                currents_coords.addY(-1);
-                break;
-            case W:
-                currents_coords.addX(-1);
-                break;
-            default:
-                break;
+    private String flyaway(Coordinates c) {
+        while (currents_coords.equals(c)) {
+            lastaction = new Fly();
+            return lastaction.toJSON().toString();
         }
+        lastaction = new Stop();
+        return lastaction.toJSON().toString();
+    }
+
+    void maj_coord() {
+        if (null != old_direction) { 
+            super.maj_pos(currents_coords, old_direction);   
+            old_direction = null;
+        }
+        super.maj_pos(currents_coords, h.getValueParameter());
         flyingMap.put(currents_coords, new FlyTile(Type.UNKNOWN_TYPE));
         // currents_coords;
     }
@@ -203,12 +220,10 @@ public class FlyingStrategy extends Strategy {
     @Override
     public void acknowledge(JSONObject s) {
         nbtours++;
-        if (lastaction!=null && lastaction.getName().equals("fly")) {
+        if (lastaction != null && lastaction.getName().equals("fly")) {
             maj_coord();
         }
-
-        manager.manage(s, flyingMap, gauche(h.getValueParameter()));
-
+        manager.manage(s, flyingMap, h.getValueParameter().gauche(), currents_coords);
     }
 
 }
