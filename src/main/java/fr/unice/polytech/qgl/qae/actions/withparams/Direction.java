@@ -72,6 +72,10 @@ public enum Direction {
      * @return si la direction est alignée ou opposé.
      */
     public boolean is_aligned(Direction d) {
-        return this == d | d.opposite() == this;
+        return this == d || d.opposite() == this;
+    }
+    
+    public boolean is_minus() {
+        return this == S || this == W;
     }
 }

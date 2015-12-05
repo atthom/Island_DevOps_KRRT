@@ -6,9 +6,6 @@
 package fr.unice.polytech.qgl.qae.map.tile;
 
 import fr.unice.polytech.qgl.qae.exceptions.MapExeption;
-import fr.unice.polytech.qgl.qae.map.Biome;
-import fr.unice.polytech.qgl.qae.map.BiomeType;
-import fr.unice.polytech.qgl.qae.map.tile.Tile;
 import fr.unice.polytech.qgl.qae.resources.UnextractedResource;
 import java.util.ArrayList;
 import java.util.Objects;

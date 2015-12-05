@@ -1,5 +1,6 @@
 package fr.unice.polytech.qgl.qae.actions.withparams;
 
+import fr.unice.polytech.qgl.qae.map.geometry.Coordinates;
 import org.json.JSONObject;
 
 /**

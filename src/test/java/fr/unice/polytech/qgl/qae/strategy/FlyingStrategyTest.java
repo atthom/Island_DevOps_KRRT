@@ -5,17 +5,22 @@
  */
 package fr.unice.polytech.qgl.qae.strategy;
 
+import fr.unice.polytech.qgl.qae.actions.composed.FlyAndScan;
+import fr.unice.polytech.qgl.qae.actions.composed.FlyUntil;
+import fr.unice.polytech.qgl.qae.actions.composed.TurnAround;
+import fr.unice.polytech.qgl.qae.actions.composed.TurnToOpposite;
+import fr.unice.polytech.qgl.qae.actions.simple.AbstractAction;
 import fr.unice.polytech.qgl.qae.actions.withparams.Echo;
 import fr.unice.polytech.qgl.qae.actions.withparams.Direction;
 import fr.unice.polytech.qgl.qae.actions.withparams.Heading;
 import fr.unice.polytech.qgl.qae.actions.simple.Fly;
-import com.vividsolutions.jts.geom.Coordinate;
-import fr.unice.polytech.qgl.qae.actions.*;
-import fr.unice.polytech.qgl.qae.exceptions.MapExeption;
+import fr.unice.polytech.qgl.qae.map.Biome;
+import fr.unice.polytech.qgl.qae.map.BiomeType;
 import fr.unice.polytech.qgl.qae.map.Type;
 import fr.unice.polytech.qgl.qae.map.geometry.Coordinates;
 import fr.unice.polytech.qgl.qae.map.geometry.Vect;
 import fr.unice.polytech.qgl.qae.map.geometry.Vect2D;
+import fr.unice.polytech.qgl.qae.map.tile.Creek;
 import fr.unice.polytech.qgl.qae.map.tile.FlyTile;
 import fr.unice.polytech.qgl.qae.resources.ExtractedResource;
 import org.json.JSONObject;
@@ -33,16 +38,21 @@ import static org.junit.Assert.*;
  */
 public class FlyingStrategyTest {
 
+    Coordinates c1;
+    Coordinates c2;
     FlyingStrategy fstrat, fstratString;
+    ArrayList<ExtractedResource> a;
 
     public FlyingStrategyTest() {
     }
 
     @Before
     public void setUp() {
-        ArrayList<ExtractedResource> a = new ArrayList<>();
+        a = new ArrayList<>();
         a.add(new ExtractedResource(600, "WOOD"));
         a.add(new ExtractedResource(200, "GLASS"));
+        c1 = new Coordinates(10, 10);
+        c2 = new Coordinates(5, 5);
 
         fstrat = new FlyingStrategy(new Heading(Direction.E));
     }
@@ -91,24 +101,7 @@ public class FlyingStrategyTest {
      */
     @Test
     public void testPhase2() {
-        fstrat.flyingMap.put(new Coordinates(5, 5), new FlyTile(Type.GROUND));
 
-        for (int i = 0; i < 15; i++) {
-            try {
-                fstrat.phase2();
-            } catch (MapExeption ex) {
-                assertEquals(new Coordinates(5, 5), fstrat.currents_coords);
-            }
-            fstrat.maj_coord();
-        }
-
-    }
-
-    /**
-     * Test of flyandScan method, of class FlyingStrategy.
-     */
-    @Test
-    public void testFlyandScan() {
     }
 
     /**
@@ -116,6 +109,41 @@ public class FlyingStrategyTest {
      */
     @Test
     public void testPhase3() {
+        ArrayList<Biome> ab = new ArrayList<>();
+        ArrayList<Creek> cr = new ArrayList<>();
+        ab.add(new Biome(BiomeType.BEACH));
+        fstrat.currents_coords = c1;
+        fstrat.flyingMap.put(c1, new FlyTile(ab, cr, Type.UNKNOWN_TYPE));
+        fstrat.phase3();
+        assertEquals(new FlyAndScan(new Coordinates(5, 5), fstrat.h.getValueParameter()).getAll(), fstrat.actions);
+
+        fstrat.actions.clear();
+
+        ab.add(new Biome(BiomeType.BEACH));
+        ab.add(new Biome(BiomeType.OCEAN));
+
+        fstrat.currents_coords = c2;
+        fstrat.flyingMap.put(c2, new FlyTile(ab, cr, Type.UNKNOWN_TYPE));
+        
+        TurnToOpposite ta = new TurnToOpposite(c2, fstrat.h.getValueParameter());
+       // ta.addAll(new FlyUntil(fstrat.flyingMap.getfirstground(), ta.getCoords(), ta.getDir()));
+        fstrat.phase3();
+        for(AbstractAction ac : ta.getAll()) {
+            System.out.println(ac.toJSON());
+        }
+        System.out.println("*********");
+        for(AbstractAction ac : fstrat.actions) {
+            System.out.println(ac.toJSON());
+        }
+        assertEquals(ta.getAll(), fstrat.actions);
+
+    }
+
+    /**
+     * Test of manageComposedAction method, of class FlyingStrategy.
+     */
+    @Test
+    public void testManageComposedAction() {
     }
 
 }

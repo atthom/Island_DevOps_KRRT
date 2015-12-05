@@ -7,8 +7,9 @@ package fr.unice.polytech.qgl.qae.map;
 
 import fr.unice.polytech.qgl.qae.map.tile.FlyTile;
 import fr.unice.polytech.qgl.qae.map.geometry.Coordinates;
-import fr.unice.polytech.qgl.qae.map.geometry.Vect;
 import fr.unice.polytech.qgl.qae.actions.withparams.Direction;
+import fr.unice.polytech.qgl.qae.map.tile.Creek;
+import java.util.ArrayList;
 import org.junit.Before;
 import org.junit.Test;
 import static org.junit.Assert.*;
@@ -20,6 +21,7 @@ import static org.junit.Assert.*;
 public class MapTest {
 
     Map map;
+    ArrayList<Creek> cr;
 
     public MapTest() {
     }
@@ -27,6 +29,7 @@ public class MapTest {
     @Before
     public void setUp() {
         map = new Map(new FlyTile());
+        cr = new ArrayList<>();
     }
 
     /**
@@ -72,41 +75,26 @@ public class MapTest {
         assertEquals(new Coordinates(0, 0), map.get_lastcoordinate());
     }
 
-    /**
-     * Test of groundpath method, of class Map.
-     */
-    @Test
-    public void testGroundpath() {
-    }
-
-    
-    /**
-     * Test of getMaxXCord method, of class Map.
-     */
-    @Test
-    public void testGetMaxXCord_Coordinates_Heading() {
-    }
 
     /**
-     * Test of getMaxCord method, of class Map.
+     * Test of last_is_ocean method, of class Map.
      */
     @Test
-    public void testGetMaxCord() {
+    public void testLast_is_ocean() {
+        ArrayList<Biome> ab = new ArrayList<>();
+        
+        ab.add(new Biome(BiomeType.BEACH));
+        
+        map.put(new Coordinates(5, 5), new FlyTile(ab, cr , Type.UNKNOWN_TYPE));
+        assertFalse(map.last_is_ocean());
+        
+        ab.add(new Biome(BiomeType.BEACH));
+        ab.add(new Biome(BiomeType.OCEAN));
+        map.put(new Coordinates(10, 10), new FlyTile(ab, cr , Type.UNKNOWN_TYPE));
+        assertTrue(map.last_is_ocean());
     }
 
-    /**
-     * Test of getMinCord method, of class Map.
-     */
-    @Test
-    public void testGetMinCord() {
-    }
 
-    /**
-     * Test of getMaxXCord method, of class Map.
-     */
-    @Test
-    public void testGetMaxXCord() {
-    }
 
 
 }

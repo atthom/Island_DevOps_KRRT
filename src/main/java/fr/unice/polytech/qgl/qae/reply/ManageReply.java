@@ -32,30 +32,31 @@ public class ManageReply {
      */
     public ManageReply() {
     }
-    
-    
+
     public void manage(JSONObject js, Map map, Direction d, Coordinates currentCoords) {
-        
+
         JSONObject extras = js.getJSONObject("extras");
-       
-        if(extras.length()==0) {
-            
-        } else if(extras.has("range")) {
+
+        if (extras.length() == 0) {
+
+        } else if (extras.has("range")) {
             manage_echo(js, map, d);
-        } else if(extras.has("biomes") && extras.has("creeks")) {
+        } else if (extras.has("biomes") && extras.has("creeks")) {
             manage_scan(js, map, currentCoords);
-        } else if (extras.has("altitude") && extras.has("resources") ) {
+        } else if (extras.has("altitude") && extras.has("resources")) {
             //scout
         } else if (extras.has("asked_range") && extras.has("report")) {
             //glimpse
-        } else if(extras.has("resources") && extras.has("pois"))  {
-              // explore
+        } else if (extras.has("resources") && extras.has("pois")) {
+            // explore
         }
-        
-        // EXPLOIT AND TRANSFORM TO ADD
-       
+        // EXPLOIT AND TRANSFORM NOT IMPLEMENTED
         
         
+        if (!map.have_coord(currentCoords)) {
+       //     map.put(currentCoords, new FlyTile(Type.UNKNOWN_TYPE));
+        }
+
     }
 
     /**
@@ -72,7 +73,7 @@ public class ManageReply {
         Type found = Type.valueOf(extras.get("found").toString());
 
         Vect v = new Vect(range, d);
-        
+
         Tile t = new FlyTile(found);
 
         map.put(v.toCoord(), t);
@@ -85,10 +86,8 @@ public class ManageReply {
 
         JSONArray arr_biomes = extras.getJSONArray("biomes");
         ArrayList<Biome> biomes = new ArrayList<>();
-        
-        for (int i = 0; i < arr_biomes.length(); i++) {
-           
 
+        for (int i = 0; i < arr_biomes.length(); i++) {
             biomes.add(jfk.build_biome(arr_biomes.get(i).toString()));
         }
 

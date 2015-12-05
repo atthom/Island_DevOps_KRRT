@@ -37,13 +37,13 @@ abstract public class Tile {
         biomes.add(b);
     }
 
-    public Biome getB(BiomeType bb) {
+    public boolean have_biome(BiomeType bb) {
         for (int i = 0; i < biomes.size(); i++) {
             if (biomes.get(i).getBiomeType() == bb) {
-                return biomes.get(i);
+                return true;
             }
         }
-        throw new MapExeption("Biome non trouvée");
+        return false;
     }
 
     @Override

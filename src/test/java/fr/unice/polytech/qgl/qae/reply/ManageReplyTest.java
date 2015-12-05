@@ -68,7 +68,18 @@ public class ManageReplyTest {
         ArrayList<Creek> c= new ArrayList<>();
         c.add(new Creek("id"));
         FlyTile ft = new FlyTile(b, c, Type.UNKNOWN_TYPE);
-        assertEquals(ft, map.getTile(new Coordinates(5,5)));        
+        assertEquals(ft, map.getTile(new Coordinates(5,5)));   
+        
+        
+        
+        o = new JSONObject("{\"cost\": 2, \"extras\": { \"biomes\": [\"OCEAN\"], \"creeks\": []}, \"status\": \"OK\"}");
+        manager.manage(o, map, Direction.E, new Coordinates(10, 10));
+        assertTrue(map.last_is_ocean());
+        
+        
+        
+  
+        
     }
     
 }

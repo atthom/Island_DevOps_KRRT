@@ -5,6 +5,8 @@ import fr.unice.polytech.qgl.qae.resources.UnextractedResource;
 import org.junit.*;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertTrue;
 import static org.junit.Assert.fail;
 
 /**
@@ -31,20 +33,16 @@ public class GroundTileTest {
     @Test
     public void testGetB() {
         gt.addBiome(b);
-        assertEquals(b, gt.getB(BiomeType.UNKNOWN_BIOME));
+        assertTrue(gt.have_biome(BiomeType.UNKNOWN_BIOME));
 
-        try {
-            gt.getB(BiomeType.LAKE);
-            fail("This should fail.");
-        } catch (Exception e) {
-        }
+        assertFalse(gt.have_biome(BiomeType.LAKE));
 
     }
 
     @Test
     public void testaddB() {
         gt.addBiome(bb);
-        assertEquals(bb, gt.getB(BiomeType.LAKE));
+        assertTrue(gt.have_biome(BiomeType.LAKE));
     }
 
     @Test
