@@ -6,12 +6,10 @@
 package fr.unice.polytech.qgl.qae.strategy;
 
 import fr.unice.polytech.qgl.qae.JSONFactory;
-import fr.unice.polytech.qgl.qae.actions.composed.ComposedAction;
-import fr.unice.polytech.qgl.qae.actions.composed.FlyAndScan;
-import fr.unice.polytech.qgl.qae.actions.composed.FlyUntil;
-import fr.unice.polytech.qgl.qae.actions.composed.TurnAround;
-import fr.unice.polytech.qgl.qae.actions.composed.TurnToOpposite;
+import fr.unice.polytech.qgl.qae.actions.composed.*;
 import fr.unice.polytech.qgl.qae.actions.simple.AbstractAction;
+import fr.unice.polytech.qgl.qae.actions.simple.Fly;
+import fr.unice.polytech.qgl.qae.actions.simple.Scan;
 import fr.unice.polytech.qgl.qae.actions.withparams.Direction;
 import fr.unice.polytech.qgl.qae.actions.withparams.Echo;
 import fr.unice.polytech.qgl.qae.actions.withparams.Heading;
@@ -40,8 +38,8 @@ public class FlyingStrategy extends Strategy {
     ArrayList<AbstractAction> actions;
     ManageReply manager;
     Direction old_direction;
-    boolean phase1 = true, phase2 = true, phase3 = true;
-
+    boolean phase1 = true, phase2 = true, phase3 = true, phase0 = true;
+    int i;
     /**
      *
      * @param heading
@@ -81,12 +79,53 @@ public class FlyingStrategy extends Strategy {
         }
     }
 
+    void phase0() {
 
-    void phase1() {
         actions.add(new Echo(h.getValueParameter().gauche()));
         actions.add(new Echo(h.getValueParameter().droite()));
         actions.add(new Echo(h.getValueParameter()));
-        phase1 = false;
+
+        phase0 = false;
+    }
+
+    void phase1() {
+
+        FlyTile t = (FlyTile) flyingMap.getTile(flyingMap.get_lastcoordinate());
+        FlyTile t1 = (FlyTile) flyingMap.getTile(flyingMap.get_coordinate(3));
+
+        if (t1.getT() == Type.GROUND) {
+            phase1 = false;
+        }
+
+        manageComposedAction(new FlyAndEcho(currents_coords, h.getValueParameter(),flyingMap.chooseDirEcho(h.getValueParameter())));
+
+        if (t.getT() == Type.GROUND && t1.getT() == Type.OUT_OF_RANGE) {
+            change_heading(flyingMap.chooseDirEcho(h.getValueParameter()));
+            actions.add(new Fly());
+            phase1 = false;
+        }
+
+
+        /*FlyTile t = (FlyTile) flyingMap.getTile(flyingMap.get_lastcoordinate());
+        if (t.getT() == Type.GROUND) {
+            if (gauche)
+                actions.add(new Heading(h.getValueParameter().gauche()));
+                //lastaction = change_heading(h.getValueParameter().gauche());
+            else
+                actions.add(new Heading(h.getValueParameter().droite()));
+                //lastaction = change_heading(h.getValueParameter().droite());
+            phase1 = false;
+            //phase2 = true;
+        }
+        else {
+            if (flyingMap.get_coordinate(0).getX() > flyingMap.get_coordinate(0).getX()) {
+                gauche = true;
+                manageComposedAction(new FlyAndEcho(currents_coords, h.getValueParameter(),h.getValueParameter().gauche()));
+            } else {
+                gauche = false;
+                manageComposedAction(new FlyAndEcho(currents_coords, h.getValueParameter(),h.getValueParameter().droite()));
+            }
+        }*/
     }
  
     void phase2() {
@@ -95,9 +134,10 @@ public class FlyingStrategy extends Strategy {
         // sinon
         //Tile map.getTileground()
         // Donc comme ce n'est pas encore codé on part du principe qu'il y a de la terre dans notre map
+
         if (flyingMap.have_ground()) {
             int dist = currents_coords.distance(flyingMap.getfirstground()); 
-            manageComposedAction(new FlyUntil(dist, currents_coords, h.getValueParameter()));          
+            manageComposedAction(new FlyUntil(dist, currents_coords, h.getValueParameter()));
             phase2 = false;
         } else {
             actions.add(new Stop());
@@ -115,7 +155,7 @@ public class FlyingStrategy extends Strategy {
     void phase3() {
         //etat initial :  on connais une case de terre
     
-        if(flyingMap.last_is_ocean()) {
+        /*if(flyingMap.last_is_ocean()) {
             manageComposedAction(new TurnToOpposite(currents_coords, h.getValueParameter()));
             
 //            int dist = currents_coords.distance(flyingMap.getfirstground()); 
@@ -126,7 +166,9 @@ public class FlyingStrategy extends Strategy {
       
       if(flyingMap.already_here(currents_coords)) {
            actions.add(new Stop());
-       }
+       }*/
+        actions.add(new Scan());
+        actions.add(new Stop());
         
     }
 
@@ -140,8 +182,13 @@ public class FlyingStrategy extends Strategy {
 
         if (actions.isEmpty()) {
             //  flyingtest();
+            if (phase0) {
+                phase0();
+                return actions.get(0).toJSON().toString();
+            }
             if (phase1) {
                 phase1();
+
             } else if (phase2) {
                 phase2();
             } else if (phase3) {

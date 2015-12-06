@@ -49,11 +49,31 @@ public class ManageReplyTest {
         JSONObject o = new JSONObject("{ \"cost\": 1, \"extras\": { \"range\": 2, \"found\": \"GROUND\" }, \"status\": \"OK\" }");
         manager.manage(o, map,Direction.E, new Coordinates(0, 0));
         
-        assertEquals(new FlyTile(Type.GROUND), map.getTile(new Coordinates(2, 0)));
+        FlyTile t = (FlyTile) map.getTile(map.get_lastcoordinate());
 
-        
+        assertEquals(new FlyTile(Type.GROUND), map.getTile(new Coordinates(2, 0)));
+        assertEquals(t.getT(),Type.GROUND);
     }
 
+    /**
+     * Second test of manage_echo method, of class ManageReply.
+     * Allow to see that the case are add in the right order in the map from the 1 index (the first index is matching
+     * with the initial coordinate (0,0) created with the map
+     */
+    @Test
+    public void addWithManage() {
+        JSONObject o = new JSONObject("{ \"cost\": 1, \"extras\": { \"range\": 0, \"found\": \"OUT_OF_RANGE\" }, \"status\": \"OK\" }");
+        JSONObject o1 = new JSONObject("{ \"cost\": 1, \"extras\": { \"range\": 30, \"found\": \"OUT_OF_RANGE\" }, \"status\": \"OK\" }");
+        JSONObject o2 = new JSONObject("{ \"cost\": 1, \"extras\": { \"range\": 15, \"found\": \"OUT_OF_RANGE\" }, \"status\": \"OK\" }");
+
+        manager.manage(o, map,Direction.E, new Coordinates(0, 0));
+        manager.manage(o1, map,Direction.E, new Coordinates(0, 0));
+        manager.manage(o2, map,Direction.E, new Coordinates(0, 0));
+
+        assertEquals(0,map.get_coordinate(1).getX());
+        assertEquals(30,map.get_coordinate(2).getX());
+        assertEquals(15,map.get_coordinate(3).getX());
+    }
     /**
      * Test of manage method, of class ManageReply.
      */

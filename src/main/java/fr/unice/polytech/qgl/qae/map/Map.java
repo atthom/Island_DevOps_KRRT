@@ -43,7 +43,15 @@ public class Map {
         map.putIfAbsent(c, t);
         coordinates.add(c);
     }
-    
+
+    public Direction chooseDirEcho(Direction dir) {
+        if(coordinates.get(0).distance(coordinates.get(1)) > coordinates.get(0).distance(coordinates.get(2))) {
+            return dir.gauche();
+        }
+        else
+            return dir.droite();
+    }
+
     public void printCoordinates() {
         coordinates.stream().forEach((coordinate) -> {
             System.out.println("X : " + coordinate.getX() + " Y = " + coordinate.getY());
@@ -63,7 +71,7 @@ public class Map {
         Coordinates c = coordinates.get(coordinates.size()-1);
         return map.get(c).have_biome(BiomeType.OCEAN);
     }
-    
+
 //    private ComposedAction path_axis(int valeur, ComposedAction ac) {
 //        if (valeur == 0) {
 //            return ac;
@@ -199,6 +207,9 @@ public class Map {
         return coordinates.get(coordinates.size() - 1);
     }
 
+    public Coordinates get_coordinate(int i) {
+        return coordinates.get(i);
+    }
     /**
      * Renvoie la case si elle existe
      *
