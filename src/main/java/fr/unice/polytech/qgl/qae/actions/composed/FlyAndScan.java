@@ -33,7 +33,8 @@ public final class FlyAndScan extends ComposedAction {
      * @param c
      * @param dir
      */
-    protected void maj_coord(Coordinates c, Direction dir) {
+    @Override
+    public void maj_coord(Coordinates c, Direction dir) {
         switch (dir) {
             case N:
                 super.coords = new Coordinates(c.getX(), c.getY() +1 );

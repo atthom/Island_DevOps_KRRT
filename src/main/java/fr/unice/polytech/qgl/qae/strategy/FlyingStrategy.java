@@ -7,13 +7,13 @@ package fr.unice.polytech.qgl.qae.strategy;
 
 import fr.unice.polytech.qgl.qae.JSONFactory;
 import fr.unice.polytech.qgl.qae.actions.composed.ComposedAction;
+import fr.unice.polytech.qgl.qae.actions.composed.FlyAndEcho;
 import fr.unice.polytech.qgl.qae.actions.composed.FlyAndScan;
 import fr.unice.polytech.qgl.qae.actions.composed.FlyUntil;
 import fr.unice.polytech.qgl.qae.actions.composed.TurnToOppositeLeft;
 import fr.unice.polytech.qgl.qae.actions.composed.TurnToOppositeRight;
 import fr.unice.polytech.qgl.qae.actions.simple.AbstractAction;
 import fr.unice.polytech.qgl.qae.actions.simple.Fly;
-import fr.unice.polytech.qgl.qae.actions.simple.Scan;
 import fr.unice.polytech.qgl.qae.actions.withparams.Direction;
 import fr.unice.polytech.qgl.qae.actions.withparams.Echo;
 import fr.unice.polytech.qgl.qae.actions.withparams.Heading;
@@ -21,6 +21,7 @@ import fr.unice.polytech.qgl.qae.actions.simple.Stop;
 import fr.unice.polytech.qgl.qae.map.tile.FlyTile;
 
 import fr.unice.polytech.qgl.qae.map.Map;
+import fr.unice.polytech.qgl.qae.map.Type;
 import fr.unice.polytech.qgl.qae.map.geometry.Coordinates;
 import fr.unice.polytech.qgl.qae.reply.ManageReply;
 import java.util.ArrayList;
@@ -42,8 +43,8 @@ public class FlyingStrategy extends Strategy {
     ManageReply manager;
     Direction old_direction;
     boolean turnleft = false;
-    boolean phase1 = true, phase2 = true, phase3 = true;
-
+    boolean phase0 = true, phase1 = true, phase2 = true, phase3 = true;
+    
     /**
      * Chaine de caractères
      *
@@ -78,13 +79,35 @@ public class FlyingStrategy extends Strategy {
         }
     }
 
-    void phase1() {
+    void phase0() {
         actions.add(new Echo(d.left()));
         actions.add(new Echo(d.right()));
         actions.add(new Echo(d));
-        phase1 = false;
+        phase0 = false;
     }
 
+      void phase1() {
+
+        FlyTile t = (FlyTile) flyingMap.getTile(flyingMap.get_lastcoordinate());
+        FlyTile t1 = (FlyTile) flyingMap.getTile(flyingMap.get_coordinate(1));
+        FlyTile t2 = (FlyTile) flyingMap.getTile(flyingMap.get_coordinate(2));
+        FlyTile t3 = (FlyTile) flyingMap.getTile(flyingMap.get_coordinate(3));
+
+        if (t3.getT() == Type.GROUND) {
+            phase1 = false;
+        }
+        else if(t1.getT() == Type.GROUND || t2.getT() == Type.GROUND) {
+            change_heading(flyingMap.chooseDirEcho(d));
+            actions.add(new Fly());
+            phase1 = false;
+        }
+        else if (t.getT() == Type.GROUND && t1.getT() == Type.OUT_OF_RANGE) {
+            manageComposedAction(new FlyAndEcho(currents_coords, d,flyingMap.chooseDirEcho(d)));
+            change_heading(flyingMap.chooseDirEcho(d));
+            actions.add(new Fly());
+            phase1 = false;
+        }
+    }
     void phase2() {
         //si on ne connais pas d'endoit ground ou aller...
 
@@ -158,7 +181,9 @@ public class FlyingStrategy extends Strategy {
 
         if (actions.isEmpty()) {
             //  flyingtest();
-            if (phase1) {
+            if(phase0) {
+                phase0();
+            } else if (phase1) {
                 phase1();
             } else if (phase2) {
                 phase2();

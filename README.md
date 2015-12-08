@@ -11,6 +11,10 @@
 
 ## Features Change log
 
+### Week 50
+
+The bot can explore the island and find a creeks to access to the groundfields.
+
 ### Week 49
 
 The bot can do composed actions (FlyAndScan, FlyUntil, ect ...)

@@ -66,10 +66,10 @@ public class Map {
 
     public Direction chooseDirEcho(Direction dir) {
         if(coordinates.get(0).distance(coordinates.get(1)) > coordinates.get(0).distance(coordinates.get(2))) {
-            return dir.gauche();
+            return dir.left();
         }
         else
-            return dir.droite();
+            return dir.right();
     }
 
     public void printCoordinates() {
