@@ -4,7 +4,7 @@ import java.util.Objects;
 import org.json.JSONObject;
 
 /**
- * Created by Lo�c on 11/15/2015.
+ * Created by Loic on 11/15/2015.
  *
  * Classe abstraite qui sera la classe mere de toutes les classe particulieres aux commandes
  */

@@ -7,7 +7,7 @@ package fr.unice.polytech.qgl.qae.strategy;
 
 import fr.unice.polytech.qgl.qae.actions.withparams.Direction;
 import fr.unice.polytech.qgl.qae.actions.withparams.Heading;
-import fr.unice.polytech.qgl.qae.resources.ExtractedResource;
+import fr.unice.polytech.qgl.qae.resources.Resource;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -25,9 +25,9 @@ public class StrategyTest {
     
     @Before
     public void setUp() {
-        ArrayList<ExtractedResource> a = new ArrayList<>();
-        a.add(new ExtractedResource(600, "WOOD"));
-        a.add(new ExtractedResource(200, "GLASS"));
+        ArrayList<Resource> a = new ArrayList<>();
+        a.add(new Resource(600, "WOOD"));
+        a.add(new Resource(200, "GLASS"));
        
         strat= new FlyingStrategy(new Heading(Direction.E));
     }

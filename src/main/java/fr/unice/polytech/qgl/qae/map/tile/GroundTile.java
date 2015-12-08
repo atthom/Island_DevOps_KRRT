@@ -6,7 +6,8 @@
 package fr.unice.polytech.qgl.qae.map.tile;
 
 import fr.unice.polytech.qgl.qae.exceptions.MapExeption;
-import fr.unice.polytech.qgl.qae.resources.UnextractedResource;
+import fr.unice.polytech.qgl.qae.resources.Resource;
+
 import java.util.ArrayList;
 import java.util.Objects;
 
@@ -18,7 +19,7 @@ import java.util.Objects;
 public class GroundTile extends Tile {
 
     private int altitude;
-    private ArrayList<UnextractedResource> res;
+    private ArrayList<Resource> res;
 
     /**
      *
@@ -28,11 +29,11 @@ public class GroundTile extends Tile {
         res = new ArrayList<>();
     }
 
-    void addResource(UnextractedResource r) {
+    void addResource(Resource r) {
         res.add(r);
     }
 
-    UnextractedResource getResource(String r) {
+    Resource getResource(String r) {
         for (int i = 0; i < res.size(); i++) {
             if (res.get(i).getName().equals(r)) {
                 return res.get(i);

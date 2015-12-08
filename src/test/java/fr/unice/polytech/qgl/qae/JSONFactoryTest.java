@@ -9,8 +9,10 @@ import fr.unice.polytech.qgl.qae.actions.withparams.Direction;
 import fr.unice.polytech.qgl.qae.actions.withparams.Heading;
 import fr.unice.polytech.qgl.qae.map.Biome;
 import fr.unice.polytech.qgl.qae.map.BiomeType;
-import fr.unice.polytech.qgl.qae.resources.ExtractedResource;
+
 import java.util.ArrayList;
+
+import fr.unice.polytech.qgl.qae.resources.Resource;
 import org.json.JSONArray;
 import org.json.JSONObject;
 import org.junit.Before;
@@ -41,8 +43,8 @@ public class JSONFactoryTest {
     @Test
     public void testBuild_res() {
         String res = "{ \"amount\": 600, \"resource\": \"WOOD\" }";
-        assertEquals(jfk.build_res(res), new ExtractedResource(600, "WOOD"));
-
+        assertEquals(600, jfk.build_res(res).getNbResourcesNeeded());
+        assertEquals("WOOD", jfk.build_res(res).getName());
     }
 
     /**
@@ -65,13 +67,17 @@ public class JSONFactoryTest {
         int budget = obj.getInt("budget");
 
         JSONArray arr = obj.getJSONArray("contracts");
-        ArrayList<ExtractedResource> res = new ArrayList<>();
+        ArrayList<Resource> res = new ArrayList<>();
         for (int i = 0; i < arr.length(); i++) {
             JSONObject o = arr.getJSONObject(i);
-            res.add(new ExtractedResource(o.getInt("amount"), o.getString("resource")));
+            res.add(new Resource(o.getInt("amount"), o.getString("resource")));
         }
-
-        assertEquals(jfk.build_obj(contract), new Objectif(men, budget, res));
+        assertEquals(12, jfk.build_obj(contract).getNb_mens());
+        assertEquals(10000, jfk.build_obj(contract).getBudget());
+        assertEquals(600, jfk.build_obj(contract).getRessource("WOOD").getNbResourcesNeeded());
+        assertEquals(200, jfk.build_obj(contract).getRessource("GLASS").getNbResourcesNeeded());
+        assertEquals(true, jfk.build_obj(contract).getRessource("WOOD").isNeeded());
+        //assertEquals(jfk.build_obj(contract), new Objectif(men, budget, res));
  
     }
 

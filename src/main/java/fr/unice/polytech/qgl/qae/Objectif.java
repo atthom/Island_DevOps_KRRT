@@ -5,7 +5,9 @@
  */
 package fr.unice.polytech.qgl.qae;
 
-import fr.unice.polytech.qgl.qae.resources.ExtractedResource;
+import fr.unice.polytech.qgl.qae.exceptions.InvalidNumberException;
+import fr.unice.polytech.qgl.qae.resources.Resource;
+
 import java.util.ArrayList;
 import java.util.Objects;
 
@@ -17,7 +19,7 @@ public class Objectif {
 
     private final int nb_mens;
     private int budget;
-    private ArrayList<ExtractedResource> contract;
+    private ArrayList<Resource> contract;
 
     /**
      * Créer un objectif pour l'expedition
@@ -26,7 +28,7 @@ public class Objectif {
      * @param contract liste de ressource extraire à valider.
      * A chaque ressources extraite on enleve une partie dans l'objectif
      */
-    public Objectif(int nb_mens, int budget, ArrayList<ExtractedResource> contract) {
+    public Objectif(int nb_mens, int budget, ArrayList<Resource> contract) {
         this.nb_mens = nb_mens;
         this.budget = budget;
         this.contract = contract;
@@ -57,15 +59,15 @@ public class Objectif {
      * Permet de chercher une ressource à extraire dans la liste de l'objectif
      * @param name : nom de la ressource cherchée
      * @return la ressource cherchée si trouvée sinon la ressource (0, "")
+     * //TODO - check with the group if the changes are good
      */
-    public ExtractedResource getRessource(String name) {
-        for (ExtractedResource res : this.contract) {
+    public Resource getRessource(String name) {
+        for (Resource res : this.contract) {
             if (res.getName().equals(name)) {
                 return res;
             }
         }
-      
-        return new ExtractedResource(0, "");
+        return new Resource();
     }
 
     /**
@@ -76,10 +78,10 @@ public class Objectif {
      * Si il est plus grand on supprime la ressource de la liste de l'objectif
      * @param r ressource à extraire.
      */
-    public void enleve_ressource(ExtractedResource r) {
-        for(ExtractedResource res : contract) {
-            if (res.getNb() > r.getNb()) {
-                res.enleve(r.getNb());
+    public void enleve_ressource(Resource r) throws InvalidNumberException{
+        for(Resource res : contract) {
+            if (res.getNbExploitedRessource() > r.getNbExploitedRessource()) {
+                res.retrieve(r.getNbExploitedRessource());
             } else {
                 this.contract.remove(res);
             }
