@@ -11,11 +11,16 @@ import fr.unice.polytech.qgl.qae.actions.withparams.Direction;
 import fr.unice.polytech.qgl.qae.map.geometry.Coordinates;
 
 /**
- *
+ * Pouvoir Voler Puis Scanner
  * @author user
  */
 public final class FlyAndScan extends ComposedAction {
     
+    /**
+     * Pouvoir Voler et scanner
+     * @param current une coordonnée actuelle
+     * @param dir une direction
+     */
     public FlyAndScan(Coordinates current, Direction dir) {
         super(current, dir);
         super.add(new Fly());
@@ -23,6 +28,11 @@ public final class FlyAndScan extends ComposedAction {
         maj_coord(current, dir);
     }
 
+    /**
+     * Mise à jour des coordonnées et de la direction
+     * @param c
+     * @param dir
+     */
     protected void maj_coord(Coordinates c, Direction dir) {
         switch (dir) {
             case N:

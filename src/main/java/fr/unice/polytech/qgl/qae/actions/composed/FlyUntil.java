@@ -15,15 +15,21 @@ import fr.unice.polytech.qgl.qae.map.geometry.Coordinates;
  */
 public class FlyUntil extends ComposedAction {
 
+    /**
+     * Voler sur une distance donnée
+     * @param nbfly distance de vol
+     * @param current une coordonnée actuelle
+     * @param dir une direction
+     */
     public FlyUntil(int nbfly, Coordinates current, Direction dir) {
         super(current, dir);
-        
+
         maj_coord(nbfly, current);
-        for(int i=0; i < nbfly; i++) {
+        for (int i = 0; i < nbfly; i++) {
             super.add(new Fly());
         }
     }
-    
+
     private void maj_coord(int nb, Coordinates c) {
         switch (dir) {
             case N:
@@ -40,6 +46,5 @@ public class FlyUntil extends ComposedAction {
                 break;
         }
     }
-    
 
 }

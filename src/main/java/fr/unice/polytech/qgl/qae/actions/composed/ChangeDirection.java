@@ -21,12 +21,12 @@ public class ChangeDirection extends ComposedAction {
         if (current_dir.equals(dir)) {
 
         } else if (current_dir.opposite().equals(dir)) {
-            super.add(new Heading(current_dir.gauche()));
-            super.add(new Heading(current_dir.gauche().gauche()));
-        } else if (current_dir.droite().equals(dir)) {
-            super.add(new Heading(current_dir.droite()));
+            super.add(new Heading(current_dir.left()));
+            super.add(new Heading(current_dir.left().left()));
+        } else if (current_dir.right().equals(dir)) {
+            super.add(new Heading(current_dir.right()));
         } else {
-            super.add(new Heading(current_dir.gauche()));
+            super.add(new Heading(current_dir.left()));
         }
 
     }

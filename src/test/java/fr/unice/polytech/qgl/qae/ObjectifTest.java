@@ -5,7 +5,6 @@
  */
 package fr.unice.polytech.qgl.qae;
 
-import fr.unice.polytech.qgl.qae.Objectif;
 import fr.unice.polytech.qgl.qae.resources.ExtractedResource;
 
 import java.util.ArrayList;

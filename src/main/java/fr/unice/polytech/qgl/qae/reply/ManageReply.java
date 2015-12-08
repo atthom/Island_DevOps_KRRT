@@ -5,7 +5,6 @@
  */
 package fr.unice.polytech.qgl.qae.reply;
 
-import com.vividsolutions.jts.geom.Coordinate;
 import fr.unice.polytech.qgl.qae.JSONFactory;
 import fr.unice.polytech.qgl.qae.actions.withparams.Direction;
 import fr.unice.polytech.qgl.qae.map.Biome;
@@ -16,7 +15,6 @@ import fr.unice.polytech.qgl.qae.map.tile.Creek;
 import fr.unice.polytech.qgl.qae.map.Type;
 import fr.unice.polytech.qgl.qae.map.geometry.Coordinates;
 import fr.unice.polytech.qgl.qae.map.geometry.Vect;
-import fr.unice.polytech.qgl.qae.resources.ExtractedResource;
 import org.json.*;
 import java.util.ArrayList;
 
@@ -51,12 +49,7 @@ public class ManageReply {
             // explore
         }
         // EXPLOIT AND TRANSFORM NOT IMPLEMENTED
-        
-        
-        if (!map.have_coord(currentCoords)) {
-       //     map.put(currentCoords, new FlyTile(Type.UNKNOWN_TYPE));
-        }
-
+        map.put(currentCoords, new FlyTile(Type.UNKNOWN_TYPE));
     }
 
     /**
@@ -69,11 +62,9 @@ public class ManageReply {
     private void manage_echo(JSONObject js, Map map, Direction d) {
         JSONObject extras = js.getJSONObject("extras");
         int range = extras.getInt("range");
-
         Type found = Type.valueOf(extras.get("found").toString());
 
         Vect v = new Vect(range, d);
-
         Tile t = new FlyTile(found);
 
         map.put(v.toCoord(), t);
@@ -97,7 +88,7 @@ public class ManageReply {
             creeks.add(new Creek(arr_creeks.getString(i)));
         }
 
-        map.put(currentCoords, new FlyTile(biomes, creeks, Type.UNKNOWN_TYPE));
+        map.maj(currentCoords, new FlyTile(biomes, creeks, Type.UNKNOWN_TYPE));
 
         /*FlyTile t = new FlyTile();
         t.addBiome();

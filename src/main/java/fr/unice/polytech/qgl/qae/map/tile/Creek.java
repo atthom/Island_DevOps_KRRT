@@ -5,18 +5,17 @@
  */
 package fr.unice.polytech.qgl.qae.map.tile;
 
-import fr.unice.polytech.qgl.qae.map.tile.GroundTile;
 import java.util.Objects;
 
 /**
  * Classe criques provient de GroundTile 
  * @author user
  */
-public class Creek {
+public class Creek extends Tile {
     String id;
  
     public Creek(String id) {
-       
+       super();
         this.id = id;
     }
 

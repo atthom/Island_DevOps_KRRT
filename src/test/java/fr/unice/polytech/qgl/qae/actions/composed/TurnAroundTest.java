@@ -15,7 +15,6 @@ import java.util.ArrayList;
 import org.junit.Before;
 import org.junit.Test;
 import static org.junit.Assert.*;
-import org.junit.Ignore;
 
 /**
  *
@@ -37,21 +36,21 @@ public class TurnAroundTest {
         current1 = new Coordinates(0, 0);
         dE = Direction.E;
         path1 = new ArrayList<>();
-        path1.add(new Heading(dE.gauche()));
+        path1.add(new Heading(dE.left()));
         path1.add(new Scan());
-        path1.add(new Heading(dE.gauche().gauche()));
+        path1.add(new Heading(dE.left().left()));
         path1.add(new Scan());
-        path1.add(new Heading(dE.gauche().gauche().gauche()));
+        path1.add(new Heading(dE.left().left().left()));
         path1.add(new Scan());
         path1.add(new Fly());
 
         path2 = new ArrayList<>();
         dS = Direction.S;
-        path2.add(new Heading(dS.gauche()));
+        path2.add(new Heading(dS.left()));
         path2.add(new Scan());
-        path2.add(new Heading(dS.gauche().gauche()));
+        path2.add(new Heading(dS.left().left()));
         path2.add(new Scan());
-        path2.add(new Heading(dS.gauche().gauche().gauche()));
+        path2.add(new Heading(dS.left().left().left()));
         path2.add(new Scan());
         path2.add(new Fly());
 

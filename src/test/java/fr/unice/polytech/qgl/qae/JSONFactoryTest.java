@@ -5,8 +5,6 @@
  */
 package fr.unice.polytech.qgl.qae;
 
-import fr.unice.polytech.qgl.qae.Objectif;
-import fr.unice.polytech.qgl.qae.JSONFactory;
 import fr.unice.polytech.qgl.qae.actions.withparams.Direction;
 import fr.unice.polytech.qgl.qae.actions.withparams.Heading;
 import fr.unice.polytech.qgl.qae.map.Biome;

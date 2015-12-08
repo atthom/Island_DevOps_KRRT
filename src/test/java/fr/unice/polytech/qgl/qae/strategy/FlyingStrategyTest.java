@@ -6,10 +6,7 @@
 package fr.unice.polytech.qgl.qae.strategy;
 
 import fr.unice.polytech.qgl.qae.actions.composed.FlyAndScan;
-import fr.unice.polytech.qgl.qae.actions.composed.FlyUntil;
-import fr.unice.polytech.qgl.qae.actions.composed.TurnAround;
-import fr.unice.polytech.qgl.qae.actions.composed.TurnToOpposite;
-import fr.unice.polytech.qgl.qae.actions.simple.AbstractAction;
+import fr.unice.polytech.qgl.qae.actions.composed.TurnToOppositeLeft;
 import fr.unice.polytech.qgl.qae.actions.withparams.Echo;
 import fr.unice.polytech.qgl.qae.actions.withparams.Direction;
 import fr.unice.polytech.qgl.qae.actions.withparams.Heading;
@@ -70,7 +67,7 @@ public class FlyingStrategyTest {
     @Ignore
     public void testPhase1() {
         fstrat.nbtours = 0;
-        assertEquals(new Echo(fstrat.h.getValueParameter().gauche()).toJSON().toString(), fstrat.execute());
+        assertEquals(new Echo(fstrat.d.left()).toJSON().toString(), fstrat.execute());
         fstrat.nbtours = 5;
         assertEquals(new Fly().toJSON().toString(), fstrat.execute());
     }
@@ -83,7 +80,7 @@ public class FlyingStrategyTest {
         fstrat.nbtours = 0;
         fstrat.acknowledge(new JSONObject("{ \"cost\": 1, \"extras\": { \"range\": 2, \"found\": \"GROUND\" }, \"status\": \"OK\" }"));
 
-        Vect2D cd = new Vect2D(new Vect(0, Direction.E).toCoord(), new Vect(2, fstrat.h.getValueParameter().gauche()).toCoord());
+        Vect2D cd = new Vect2D(new Vect(0, Direction.E).toCoord(), new Vect(2, fstrat.d.left()).toCoord());
         assertEquals(new FlyTile(Type.GROUND), fstrat.flyingMap.getTile(cd.toCoord()));
 
     }
@@ -115,7 +112,7 @@ public class FlyingStrategyTest {
         fstrat.currents_coords = c1;
         fstrat.flyingMap.put(c1, new FlyTile(ab, cr, Type.UNKNOWN_TYPE));
         fstrat.phase3();
-        assertEquals(new FlyAndScan(new Coordinates(5, 5), fstrat.h.getValueParameter()).getAll(), fstrat.actions);
+        assertEquals(new FlyAndScan(new Coordinates(5, 5), fstrat.d).getAll(), fstrat.actions);
 
         fstrat.actions.clear();
 
@@ -125,16 +122,16 @@ public class FlyingStrategyTest {
         fstrat.currents_coords = c2;
         fstrat.flyingMap.put(c2, new FlyTile(ab, cr, Type.UNKNOWN_TYPE));
         
-        TurnToOpposite ta = new TurnToOpposite(c2, fstrat.h.getValueParameter());
+        TurnToOppositeLeft ta = new TurnToOppositeLeft(c2, fstrat.d);
        // ta.addAll(new FlyUntil(fstrat.flyingMap.getfirstground(), ta.getCoords(), ta.getDir()));
         fstrat.phase3();
-        for(AbstractAction ac : ta.getAll()) {
-            System.out.println(ac.toJSON());
-        }
-        System.out.println("*********");
-        for(AbstractAction ac : fstrat.actions) {
-            System.out.println(ac.toJSON());
-        }
+//        for(AbstractAction ac : ta.getAll()) {
+//            System.out.println(ac.toJSON());
+//        }
+//        System.out.println("*********");
+//        for(AbstractAction ac : fstrat.actions) {
+//            System.out.println(ac.toJSON());
+//        }
         assertEquals(ta.getAll(), fstrat.actions);
 
     }

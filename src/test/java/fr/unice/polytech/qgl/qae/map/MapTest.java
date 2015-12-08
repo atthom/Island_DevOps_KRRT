@@ -94,6 +94,97 @@ public class MapTest {
         assertTrue(map.last_is_ocean());
     }
 
+    /**
+     * Test of maj method, of class Map.
+     */
+    @Test
+    public void testMaj() {
+    }
+
+    /**
+     * Test of printCoordinates method, of class Map.
+     */
+    @Test
+    public void testPrintCoordinates() {
+    }
+
+    /**
+     * Test of have_coord method, of class Map.
+     */
+    @Test
+    public void testHave_coord() {
+    }
+
+    /**
+     * Test of three_last_is_ocean method, of class Map.
+     */
+    @Test
+    public void testThree_last_is_ocean() {
+    }
+
+    /**
+     * Test of maj_turnaround method, of class Map.
+     */
+    @Test
+    public void testMaj_turnaround() {
+    }
+
+    /**
+     * Test of already_here method, of class Map.
+     */
+    @Test
+    public void testAlready_here() {
+    }
+
+    /**
+     * Test of have_ground method, of class Map.
+     */
+    @Test
+    public void testHave_ground() {
+    }
+
+    /**
+     * Test of getfirstground method, of class Map.
+     */
+    @Test
+    public void testGetfirstground() {
+    }
+
+    /**
+     * Test of go_ground method, of class Map.
+     */
+    @Test
+    public void testGo_ground() {
+    }
+
+    /**
+     * Test of groundpath method, of class Map.
+     */
+    @Test
+    public void testGroundpath() {
+    }
+
+    /**
+     * Test of getMaxCord method, of class Map.
+     */
+    @Test
+    public void testGetMaxCord() {
+    }
+
+    /**
+     * Test of getMinCord method, of class Map.
+     */
+    @Test
+    public void testGetMinCord() {
+    }
+
+    /**
+     * Test of getMaxXCord method, of class Map.
+     */
+    @Test
+    public void testGetMaxXCord() {
+    }
+
 
 
 

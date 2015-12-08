@@ -36,7 +36,7 @@ public enum Direction {
      * Renvoie la "gauche" d'une direction donnée
      * @return 
      */
-    public Direction gauche() {
+    public Direction left() {
         switch (this) {
             case N:
                 return Direction.W;
@@ -53,7 +53,7 @@ public enum Direction {
      * Renvoie la "droite" d'une direction donnée
      * @return 
      */
-    public Direction droite() {
+    public Direction right() {
         switch (this) {
             case N:
                 return Direction.E;

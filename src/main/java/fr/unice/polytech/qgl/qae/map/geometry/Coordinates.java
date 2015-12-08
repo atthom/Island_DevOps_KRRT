@@ -5,8 +5,6 @@
  */
 package fr.unice.polytech.qgl.qae.map.geometry;
 
-import fr.unice.polytech.qgl.qae.actions.withparams.Direction;
-
 /**
  * Classe coordonée 2D
  *

@@ -1,13 +1,11 @@
 package fr.unice.polytech.qgl.qae.map;
 
 import fr.unice.polytech.qgl.qae.map.tile.GroundTile;
-import fr.unice.polytech.qgl.qae.resources.UnextractedResource;
 import org.junit.*;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
-import static org.junit.Assert.fail;
 
 /**
  * Created by Loïc on 11/21/2015.

@@ -7,7 +7,6 @@ package fr.unice.polytech.qgl.qae.map.tile;
 
 import fr.unice.polytech.qgl.qae.map.Biome;
 import fr.unice.polytech.qgl.qae.map.Type;
-import fr.unice.polytech.qgl.qae.map.tile.Tile;
 import static fr.unice.polytech.qgl.qae.map.Type.UNKNOWN_TYPE;
 import java.util.ArrayList;
 import java.util.Objects;
@@ -60,8 +59,6 @@ public class FlyTile extends Tile {
     public String toString() {
         return "FlyTile{" + "t=" + t + ", creeks=" + creeks + '}';
     }
-    
-    
 
     /**
      *

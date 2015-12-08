@@ -24,13 +24,14 @@ import fr.unice.polytech.qgl.qae.map.tile.FlyTile;
  * @author user
  */
 public class Map {
-    
+
     private HashMap<Coordinates, Tile> map;
-    
+
     private ArrayList<Coordinates> coordinates;
 
     /**
-     *
+     * Contient une hashmap pour contenir toutes les cases de la map.
+     * s
      * @param origin case origine de l'explorer
      */
     public Map(Tile origin) {
@@ -38,32 +39,89 @@ public class Map {
         coordinates = new ArrayList<>();
         put(new Coordinates(0, 0), origin);
     }
-    
-    public void put(Coordinates c, Tile t) {
+
+    /**
+     * Met à jour une case déja explorée
+     * @param c
+     * @param t
+     */
+    public void maj(Coordinates c, Tile t) {
+
+        coordinates.stream().filter((cc) -> (cc.equals(c))).forEach((cc) -> {
+            map.replace(cc, t);
+        });
+        put(c, t);
+
+    }
+
+    /**
+     * Ajoute une case dans la map si elle est absente
+     * @param c
+     * @param t
+     */
+    public final void put(Coordinates c, Tile t) {
         map.putIfAbsent(c, t);
         coordinates.add(c);
     }
-    
+
+    /**
+     * Affiche toutes les coordonnées entré dans la map
+     */
     public void printCoordinates() {
         coordinates.stream().forEach((coordinate) -> {
             System.out.println("X : " + coordinate.getX() + " Y = " + coordinate.getY());
         });
     }
-    
+
+    /**
+     * renvoie true si la coordonnée a déja été explorée
+     * @param c
+     * @return
+     */
     public boolean have_coord(Coordinates c) {
         for (Coordinates coordinate : coordinates) {
-            if(c.equals(coordinate)) {
-                return  true;
+            if (c.equals(coordinate)) {
+                return true;
             }
         }
         return false;
     }
-    
+
+    /**
+     * 
+     * @return true si la dernière coordonnée a un biome de type océan
+     */
     public boolean last_is_ocean() {
-        Coordinates c = coordinates.get(coordinates.size()-1);
+        Coordinates c = coordinates.get(coordinates.size() - 1);
         return map.get(c).have_biome(BiomeType.OCEAN);
     }
+
+    /**
+     *
+     * @return true si les trois derières coordonnées ont des biomes de type océan
+     */
+    public boolean three_last_are_ocean() {
+        if (last_is_ocean()) {
+            Coordinates c = coordinates.get(coordinates.size() - 2);
+            Coordinates cc = coordinates.get(coordinates.size() - 3);
+            return map.get(c).have_biome(BiomeType.OCEAN) && map.get(cc).have_biome(BiomeType.OCEAN);
+        }
+
+        return false;
+    }
     
+    public boolean ten_last_are_ocean() {
+        if(coordinates.size() < 10) {
+            return false;
+        }
+        boolean f = true;
+        for(int i=0; i < 10;i++) {
+            if(!map.get(coordinates.get(coordinates.size() -i -1)).have_biome(BiomeType.OCEAN)) {
+                return false;
+            }
+        }
+        return true;
+    }
 //    private ComposedAction path_axis(int valeur, ComposedAction ac) {
 //        if (valeur == 0) {
 //            return ac;
@@ -79,30 +137,37 @@ public class Map {
 //        return ac;
 //        
 //    }
-    
+
+    /**
+     * Met à jour les coordonnée en fonction de turnaround 
+     * @param c_curent
+     * @param d
+     * @return
+     */
+    // TODO: Enlever ça et le metre dans la classe turnaround
     public Coordinates maj_turnaround(Coordinates c_curent, Direction d) {
-        switch(d) {
+        switch (d) {
             case E:
-                return new Coordinates(c_curent.getX(), c_curent.getY() +2);
+                return new Coordinates(c_curent.getX(), c_curent.getY() + 2);
             case W:
-                return new Coordinates(c_curent.getX(), c_curent.getY() -2);
+                return new Coordinates(c_curent.getX(), c_curent.getY() - 2);
             case S:
-                return new Coordinates(c_curent.getX() +2, c_curent.getY());
+                return new Coordinates(c_curent.getX() + 2, c_curent.getY());
             default:
-                return new Coordinates(c_curent.getX() -2, c_curent.getY());
+                return new Coordinates(c_curent.getX() - 2, c_curent.getY());
         }
     }
-    
+
+    /**
+     * renvoie true si la coordonnée a déja été explorée 
+     * @param c
+     * @return
+     */
+    // TODO : (already_here and have) => TWO FUNCTION SAME USE STUPID MONKEY 
     public boolean already_here(Coordinates c) {
-        for(Coordinates cc : coordinates) {
-            if(cc.equals(c)) {
-                return true;
-            }
-        }
-        return false;
+        return coordinates.stream().anyMatch((cc) -> (cc.equals(c)));
     }
-    
-    
+
 //    public ComposedAction path(Coordinates current, Direction current_Dir, Coordinates c) {
 //        ComposedAction ac = new ComposedAction();
 //        
@@ -144,16 +209,20 @@ public class Map {
 //        return ac;
 //    }
 //    
-   
+
+    /**
+     * 
+     * @return true si la carte a trouvé une terre
+     */
     public boolean have_ground() {
-        for (Coordinates coordinate : coordinates) {
-            if (((FlyTile) map.get(coordinate)).getT() == Type.GROUND) {
-                return true;
-            }
-        }
-        return false;
+        return coordinates.stream().anyMatch((coordinate) -> (((FlyTile) map.get(coordinate)).getT() == Type.GROUND));
     }
-    
+
+    /**
+     *
+     * @return return la premiere case ground qu'il trouve dans la liste
+     */
+    // TODO  retourner la case avec la distance minimal !
     public Coordinates getfirstground() {
         for (Coordinates coordinate : coordinates) {
             if (((FlyTile) map.get(coordinate)).getT() == Type.GROUND) {
@@ -162,8 +231,12 @@ public class Map {
         }
         return new Coordinates(0, 0);
     }
-    
-    
+
+    /**
+     * Return la direction pour se diriger vers le ground
+     * @param current
+     * @return
+     */
     public Direction go_ground(Coordinates current) {
         for (Coordinates coordinate : coordinates) {
             if (((FlyTile) map.get(coordinate)).getT() == Type.GROUND) {
@@ -175,10 +248,10 @@ public class Map {
 //                    // si les deux vecteurs sont sur la même ligne 
 //                }
                 Vect2D v = new Vect2D(current, coordinate);
-                
+
                 Vect v1 = v.getV_x();
                 Vect v2 = v.getV_y();
-                
+
                 if (v1.getValeur() > 1) {
                     return v1.getD();
                 } else {
@@ -186,7 +259,7 @@ public class Map {
                 }
             }
         }
-        
+
         throw new MapExeption("Coordonnées GROUND non trouvé !");
     }
 
@@ -206,7 +279,7 @@ public class Map {
      * @return
      */
     public Tile getTile(Coordinates c2) {
-        
+
         for (Coordinates c : coordinates) {
             if (c.equals(c2)) {
                 return map.get(c);
@@ -214,18 +287,25 @@ public class Map {
         }
         return map.get(new Coordinates(0, 0));
     }
-    
+
+    /**
+     *
+     * @return
+     */
     public boolean groundpath() {
         Coordinates last = coordinates.get(coordinates.size() - 1);
         Coordinates soon = coordinates.get(coordinates.size() - 2);
-        
-               
+
         return ((FlyTile) map.get(last)).getT()
                 == Type.GROUND
                 && Type.GROUND
                 == ((FlyTile) map.get(soon)).getT();
     }
-    
+
+    /**
+     *
+     * @return
+     */
     public Coordinates getMaxCord() {
         int max_x = -1;
         int max_y = -1;
@@ -237,10 +317,14 @@ public class Map {
                 max_y = coordinates.get(i).getY();
             }
         }
-        
+
         return new Coordinates(max_x, max_y);
     }
-    
+
+    /**
+     *
+     * @return
+     */
     public Coordinates getMinCord() {
         int min_x = 1000;
         int min_y = 1000;
@@ -256,6 +340,13 @@ public class Map {
     }
 
     // Combien de case disponible jusqu'a out of range a partir de notre coordonnée
+
+    /**
+     *
+     * @param c
+     * @param h
+     * @return
+     */
     public int getMaxXCord(Coordinates c, Heading h) {
         return 0;
     }
