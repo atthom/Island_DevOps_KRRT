@@ -13,6 +13,8 @@ import java.util.ArrayList;
 /**
  *
  * @author user
+ *
+ *
  */
 public abstract class ComposedAction {
     ArrayList<AbstractAction> actions;

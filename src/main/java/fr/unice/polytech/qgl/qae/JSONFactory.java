@@ -9,8 +9,10 @@ import fr.unice.polytech.qgl.qae.actions.withparams.Direction;
 import fr.unice.polytech.qgl.qae.actions.withparams.Heading;
 import fr.unice.polytech.qgl.qae.map.Biome;
 import fr.unice.polytech.qgl.qae.map.BiomeType;
-import fr.unice.polytech.qgl.qae.resources.ExtractedResource;
+
 import java.util.ArrayList;
+
+import fr.unice.polytech.qgl.qae.resources.Resource;
 import org.json.*;
 
 /**
@@ -27,13 +29,14 @@ public class JSONFactory {
     }
 
     /**
-     * String => ExtractedResource
+     * String => Resource
      * @param s chaine convertible
      * @return un objet de ressource extraite
+     *
      */
-    public ExtractedResource build_res(String s) {
+    public Resource build_res(String s) {
         JSONObject o = new JSONObject(s);
-        return new ExtractedResource(o.getInt("amount"), o.getString("resource"));
+        return new Resource(o.getInt("amount"), o.getString("resource"));
 
     }
 
@@ -45,9 +48,13 @@ public class JSONFactory {
     public Objectif build_obj(String s) {
         JSONObject o = new JSONObject(s);
         JSONArray arr = o.getJSONArray("contracts");
-        ArrayList<ExtractedResource> res = new ArrayList<>();
+        ArrayList<Resource> res = new ArrayList<>();
         for (int i = 0; i < arr.length(); i++) {
             res.add(build_res(arr.getJSONObject(i).toString()));
+        }
+        // We pass all boolean for needed resources to true
+        for(int i = 0; i < res.size(); i++){
+            res.get(i).setNeeded(true);
         }
 
         return new Objectif(o.getInt("men"), o.getInt("budget"), res);
@@ -79,7 +86,17 @@ public class JSONFactory {
 
         return new Heading(Direction.valueOf(head));
     }
-    
-    
-    
+
+    /**
+     * String => UnextractedRessource
+     * @param s chaine convertible
+     *          @return un objet UnextractedRessource
+     */
+    public Resource build_unextracted_ressource(String s){
+        Resource r = new Resource();
+        r.setName(s);
+        return r;
+    }
+
+
 }

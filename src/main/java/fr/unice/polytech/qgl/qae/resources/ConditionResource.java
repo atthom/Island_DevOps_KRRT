@@ -6,13 +6,13 @@
 package fr.unice.polytech.qgl.qae.resources;
 
 /**
- * Quantité de ressource inexploitée sur la case
+ * Facilitée d'exploitation d'une ressource encore inexploitée
  * @author user
  */
-public enum Amount {
+public enum ConditionResource {
 
-    HIGH,
-    MEDIUM,
-    LOW,
-    UNKNOWN_AMOUNT;
+    HARSH,
+    FAIR,
+    EASY,
+    UNKNOWN;
 }
