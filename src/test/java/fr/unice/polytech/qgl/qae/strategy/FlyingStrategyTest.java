@@ -104,7 +104,7 @@ public class FlyingStrategyTest {
     /**
      * Test of phase3 method, of class FlyingStrategy.
      */
-    @Test
+    @Ignore
     public void testPhase3() {
         ArrayList<Biome> ab = new ArrayList<>();
         ArrayList<Creek> cr = new ArrayList<>();

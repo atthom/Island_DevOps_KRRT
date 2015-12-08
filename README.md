@@ -11,7 +11,12 @@
 
 ## Features Change log
 
-### Week 47
+### Week 49
+
+The bot can do composed actions (FlyAndScan, FlyUntil, ect ...)
+The bot try to reach the coast and scan then stop (work in some cases)
+
+### Week 48
 
 The bot can fly and informations of the scan function are saved.
 

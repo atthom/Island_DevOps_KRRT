@@ -69,4 +69,21 @@ public abstract class ComposedAction {
     public ArrayList<AbstractAction> getAll() {
         return this.actions;
     }
+
+    public void maj_coord(Coordinates c, Direction dir) {
+        switch (dir) {
+            case N:
+                coords = new Coordinates(c.getX(), c.getY() +1 );
+                break;
+            case S:
+                coords = new Coordinates(c.getX(), c.getY() -1 );
+                break;
+            case E:
+                coords = new Coordinates(c.getX() +1, c.getY());
+                break;
+            default:
+                coords = new Coordinates(c.getX() -1, c.getY());
+                break;
+        }
+    }
 }

@@ -64,9 +64,14 @@ public class Map {
         coordinates.add(c);
     }
 
-    /**
-     * Affiche toutes les coordonnées entré dans la map
-     */
+    public Direction chooseDirEcho(Direction dir) {
+        if(coordinates.get(0).distance(coordinates.get(1)) > coordinates.get(0).distance(coordinates.get(2))) {
+            return dir.gauche();
+        }
+        else
+            return dir.droite();
+    }
+
     public void printCoordinates() {
         coordinates.stream().forEach((coordinate) -> {
             System.out.println("X : " + coordinate.getX() + " Y = " + coordinate.getY());
@@ -272,6 +277,9 @@ public class Map {
         return coordinates.get(coordinates.size() - 1);
     }
 
+    public Coordinates get_coordinate(int i) {
+        return coordinates.get(i);
+    }
     /**
      * Renvoie la case si elle existe
      *

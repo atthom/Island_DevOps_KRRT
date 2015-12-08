@@ -45,7 +45,7 @@ public class Vect {
      * @return la norme du vecteur en fonction de sa direction
      */
     public int getValeur() {
-        if (d.equals(Direction.W) | d.equals(Direction.S)) {
+        if (d.equals(Direction.W) || d.equals(Direction.S)) {
             return -valeur;
         } else {
             return valeur;
@@ -57,7 +57,7 @@ public class Vect {
      * @return true si le vecteur represente l'axe des ordonnées
      */
     public boolean is_xaxis() {
-        return d.equals(Direction.W) | d.equals(Direction.E);
+        return d.equals(Direction.W) || d.equals(Direction.E);
     }
 
     /**
