@@ -30,8 +30,8 @@ public class Map {
     private ArrayList<Coordinates> coordinates;
 
     /**
-     * Contient une hashmap pour contenir toutes les cases de la map.
-     * s
+     * Contient une hashmap pour contenir toutes les cases de la map. s
+     *
      * @param origin case origine de l'explorer
      */
     public Map(Tile origin) {
@@ -42,10 +42,10 @@ public class Map {
 
     /**
      * Met à jour une case déja explorée
+     *
      * @param c
      * @param t
      */
-    
     public void maj(Coordinates c, Tile t) {
 
         coordinates.stream().filter((cc) -> (cc.equals(c))).forEach((cc) -> {
@@ -57,6 +57,7 @@ public class Map {
 
     /**
      * Ajoute une case dans la map si elle est absente
+     *
      * @param c
      * @param t
      */
@@ -66,11 +67,11 @@ public class Map {
     }
 
     public Direction chooseDirEcho(Direction dir) {
-        if(coordinates.get(0).distance(coordinates.get(1)) > coordinates.get(0).distance(coordinates.get(2))) {
+        if (coordinates.get(0).distance(coordinates.get(1)) > coordinates.get(0).distance(coordinates.get(2))) {
             return dir.left();
-        }
-        else
+        } else {
             return dir.right();
+        }
     }
 
     public void printCoordinates() {
@@ -81,17 +82,18 @@ public class Map {
 
     /**
      * renvoie true si la coordonnée a déja été explorée
+     *
      * @param c
      * @return
      */
     public boolean have_coord(Coordinates c) {
         return coordinates.stream().anyMatch((coordinate) -> (c.equals(coordinate)));
     }
-    
+
     public Direction best_dir(Direction d) {
         int dist1 = coordinates.get(0).distance(coordinates.get(1));
         int dist2 = coordinates.get(0).distance(coordinates.get(2));
-        if(dist1 > dist2) {
+        if (dist1 > dist2) {
             return d.left();
         } else {
             return d.right();
@@ -99,7 +101,7 @@ public class Map {
     }
 
     /**
-     * 
+     *
      * @return true si la dernière coordonnée a un biome de type océan
      */
     public boolean last_is_ocean() {
@@ -109,7 +111,8 @@ public class Map {
 
     /**
      *
-     * @return true si les trois derières coordonnées ont des biomes de type océan
+     * @return true si les trois derières coordonnées ont des biomes de type
+     * océan
      */
     public boolean three_last_are_ocean() {
         if (last_is_ocean()) {
@@ -120,14 +123,24 @@ public class Map {
 
         return false;
     }
-    
+
+    public boolean three_last_are_ground() {
+
+        Tile t = map.get(coordinates.get(coordinates.size() - 2));
+        Tile tt = map.get(coordinates.get(coordinates.size() - 3));
+        Tile ttt = map.get(coordinates.get(coordinates.size() - 3));
+
+        return (!t.have_biome(BiomeType.OCEAN)) && (!tt.have_biome(BiomeType.OCEAN)) && (!ttt.have_biome(BiomeType.OCEAN));
+
+    }
+
     public boolean ten_last_are_ocean() {
-        if(coordinates.size() < 10) {
+        if (coordinates.size() < 10) {
             return false;
         }
         boolean f = true;
-        for(int i=0; i < 10;i++) {
-            if(!map.get(coordinates.get(coordinates.size() -i -1)).have_biome(BiomeType.OCEAN)) {
+        for (int i = 0; i < 10; i++) {
+            if (!map.get(coordinates.get(coordinates.size() - i - 1)).have_biome(BiomeType.OCEAN)) {
                 return false;
             }
         }
@@ -150,7 +163,8 @@ public class Map {
 //    }
 
     /**
-     * Met à jour les coordonnée en fonction de turnaround 
+     * Met à jour les coordonnée en fonction de turnaround
+     *
      * @param c_curent
      * @param d
      * @return
@@ -170,7 +184,8 @@ public class Map {
     }
 
     /**
-     * renvoie true si la coordonnée a déja été explorée 
+     * renvoie true si la coordonnée a déja été explorée
+     *
      * @param c
      * @return
      */
@@ -220,9 +235,8 @@ public class Map {
 //        return ac;
 //    }
 //    
-
     /**
-     * 
+     *
      * @return true si la carte a trouvé une terre
      */
     public boolean have_ground() {
@@ -245,6 +259,7 @@ public class Map {
 
     /**
      * Return la direction pour se diriger vers le ground
+     *
      * @param current
      * @return
      */
@@ -286,6 +301,7 @@ public class Map {
     public Coordinates get_coordinate(int i) {
         return coordinates.get(i);
     }
+
     /**
      * Renvoie la case si elle existe
      *
@@ -354,7 +370,6 @@ public class Map {
     }
 
     // Combien de case disponible jusqu'a out of range a partir de notre coordonnée
-
     /**
      *
      * @param c
