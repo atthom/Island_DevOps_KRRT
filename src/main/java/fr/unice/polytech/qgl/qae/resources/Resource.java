@@ -105,11 +105,11 @@ public class Resource {
 
 
     // METHODS
-    public void retrieve(int n) throws InvalidNumberException {
+    public void retrieve(int n)  {
         // if we try to retrieve more than our number of resource
         if(n > this.getNbExploitedRessource()){
             // we throw an InvalidNumberException exception because it's impossible
-            throw new InvalidNumberException(n);
+    //        throw new InvalidNumberException(n);
         } else {
             // else we just retrieve the amount specified
             this.nbExploitedRessource -= n;

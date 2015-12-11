@@ -19,7 +19,7 @@ import fr.unice.polytech.qgl.qae.map.geometry.Vect;
 import fr.unice.polytech.qgl.qae.map.geometry.Vect2D;
 import fr.unice.polytech.qgl.qae.map.tile.Creek;
 import fr.unice.polytech.qgl.qae.map.tile.FlyTile;
-import fr.unice.polytech.qgl.qae.resources.ExtractedResource;
+//mport fr.unice.polytech.qgl.qae.resources.ExtractedResource;
 import org.json.JSONObject;
 import org.junit.Before;
 import org.junit.Ignore;
@@ -38,16 +38,16 @@ public class FlyingStrategyTest {
     Coordinates c1;
     Coordinates c2;
     FlyingStrategy fstrat, fstratString;
-    ArrayList<ExtractedResource> a;
+    //ArrayList<ExtractedResource> a;
 
     public FlyingStrategyTest() {
     }
 
     @Before
     public void setUp() {
-        a = new ArrayList<>();
-        a.add(new ExtractedResource(600, "WOOD"));
-        a.add(new ExtractedResource(200, "GLASS"));
+//        a = new ArrayList<>();
+//        a.add(new ExtractedResource(600, "WOOD"));
+//        a.add(new ExtractedResource(200, "GLASS"));
         c1 = new Coordinates(10, 10);
         c2 = new Coordinates(5, 5);
 
@@ -57,25 +57,59 @@ public class FlyingStrategyTest {
     /**
      * Test of execute method, of class FlyingStrategy.
      */
-    @Test
+    @Ignore
     public void testExecute() {
     }
 
     /**
      * Test of phase1 method, of class FlyingStrategy.
      */
-    @Ignore
+    @Test
     public void testPhase1() {
         fstrat.nbtours = 0;
-        assertEquals(new Echo(fstrat.d.left()).toJSON().toString(), fstrat.execute());
-        fstrat.nbtours = 5;
-        assertEquals(new Fly().toJSON().toString(), fstrat.execute());
+        fstrat.actions.clear();
+        String echo1 = "{\n"
+                + "    \"cost\": 3,\n"
+                + "    \"extras\": {\n"
+                + "      \"found\": \"OUT_OF_RANGE\",\n"
+                + "      \"range\": 4\n"
+                + "    },\n"
+                + "    \"status\": \"OK\"\n"
+                + "  }";
+        String echo2 = "{\n"
+                + "    \"cost\": 4,\n"
+                + "    \"extras\": {\n"
+                + "      \"found\": \"OUT_OF_RANGE\",\n"
+                + "      \"range\": 28\n"
+                + "    },\n"
+                + "    \"status\": \"OK\"\n"
+                + "  }";
+        String echo3 = "{\n"
+                + "    \"cost\": 4,\n"
+                + "    \"extras\": {\n"
+                + "      \"found\": \"GROUND\",\n"
+                + "      \"range\": 10\n"
+                + "    },\n"
+                + "    \"status\": \"OK\"\n"
+                + "  }";
+        JSONObject o1 = new JSONObject(echo1);
+        JSONObject o2 = new JSONObject(echo2);
+        JSONObject o3 = new JSONObject(echo3);
+
+        fstrat.manager.manage(o1, fstrat.flyingMap, Direction.N, c1);
+        fstrat.manager.manage(o2, fstrat.flyingMap, Direction.S, c1);
+        fstrat.manager.manage(o3, fstrat.flyingMap, Direction.E, c1);
+
+        fstrat.phase1();
+
+        assertTrue(!fstrat.actions.isEmpty());
+
     }
 
     /**
      * Test of acknowledge method, of class FlyingStrategy.
      */
-    @Test
+    @Ignore
     public void testAcknowledge() {
         fstrat.nbtours = 0;
         fstrat.acknowledge(new JSONObject("{ \"cost\": 1, \"extras\": { \"range\": 2, \"found\": \"GROUND\" }, \"status\": \"OK\" }"));
@@ -121,9 +155,9 @@ public class FlyingStrategyTest {
 
         fstrat.currents_coords = c2;
         fstrat.flyingMap.put(c2, new FlyTile(ab, cr, Type.UNKNOWN_TYPE));
-        
+
         TurnToOppositeLeft ta = new TurnToOppositeLeft(c2, fstrat.d);
-       // ta.addAll(new FlyUntil(fstrat.flyingMap.getfirstground(), ta.getCoords(), ta.getDir()));
+        // ta.addAll(new FlyUntil(fstrat.flyingMap.getfirstground(), ta.getCoords(), ta.getDir()));
         fstrat.phase3();
 //        for(AbstractAction ac : ta.getAll()) {
 //            System.out.println(ac.toJSON());

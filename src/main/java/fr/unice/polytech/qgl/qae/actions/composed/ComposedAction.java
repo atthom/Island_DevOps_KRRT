@@ -72,6 +72,7 @@ public abstract class ComposedAction {
         return this.actions;
     }
 
+    //TODO : mettre ça en abstract et implémenter une fonction dans chaque composed actions
     public void maj_coord(Coordinates c, Direction dir) {
         switch (dir) {
             case N:

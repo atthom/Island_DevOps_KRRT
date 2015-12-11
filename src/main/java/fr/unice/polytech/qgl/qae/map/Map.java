@@ -45,6 +45,7 @@ public class Map {
      * @param c
      * @param t
      */
+    
     public void maj(Coordinates c, Tile t) {
 
         coordinates.stream().filter((cc) -> (cc.equals(c))).forEach((cc) -> {
@@ -84,12 +85,17 @@ public class Map {
      * @return
      */
     public boolean have_coord(Coordinates c) {
-        for (Coordinates coordinate : coordinates) {
-            if (c.equals(coordinate)) {
-                return true;
-            }
+        return coordinates.stream().anyMatch((coordinate) -> (c.equals(coordinate)));
+    }
+    
+    public Direction best_dir(Direction d) {
+        int dist1 = coordinates.get(0).distance(coordinates.get(1));
+        int dist2 = coordinates.get(0).distance(coordinates.get(2));
+        if(dist1 > dist2) {
+            return d.left();
+        } else {
+            return d.right();
         }
-        return false;
     }
 
     /**

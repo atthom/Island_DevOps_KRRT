@@ -78,7 +78,7 @@ public class Objectif {
      * Si il est plus grand on supprime la ressource de la liste de l'objectif
      * @param r ressource à extraire.
      */
-    public void enleve_ressource(Resource r) throws InvalidNumberException{
+    public void enleve_ressource(Resource r) {
         for(Resource res : contract) {
             if (res.getNbExploitedRessource() > r.getNbExploitedRessource()) {
                 res.retrieve(r.getNbExploitedRessource());

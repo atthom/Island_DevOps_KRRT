@@ -43,8 +43,9 @@ public class FlyingStrategy extends Strategy {
     ManageReply manager;
     Direction old_direction;
     boolean turnleft = false;
+    Direction dir_to_echo;
     boolean phase0 = true, phase1 = true, phase2 = true, phase3 = true;
-    
+
     /**
      * Chaine de caractères
      *
@@ -67,12 +68,14 @@ public class FlyingStrategy extends Strategy {
         manager = new ManageReply();
         currents_coords = new Coordinates(0, 0);
         old_direction = null;
+        dir_to_echo = null;
         actions = new ArrayList<>();
     }
 
     private void change_heading(Direction dd) {
         if (dd != d) {
             old_direction = d;
+            d = dd;
             Heading h = new Heading(dd);
             actions.add(h);
             h.maj_coord(currents_coords, old_direction, dd);
@@ -86,55 +89,35 @@ public class FlyingStrategy extends Strategy {
         phase0 = false;
     }
 
-      void phase1() {
+    void phase1() {
+        
+        if (flyingMap.have_ground()) {
+            // si pas dans la bonne direction
+            if (dir_to_echo != null) {
+                change_heading(dir_to_echo);
+            }
+            
+            phase1 = false;
+            phase2();
 
-        FlyTile t = (FlyTile) flyingMap.getTile(flyingMap.get_lastcoordinate());
-        FlyTile t1 = (FlyTile) flyingMap.getTile(flyingMap.get_coordinate(1));
-        FlyTile t2 = (FlyTile) flyingMap.getTile(flyingMap.get_coordinate(2));
-        FlyTile t3 = (FlyTile) flyingMap.getTile(flyingMap.get_coordinate(3));
+        } else {
+            dir_to_echo = flyingMap.best_dir(d);
+            manageComposedAction(new FlyAndEcho(currents_coords, d, dir_to_echo));
+        }
 
-        if (t3.getT() == Type.GROUND) {
-            phase1 = false;
-        }
-        else if(t1.getT() == Type.GROUND || t2.getT() == Type.GROUND) {
-            change_heading(flyingMap.chooseDirEcho(d));
-            actions.add(new Fly());
-            phase1 = false;
-        }
-        else if (t.getT() == Type.GROUND && t1.getT() == Type.OUT_OF_RANGE) {
-            manageComposedAction(new FlyAndEcho(currents_coords, d,flyingMap.chooseDirEcho(d)));
-            change_heading(flyingMap.chooseDirEcho(d));
-            actions.add(new Fly());
-            phase1 = false;
-        }
     }
+
     void phase2() {
         //si on ne connais pas d'endoit ground ou aller...
-
-        // sinon
-        //Tile map.getTileground()
-        // Donc comme ce n'est pas encore codé on part du principe qu'il y a de la terre dans notre map
-        if (flyingMap.have_ground()) {
-            int dist = currents_coords.distance(flyingMap.getfirstground());
-            manageComposedAction(new FlyUntil(dist, currents_coords, d));
-            phase2 = false;
-        } else {
-            actions.add(new Stop());
-        }
-
+        int dist = currents_coords.distance(flyingMap.getfirstground());
+        manageComposedAction(new FlyUntil(dist, currents_coords, d));
+        
+        phase2 = false;
     }
 
-    void manageComposedAction(ComposedAction ac) {
-        actions.addAll(ac.getAll());
-        currents_coords = ac.getCoords();
-        old_direction = d;
-        d = ac.getDir();
-        //   change_heading(ac.getDir());
-    }
-
+   
     void phase3() {
-        //etat initial :  on connais une case de terre
-
+        //etat initial :  on est sur une case de terre
         if (flyingMap.last_is_ocean()) {
             if (flyingMap.three_last_are_ocean()) {
                 if (flyingMap.ten_last_are_ocean()) {
@@ -146,20 +129,8 @@ public class FlyingStrategy extends Strategy {
                     manageComposedAction(new TurnToOppositeRight(currents_coords, d));
                     turnleft = true;
                 }
-
-                // manageComposedAction(new FlyUntil(2, currents_coords, d));
-                // actions.add(new Scan());
             } else {
                 manageComposedAction(new FlyAndScan(currents_coords, d));
-                //   manageComposedAction(new TurnToOpposite(currents_coords, d));
-
-//            change_heading(d.gauche());
-//            
-//            manageComposedAction(new FlyAndScan(currents_coords, d));
-//            manageComposedAction(new FlyAndScan(currents_coords, d));
-//            manageComposedAction(new FlyAndScan(currents_coords, d));
-//            int dist = currents_coords.distance(flyingMap.getfirstground()); 
-//            manageComposedAction(new FlyUntil(dist, currents_coords, h.getValueParameter()));   
             }
 
         } else {
@@ -169,6 +140,17 @@ public class FlyingStrategy extends Strategy {
             phase3 = false;
         }
 
+    }
+    
+ void manageComposedAction(ComposedAction ac) {
+        actions.addAll(ac.getAll());
+        currents_coords = ac.getCoords();
+        if(ac.getDir() != d) {
+            old_direction = d;
+            d = ac.getDir();
+        }
+      
+        //   change_heading(ac.getDir());
     }
 
     /**
@@ -181,7 +163,7 @@ public class FlyingStrategy extends Strategy {
 
         if (actions.isEmpty()) {
             //  flyingtest();
-            if(phase0) {
+            if (phase0) {
                 phase0();
             } else if (phase1) {
                 phase1();
@@ -190,7 +172,6 @@ public class FlyingStrategy extends Strategy {
             } else if (phase3) {
                 phase3();
             }
-
         }
 
         if (actions.isEmpty()) {
@@ -217,12 +198,17 @@ public class FlyingStrategy extends Strategy {
     @Override
     public void acknowledge(JSONObject s) {
         nbtours++;
+        Direction dd = d;
 
         if (!actions.isEmpty()) {
+            JSONObject act = actions.get(0).toJSON();
+            if (act.has("parameters") && act.getJSONObject("parameters").has("direction")) {
+                dd = act.getJSONObject("parameters").getEnum(Direction.class, "direction");
+            }
             actions.remove(0);
         }
 
-        manager.manage(s, flyingMap, d.left(), currents_coords);
+        manager.manage(s, flyingMap, dd, currents_coords);
 
     }
 

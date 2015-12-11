@@ -62,7 +62,7 @@ public class ManageReply {
     private void manage_echo(JSONObject js, Map map, Direction d) {
         JSONObject extras = js.getJSONObject("extras");
         int range = extras.getInt("range");
-        Type found = Type.valueOf(extras.get("found").toString());
+        Type found = extras.getEnum(Type.class, "found");
 
         Vect v = new Vect(range, d);
         Tile t = new FlyTile(found);
