@@ -18,6 +18,7 @@ public class TurnToOppositeRight extends ComposedAction {
     
     public TurnToOppositeRight(Coordinates c, Direction d) {
         super(c, d);
+        super.add(new Scan());
         super.add(new Heading(d.right()));
         super.add(new Scan());
         super.add(new Heading(d.right().right()));

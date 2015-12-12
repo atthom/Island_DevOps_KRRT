@@ -121,6 +121,16 @@ public class Map {
         return false;
     }
     
+    public boolean three_last_are_ground() {
+
+        Tile t = map.get(coordinates.get(coordinates.size() - 2));
+        Tile tt = map.get(coordinates.get(coordinates.size() - 3));
+        Tile ttt = map.get(coordinates.get(coordinates.size() - 3));
+
+        return (!t.have_biome(BiomeType.OCEAN)) && (!tt.have_biome(BiomeType.OCEAN)) && (!ttt.have_biome(BiomeType.OCEAN));
+
+    }
+    
     public boolean ten_last_are_ocean() {
         if(coordinates.size() < 10) {
             return false;

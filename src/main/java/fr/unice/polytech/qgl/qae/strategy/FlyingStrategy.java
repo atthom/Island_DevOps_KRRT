@@ -13,7 +13,7 @@ import fr.unice.polytech.qgl.qae.actions.composed.FlyUntil;
 import fr.unice.polytech.qgl.qae.actions.composed.TurnToOppositeLeft;
 import fr.unice.polytech.qgl.qae.actions.composed.TurnToOppositeRight;
 import fr.unice.polytech.qgl.qae.actions.simple.AbstractAction;
-import fr.unice.polytech.qgl.qae.actions.simple.Fly;
+import fr.unice.polytech.qgl.qae.actions.simple.Scan;
 import fr.unice.polytech.qgl.qae.actions.withparams.Direction;
 import fr.unice.polytech.qgl.qae.actions.withparams.Echo;
 import fr.unice.polytech.qgl.qae.actions.withparams.Heading;
@@ -21,7 +21,6 @@ import fr.unice.polytech.qgl.qae.actions.simple.Stop;
 import fr.unice.polytech.qgl.qae.map.tile.FlyTile;
 
 import fr.unice.polytech.qgl.qae.map.Map;
-import fr.unice.polytech.qgl.qae.map.Type;
 import fr.unice.polytech.qgl.qae.map.geometry.Coordinates;
 import fr.unice.polytech.qgl.qae.reply.ManageReply;
 import java.util.ArrayList;
@@ -94,7 +93,11 @@ public class FlyingStrategy extends Strategy {
         if (flyingMap.have_ground()) {
             // si pas dans la bonne direction
             if (dir_to_echo != null) {
+                if(d.opposite()==dir_to_echo.right()) {
+                    turnleft=true;
+                }
                 change_heading(dir_to_echo);
+                
             }
             
             phase1 = false;
@@ -113,33 +116,48 @@ public class FlyingStrategy extends Strategy {
         manageComposedAction(new FlyUntil(dist, currents_coords, d));
         
         phase2 = false;
+        
     }
 
    
     void phase3() {
         //etat initial :  on est sur une case de terre
         if (flyingMap.last_is_ocean()) {
-            if (flyingMap.three_last_are_ocean()) {
-                if (flyingMap.ten_last_are_ocean()) {
-                    phase3 = false;
-                } else if (turnleft) {
-                    manageComposedAction(new TurnToOppositeLeft(currents_coords, d));
-                    turnleft = false;
-                } else {
-                    manageComposedAction(new TurnToOppositeRight(currents_coords, d));
-                    turnleft = true;
-                }
-            } else {
-                manageComposedAction(new FlyAndScan(currents_coords, d));
-            }
-
+            phase3a();
+        } else if (flyingMap.three_last_are_ground()) {
+            phase3b();
         } else {
+            actions.add(new Scan());
             manageComposedAction(new FlyAndScan(currents_coords, d));
         }
         if (flyingMap.already_here(currents_coords)) {
             phase3 = false;
         }
+    }
 
+    void phase3a() {
+        if (flyingMap.three_last_are_ocean()) {
+            if (flyingMap.ten_last_are_ocean()) {
+                phase3 = false;
+            } else {
+                phase3b();
+            }
+        } else {
+            manageComposedAction(new FlyAndScan(currents_coords, d));
+        }
+    }
+
+    void phase3b() {
+        if (turnleft) {
+            manageComposedAction(new TurnToOppositeLeft(currents_coords, d));
+            change_heading(d.left());
+            
+            turnleft = false;
+        } else {
+            manageComposedAction(new TurnToOppositeRight(currents_coords, d));
+             change_heading(d.right());
+            turnleft = true;
+        }
     }
     
  void manageComposedAction(ComposedAction ac) {
