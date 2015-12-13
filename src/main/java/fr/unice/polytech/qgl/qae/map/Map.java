@@ -30,8 +30,8 @@ public class Map {
     private ArrayList<Coordinates> coordinates;
 
     /**
-     * Contient une hashmap pour contenir toutes les cases de la map.
-     * s
+     * Contient une hashmap pour contenir toutes les cases de la map. s
+     *
      * @param origin case origine de l'explorer
      */
     public Map(Tile origin) {
@@ -42,10 +42,10 @@ public class Map {
 
     /**
      * Met à jour une case déja explorée
+     *
      * @param c
      * @param t
      */
-    
     public void maj(Coordinates c, Tile t) {
 
         coordinates.stream().filter((cc) -> (cc.equals(c))).forEach((cc) -> {
@@ -57,6 +57,7 @@ public class Map {
 
     /**
      * Ajoute une case dans la map si elle est absente
+     *
      * @param c
      * @param t
      */
@@ -66,11 +67,11 @@ public class Map {
     }
 
     public Direction chooseDirEcho(Direction dir) {
-        if(coordinates.get(0).distance(coordinates.get(1)) > coordinates.get(0).distance(coordinates.get(2))) {
+        if (coordinates.get(0).distance(coordinates.get(1)) > coordinates.get(0).distance(coordinates.get(2))) {
             return dir.left();
-        }
-        else
+        } else {
             return dir.right();
+        }
     }
 
     public void printCoordinates() {
@@ -81,17 +82,18 @@ public class Map {
 
     /**
      * renvoie true si la coordonnée a déja été explorée
+     *
      * @param c
      * @return
      */
     public boolean have_coord(Coordinates c) {
         return coordinates.stream().anyMatch((coordinate) -> (c.equals(coordinate)));
     }
-    
+
     public Direction best_dir(Direction d) {
         int dist1 = coordinates.get(0).distance(coordinates.get(1));
         int dist2 = coordinates.get(0).distance(coordinates.get(2));
-        if(dist1 > dist2) {
+        if (dist1 > dist2) {
             return d.left();
         } else {
             return d.right();
@@ -99,28 +101,30 @@ public class Map {
     }
 
     /**
-     * 
+     *
      * @return true si la dernière coordonnée a un biome de type océan
      */
-    public boolean last_is_ocean() {
-        Coordinates c = coordinates.get(coordinates.size() - 1);
-        return map.get(c).have_biome(BiomeType.OCEAN);
+    public boolean last_is_only_ocean() {
+        Tile t = map.get(coordinates.get(coordinates.size() - 1));
+        return t.have_biome(BiomeType.OCEAN)  && t.nb_biomes()==1;
     }
 
     /**
      *
-     * @return true si les trois derières coordonnées ont des biomes de type océan
+     * @return true si les trois derières coordonnées ont des biomes de type
+     * océan
      */
     public boolean three_last_are_ocean() {
-        if (last_is_ocean()) {
-            Coordinates c = coordinates.get(coordinates.size() - 2);
-            Coordinates cc = coordinates.get(coordinates.size() - 3);
-            return map.get(c).have_biome(BiomeType.OCEAN) && map.get(cc).have_biome(BiomeType.OCEAN);
-        }
 
-        return false;
+        Tile t1 = map.get(coordinates.get(coordinates.size() - 2));
+        Tile t2 = map.get(coordinates.get(coordinates.size() - 2));
+        Tile t3 = map.get(coordinates.get(coordinates.size() - 3));
+        return t1.have_biome(BiomeType.OCEAN)
+                && t2.have_biome(BiomeType.OCEAN)
+                && t3.have_biome(BiomeType.OCEAN);
+
     }
-    
+
     public boolean three_last_are_ground() {
 
         Tile t = map.get(coordinates.get(coordinates.size() - 2));
@@ -130,37 +134,22 @@ public class Map {
         return (!t.have_biome(BiomeType.OCEAN)) && (!tt.have_biome(BiomeType.OCEAN)) && (!ttt.have_biome(BiomeType.OCEAN));
 
     }
-    
+
     public boolean ten_last_are_ocean() {
-        if(coordinates.size() < 10) {
+        if (coordinates.size() < 10) {
             return false;
-        }
-        boolean f = true;
-        for(int i=0; i < 10;i++) {
-            if(!map.get(coordinates.get(coordinates.size() -i -1)).have_biome(BiomeType.OCEAN)) {
+        } 
+        for (int i = 0; i < 10; i++) {
+            if (!map.get(coordinates.get(coordinates.size() - i - 1)).have_biome(BiomeType.OCEAN)) {
                 return false;
             }
         }
         return true;
     }
-//    private ComposedAction path_axis(int valeur, ComposedAction ac) {
-//        if (valeur == 0) {
-//            return ac;
-//        } else if (valeur < 0) {
-//            TurnAround t = new TurnAround(Direction.E);
-//            ac.addAll(t.getAll());
-//            
-//        } else {
-//            for (int i = 0; i < valeur; i++) {
-//                ac.add(new Fly());
-//            }          
-//        }
-//        return ac;
-//        
-//    }
 
     /**
-     * Met à jour les coordonnée en fonction de turnaround 
+     * Met à jour les coordonnée en fonction de turnaround
+     *
      * @param c_curent
      * @param d
      * @return
@@ -180,7 +169,8 @@ public class Map {
     }
 
     /**
-     * renvoie true si la coordonnée a déja été explorée 
+     * renvoie true si la coordonnée a déja été explorée
+     *
      * @param c
      * @return
      */
@@ -189,50 +179,8 @@ public class Map {
         return coordinates.stream().anyMatch((cc) -> (cc.equals(c)));
     }
 
-//    public ComposedAction path(Coordinates current, Direction current_Dir, Coordinates c) {
-//        ComposedAction ac = new ComposedAction();
-//        
-//        Coordinates path = current.coords_between(c);
-//        int Xval = path.getX();
-//        int Yval = path.getY();
-//        if((Xval < 0 && Yval <0 && !current_Dir.is_minus())) {
-//            ac.addAll(new TurnAround(current_Dir).getAll());
-//            current = maj_turnaround(current, current_Dir);
-//        } else if (Xval > 0 && Yval > 0 && current_Dir.is_minus()) {
-//            ac.addAll(new TurnAround(current_Dir).getAll());
-//            current = maj_turnaround(current, current_Dir);     
-//        }
-//        
-//        path = current.coords_between(c);
-//        Xval = Math.abs(path.getX());
-//    
-//        while(Xval > 1) {
-//            ac.add(new Fly());
-//            Xval--;
-//        }
-//        
-//        if (path.getY() < 0) {
-//            ac.add(new Heading(Direction.S));
-//        } else if(path.getY() > 0) {
-//            ac.add(new Heading(Direction.N));
-//        } else {
-//            ac.add(new Fly());
-//            return ac;
-//        }
-//        
-//        Yval = Math.abs(path.getY());
-//               
-//        while(Yval > 0) {
-//            ac.add(new Fly());
-//            Yval--;
-//        }
-//        
-//        return ac;
-//    }
-//    
-
     /**
-     * 
+     *
      * @return true si la carte a trouvé une terre
      */
     public boolean have_ground() {
@@ -255,6 +203,7 @@ public class Map {
 
     /**
      * Return la direction pour se diriger vers le ground
+     *
      * @param current
      * @return
      */
@@ -265,9 +214,6 @@ public class Map {
                     throw new MapExeption("Coordonnées égales !");
                 }
 
-//                if(current.vectorize().is_colinear(coordinate.vectorize()) && current.vectorize())  {
-//                    // si les deux vecteurs sont sur la même ligne 
-//                }
                 Vect2D v = new Vect2D(current, coordinate);
 
                 Vect v1 = v.getV_x();
@@ -296,6 +242,7 @@ public class Map {
     public Coordinates get_coordinate(int i) {
         return coordinates.get(i);
     }
+
     /**
      * Renvoie la case si elle existe
      *
@@ -364,7 +311,6 @@ public class Map {
     }
 
     // Combien de case disponible jusqu'a out of range a partir de notre coordonnée
-
     /**
      *
      * @param c
@@ -375,27 +321,4 @@ public class Map {
         return 0;
     }
 
-//    public Tile getTile(int longeur, Direction d) {
-//        for(Coordinates c : coordinates) {
-//            if(c.getX()==longeur &c.getY() == largeur) {
-//                return map.get(c);
-//            }
-//        }
-//        
-//        return map.get(new Coordinates(longeur, largeur));
-//    }
-    // public int getDistance(Tile t1, Tile t2) 
-    // public ArrayList<Tile>> getPath(Tile t1, Tile t2) 
-//    private ArrayList<ArrayList<Tile>> map;
-//    
-//    public Map(int longeur, int largeur, Tile origin) {
-//        map = new ArrayList<>(largeur);
-//        for(int i=0; i < largeur;i++){
-//            ArrayList<Tile> t = new ArrayList<>(longeur);
-//            for(int j=0; j < longeur;j++) {
-//                t.add(new Tile());   
-//            }
-//            map.add(t);
-//        }
-//    }
 }

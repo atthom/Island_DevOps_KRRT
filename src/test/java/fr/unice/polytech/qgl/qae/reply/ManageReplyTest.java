@@ -95,7 +95,7 @@ public class ManageReplyTest {
         
         o = new JSONObject("{\"cost\": 2, \"extras\": { \"biomes\": [\"OCEAN\"], \"creeks\": []}, \"status\": \"OK\"}");
         manager.manage(o, map, Direction.E, new Coordinates(10, 10));
-        assertTrue(map.last_is_ocean());
+        assertTrue(map.last_is_only_ocean());
         
         
         

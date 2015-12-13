@@ -42,6 +42,8 @@ public class Biome {
     public void setBiomeType(BiomeType b) {
         this.b = b;
     }
+    
+    
 
     @Override
     public boolean equals(Object obj) {

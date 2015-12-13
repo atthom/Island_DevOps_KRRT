@@ -28,22 +28,19 @@ public class TurnToOppositeLeft extends ComposedAction {
     }
     
     private void maj_coord(Direction d, Coordinates c_curent) {
+        this.dir = d.opposite();
         switch (d) {
             case E:
-                this.coords = new Coordinates(c_curent.getX(), c_curent.getY() +2 );
-                this.dir = Direction.W;
+                this.coords = new Coordinates(c_curent.getX(), c_curent.getY() +2 );           
                 break;
             case W:
-                this.coords = new Coordinates(c_curent.getX(), c_curent.getY() -2 );
-                this.dir = Direction.E;
+                this.coords = new Coordinates(c_curent.getX(), c_curent.getY() -2 );          
                 break;
             case S:
-                this.coords = new Coordinates(c_curent.getX() - 2, c_curent.getY());
-                this.dir = Direction.N;
+                this.coords = new Coordinates(c_curent.getX() - 2, c_curent.getY());        
                 break;
             default:
                 this.coords = new Coordinates(c_curent.getX() +2 , c_curent.getY());
-                this.dir = Direction.S;
                 break;
         }
     }

@@ -86,12 +86,24 @@ public class MapTest {
         ab.add(new Biome(BiomeType.BEACH));
         
         map.put(new Coordinates(5, 5), new FlyTile(ab, cr , Type.UNKNOWN_TYPE));
-        assertFalse(map.last_is_ocean());
+        assertFalse(map.last_is_only_ocean());
         
+        ab.clear();
         ab.add(new Biome(BiomeType.BEACH));
         ab.add(new Biome(BiomeType.OCEAN));
         map.put(new Coordinates(10, 10), new FlyTile(ab, cr , Type.UNKNOWN_TYPE));
-        assertTrue(map.last_is_ocean());
+        assertFalse(map.last_is_only_ocean());
+        
+        ab.clear();
+        ab.add(new Biome(BiomeType.OCEAN));
+        
+        FlyTile a =  new FlyTile(ab, cr , Type.UNKNOWN_TYPE);
+        System.out.println(a.nb_biomes());
+        map.put(new Coordinates(11, 11), a);
+        map.getTile(new Coordinates(11, 11)).print_biomes();
+     
+        
+        assertTrue(map.last_is_only_ocean());
     }
 
     /**

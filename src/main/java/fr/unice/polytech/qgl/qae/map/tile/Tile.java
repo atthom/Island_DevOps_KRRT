@@ -7,6 +7,10 @@ package fr.unice.polytech.qgl.qae.map.tile;
 
 import fr.unice.polytech.qgl.qae.map.Biome;
 import fr.unice.polytech.qgl.qae.map.BiomeType;
+import fr.unice.polytech.qgl.qae.map.Type;
+import static fr.unice.polytech.qgl.qae.map.Type.GROUND;
+import static fr.unice.polytech.qgl.qae.map.Type.OCEAN;
+import static fr.unice.polytech.qgl.qae.map.Type.UNKNOWN_TYPE;
 import java.util.ArrayList;
 import java.util.Objects;
 
@@ -25,7 +29,6 @@ abstract public class Tile {
     
     public Tile(ArrayList<Biome> biomes) {
         this.biomes = new ArrayList<>(biomes);
-        this.biomes.addAll(biomes);
     }
 
     /**
@@ -35,7 +38,16 @@ abstract public class Tile {
     public void addBiome(Biome b) {
         biomes.add(b);
     }
-
+    
+    public int nb_biomes() {
+        return biomes.size();
+    }
+    public void print_biomes() {
+        biomes.stream().forEach((biome) -> {
+            System.out.println(biome.getBiomeType());
+        });
+    }
+    
     public boolean have_biome(BiomeType bb) {
         for (int i = 0; i < biomes.size(); i++) {
             if (biomes.get(i).getBiomeType() == bb) {

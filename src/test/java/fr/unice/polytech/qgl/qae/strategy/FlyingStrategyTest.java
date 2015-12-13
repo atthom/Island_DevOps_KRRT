@@ -19,6 +19,7 @@ import fr.unice.polytech.qgl.qae.map.geometry.Vect;
 import fr.unice.polytech.qgl.qae.map.geometry.Vect2D;
 import fr.unice.polytech.qgl.qae.map.tile.Creek;
 import fr.unice.polytech.qgl.qae.map.tile.FlyTile;
+import fr.unice.polytech.qgl.qae.map.tile.Tile;
 //mport fr.unice.polytech.qgl.qae.resources.ExtractedResource;
 import org.json.JSONObject;
 import org.junit.Before;
@@ -37,6 +38,8 @@ public class FlyingStrategyTest {
 
     Coordinates c1;
     Coordinates c2;
+    Tile ocean;
+    ArrayList<Biome> bocean;
     FlyingStrategy fstrat, fstratString;
     //ArrayList<ExtractedResource> a;
 
@@ -50,6 +53,10 @@ public class FlyingStrategyTest {
 //        a.add(new ExtractedResource(200, "GLASS"));
         c1 = new Coordinates(10, 10);
         c2 = new Coordinates(5, 5);
+        bocean = new ArrayList<>();
+        bocean.add(new Biome(BiomeType.OCEAN));
+        
+        ocean = new FlyTile(bocean, new ArrayList<>(), Type.UNKNOWN_TYPE);
 
         fstrat = new FlyingStrategy(new Heading(Direction.E));
     }
@@ -140,33 +147,48 @@ public class FlyingStrategyTest {
      */
     @Ignore
     public void testPhase3() {
-        ArrayList<Biome> ab = new ArrayList<>();
-        ArrayList<Creek> cr = new ArrayList<>();
-        ab.add(new Biome(BiomeType.BEACH));
+     
+        fstrat.flyingMap.put(new Coordinates(5, 0), new FlyTile());
+        fstrat.flyingMap.put(new Coordinates(2, 0), new FlyTile());
+        fstrat.flyingMap.put(new Coordinates(3, 0), new FlyTile());
+        fstrat.flyingMap.put(new Coordinates(4, 0), new FlyTile());
+        fstrat.flyingMap.put(new Coordinates(5, 0), new FlyTile());
+        
+        
+        fstrat.flyingMap.put(c1, ocean);
         fstrat.currents_coords = c1;
-        fstrat.flyingMap.put(c1, new FlyTile(ab, cr, Type.UNKNOWN_TYPE));
         fstrat.phase3();
-        assertEquals(new FlyAndScan(new Coordinates(5, 5), fstrat.d).getAll(), fstrat.actions);
+        
+        
 
-        fstrat.actions.clear();
-
-        ab.add(new Biome(BiomeType.BEACH));
-        ab.add(new Biome(BiomeType.OCEAN));
-
-        fstrat.currents_coords = c2;
-        fstrat.flyingMap.put(c2, new FlyTile(ab, cr, Type.UNKNOWN_TYPE));
-
-        TurnToOppositeLeft ta = new TurnToOppositeLeft(c2, fstrat.d);
-        // ta.addAll(new FlyUntil(fstrat.flyingMap.getfirstground(), ta.getCoords(), ta.getDir()));
-        fstrat.phase3();
-//        for(AbstractAction ac : ta.getAll()) {
-//            System.out.println(ac.toJSON());
-//        }
-//        System.out.println("*********");
-//        for(AbstractAction ac : fstrat.actions) {
-//            System.out.println(ac.toJSON());
-//        }
-        assertEquals(ta.getAll(), fstrat.actions);
+        
+//        ArrayList<Biome> ab = new ArrayList<>();
+//        ArrayList<Creek> cr = new ArrayList<>();
+//        ab.add(new Biome(BiomeType.BEACH));
+//        fstrat.currents_coords = c1;
+//        fstrat.flyingMap.put(c1, new FlyTile(ab, cr, Type.UNKNOWN_TYPE));
+//        fstrat.phase3();
+//        
+//        fstrat.actions.clear();
+//
+//        ab.add(new Biome(BiomeType.BEACH));
+//        ab.add(new Biome(BiomeType.OCEAN));
+//
+//        fstrat.currents_coords = c2;
+//        fstrat.flyingMap.put(c2, new FlyTile(ab, cr, Type.UNKNOWN_TYPE));
+//
+//        
+//        TurnToOppositeLeft ta = new TurnToOppositeLeft(c2, fstrat.d);
+//        // ta.addAll(new FlyUntil(fstrat.flyingMap.getfirstground(), ta.getCoords(), ta.getDir()));
+//        fstrat.phase3();
+////        for(AbstractAction ac : ta.getAll()) {
+////            System.out.println(ac.toJSON());
+////        }
+////        System.out.println("*********");
+////        for(AbstractAction ac : fstrat.actions) {
+////            System.out.println(ac.toJSON());
+////        }
+//        assertEquals(ta.getAll(), fstrat.actions);
 
     }
 

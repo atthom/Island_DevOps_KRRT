@@ -33,6 +33,9 @@ public class ManageReply {
 
     public void manage(JSONObject js, Map map, Direction d, Coordinates currentCoords) {
 
+         map.put(currentCoords, new FlyTile(Type.UNKNOWN_TYPE));
+         
+         
         JSONObject extras = js.getJSONObject("extras");
 
         if (extras.length() == 0) {
@@ -49,7 +52,8 @@ public class ManageReply {
             // explore
         }
         // EXPLOIT AND TRANSFORM NOT IMPLEMENTED
-        map.put(currentCoords, new FlyTile(Type.UNKNOWN_TYPE));
+        
+       
     }
 
     /**
@@ -89,9 +93,5 @@ public class ManageReply {
         }
 
         map.maj(currentCoords, new FlyTile(biomes, creeks, Type.UNKNOWN_TYPE));
-
-        /*FlyTile t = new FlyTile();
-        t.addBiome();
-         */
     }
 }
