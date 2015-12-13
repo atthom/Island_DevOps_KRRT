@@ -19,6 +19,12 @@ public class Creek extends Tile {
         this.id = id;
     }
 
+    public String getId() {
+        return id;
+    }
+
+    
+    
     @Override
     public boolean equals(Object obj) {
         if (this == obj) {

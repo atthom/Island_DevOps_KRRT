@@ -12,15 +12,13 @@ import fr.unice.polytech.qgl.qae.actions.composed.FlyAndScan;
 import fr.unice.polytech.qgl.qae.actions.composed.FlyUntil;
 import fr.unice.polytech.qgl.qae.actions.composed.PrettyTTOL;
 import fr.unice.polytech.qgl.qae.actions.composed.PrettyTTOR;
-import fr.unice.polytech.qgl.qae.actions.composed.TurnToOppositeLeft;
-import fr.unice.polytech.qgl.qae.actions.composed.TurnToOppositeRight;
 import fr.unice.polytech.qgl.qae.actions.simple.AbstractAction;
 import fr.unice.polytech.qgl.qae.actions.simple.Fly;
-import fr.unice.polytech.qgl.qae.actions.simple.Scan;
 import fr.unice.polytech.qgl.qae.actions.withparams.Direction;
 import fr.unice.polytech.qgl.qae.actions.withparams.Echo;
 import fr.unice.polytech.qgl.qae.actions.withparams.Heading;
 import fr.unice.polytech.qgl.qae.actions.simple.Stop;
+import fr.unice.polytech.qgl.qae.actions.withparams.Land;
 import fr.unice.polytech.qgl.qae.map.tile.FlyTile;
 
 import fr.unice.polytech.qgl.qae.map.Map;
@@ -46,7 +44,7 @@ public class FlyingStrategy extends Strategy {
     Direction old_direction;
     boolean turnleft = false;
     Direction dir_to_echo;
-    boolean phase0 = true, phase1 = true, phase2 = true, phase3 = true;
+    boolean phase0 = true, phase4 = true, phase1 = true, phase2 = true, phase3 = true;
 
     /**
      * Chaine de caractères
@@ -92,17 +90,17 @@ public class FlyingStrategy extends Strategy {
     }
 
     void phase1() {
-        
+
         if (flyingMap.have_ground()) {
             // si pas dans la bonne direction
             if (dir_to_echo != null) {
-                if(d.opposite()==dir_to_echo.right()) {
-                    turnleft=true;
+                if (d.opposite() == dir_to_echo.right()) {
+                    turnleft = true;
                 }
                 change_heading(dir_to_echo);
-                
+
             }
-            
+
             phase1 = false;
             phase2();
 
@@ -117,38 +115,44 @@ public class FlyingStrategy extends Strategy {
         //si on ne connais pas d'endoit ground ou aller...
         int dist = currents_coords.distance(flyingMap.getfirstground());
         manageComposedAction(new FlyUntil(dist, currents_coords, d));
-        
+
         phase2 = false;
-        
+
     }
 
-   
     void phase3() {
-     
+
         //etat initial :  on est sur une case de terre
         if (flyingMap.last_is_only_ocean()) {
-            
+
             phase3a();
-//        } else if (flyingMap.three_last_are_ground()) {
-//            phase3b();
+            //        } else if (flyingMap.three_last_are_ground()) {
+            //            phase3b();
         } else {
-           
+
             manageComposedAction(new FlyAndScan(currents_coords, d));
         }
+        
         if (flyingMap.already_here(currents_coords)) {
             phase3 = false;
         }
+//        if(flyingMap.last_havecreek()) {
+//            phase3=false;
+//        } 
+        
+
     }
 
     void phase3a() {
-        if (flyingMap.three_last_are_ocean()) {   
-            if (flyingMap.ten_last_are_ocean()) {
+        if (flyingMap.three_last_are_ocean()) {
+            if (flyingMap.five_last_are_ocean()) {
                 phase3 = false;
-            } else {       
+            } else {
+                //manageComposedAction(new FlyAndScan(currents_coords, d));
                 phase3b();
             }
         } else {
-           
+
             manageComposedAction(new FlyAndScan(currents_coords, d));
         }
     }
@@ -157,20 +161,27 @@ public class FlyingStrategy extends Strategy {
         if (turnleft) {
             manageComposedAction(new PrettyTTOL(currents_coords, d));
             turnleft = false;
-        } else {      
-            manageComposedAction(new PrettyTTOR(currents_coords, d));  
+        } else {
+            manageComposedAction(new PrettyTTOR(currents_coords, d));
             turnleft = true;
         }
     }
-    
- void manageComposedAction(ComposedAction ac) {
+
+    void phase4() {
+        if (flyingMap.last_havecreek()) {
+            actions.add(new Land(flyingMap.getlast_creek(), 2));
+        }
+        phase4 = false;
+    }
+
+    void manageComposedAction(ComposedAction ac) {
         actions.addAll(ac.getAll());
         currents_coords = ac.getCoords();
-        if(ac.getDir() != d) {
+        if (ac.getDir() != d) {
             old_direction = d;
             d = ac.getDir();
         }
-      
+
         //   change_heading(ac.getDir());
     }
 
@@ -192,6 +203,8 @@ public class FlyingStrategy extends Strategy {
                 phase2();
             } else if (phase3) {
                 phase3();
+            } else if (phase4) {
+                phase4();
             }
         }
 

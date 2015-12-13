@@ -12,6 +12,7 @@ import fr.unice.polytech.qgl.qae.map.tile.Tile;
 import fr.unice.polytech.qgl.qae.map.geometry.Coordinates;
 import fr.unice.polytech.qgl.qae.map.geometry.Vect;
 import fr.unice.polytech.qgl.qae.map.geometry.Vect2D;
+import fr.unice.polytech.qgl.qae.map.tile.Creek;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -99,6 +100,28 @@ public class Map {
             return d.right();
         }
     }
+    
+    public boolean last_havecreek() {
+        Tile t =  map.get(coordinates.get(coordinates.size()-1));
+        if(t instanceof FlyTile) {
+            FlyTile ft = (FlyTile) map.get(coordinates.get(coordinates.size()-1));
+           return ft.havecreeks();
+        }
+       
+        return false;
+       
+        
+    }
+    
+    
+    public Creek getlast_creek() {
+        if(last_havecreek()) {
+            FlyTile t = (FlyTile) map.get(coordinates.get(coordinates.size()-1));
+           return t.getCreeks().get(0);
+        } else {
+           throw new MapExeption("add");
+        }
+    }
 
     /**
      *
@@ -135,12 +158,12 @@ public class Map {
 
     }
 
-    public boolean ten_last_are_ocean() {
-        if (coordinates.size() < 10) {
+    public boolean five_last_are_ocean() {
+        if (coordinates.size() < 5) {
             return false;
         } 
-        for (int i = 0; i < 10; i++) {
-            if (!map.get(coordinates.get(coordinates.size() - i - 1)).have_biome(BiomeType.OCEAN)) {
+        for (int i = 0; i < 5; i++) {
+            if (!map.get(coordinates.get(coordinates.size() - i - 1)).have_only(BiomeType.OCEAN)) {
                 return false;
             }
         }

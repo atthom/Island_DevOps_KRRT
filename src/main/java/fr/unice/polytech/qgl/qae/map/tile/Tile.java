@@ -48,6 +48,10 @@ abstract public class Tile {
         });
     }
     
+    public boolean have_only(BiomeType bb) {
+        return biomes.size()==1 &&  biomes.get(0).getBiomeType()==bb || biomes.isEmpty();
+    }
+    
     public boolean have_biome(BiomeType bb) {
         for (int i = 0; i < biomes.size(); i++) {
             if (biomes.get(i).getBiomeType() == bb) {

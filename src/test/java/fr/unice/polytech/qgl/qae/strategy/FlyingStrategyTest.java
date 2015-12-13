@@ -5,12 +5,8 @@
  */
 package fr.unice.polytech.qgl.qae.strategy;
 
-import fr.unice.polytech.qgl.qae.actions.composed.FlyAndScan;
-import fr.unice.polytech.qgl.qae.actions.composed.TurnToOppositeLeft;
-import fr.unice.polytech.qgl.qae.actions.withparams.Echo;
 import fr.unice.polytech.qgl.qae.actions.withparams.Direction;
 import fr.unice.polytech.qgl.qae.actions.withparams.Heading;
-import fr.unice.polytech.qgl.qae.actions.simple.Fly;
 import fr.unice.polytech.qgl.qae.map.Biome;
 import fr.unice.polytech.qgl.qae.map.BiomeType;
 import fr.unice.polytech.qgl.qae.map.Type;
@@ -36,6 +32,8 @@ import static org.junit.Assert.*;
  */
 public class FlyingStrategyTest {
 
+    FlyTile withcreeks;
+    ArrayList<Creek> creeks;
     Coordinates c1;
     Coordinates c2;
     Tile ocean;
@@ -51,12 +49,21 @@ public class FlyingStrategyTest {
 //        a = new ArrayList<>();
 //        a.add(new ExtractedResource(600, "WOOD"));
 //        a.add(new ExtractedResource(200, "GLASS"));
-        c1 = new Coordinates(10, 10);
+        
+
+
+c1 = new Coordinates(10, 10);
         c2 = new Coordinates(5, 5);
         bocean = new ArrayList<>();
         bocean.add(new Biome(BiomeType.OCEAN));
         
         ocean = new FlyTile(bocean, new ArrayList<>(), Type.UNKNOWN_TYPE);
+        bocean.add(new Biome(BiomeType.BEACH));
+        creeks = new ArrayList<>();
+        creeks.add(new Creek("aze"));
+        creeks.add(new Creek("der"));
+        
+        withcreeks = new FlyTile(bocean, creeks, Type.UNKNOWN_TYPE);
 
         fstrat = new FlyingStrategy(new Heading(Direction.E));
     }
@@ -197,6 +204,37 @@ public class FlyingStrategyTest {
      */
     @Test
     public void testManageComposedAction() {
+    }
+
+    /**
+     * Test of phase0 method, of class FlyingStrategy.
+     */
+    @Test
+    public void testPhase0() {
+    }
+
+    /**
+     * Test of phase3a method, of class FlyingStrategy.
+     */
+    @Test
+    public void testPhase3a() {
+    }
+
+    /**
+     * Test of phase3b method, of class FlyingStrategy.
+     */
+    @Test
+    public void testPhase3b() {
+    }
+
+    /**
+     * Test of phase4 method, of class FlyingStrategy.
+     */
+    @Ignore
+    public void testPhase4() {
+        fstrat.flyingMap.put(c1, withcreeks);
+        fstrat.currents_coords = c1;
+        fstrat.phase4();
     }
 
 }

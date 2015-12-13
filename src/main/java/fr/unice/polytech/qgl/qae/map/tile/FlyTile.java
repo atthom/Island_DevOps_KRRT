@@ -37,6 +37,18 @@ public class FlyTile extends Tile {
         
     }
 
+    public boolean havecreeks() {
+        return !creeks.isEmpty();
+    }
+
+    public ArrayList<Creek> getCreeks() {
+        return creeks;
+    }
+    
+    
+    
+    
+
     /**
      * Case avec un type connu
      *
