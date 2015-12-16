@@ -1,16 +1,16 @@
 package fr.unice.polytech.qgl.qae;
 
 import eu.ace_design.island.bot.IExplorerRaid;
-import fr.unice.polytech.qgl.qae.strategy.FlyingStrategy;
+import fr.unice.polytech.qgl.qae.map.geometry.Coordinates;
+import fr.unice.polytech.qgl.qae.strategy.AbstractPhase;
 import fr.unice.polytech.qgl.qae.strategy.Phase1;
-import fr.unice.polytech.qgl.qae.strategy.Phase2;
-import fr.unice.polytech.qgl.qae.strategy.Strategy;
 import org.json.JSONObject;
 
 public class Explorer implements IExplorerRaid {
    
     private JSONFactory jfk;
-    private Strategy strat;
+    
+    private AbstractPhase phase;
     private Objectif o; 
     
     
@@ -21,10 +21,15 @@ public class Explorer implements IExplorerRaid {
 
        //strat = new FlyingStrategy(jfk.build_heading(string));
 
-        strat = new FlyingStrategy(jfk.build_heading(string));
-
+       phase = new Phase1(this, new Coordinates(0, 0), jfk.build_heading(string).getValueParameter());
 
     }
+
+    public void setPhase(AbstractPhase phase) {
+        this.phase = phase;
+    }
+    
+    
     
     private void manage_cost(Objectif o, JSONObject js) {
         o.enleve_PA(js.getInt("cost"));
@@ -34,15 +39,14 @@ public class Explorer implements IExplorerRaid {
     @Override
     public String takeDecision()
     {
-        return strat.execute();
+        return phase.act().toJSON().toString();
     }
 
     @Override
     public void acknowledgeResults(String string) {
         JSONObject js = new JSONObject(string);
         manage_cost(o, js);
-        System.out.println(string);
-        strat.acknowledge(js);
+        phase.acknowledge(js);
     }
     
 }

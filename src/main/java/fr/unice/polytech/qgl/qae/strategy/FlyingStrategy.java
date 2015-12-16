@@ -108,7 +108,7 @@ public class FlyingStrategy extends Strategy {
     }
 
     void phase2() {
-        //si on ne connais pas d'endoit ground ou aller...
+       
         int dist = currents_coords.distance(flyingMap.getfirstground());
         manageComposedAction(new FlyUntil(dist, currents_coords, d));
 
