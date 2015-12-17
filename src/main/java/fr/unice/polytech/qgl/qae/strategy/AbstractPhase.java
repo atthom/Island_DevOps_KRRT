@@ -25,21 +25,31 @@ public abstract class AbstractPhase {
     Map map;
     Coordinates currents_coords;
     Direction d;
-    Explorer parent;
+    AbstractStrategy parent;
     boolean next = false;
     ArrayList<AbstractAction> actions;
     ManageReply manager;
     Direction old_direction;
-
-    public AbstractPhase(Explorer parent, Coordinates currents_coords, Direction d) {
+ private static Phase2 instance = null;
+    public AbstractPhase(AbstractStrategy parent, Coordinates currents_coords, Direction d) {
         this.currents_coords = currents_coords;
         this.d = d;
+        this.parent = parent;
         manager = new ManageReply();
         actions = new ArrayList<>();
     }
 
+    public Phase2 getInstance() {
+        if (instance == null) {
+            instance = new Phase2(parent, currents_coords , d);
+        }
+
+        return instance;
+    }
+    
+    
     protected void setnext(AbstractPhase p) {
-        parent.setPhase(p);
+          parent.setPhase(p);      
     }
 
     protected void manageComposedAction(ComposedAction ac) {
@@ -50,6 +60,8 @@ public abstract class AbstractPhase {
             d = ac.getDir();
         }
     }
+    
+    public abstract void next();
 
     protected void change_dir(Direction dd) {
         if (dd != d) {
@@ -64,29 +76,9 @@ public abstract class AbstractPhase {
     public Coordinates getCurrents_coords() {
         return currents_coords;
     }
-
-    abstract void execute();
-
-    protected void next_phase() {
-        next = true;
-    }
-
-    protected void nextphase(AbstractPhase a) {
-        if (actions.isEmpty()) {
-            if (next) {
-                setnext(a);
-                //new Phase2(parent, currents_coords, d)
-            }
-            execute();
-            if (next && actions.isEmpty()) {
-                setnext(a);
-            }
-        } else {
-            execute();
-        }
-    }
-
-    public abstract AbstractAction act();
+    
+    public abstract AbstractAction execute();
+    
 
     public void acknowledge(JSONObject s) {
         Direction dd = d;
