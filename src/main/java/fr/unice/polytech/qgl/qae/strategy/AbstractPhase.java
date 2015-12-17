@@ -22,6 +22,7 @@ import org.json.JSONObject;
  */
 public abstract class AbstractPhase {
 
+    
     Map map;
     Coordinates currents_coords;
     Direction d;
@@ -37,14 +38,6 @@ public abstract class AbstractPhase {
         this.parent = parent;
         manager = new ManageReply();
         actions = new ArrayList<>();
-    }
-
-    public Phase2 getInstance() {
-        if (instance == null) {
-            instance = new Phase2(parent, currents_coords , d);
-        }
-
-        return instance;
     }
     
     

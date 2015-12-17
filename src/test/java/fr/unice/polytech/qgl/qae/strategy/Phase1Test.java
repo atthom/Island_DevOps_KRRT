@@ -18,7 +18,7 @@ import static org.junit.Assert.*;
  * @author user
  */
 public class Phase1Test {
-    Explorer ex;
+    AbstractStrategy ex;
     AbstractPhase ph1;
     
     public Phase1Test() {
@@ -26,7 +26,7 @@ public class Phase1Test {
     
     @Before
     public void setUp() {
-        ex = new Explorer();
+        ex = new FStrategy(Direction.E);
         ph1 = new Phase1(ex, new Coordinates(0, 0), Direction.E);
         ex.setPhase(ph1);
     }
@@ -37,7 +37,7 @@ public class Phase1Test {
     @Test
     public void testExecute() {
         
-        assertEquals(ph1.act(), new Echo(Direction.E.left()));
+     
     }
     
 }

@@ -13,20 +13,18 @@ import fr.unice.polytech.qgl.qae.map.tile.FlyTile;
  */
 public class Phase2 extends AbstractPhase {
 
-    public Phase2(AbstractStrategy parent, Coordinates currents_coords, Direction d) {
+    public Phase2(AbstractStrategy parent, Coordinates currents_coords, Direction d, Map m) {
         super(parent, currents_coords, d);
-      map = new Map(new FlyTile());
+        map = m;
     }
     
     @Override
     public AbstractAction execute() {
-        //if (!next) {
-        
+
             int dist = currents_coords.distance(map.getfirstground());
             manageComposedAction(new FlyUntil(dist, currents_coords, d));
             actions.add(new Stop());
             next = true;
-        //}
         return actions.get(0);
     }
 
