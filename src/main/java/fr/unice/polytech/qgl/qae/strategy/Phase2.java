@@ -2,6 +2,7 @@ package fr.unice.polytech.qgl.qae.strategy;
 
 import fr.unice.polytech.qgl.qae.Explorer;
 import fr.unice.polytech.qgl.qae.actions.composed.FlyUntil;
+import fr.unice.polytech.qgl.qae.actions.simple.AbstractAction;
 import fr.unice.polytech.qgl.qae.actions.simple.Fly;
 import fr.unice.polytech.qgl.qae.actions.simple.Stop;
 import fr.unice.polytech.qgl.qae.actions.withparams.Direction;
@@ -27,8 +28,11 @@ public class Phase2 extends AbstractPhase {
         actions.add(new Stop());
     }
 
+    @Override
+    public AbstractAction act() {
+        return actions.get(0);
+    }
+
     
-
-
 }
 

@@ -38,7 +38,7 @@ public abstract class AbstractPhase {
         actions = new ArrayList<>();
     }
 
-    protected void nextphase(AbstractPhase p) {
+    protected void setnext(AbstractPhase p) {
         parent.setPhase(p);
     }
 
@@ -71,21 +71,22 @@ public abstract class AbstractPhase {
         next = true;
     }
 
-    public AbstractAction act() {
-
+    protected void nextphase(AbstractPhase a) {
         if (actions.isEmpty()) {
             if (next) {
-                nextphase(new Phase2(parent, currents_coords, d));
+                setnext(a);
+                //new Phase2(parent, currents_coords, d)
             }
             execute();
-            if (next) {
-                nextphase(new Phase2(parent, currents_coords, d));
+            if (next && actions.isEmpty()) {
+                setnext(a);
             }
-
+        } else {
+            execute();
         }
-        return actions.get(0);
-
     }
+
+    public abstract AbstractAction act();
 
     public void acknowledge(JSONObject s) {
         Direction dd = d;
