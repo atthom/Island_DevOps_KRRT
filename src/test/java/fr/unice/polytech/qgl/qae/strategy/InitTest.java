@@ -5,34 +5,33 @@
  */
 package fr.unice.polytech.qgl.qae.strategy;
 
-import fr.unice.polytech.qgl.qae.Explorer;
 import fr.unice.polytech.qgl.qae.actions.withparams.Direction;
-import fr.unice.polytech.qgl.qae.actions.withparams.Echo;
+import fr.unice.polytech.qgl.qae.map.Map;
 import fr.unice.polytech.qgl.qae.map.geometry.Coordinates;
+import fr.unice.polytech.qgl.qae.map.tile.FlyTile;
 import org.junit.Before;
 import org.junit.Test;
-import static org.junit.Assert.*;
 
 /**
  *
  * @author user
  */
-public class Phase1Test {
+public class InitTest {
     AbstractStrategy ex;
     AbstractPhase ph1;
     
-    public Phase1Test() {
+    public InitTest() {
     }
     
     @Before
     public void setUp() {
         ex = new FStrategy(Direction.E);
-        ph1 = new Phase1(ex, new Coordinates(0, 0), Direction.E);
+        ph1 = new Init(ex, new Coordinates(0, 0), Direction.E, new Map(new FlyTile()));
         ex.setPhase(ph1);
     }
 
     /**
-     * Test of execute method, of class Phase1.
+     * Test of execute method, of class Init.
      */
     @Test
     public void testExecute() {

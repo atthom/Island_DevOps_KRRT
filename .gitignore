@@ -4,3 +4,9 @@ outputs/log.json
 outputs/log.json
 outputs/log.json
 outputs/*
+pom.xml
+pom.xml~
+qae.iml
+src/main/java/fr/unice/polytech/qgl/qae/strategy/CreeksFinder.java
+start.bat
+island.drjava

@@ -1,11 +1,8 @@
 package fr.unice.polytech.qgl.qae;
 
 import eu.ace_design.island.bot.IExplorerRaid;
-import fr.unice.polytech.qgl.qae.map.geometry.Coordinates;
-import fr.unice.polytech.qgl.qae.strategy.AbstractPhase;
 import fr.unice.polytech.qgl.qae.strategy.AbstractStrategy;
 import fr.unice.polytech.qgl.qae.strategy.FStrategy;
-import fr.unice.polytech.qgl.qae.strategy.Phase1;
 import org.json.JSONObject;
 
 public class Explorer implements IExplorerRaid {

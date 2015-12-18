@@ -29,7 +29,7 @@ public abstract class AbstractStrategy {
     
     
     public AbstractAction execute() {
-        current_phase.next();
+        current_phase = current_phase.getNext();
         return current_phase.execute();
     }
     

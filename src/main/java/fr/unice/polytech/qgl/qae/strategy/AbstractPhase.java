@@ -5,7 +5,6 @@
  */
 package fr.unice.polytech.qgl.qae.strategy;
 
-import fr.unice.polytech.qgl.qae.Explorer;
 import fr.unice.polytech.qgl.qae.actions.composed.ComposedAction;
 import fr.unice.polytech.qgl.qae.actions.simple.AbstractAction;
 import fr.unice.polytech.qgl.qae.actions.withparams.Direction;
@@ -22,27 +21,22 @@ import org.json.JSONObject;
  */
 public abstract class AbstractPhase {
 
-    
-    Map map;
+    final Map map;
     Coordinates currents_coords;
     Direction d;
-    AbstractStrategy parent;
+    final AbstractStrategy parent;
     boolean next = false;
-    ArrayList<AbstractAction> actions;
-    ManageReply manager;
-    Direction old_direction;
- private static Phase2 instance = null;
-    public AbstractPhase(AbstractStrategy parent, Coordinates currents_coords, Direction d) {
+    final ArrayList<AbstractAction> actions;
+    private final ManageReply manager;
+    private Direction old_direction;
+
+    public AbstractPhase(AbstractStrategy parent, Coordinates currents_coords, Direction d, Map m) {
         this.currents_coords = currents_coords;
         this.d = d;
         this.parent = parent;
-        manager = new ManageReply();
-        actions = new ArrayList<>();
-    }
-    
-    
-    protected void setnext(AbstractPhase p) {
-          parent.setPhase(p);      
+        this.map = m;
+        this.manager = new ManageReply();
+        this.actions = new ArrayList<>();
     }
 
     protected void manageComposedAction(ComposedAction ac) {
@@ -53,8 +47,6 @@ public abstract class AbstractPhase {
             d = ac.getDir();
         }
     }
-    
-    public abstract void next();
 
     protected void change_dir(Direction dd) {
         if (dd != d) {
@@ -66,9 +58,7 @@ public abstract class AbstractPhase {
         }
     }
 
-    public Coordinates getCurrents_coords() {
-        return currents_coords;
-    }
+    public abstract AbstractPhase getNext();
     
     public abstract AbstractAction execute();
     
