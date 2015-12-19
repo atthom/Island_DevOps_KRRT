@@ -168,7 +168,7 @@ public class FlyingStrategy extends Strategy {
         phase4 = false;
     }
 
-    void manageComposedAction(PrettyTTOL.ComposedAction ac) {
+    void manageComposedAction(ComposedAction ac) {
         actions.addAll(ac.getAll());
         currents_coords = ac.getCoords();
         if (ac.getDir() != d) {
