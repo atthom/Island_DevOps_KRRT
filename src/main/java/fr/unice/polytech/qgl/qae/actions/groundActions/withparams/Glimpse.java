@@ -1,27 +1,26 @@
 package fr.unice.polytech.qgl.qae.actions.groundActions.withparams;
 
-
 import fr.unice.polytech.qgl.qae.actions.ActionWithParameters;
 import fr.unice.polytech.qgl.qae.actions.flyActions.withparams.Direction;
 import fr.unice.polytech.qgl.qae.actions.flyActions.withparams.Parameter;
 import org.json.JSONObject;
 
-/**
- * Created by Loïc on 05/12/2015.
- */
-public class Scout extends ActionWithParameters {
+import java.util.ArrayList;
 
-    public Scout(Direction d){
-        super(new Parameter("direction", d), "scout");
-    }
+/**
+ * Created by user on 19/12/15.
+ */
+public class Glimpse extends ActionWithParameters {
 
     /**
-     * Créer un object Scout à partir d'une chaine de caractères.
+     * Action MoveTo avec une direction comme parametre
      *
-     * @param s
+     * @param d
      */
-    public Scout(String s) {
-        super(new Parameter("direction", new JSONObject(s).get("direction")), "scout");
+    public Glimpse(Direction d, int r) {
+        super(new ArrayList<>(), "glimpse");
+        parameters.add(new Parameter("direction",d));
+        parameters.add(new Parameter("range",r));
     }
 
     @Override

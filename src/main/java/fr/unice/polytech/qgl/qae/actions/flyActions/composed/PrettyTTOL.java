@@ -5,6 +5,7 @@
  */
 package fr.unice.polytech.qgl.qae.actions.flyActions.composed;
 
+import fr.unice.polytech.qgl.qae.actions.AbstractAction;
 import fr.unice.polytech.qgl.qae.actions.flyActions.withparams.Direction;
 import fr.unice.polytech.qgl.qae.actions.flyActions.withparams.Heading;
 import fr.unice.polytech.qgl.qae.actions.flyActions.simple.Fly;
@@ -54,4 +55,6 @@ public class PrettyTTOL extends ComposedAction {
                 break;
         }
     }
+
+
 }

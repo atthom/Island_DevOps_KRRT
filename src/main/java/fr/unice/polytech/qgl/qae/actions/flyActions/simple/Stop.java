@@ -5,6 +5,8 @@
  */
 package fr.unice.polytech.qgl.qae.actions.flyActions.simple;
 
+import fr.unice.polytech.qgl.qae.actions.AbstractAction;
+
 /**
  *
  * @author user

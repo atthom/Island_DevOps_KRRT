@@ -1,5 +1,7 @@
 package fr.unice.polytech.qgl.qae.actions.flyActions.withparams;
 
+import fr.unice.polytech.qgl.qae.actions.ActionWithParameters;
+
 /**
  * Created by Lo�c on 11/15/2015.
  */

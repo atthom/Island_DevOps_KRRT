@@ -1,4 +1,4 @@
-package fr.unice.polytech.qgl.qae.actions.flyActions.composed;
+package fr.unice.polytech.qgl.qae.actions.groundActions.composed;
 
 import fr.unice.polytech.qgl.qae.actions.AbstractAction;
 import fr.unice.polytech.qgl.qae.actions.flyActions.withparams.Direction;

@@ -5,8 +5,6 @@
  */
 package fr.unice.polytech.qgl.qae.actions;
 
-import fr.unice.polytech.qgl.qae.actions.flyActions.composed.*;
-import fr.unice.polytech.qgl.qae.actions.flyActions.simple.*;
 import fr.unice.polytech.qgl.qae.actions.flyActions.withparams.*;
 import org.json.JSONObject;
 import org.junit.Before;

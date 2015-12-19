@@ -7,7 +7,7 @@ package fr.unice.polytech.qgl.qae.strategy;
 
 import fr.unice.polytech.qgl.qae.JSONFactory;
 import fr.unice.polytech.qgl.qae.actions.flyActions.composed.*;
-import fr.unice.polytech.qgl.qae.actions.flyActions.simple.AbstractAction;
+import fr.unice.polytech.qgl.qae.actions.AbstractAction;
 import fr.unice.polytech.qgl.qae.actions.flyActions.withparams.Direction;
 import fr.unice.polytech.qgl.qae.actions.flyActions.withparams.Echo;
 import fr.unice.polytech.qgl.qae.actions.flyActions.withparams.Heading;
@@ -168,7 +168,7 @@ public class FlyingStrategy extends Strategy {
         phase4 = false;
     }
 
-    void manageComposedAction(ComposedAction ac) {
+    void manageComposedAction(PrettyTTOL.ComposedAction ac) {
         actions.addAll(ac.getAll());
         currents_coords = ac.getCoords();
         if (ac.getDir() != d) {

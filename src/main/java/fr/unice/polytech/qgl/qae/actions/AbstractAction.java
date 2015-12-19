@@ -1,4 +1,4 @@
-package fr.unice.polytech.qgl.qae.actions.flyActions.simple;
+package fr.unice.polytech.qgl.qae.actions;
 
 import java.util.Objects;
 import org.json.JSONObject;
