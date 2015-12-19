@@ -8,6 +8,7 @@ package fr.unice.polytech.qgl.qae.map;
 import fr.unice.polytech.qgl.qae.actions.withparams.Direction;
 import fr.unice.polytech.qgl.qae.actions.withparams.Heading;
 import fr.unice.polytech.qgl.qae.exceptions.MapExeption;
+import fr.unice.polytech.qgl.qae.map.tile.Creek;
 import fr.unice.polytech.qgl.qae.map.tile.Tile;
 import fr.unice.polytech.qgl.qae.map.geometry.Coordinates;
 import fr.unice.polytech.qgl.qae.map.geometry.Vect;
@@ -264,6 +265,11 @@ public class Map {
 
     public Coordinates get_coordinate(int i) {
         return coordinates.get(i);
+    }
+
+
+    public FlyTile get_lastTile() {
+        return (FlyTile)map.get(coordinates.get(coordinates.size() - 1));
     }
 
     /**

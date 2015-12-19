@@ -106,6 +106,15 @@ public class MapTest {
         assertTrue(map.last_is_only_ocean());
     }
 
+    @Test
+    public void last_havecreek() {
+        ArrayList<Creek> lc = new ArrayList<Creek>();
+        ArrayList<Biome> lb = new ArrayList<Biome>();
+        lb.add(new Biome(BiomeType.ALPINE));
+        lc.add(new Creek("id"));
+        map.put(new Coordinates(5, 5), new FlyTile(lb,lc,Type.GROUND));
+        assertEquals(true,map.last_havecreek());
+    }
     /**
      * Test of maj method, of class Map.
      */
