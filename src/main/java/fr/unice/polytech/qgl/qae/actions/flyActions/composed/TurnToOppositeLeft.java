@@ -5,9 +5,9 @@
  */
 package fr.unice.polytech.qgl.qae.actions.flyActions.composed;
 
-import fr.unice.polytech.qgl.qae.actions.simple.Scan;
-import fr.unice.polytech.qgl.qae.actions.withparams.Direction;
-import fr.unice.polytech.qgl.qae.actions.withparams.Heading;
+import fr.unice.polytech.qgl.qae.actions.flyActions.simple.Scan;
+import fr.unice.polytech.qgl.qae.actions.flyActions.withparams.Direction;
+import fr.unice.polytech.qgl.qae.actions.flyActions.withparams.Heading;
 import fr.unice.polytech.qgl.qae.map.geometry.Coordinates;
 
 /**

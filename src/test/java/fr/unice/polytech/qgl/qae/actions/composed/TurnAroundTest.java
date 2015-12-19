@@ -5,11 +5,10 @@
  */
 package fr.unice.polytech.qgl.qae.actions.composed;
 
-import fr.unice.polytech.qgl.qae.actions.simple.AbstractAction;
-import fr.unice.polytech.qgl.qae.actions.simple.Fly;
-import fr.unice.polytech.qgl.qae.actions.simple.Scan;
-import fr.unice.polytech.qgl.qae.actions.withparams.Direction;
-import fr.unice.polytech.qgl.qae.actions.withparams.Heading;
+import fr.unice.polytech.qgl.qae.actions.flyActions.composed.*;
+import fr.unice.polytech.qgl.qae.actions.flyActions.simple.*;
+import fr.unice.polytech.qgl.qae.actions.flyActions.withparams.*;
+
 import fr.unice.polytech.qgl.qae.map.geometry.Coordinates;
 import java.util.ArrayList;
 import org.junit.Before;

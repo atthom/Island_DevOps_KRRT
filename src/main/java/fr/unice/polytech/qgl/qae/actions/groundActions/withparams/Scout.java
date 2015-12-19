@@ -1,6 +1,9 @@
-package fr.unice.polytech.qgl.qae.actions.withparams;
+package fr.unice.polytech.qgl.qae.actions.groundActions.withparams;
 
-import fr.unice.polytech.qgl.qae.actions.simple.AbstractAction;
+
+import fr.unice.polytech.qgl.qae.actions.flyActions.withparams.ActionWithParameters;
+import fr.unice.polytech.qgl.qae.actions.flyActions.withparams.Direction;
+import fr.unice.polytech.qgl.qae.actions.flyActions.withparams.Parameter;
 
 /**
  * Created by Loïc on 05/12/2015.

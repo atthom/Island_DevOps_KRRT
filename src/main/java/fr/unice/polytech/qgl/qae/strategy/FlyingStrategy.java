@@ -6,19 +6,13 @@
 package fr.unice.polytech.qgl.qae.strategy;
 
 import fr.unice.polytech.qgl.qae.JSONFactory;
-import fr.unice.polytech.qgl.qae.actions.composed.ComposedAction;
-import fr.unice.polytech.qgl.qae.actions.composed.FlyAndEcho;
-import fr.unice.polytech.qgl.qae.actions.composed.FlyAndScan;
-import fr.unice.polytech.qgl.qae.actions.composed.FlyUntil;
-import fr.unice.polytech.qgl.qae.actions.composed.PrettyTTOL;
-import fr.unice.polytech.qgl.qae.actions.composed.PrettyTTOR;
-import fr.unice.polytech.qgl.qae.actions.simple.AbstractAction;
-import fr.unice.polytech.qgl.qae.actions.simple.Fly;
-import fr.unice.polytech.qgl.qae.actions.withparams.Direction;
-import fr.unice.polytech.qgl.qae.actions.withparams.Echo;
-import fr.unice.polytech.qgl.qae.actions.withparams.Heading;
-import fr.unice.polytech.qgl.qae.actions.simple.Stop;
-import fr.unice.polytech.qgl.qae.actions.withparams.Land;
+import fr.unice.polytech.qgl.qae.actions.flyActions.composed.*;
+import fr.unice.polytech.qgl.qae.actions.flyActions.simple.AbstractAction;
+import fr.unice.polytech.qgl.qae.actions.flyActions.withparams.Direction;
+import fr.unice.polytech.qgl.qae.actions.flyActions.withparams.Echo;
+import fr.unice.polytech.qgl.qae.actions.flyActions.withparams.Heading;
+import fr.unice.polytech.qgl.qae.actions.flyActions.simple.Stop;
+import fr.unice.polytech.qgl.qae.actions.flyActions.withparams.Land;
 import fr.unice.polytech.qgl.qae.map.tile.FlyTile;
 
 import fr.unice.polytech.qgl.qae.map.Map;

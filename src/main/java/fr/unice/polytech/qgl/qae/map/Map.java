@@ -5,8 +5,8 @@
  */
 package fr.unice.polytech.qgl.qae.map;
 
-import fr.unice.polytech.qgl.qae.actions.withparams.Direction;
-import fr.unice.polytech.qgl.qae.actions.withparams.Heading;
+import fr.unice.polytech.qgl.qae.actions.flyActions.withparams.Direction;
+import fr.unice.polytech.qgl.qae.actions.flyActions.withparams.Heading;
 import fr.unice.polytech.qgl.qae.exceptions.MapExeption;
 import fr.unice.polytech.qgl.qae.map.tile.Creek;
 import fr.unice.polytech.qgl.qae.map.tile.Tile;

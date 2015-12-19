@@ -5,7 +5,7 @@
  */
 package fr.unice.polytech.qgl.qae.map.geometry;
 
-import fr.unice.polytech.qgl.qae.actions.withparams.Direction;
+import fr.unice.polytech.qgl.qae.actions.flyActions.withparams.Direction;
 import java.util.Objects;
 
 /**
