@@ -113,7 +113,7 @@ public class MapTest {
         lb.add(new Biome(BiomeType.ALPINE));
         lc.add(new Creek("id"));
         map.put(new Coordinates(5, 5), new FlyTile(lb,lc,Type.GROUND));
-        assertEquals(true,map.last_havecreek());
+        assertEquals(true,map.last_have_creek());
     }
     /**
      * Test of maj method, of class Map.

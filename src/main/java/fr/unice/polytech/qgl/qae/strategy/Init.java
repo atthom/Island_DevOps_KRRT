@@ -1,9 +1,9 @@
 package fr.unice.polytech.qgl.qae.strategy;
 
-import fr.unice.polytech.qgl.qae.actions.composed.FlyAndEcho;
-import fr.unice.polytech.qgl.qae.actions.simple.AbstractAction;
-import fr.unice.polytech.qgl.qae.actions.withparams.Direction;
-import fr.unice.polytech.qgl.qae.actions.withparams.Echo;
+import fr.unice.polytech.qgl.qae.actions.AbstractAction;
+import fr.unice.polytech.qgl.qae.actions.flyActions.composed.FlyAndEcho;
+import fr.unice.polytech.qgl.qae.actions.flyActions.withparams.Direction;
+import fr.unice.polytech.qgl.qae.actions.flyActions.withparams.Echo;
 import fr.unice.polytech.qgl.qae.map.Map;
 import fr.unice.polytech.qgl.qae.map.geometry.Coordinates;
 
@@ -51,10 +51,7 @@ public class Init extends AbstractPhase {
                 dir_to_echo = map.best_dir(d);
                 manageComposedAction(new FlyAndEcho(currents_coords, d, dir_to_echo));
             }
-
         }
-
-
         return actions.get(0);
     }
 

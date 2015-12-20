@@ -5,7 +5,7 @@
  */
 package fr.unice.polytech.qgl.qae.strategy;
 
-import fr.unice.polytech.qgl.qae.actions.simple.AbstractAction;
+import fr.unice.polytech.qgl.qae.actions.AbstractAction;
 import org.json.JSONObject;
 
 /**
