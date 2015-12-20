@@ -7,7 +7,7 @@ import fr.unice.polytech.qgl.qae.Explorer;
 public class Runner {
 
   public static void main(String[] args) throws Exception {
-     
+
     run(Explorer.class)
         .exploring(new File(Runner.class.getResource("_map.json").toURI()))
         .withSeed(0L)

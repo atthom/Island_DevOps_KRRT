@@ -69,7 +69,7 @@ public class ManageReply {
         Type found = extras.getEnum(Type.class, "found");
 
         Vect v = new Vect(range, d);
-        Tile t = new FlyTile(found);
+        FlyTile t = new FlyTile(found);
 
         map.put(v.toCoord(), t);
 

@@ -37,7 +37,7 @@ public class MapTest {
      */
     @Test
     public void testGetTile() {
-        assertEquals(map.getTile(new Coordinates(0,0)), new FlyTile());
+        assertEquals(map.getFlyTile(new Coordinates(0,0)), new FlyTile());
     }
 
     /**
@@ -47,7 +47,7 @@ public class MapTest {
     public void testPut() {
         FlyTile ft = new FlyTile();
         map.put(new Coordinates(5, -5),ft );
-        assertEquals( ft  ,map.getTile(new Coordinates(5, -5)));
+        assertEquals( ft  ,map.getFlyTile(new Coordinates(5, -5)));
     }
 
     /**
@@ -100,7 +100,7 @@ public class MapTest {
         FlyTile a =  new FlyTile(ab, cr , Type.UNKNOWN_TYPE);
         System.out.println(a.nb_biomes());
         map.put(new Coordinates(11, 11), a);
-        map.getTile(new Coordinates(11, 11)).print_biomes();
+        map.getFlyTile(new Coordinates(11, 11)).print_biomes();
      
         
         assertTrue(map.last_is_only_ocean());

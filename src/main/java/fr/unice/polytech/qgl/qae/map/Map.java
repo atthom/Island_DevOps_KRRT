@@ -8,14 +8,13 @@ package fr.unice.polytech.qgl.qae.map;
 import fr.unice.polytech.qgl.qae.actions.withparams.Direction;
 import fr.unice.polytech.qgl.qae.actions.withparams.Heading;
 import fr.unice.polytech.qgl.qae.exceptions.MapExeption;
-import fr.unice.polytech.qgl.qae.map.tile.Tile;
 import fr.unice.polytech.qgl.qae.map.geometry.Coordinates;
 import fr.unice.polytech.qgl.qae.map.geometry.Vect;
 import fr.unice.polytech.qgl.qae.map.geometry.Vect2D;
-import fr.unice.polytech.qgl.qae.map.tile.Creek;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import fr.unice.polytech.qgl.qae.map.tile.Creek;
 import fr.unice.polytech.qgl.qae.map.tile.FlyTile;
 
 /**
@@ -26,16 +25,16 @@ import fr.unice.polytech.qgl.qae.map.tile.FlyTile;
  */
 public class Map {
 
-    private HashMap<Coordinates, Tile> map;
+    private final HashMap<Coordinates, FlyTile> map;
 
-    private ArrayList<Coordinates> coordinates;
+    private final ArrayList<Coordinates> coordinates;
 
     /**
      * Contient une hashmap pour contenir toutes les cases de la map. s
      *
      * @param origin case origine de l'explorer
      */
-    public Map(Tile origin) {
+    public Map(FlyTile origin) {
         map = new HashMap<>();
         coordinates = new ArrayList<>();
         put(new Coordinates(0, 0), origin);
@@ -47,11 +46,9 @@ public class Map {
      * @param c
      * @param t
      */
-    public void maj(Coordinates c, Tile t) {
+    public void maj(Coordinates c, FlyTile t) {
 
-        coordinates.stream().filter((cc) -> (cc.equals(c))).forEach((cc) -> {
-            map.replace(cc, t);
-        });
+        coordinates.stream().filter((cc) -> (cc.equals(c))).forEach((cc) -> map.replace(cc, t));
         put(c, t);
 
     }
@@ -62,7 +59,7 @@ public class Map {
      * @param c
      * @param t
      */
-    public final void put(Coordinates c, Tile t) {
+    public final void put(Coordinates c, FlyTile t) {
         map.putIfAbsent(c, t);
         coordinates.add(c);
     }
@@ -76,9 +73,7 @@ public class Map {
     }
 
     public void printCoordinates() {
-        coordinates.stream().forEach((coordinate) -> {
-            System.out.println("X : " + coordinate.getX() + " Y = " + coordinate.getY());
-        });
+        coordinates.stream().forEach((coordinate) -> System.out.println("X : " + coordinate.getX() + " Y = " + coordinate.getY()));
     }
 
     /**
@@ -100,35 +95,14 @@ public class Map {
             return d.right();
         }
     }
-    
-    public boolean last_havecreek() {
-        Tile t =  map.get(coordinates.get(coordinates.size()-1));
-        if(t instanceof FlyTile) {
-            FlyTile ft = (FlyTile) map.get(coordinates.get(coordinates.size()-1));
-           return ft.havecreeks();
-        }
-       
-        return false;
-       
-        
-    }
-    
-    
-    public Creek getlast_creek() {
-        if(last_havecreek()) {
-            FlyTile t = (FlyTile) map.get(coordinates.get(coordinates.size()-1));
-           return t.getCreeks().get(0);
-        } else {
-           throw new MapExeption("add");
-        }
-    }
+
 
     /**
      *
      * @return true si la dernière coordonnée a un biome de type océan
      */
     public boolean last_is_only_ocean() {
-        Tile t = map.get(coordinates.get(coordinates.size() - 1));
+        FlyTile t = map.get(coordinates.get(coordinates.size() - 1));
         return t.have_biome(BiomeType.OCEAN)  && t.nb_biomes()==1;
     }
 
@@ -139,9 +113,9 @@ public class Map {
      */
     public boolean three_last_are_ocean() {
 
-        Tile t1 = map.get(coordinates.get(coordinates.size() - 2));
-        Tile t2 = map.get(coordinates.get(coordinates.size() - 2));
-        Tile t3 = map.get(coordinates.get(coordinates.size() - 3));
+        FlyTile t1 = map.get(coordinates.get(coordinates.size() - 2));
+        FlyTile t2 = map.get(coordinates.get(coordinates.size() - 2));
+        FlyTile t3 = map.get(coordinates.get(coordinates.size() - 3));
         return t1.have_biome(BiomeType.OCEAN)
                 && t2.have_biome(BiomeType.OCEAN)
                 && t3.have_biome(BiomeType.OCEAN);
@@ -150,14 +124,15 @@ public class Map {
 
     public boolean three_last_are_ground() {
 
-        Tile t = map.get(coordinates.get(coordinates.size() - 2));
-        Tile tt = map.get(coordinates.get(coordinates.size() - 3));
-        Tile ttt = map.get(coordinates.get(coordinates.size() - 3));
+        FlyTile t = map.get(coordinates.get(coordinates.size() - 2));
+        FlyTile tt = map.get(coordinates.get(coordinates.size() - 3));
+        FlyTile ttt = map.get(coordinates.get(coordinates.size() - 3));
 
         return (!t.have_biome(BiomeType.OCEAN)) && (!tt.have_biome(BiomeType.OCEAN)) && (!ttt.have_biome(BiomeType.OCEAN));
 
     }
 
+    
     public boolean five_last_are_ocean() {
         if (coordinates.size() < 5) {
             return false;
@@ -169,6 +144,37 @@ public class Map {
         }
         return true;
     }
+    
+
+    public boolean ten_last_are_ocean() {
+        if (coordinates.size() < 10) {
+            return false;
+        } 
+        for (int i = 0; i < 10; i++) {
+            if (!map.get(coordinates.get(coordinates.size() - i - 1)).have_biome(BiomeType.OCEAN)) {
+                return false;
+            }
+        }
+        return true;
+    }
+
+    public boolean last_have_creek() {
+        FlyTile f =  map.get(coordinates.get(coordinates.size()-1));
+        System.out.println(f);
+        return f.havecreeks();
+    }
+
+
+
+    public Creek getlast_creek() {
+        if(last_have_creek()) {
+            FlyTile t =map.get(coordinates.get(coordinates.size()-1));
+            return t.getCreeks().get(0);
+        } else {
+            throw new MapExeption("add");
+        }
+    }
+    
 
     /**
      * Met à jour les coordonnée en fonction de turnaround
@@ -207,17 +213,17 @@ public class Map {
      * @return true si la carte a trouvé une terre
      */
     public boolean have_ground() {
-        return coordinates.stream().anyMatch((coordinate) -> (((FlyTile) map.get(coordinate)).getT() == Type.GROUND));
+        return coordinates.stream().anyMatch((coordinate) -> (map.get(coordinate).getT() == Type.GROUND));
     }
 
     /**
      *
      * @return return la premiere case ground qu'il trouve dans la liste
      */
-    // TODO  retourner la case avec la distance minimal !
+    // TODO : retourner la case avec la distance minimal !
     public Coordinates getfirstground() {
         for (Coordinates coordinate : coordinates) {
-            if (((FlyTile) map.get(coordinate)).getT() == Type.GROUND) {
+            if (map.get(coordinate).getT() == Type.GROUND) {
                 return coordinate;
             }
         }
@@ -232,7 +238,7 @@ public class Map {
      */
     public Direction go_ground(Coordinates current) {
         for (Coordinates coordinate : coordinates) {
-            if (((FlyTile) map.get(coordinate)).getT() == Type.GROUND) {
+            if (map.get(coordinate).getT() == Type.GROUND) {
                 if (current.equals(coordinate)) {
                     throw new MapExeption("Coordonnées égales !");
                 }
@@ -272,7 +278,7 @@ public class Map {
      * @param c2
      * @return
      */
-    public Tile getTile(Coordinates c2) {
+    public FlyTile getFlyTile(Coordinates c2) {
 
         for (Coordinates c : coordinates) {
             if (c.equals(c2)) {
@@ -290,10 +296,10 @@ public class Map {
         Coordinates last = coordinates.get(coordinates.size() - 1);
         Coordinates soon = coordinates.get(coordinates.size() - 2);
 
-        return ((FlyTile) map.get(last)).getT()
+        return map.get(last).getT()
                 == Type.GROUND
                 && Type.GROUND
-                == ((FlyTile) map.get(soon)).getT();
+                == map.get(soon).getT();
     }
 
     /**
@@ -303,12 +309,12 @@ public class Map {
     public Coordinates getMaxCord() {
         int max_x = -1;
         int max_y = -1;
-        for (int i = 0; i < coordinates.size(); i++) {
-            if (coordinates.get(i).getX() > max_x) {
-                max_x = coordinates.get(i).getX();
+        for (Coordinates coordinate : coordinates) {
+            if (coordinate.getX() > max_x) {
+                max_x = coordinate.getX();
             }
-            if (coordinates.get(i).getY() > max_y) {
-                max_y = coordinates.get(i).getY();
+            if (coordinate.getY() > max_y) {
+                max_y = coordinate.getY();
             }
         }
 
@@ -322,12 +328,12 @@ public class Map {
     public Coordinates getMinCord() {
         int min_x = 1000;
         int min_y = 1000;
-        for (int i = 0; i < coordinates.size(); i++) {
-            if (coordinates.get(i).getX() < min_x) {
-                min_x = coordinates.get(i).getX();
+        for (Coordinates coordinate : coordinates) {
+            if (coordinate.getX() < min_x) {
+                min_x = coordinate.getX();
             }
-            if (coordinates.get(i).getY() < min_y) {
-                min_y = coordinates.get(i).getY();
+            if (coordinate.getY() < min_y) {
+                min_y = coordinate.getY();
             }
         }
         return new Coordinates(min_x, min_y);

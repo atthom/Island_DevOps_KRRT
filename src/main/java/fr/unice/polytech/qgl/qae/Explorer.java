@@ -1,29 +1,24 @@
 package fr.unice.polytech.qgl.qae;
 
 import eu.ace_design.island.bot.IExplorerRaid;
-import fr.unice.polytech.qgl.qae.strategy.FlyingStrategy;
-import fr.unice.polytech.qgl.qae.strategy.Strategy;
+import fr.unice.polytech.qgl.qae.strategy.AbstractStrategy;
+import fr.unice.polytech.qgl.qae.strategy.FStrategy;
 import org.json.JSONObject;
 
 public class Explorer implements IExplorerRaid {
    
     private JSONFactory jfk;
-    private Strategy strat;
-    private Objectif o; 
     
+    private Objectif o; 
+    private AbstractStrategy strat;
     
     @Override
     public void initialize(String string) {
        jfk = new JSONFactory();
        o = jfk.build_obj(string);
-
-       //strat = new FlyingStrategy(jfk.build_heading(string));
-
-        strat = new FlyingStrategy(jfk.build_heading(string));
-
-
+       strat = new FStrategy(jfk.build_heading(string).getValueParameter());
     }
-    
+
     private void manage_cost(Objectif o, JSONObject js) {
         o.enleve_PA(js.getInt("cost"));
     }
@@ -32,14 +27,13 @@ public class Explorer implements IExplorerRaid {
     @Override
     public String takeDecision()
     {
-        return strat.execute();
+        return strat.execute().toJSON().toString();
     }
 
     @Override
     public void acknowledgeResults(String string) {
         JSONObject js = new JSONObject(string);
         manage_cost(o, js);
-        System.out.println(string);
         strat.acknowledge(js);
     }
     

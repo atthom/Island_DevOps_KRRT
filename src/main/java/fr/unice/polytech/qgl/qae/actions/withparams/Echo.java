@@ -15,6 +15,7 @@ public class Echo extends ActionWithParameters {
 
     @Override
     public Object getValueParameter() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+       return (Direction) parameters.get(0).getValeur();
     }
+    
 }

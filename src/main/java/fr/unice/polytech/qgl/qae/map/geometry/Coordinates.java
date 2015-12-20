@@ -76,6 +76,14 @@ public class Coordinates {
         return Math.abs(a.x - this.x) + Math.abs(a.y - this.y);
     }
 
+    @Override
+    public String toString() {
+        return "Coordinates{" +
+                "x=" + x +
+                ", y=" + y +
+                '}';
+    }
+
     public int distance() {
         return Math.abs(this.x) + Math.abs(this.y);
     }

@@ -34,7 +34,14 @@ public class FlyTile extends Tile {
         super(bs);
         this.t = t;
         creeks = new ArrayList<>(cs);
-        
+    }
+
+    @Override
+    public String toString() {
+        return "FlyTile{" +
+                "t=" + t +
+                ", creeks=" + creeks +
+                '}';
     }
 
     public boolean havecreeks() {
@@ -67,10 +74,6 @@ public class FlyTile extends Tile {
         return t;
     }
 
-    @Override
-    public String toString() {
-        return "FlyTile{" + "t=" + t + ", creeks=" + creeks + '}';
-    }
 
     /**
      *

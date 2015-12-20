@@ -50,9 +50,9 @@ public class ManageReplyTest {
         JSONObject o = new JSONObject("{ \"cost\": 1, \"extras\": { \"range\": 2, \"found\": \"GROUND\" }, \"status\": \"OK\" }");
         manager.manage(o, map,Direction.E, new Coordinates(0, 0));
         
-        FlyTile t = (FlyTile) map.getTile(map.get_lastcoordinate());
+        FlyTile t = (FlyTile) map.getFlyTile(map.get_lastcoordinate());
 
-        assertEquals(new FlyTile(Type.GROUND), map.getTile(new Coordinates(2, 0)));
+        assertEquals(new FlyTile(Type.GROUND), map.getFlyTile(new Coordinates(2, 0)));
         assertEquals(t.getT(),Type.GROUND);
     }
 
@@ -89,7 +89,7 @@ public class ManageReplyTest {
         ArrayList<Creek> c= new ArrayList<>();
         c.add(new Creek("id"));
         FlyTile ft = new FlyTile(b, c, Type.UNKNOWN_TYPE);
-        assertEquals(ft, map.getTile(new Coordinates(5,5)));   
+        assertEquals(ft, map.getFlyTile(new Coordinates(5,5)));
         
         
         
