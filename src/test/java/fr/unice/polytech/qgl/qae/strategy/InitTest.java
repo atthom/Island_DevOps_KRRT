@@ -29,7 +29,7 @@ public class InitTest {
     
     @Before
     public void setUp() {
-        ex = new FStrategy(Direction.E);
+        ex = new FlyingStrategy(Direction.E);
         ph1 = new Init(ex, new Coordinates(0, 0), Direction.E, new Map(new FlyTile()));
 
     }

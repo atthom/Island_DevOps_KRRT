@@ -5,6 +5,7 @@ import fr.unice.polytech.qgl.qae.actions.flyActions.composed.FlyAndEcho;
 import fr.unice.polytech.qgl.qae.actions.flyActions.withparams.Direction;
 import fr.unice.polytech.qgl.qae.actions.flyActions.withparams.Echo;
 import fr.unice.polytech.qgl.qae.map.Map;
+import fr.unice.polytech.qgl.qae.map.Type;
 import fr.unice.polytech.qgl.qae.map.geometry.Coordinates;
 
 /**
@@ -37,18 +38,36 @@ public class Init extends AbstractPhase {
         }
     }
 
+    /**
+     *
+     * @return true si la carte a trouvé une terre
+     */
+    public boolean have_ground() {
+        return map.getCoordinates().stream().anyMatch((coordinate) -> (map.getTile(coordinate).getT() == Type.GROUND));
+    }
+
+
+    public Direction best_dir() {
+        int dist1 = map.getCoord(0).distance( map.getCoord(1));
+        int dist2 =  map.getCoord(0).distance( map.getCoord(2));
+        if (dist1 > dist2) {
+            return d.left();
+        } else {
+            return d.right();
+        }
+    }
 
     @Override
     public AbstractAction execute() {
         if(actions.isEmpty()) {
-            if (map.have_ground()) {
+            if (have_ground()) {
                 // si pas dans la bonne direction
                 if (dir_to_echo != null) {
                     change_dir(dir_to_echo);
                 }
                 next = true;
             } else {
-                dir_to_echo = map.best_dir(d);
+                dir_to_echo = best_dir();
                 manageComposedAction(new FlyAndEcho(currents_coords, d, dir_to_echo));
             }
         }

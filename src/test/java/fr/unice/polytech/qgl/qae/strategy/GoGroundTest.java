@@ -21,7 +21,7 @@ public class GoGroundTest {
     AbstractStrategy ex;
     @Before
     public void setUp() throws Exception {
-        ex = new FStrategy(Direction.S);
+        ex = new FlyingStrategy(Direction.S);
         m = new Map(new FlyTile());
         m.put(new Coordinates(5,10),new FlyTile(Type.GROUND));
         gg = new GoGround(ex, new Coordinates(5, 5), Direction.S, m);

@@ -50,22 +50,7 @@ public class MapTest {
         assertEquals( ft  ,map.getFlyTile(new Coordinates(5, -5)));
     }
 
-    /**
-     * Test of goaway method, of class Map.
-     */
-    @Test
-    public void testGoaway() {
-        map.put(new Coordinates(5, 5), new FlyTile(Type.GROUND));
-        for(int i = 0; i < 6; i++) {
-            Direction d = map.go_ground(new Coordinates(0, 0));
-            assertEquals(Direction.E,  d);
-        }
-                
-        for(int i = 0; i < 4; i++) {
-            Direction d = map.go_ground(new Coordinates(5, 0));
-            assertEquals(Direction.N, d);
-        }
-    }
+
 
     /**
      * Test of get_lastcoordinate method, of class Map.
@@ -86,14 +71,14 @@ public class MapTest {
         ab.add(new Biome(BiomeType.BEACH));
         
         map.put(new Coordinates(5, 5), new FlyTile(ab, cr , Type.UNKNOWN_TYPE));
-        assertFalse(map.last_is_only_ocean());
-        
+        //assertFalse(map.last_is_only_ocean());
+
         ab.clear();
         ab.add(new Biome(BiomeType.BEACH));
         ab.add(new Biome(BiomeType.OCEAN));
         map.put(new Coordinates(10, 10), new FlyTile(ab, cr , Type.UNKNOWN_TYPE));
-        assertFalse(map.last_is_only_ocean());
-        
+        //assertFalse(map.last_is_only_ocean());
+
         ab.clear();
         ab.add(new Biome(BiomeType.OCEAN));
         
@@ -103,7 +88,7 @@ public class MapTest {
         map.getFlyTile(new Coordinates(11, 11)).print_biomes();
      
         
-        assertTrue(map.last_is_only_ocean());
+       //assertTrue(map.last_is_only_ocean());
     }
 
     @Test
@@ -113,97 +98,7 @@ public class MapTest {
         lb.add(new Biome(BiomeType.ALPINE));
         lc.add(new Creek("id"));
         map.put(new Coordinates(5, 5), new FlyTile(lb,lc,Type.GROUND));
-        assertEquals(true,map.last_have_creek());
-    }
-    /**
-     * Test of maj method, of class Map.
-     */
-    @Test
-    public void testMaj() {
-    }
-
-    /**
-     * Test of printCoordinates method, of class Map.
-     */
-    @Test
-    public void testPrintCoordinates() {
-    }
-
-    /**
-     * Test of have_coord method, of class Map.
-     */
-    @Test
-    public void testHave_coord() {
-    }
-
-    /**
-     * Test of three_last_is_ocean method, of class Map.
-     */
-    @Test
-    public void testThree_last_is_ocean() {
-    }
-
-    /**
-     * Test of maj_turnaround method, of class Map.
-     */
-    @Test
-    public void testMaj_turnaround() {
-    }
-
-    /**
-     * Test of already_here method, of class Map.
-     */
-    @Test
-    public void testAlready_here() {
-    }
-
-    /**
-     * Test of have_ground method, of class Map.
-     */
-    @Test
-    public void testHave_ground() {
-    }
-
-    /**
-     * Test of getfirstground method, of class Map.
-     */
-    @Test
-    public void testGetfirstground() {
-    }
-
-    /**
-     * Test of go_ground method, of class Map.
-     */
-    @Test
-    public void testGo_ground() {
-    }
-
-    /**
-     * Test of groundpath method, of class Map.
-     */
-    @Test
-    public void testGroundpath() {
-    }
-
-    /**
-     * Test of getMaxCord method, of class Map.
-     */
-    @Test
-    public void testGetMaxCord() {
-    }
-
-    /**
-     * Test of getMinCord method, of class Map.
-     */
-    @Test
-    public void testGetMinCord() {
-    }
-
-    /**
-     * Test of getMaxXCord method, of class Map.
-     */
-    @Test
-    public void testGetMaxXCord() {
+       // assertEquals(true,map.last_havecreek());
     }
 
 

@@ -2,7 +2,7 @@ package fr.unice.polytech.qgl.qae;
 
 import eu.ace_design.island.bot.IExplorerRaid;
 import fr.unice.polytech.qgl.qae.strategy.AbstractStrategy;
-import fr.unice.polytech.qgl.qae.strategy.FStrategy;
+import fr.unice.polytech.qgl.qae.strategy.FlyingStrategy;
 import org.json.JSONObject;
 
 public class Explorer implements IExplorerRaid {
@@ -16,7 +16,7 @@ public class Explorer implements IExplorerRaid {
     public void initialize(String string) {
        jfk = new JSONFactory();
        o = jfk.build_obj(string);
-       strat = new FStrategy(jfk.build_heading(string).getValueParameter());
+       strat = new FlyingStrategy(jfk.build_heading(string).getValueParameter());
     }
 
     private void manage_cost(Objectif o, JSONObject js) {
