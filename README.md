@@ -11,6 +11,10 @@
 
 ## Features Change log
 
+### Week 51
+
+The Crew can acces to the groundfields when the drone find a Creek on the island. 
+
 ### Week 50
 
 The bot can scan the island and find a creeks to access to the groundfields.
