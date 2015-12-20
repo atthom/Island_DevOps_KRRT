@@ -5,9 +5,9 @@
  */
 package fr.unice.polytech.qgl.qae.map;
 
+import fr.unice.polytech.qgl.qae.actions.flyActions.withparams.Direction;
 import fr.unice.polytech.qgl.qae.map.tile.FlyTile;
 import fr.unice.polytech.qgl.qae.map.geometry.Coordinates;
-import fr.unice.polytech.qgl.qae.actions.withparams.Direction;
 import fr.unice.polytech.qgl.qae.map.tile.Creek;
 import java.util.ArrayList;
 import org.junit.Before;
@@ -57,7 +57,7 @@ public class MapTest {
     public void testGoaway() {
         map.put(new Coordinates(5, 5), new FlyTile(Type.GROUND));
         for(int i = 0; i < 6; i++) {
-            Direction d = map.go_ground(new Coordinates(0, 0));        
+            Direction d = map.go_ground(new Coordinates(0, 0));
             assertEquals(Direction.E,  d);
         }
                 
@@ -106,6 +106,15 @@ public class MapTest {
         assertTrue(map.last_is_only_ocean());
     }
 
+    @Test
+    public void last_havecreek() {
+        ArrayList<Creek> lc = new ArrayList<Creek>();
+        ArrayList<Biome> lb = new ArrayList<Biome>();
+        lb.add(new Biome(BiomeType.ALPINE));
+        lc.add(new Creek("id"));
+        map.put(new Coordinates(5, 5), new FlyTile(lb,lc,Type.GROUND));
+        assertEquals(true,map.last_havecreek());
+    }
     /**
      * Test of maj method, of class Map.
      */

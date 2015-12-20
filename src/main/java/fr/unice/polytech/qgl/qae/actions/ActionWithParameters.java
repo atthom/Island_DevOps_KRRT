@@ -3,11 +3,12 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package fr.unice.polytech.qgl.qae.actions.withparams;
+package fr.unice.polytech.qgl.qae.actions;
 
-import fr.unice.polytech.qgl.qae.actions.simple.AbstractAction;
 import java.util.ArrayList;
 import java.util.Objects;
+
+import fr.unice.polytech.qgl.qae.actions.flyActions.withparams.Parameter;
 import org.json.JSONObject;
 
 /**

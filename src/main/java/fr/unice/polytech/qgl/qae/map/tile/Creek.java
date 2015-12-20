@@ -39,4 +39,5 @@ public class Creek extends Tile {
         final Creek other = (Creek) obj;
         return Objects.equals(this.id, other.id);
     }
+
 }

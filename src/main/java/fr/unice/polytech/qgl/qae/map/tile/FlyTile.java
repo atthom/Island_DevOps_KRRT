@@ -74,6 +74,14 @@ public class FlyTile extends Tile {
         return t;
     }
 
+    /**
+     *
+     * @return la liste de creek
+     */
+    public ArrayList<Creek> getC() {
+        return creeks;
+    }
+
 
     /**
      *

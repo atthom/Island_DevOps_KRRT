@@ -3,8 +3,9 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package fr.unice.polytech.qgl.qae.actions.withparams;
+package fr.unice.polytech.qgl.qae.actions.flyActions.withparams;
 
+import fr.unice.polytech.qgl.qae.actions.ActionWithParameters;
 import fr.unice.polytech.qgl.qae.map.tile.Creek;
 import java.util.ArrayList;
 
@@ -12,7 +13,7 @@ import java.util.ArrayList;
  *
  * @author user
  */
-public class Land  extends ActionWithParameters{
+public class Land  extends ActionWithParameters {
     
     public Land(Creek c, int nbPeople) {
         super(new ArrayList<>(), "land");

@@ -5,7 +5,7 @@
  */
 package fr.unice.polytech.qgl.qae.reply;
 
-import fr.unice.polytech.qgl.qae.actions.withparams.Direction;
+import fr.unice.polytech.qgl.qae.actions.flyActions.withparams.Direction;
 import fr.unice.polytech.qgl.qae.map.Biome;
 import fr.unice.polytech.qgl.qae.map.BiomeType;
 import fr.unice.polytech.qgl.qae.map.tile.FlyTile;

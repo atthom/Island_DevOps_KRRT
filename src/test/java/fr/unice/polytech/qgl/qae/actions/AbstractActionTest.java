@@ -5,10 +5,7 @@
  */
 package fr.unice.polytech.qgl.qae.actions;
 
-import fr.unice.polytech.qgl.qae.actions.simple.Scan;
-import fr.unice.polytech.qgl.qae.actions.simple.Fly;
-import fr.unice.polytech.qgl.qae.actions.simple.Stop;
-import fr.unice.polytech.qgl.qae.actions.simple.AbstractAction;
+import fr.unice.polytech.qgl.qae.actions.flyActions.simple.*;
 import org.json.JSONObject;
 import org.junit.Before;
 import org.junit.Test;
