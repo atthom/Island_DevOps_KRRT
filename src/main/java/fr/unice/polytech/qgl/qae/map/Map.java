@@ -161,7 +161,6 @@ public class Map {
 
     public boolean last_have_creek() {
         FlyTile f =  map.get(coordinates.get(coordinates.size()-1));
-        System.out.println(f);
         return f.havecreeks();
     }
 

@@ -63,6 +63,7 @@ public class FlyTile extends Tile {
      */
     public FlyTile(Type t) {
         super();
+        creeks = new ArrayList<>();
         this.t = t;
     }
 
