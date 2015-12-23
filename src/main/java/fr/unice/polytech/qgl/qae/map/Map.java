@@ -7,8 +7,10 @@ package fr.unice.polytech.qgl.qae.map;
 
 import fr.unice.polytech.qgl.qae.map.geometry.Coordinates;
 import fr.unice.polytech.qgl.qae.map.tile.FlyTile;
+
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.LinkedHashMap;
 
 /**
  * Classe Map permettant de stocker les informations sur les cases et les
@@ -18,16 +20,17 @@ import java.util.HashMap;
  */
 public class Map {
 
-    private final HashMap<Coordinates, FlyTile> map;
+    private final LinkedHashMap<Coordinates, FlyTile> map;
 
     private final ArrayList<Coordinates> coordinates;
 
     /**
      * Contient une hashmap pour contenir toutes les cases de la map.
+     *
      * @param origin case origine de l'explorer
      */
     public Map(FlyTile origin) {
-        map = new HashMap<>();
+        map = new LinkedHashMap<>();
         coordinates = new ArrayList<>();
         put(new Coordinates(0, 0), origin);
     }
@@ -72,18 +75,19 @@ public class Map {
     }
 
     public Coordinates getlastCoordinate(int i) {
-        if(i>0) {
-            return coordinates.get(coordinates.size()-i);
+        if (i > 0) {
+            return coordinates.get(coordinates.size() - i);
         } else {
-            return coordinates.get(coordinates.size()+i);
+            return coordinates.get(coordinates.size() + i);
         }
     }
 
     public Coordinates getlastCoordinate() {
-        return coordinates.get(coordinates.size()-1);
+        return coordinates.get(coordinates.size() - 1);
     }
 
     public FlyTile getlastTile() {
+
         return map.get(getlastCoordinate());
     }
 
@@ -120,7 +124,6 @@ public class Map {
 
 
     /**
-     *
      * @return
      */
     public Coordinates getMaxCord() {
@@ -139,7 +142,6 @@ public class Map {
     }
 
     /**
-     *
      * @return
      */
     public Coordinates getMinCord() {
