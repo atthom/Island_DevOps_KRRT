@@ -9,6 +9,7 @@ package fr.unice.polytech.qgl.qae.actions.flyActions.composed;
 import fr.unice.polytech.qgl.qae.actions.flyActions.withparams.Direction;
 import fr.unice.polytech.qgl.qae.actions.flyActions.withparams.Heading;
 import fr.unice.polytech.qgl.qae.actions.flyActions.simple.Fly;
+import fr.unice.polytech.qgl.qae.actions.flyActions.simple.Scan;
 import fr.unice.polytech.qgl.qae.map.geometry.Coordinates;
 
 /**
@@ -32,7 +33,7 @@ public class PrettyTTOR extends ComposedAction {
         super.add(new Fly());
        
         super.add(new Fly());
-       // super.add(new Scan());
+      //  super.add(new Scan());
        
         maj_coord(d, c_current);
     }

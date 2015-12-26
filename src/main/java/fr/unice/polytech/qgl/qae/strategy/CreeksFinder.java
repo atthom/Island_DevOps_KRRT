@@ -28,8 +28,8 @@ public class CreeksFinder extends AbstractPhase {
     public AbstractPhase getNext() {
         if(next) {
             actions.add(new Stop());
-        } else if(last_have_creek()) {
-            return new ChooseCreek(parent,currents_coords,d,map);
+        } else if(last_have_creek()) {        
+            return new ChooseCreek(parent,currents_coords,d,map);   
         }
         return this;
     }
@@ -38,6 +38,7 @@ public class CreeksFinder extends AbstractPhase {
     public AbstractAction execute() {
         if(actions.isEmpty()) {
             if (last_is_only_ocean()) {
+                
                 phase3a();
             }// else if (map.three_last_are_ground()) {            phase3b();        }
             else {
@@ -52,14 +53,14 @@ public class CreeksFinder extends AbstractPhase {
 
 
     private void phase3a() {
-        if (three_last_are_ocean()) {
-            if (ten_last_are_ocean()) {
-                next = true;
-            } else {
-                phase3b();
-            }
-        } else {
+        phase3b();
+        actions.add(new Scan());
+        if(last_is_only_ocean()) {
             manageComposedAction(new FlyAndScan(currents_coords, d));
+        } 
+        if(two_last_is_only_ocean()) {
+            next = true;
+            actions.add(new Fly());
         }
     }
 
@@ -70,6 +71,12 @@ public class CreeksFinder extends AbstractPhase {
     public boolean last_is_only_ocean() {
         FlyTile t = map.getLastFlyTile();
         return t.have_biome(BiomeType.OCEAN)  && t.nb_biomes()==1;
+    }
+    
+    public boolean two_last_is_only_ocean() {
+       
+        FlyTile tt = map.getFlyTile(map.getFlyingmap().getlastCoord(2));
+        return last_is_only_ocean() && tt.have_biome(BiomeType.OCEAN)  && tt.nb_biomes()==1;
     }
 
 
