@@ -25,8 +25,8 @@ public class CreeksFinderTest {
     @Before
     public void setUp() throws Exception {
         ex = new FlyingStrategy(Direction.E);
-        m = new Map(new FlyTile());
-        m.put(new Coordinates(5,5), new FlyTile(Type.GROUND));
+        m = new Map();
+        m.getFlyingmap().put(new Coordinates(5,5), new FlyTile(Type.GROUND));
         cf = new CreeksFinder(ex, new Coordinates(5,5),Direction.E, m);
     }
 

@@ -23,6 +23,7 @@ public class Init extends AbstractPhase {
 
     }
 
+   @Override
     public AbstractPhase getNext() {
         if(actions.isEmpty() && next) {
             return new GoGround(parent, currents_coords, d, map);
@@ -43,13 +44,13 @@ public class Init extends AbstractPhase {
      * @return true si la carte a trouvé une terre
      */
     public boolean have_ground() {
-        return map.getCoordinates().stream().anyMatch((coordinate) -> (map.getTile(coordinate).getT() == Type.GROUND));
+        return map.getFlyingmap().getCoordinates().stream().anyMatch((coordinate) -> (map.getFlyTile(coordinate).getT() == Type.GROUND));
     }
 
 
     public Direction best_dir() {
-        int dist1 = map.getCoord(0).distance( map.getCoord(1));
-        int dist2 =  map.getCoord(0).distance( map.getCoord(2));
+        int dist1 = map.getFlyingmap().getCoordinates(0).distance( map.getFlyingmap().getCoordinates(1));
+        int dist2 =  map.getFlyingmap().getCoordinates(0).distance( map.getFlyingmap().getCoordinates(2));
         if (dist1 > dist2) {
             return d.left();
         } else {

@@ -36,8 +36,8 @@ public class GoGround extends AbstractPhase {
 
     // TODO : retourner la case avec la distance minimal !
     public Coordinates getfirstground() {
-        for (Coordinates coordinate : map.getCoordinates()) {
-            if (map.getTile(coordinate).getT() == Type.GROUND) {
+        for (Coordinates coordinate : map.getFlyingmap().getCoordinates()) {
+            if (map.getFlyTile(coordinate).getT() == Type.GROUND) {
                 return coordinate;
             }
         }

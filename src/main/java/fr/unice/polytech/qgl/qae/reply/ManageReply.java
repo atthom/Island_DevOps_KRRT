@@ -33,16 +33,18 @@ public class ManageReply {
 
     public void manage(JSONObject js, Map map, Direction d, Coordinates currentCoords) {
 
-         map.put(currentCoords, new FlyTile(Type.UNKNOWN_TYPE));
          
+        
          
         JSONObject extras = js.getJSONObject("extras");
 
         if (extras.length() == 0) {
 
         } else if (extras.has("range")) {
+            map.getFlyingmap().put(currentCoords, new FlyTile(Type.UNKNOWN_TYPE));
             manage_echo(js, map, d);
         } else if (extras.has("biomes") && extras.has("creeks")) {
+            map.getFlyingmap().put(currentCoords, new FlyTile(Type.UNKNOWN_TYPE));
             manage_scan(js, map, currentCoords);
         } else if (extras.has("altitude") && extras.has("resources")) {
             //scout
@@ -71,7 +73,7 @@ public class ManageReply {
         Vect v = new Vect(range, d);
         FlyTile t = new FlyTile(found);
 
-        map.put(v.toCoord(), t);
+        map.getFlyingmap().put(v.toCoord(), t);
 
     }
 
@@ -92,6 +94,6 @@ public class ManageReply {
             creeks.add(new Creek(arr_creeks.getString(i)));
         }
 
-        map.maj(currentCoords, new FlyTile(biomes, creeks, Type.UNKNOWN_TYPE));
+        map.getFlyingmap().maj(currentCoords, new FlyTile(biomes, creeks, Type.UNKNOWN_TYPE));
     }
 }

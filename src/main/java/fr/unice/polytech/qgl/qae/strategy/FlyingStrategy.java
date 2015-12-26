@@ -18,7 +18,7 @@ public class FlyingStrategy extends AbstractStrategy {
 
     public FlyingStrategy(Direction d) {
         super();
-        setPhase(new Init(this, new Coordinates(0, 0), d, new Map(new FlyTile())));
+        setPhase(new Init(this, new Coordinates(0, 0), d, new Map()));
     }
         
     

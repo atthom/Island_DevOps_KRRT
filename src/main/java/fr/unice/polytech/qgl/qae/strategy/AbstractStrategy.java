@@ -13,24 +13,24 @@ import org.json.JSONObject;
  * @author Thom
  */
 public abstract class AbstractStrategy {
+
     AbstractPhase current_phase;
-    
+
     public AbstractStrategy() {
-     
+
     }
 
     public void setPhase(AbstractPhase current_phase) {
         this.current_phase = current_phase;
     }
 
-   public void  acknowledge(JSONObject s) {
-       current_phase.acknowledge(s);
-   }
-    
-    
+    public void acknowledge(JSONObject s) {
+        current_phase.acknowledge(s);
+    }
+
     public AbstractAction execute() {
         current_phase = current_phase.getNext();
         return current_phase.execute();
     }
-    
+
 }

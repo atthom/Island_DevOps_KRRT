@@ -13,8 +13,8 @@ public class GroundMap extends AbstractMap {
 
     HashMap<Coordinates, GroundTile> map;
 
-    public GroundMap(HashMap<Coordinates, GroundTile> map, ArrayList<Coordinates> coordinates) {
-        super(coordinates);
-        this.map = map;
+    public GroundMap() {
+        super(new ArrayList<>());
+        this.map = new HashMap<>();
     }
 }

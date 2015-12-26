@@ -38,7 +38,7 @@ public class ChooseCreek  extends AbstractPhase{
 
     public Creek getlast_creek() {
         if(last_have_creek()) {
-            FlyTile t =map.getlastTile();
+            FlyTile t =map.getLastFlyTile();
             return t.getCreeks().get(0);
         } else {
             throw new MapExeption("add");
@@ -46,7 +46,7 @@ public class ChooseCreek  extends AbstractPhase{
     }
 
     public boolean last_have_creek() {
-        FlyTile f =  map.getlastTile();
+        FlyTile f =  map.getLastFlyTile();
         return f.havecreeks();
     }
 

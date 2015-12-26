@@ -30,20 +30,20 @@ public class InitTest {
     @Before
     public void setUp() {
         ex = new FlyingStrategy(Direction.E);
-        ph1 = new Init(ex, new Coordinates(0, 0), Direction.E, new Map(new FlyTile()));
+        ph1 = new Init(ex, new Coordinates(0, 0), Direction.E, new Map());
 
     }
 
     private void addGround() {
-        ph1.map.put(new Coordinates(0,5), new FlyTile(Type.OUT_OF_RANGE));
-        ph1.map.put(new Coordinates(0,-25), new FlyTile(Type.OUT_OF_RANGE));
-        ph1.map.put(new Coordinates(10,0), new FlyTile(Type.GROUND));
+        ph1.map.getFlyingmap().put(new Coordinates(0,5), new FlyTile(Type.OUT_OF_RANGE));
+        ph1.map.getFlyingmap().put(new Coordinates(0,-25), new FlyTile(Type.OUT_OF_RANGE));
+        ph1.map.getFlyingmap().put(new Coordinates(10,0), new FlyTile(Type.GROUND));
     }
 
     private void addNotGround() {
-        ph1.map.put(new Coordinates(0,5), new FlyTile(Type.OUT_OF_RANGE));
-        ph1.map.put(new Coordinates(0,-25), new FlyTile(Type.OUT_OF_RANGE));
-        ph1.map.put(new Coordinates(10,0), new FlyTile(Type.OUT_OF_RANGE));
+        ph1.map.getFlyingmap().put(new Coordinates(0,5), new FlyTile(Type.OUT_OF_RANGE));
+        ph1.map.getFlyingmap().put(new Coordinates(0,-25), new FlyTile(Type.OUT_OF_RANGE));
+        ph1.map.getFlyingmap().put(new Coordinates(10,0), new FlyTile(Type.OUT_OF_RANGE));
     }
 
     /**
@@ -92,7 +92,7 @@ public class InitTest {
         assertEquals(ph1, ph1.getNext());
         ph1.actions.remove(0);
 
-        ph1.map.put(new Coordinates(5,-10), new FlyTile(Type.GROUND));
+        ph1.map.getFlyingmap().put(new Coordinates(5,-10), new FlyTile(Type.GROUND));
         assertEquals(new Heading(Direction.E.right()), ph1.execute());
         ph1.actions.remove(0);
         assertEquals(new GoGround(ex, ph1.currents_coords, ph1.d, ph1.map), ph1.getNext());

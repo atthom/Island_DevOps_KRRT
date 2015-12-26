@@ -36,7 +36,7 @@ public class ManageReplyTest {
     @Before
     public void setUp() {
         manager = new ManageReply();
-        map = new Map(new FlyTile());
+        map = new Map();
     }
 
     /**
@@ -50,7 +50,7 @@ public class ManageReplyTest {
         JSONObject o = new JSONObject("{ \"cost\": 1, \"extras\": { \"range\": 2, \"found\": \"GROUND\" }, \"status\": \"OK\" }");
         manager.manage(o, map,Direction.E, new Coordinates(0, 0));
         
-        FlyTile t = (FlyTile) map.getFlyTile(map.get_lastcoordinate());
+        FlyTile t = map.getLastFlyTile();
 
         assertEquals(new FlyTile(Type.GROUND), map.getFlyTile(new Coordinates(2, 0)));
         assertEquals(t.getT(),Type.GROUND);
@@ -71,9 +71,9 @@ public class ManageReplyTest {
         manager.manage(o1, map,Direction.E, new Coordinates(0, 0));
         manager.manage(o2, map,Direction.E, new Coordinates(0, 0));
 
-        assertEquals(0,map.get_coordinate(1).getX());
-        assertEquals(30,map.get_coordinate(2).getX());
-        assertEquals(15,map.get_coordinate(3).getX());
+        assertEquals(0,map.getFlyingmap().getCoordinates(1).getX());
+        assertEquals(30,map.getFlyingmap().getCoordinates(2).getX());
+        assertEquals(15,map.getFlyingmap().getCoordinates(3).getX());
     }
     /**
      * Test of manage method, of class ManageReply.

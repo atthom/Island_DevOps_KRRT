@@ -28,7 +28,7 @@ public class MapTest {
 
     @Before
     public void setUp() {
-        map = new Map(new FlyTile());
+        map = new Map();
         cr = new ArrayList<>();
     }
 
@@ -46,7 +46,7 @@ public class MapTest {
     @Test
     public void testPut() {
         FlyTile ft = new FlyTile();
-        map.put(new Coordinates(5, -5),ft );
+        map.getFlyingmap().put(new Coordinates(5, -5),ft );
         assertEquals( ft  ,map.getFlyTile(new Coordinates(5, -5)));
     }
 
@@ -57,7 +57,7 @@ public class MapTest {
      */
     @Test
     public void testGet_lastcoordinate() {
-        assertEquals(new Coordinates(0, 0), map.get_lastcoordinate());
+        assertEquals(new Coordinates(0, 0), map.getFlyingmap().getlastCoord());
     }
 
 
@@ -70,13 +70,13 @@ public class MapTest {
         
         ab.add(new Biome(BiomeType.BEACH));
         
-        map.put(new Coordinates(5, 5), new FlyTile(ab, cr , Type.UNKNOWN_TYPE));
+        map.getFlyingmap().put(new Coordinates(5, 5), new FlyTile(ab, cr , Type.UNKNOWN_TYPE));
         //assertFalse(map.last_is_only_ocean());
 
         ab.clear();
         ab.add(new Biome(BiomeType.BEACH));
         ab.add(new Biome(BiomeType.OCEAN));
-        map.put(new Coordinates(10, 10), new FlyTile(ab, cr , Type.UNKNOWN_TYPE));
+        map.getFlyingmap().put(new Coordinates(10, 10), new FlyTile(ab, cr , Type.UNKNOWN_TYPE));
         //assertFalse(map.last_is_only_ocean());
 
         ab.clear();
@@ -84,7 +84,7 @@ public class MapTest {
         
         FlyTile a =  new FlyTile(ab, cr , Type.UNKNOWN_TYPE);
         System.out.println(a.nb_biomes());
-        map.put(new Coordinates(11, 11), a);
+        map.getFlyingmap().put(new Coordinates(11, 11), a);
         map.getFlyTile(new Coordinates(11, 11)).print_biomes();
      
         
@@ -97,7 +97,7 @@ public class MapTest {
         ArrayList<Biome> lb = new ArrayList<Biome>();
         lb.add(new Biome(BiomeType.ALPINE));
         lc.add(new Creek("id"));
-        map.put(new Coordinates(5, 5), new FlyTile(lb,lc,Type.GROUND));
+         map.getFlyingmap().put(new Coordinates(5, 5), new FlyTile(lb,lc,Type.GROUND));
        // assertEquals(true,map.last_havecreek());
     }
 
