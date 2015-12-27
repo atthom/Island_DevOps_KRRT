@@ -17,6 +17,20 @@ public abstract class AbstractMap {
         return coordinates;
     }
 
+    public Coordinates preced(Coordinates c) {
+        if(coordinates.get(0).equals(c)) {
+            return null;
+        }
+        return coordinates.get(coordinates.indexOf(c)-1);
+    }
+
+    public Coordinates succ(Coordinates c) {
+        if(c.equals(getlastCoord())) {
+            return null;
+        }
+        return coordinates.get(coordinates.indexOf(c)+1);
+    }
+
     public Coordinates getCoordinates(int i) {
         return coordinates.get(i);
     }

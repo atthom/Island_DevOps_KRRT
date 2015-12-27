@@ -22,14 +22,20 @@ public class CreeksFinder extends AbstractPhase {
 
     public CreeksFinder(AbstractStrategy parent, Coordinates currents_coords, Direction d, Map m) {
         super(parent, currents_coords, d, m);
+        Direction first = ((FlyingStrategy) parent).getFirst();
+        if(first.right()==d) {
+            turnleft=true;
+        }
+
+
     }
 
     @Override
     public AbstractPhase getNext() {
         if(next) {
             actions.add(new Stop());
-        } else if(last_have_creek()) {        
-            return new ChooseCreek(parent,currents_coords,d,map);   
+        } else if(last_have_creek()) {
+            return new ChooseCreek(parent,currents_coords,d,map);
         }
         return this;
     }
@@ -44,9 +50,7 @@ public class CreeksFinder extends AbstractPhase {
             else {
                 manageComposedAction(new FlyAndScan(currents_coords, d));
             }
-            if (already_here()) {
-                next = true;
-            }
+
         }
         return actions.get(0);
     }
@@ -57,7 +61,10 @@ public class CreeksFinder extends AbstractPhase {
         actions.add(new Scan());
         if(last_is_only_ocean()) {
             manageComposedAction(new FlyAndScan(currents_coords, d));
-        } 
+            manageComposedAction(new FlyAndScan(currents_coords, d));
+            manageComposedAction(new FlyAndScan(currents_coords, d));
+            manageComposedAction(new FlyAndScan(currents_coords, d));
+        }
         if(two_last_is_only_ocean()) {
             next = true;
             actions.add(new Fly());
@@ -75,10 +82,11 @@ public class CreeksFinder extends AbstractPhase {
     
     public boolean two_last_is_only_ocean() {
        
-        FlyTile tt = map.getFlyTile(map.getFlyingmap().getlastCoord(2));
-        return last_is_only_ocean() && tt.have_biome(BiomeType.OCEAN)  && tt.nb_biomes()==1;
+        FlyTile t = map.getLastFlyTile();
+        FlyTile tt = map.getFlyTile(map.getFlyingmap().preced(map.getFlyingmap().getlastCoord()));
+        return t.have_biome(BiomeType.OCEAN)  && t.nb_biomes()==1
+                && tt.have_biome(BiomeType.OCEAN)  && tt.nb_biomes()==1;
     }
-
 
     private void phase3b() {
         if (turnleft) {

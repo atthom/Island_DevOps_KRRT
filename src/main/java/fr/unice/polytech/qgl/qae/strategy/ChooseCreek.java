@@ -30,8 +30,10 @@ public class ChooseCreek  extends AbstractPhase{
         if (actions.isEmpty()) {
             if(last_have_creek()) {
                 actions.add(new Land(getlast_creek(), 1));
+                actions.add(new Stop());
+            } else {
+                actions.add(new Stop());
             }
-            actions.add(new Stop());
         }
         return actions.get(0);
     }

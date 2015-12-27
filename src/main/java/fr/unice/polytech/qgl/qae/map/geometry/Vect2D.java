@@ -90,7 +90,7 @@ public class Vect2D {
         if(this.equals(v)) {
             return true;
         } 
-        if(this.toCoord().equals(new Coordinates(0, 0)) | v.toCoord().equals(new Coordinates(0, 0))) {
+        if(this.toCoord().equals(new Coordinates(0, 0)) || v.toCoord().equals(new Coordinates(0, 0))) {
             return true;
         }
                
@@ -100,7 +100,7 @@ public class Vect2D {
         
         float coeff1 = this.v_x.getValeur() / this.v_y.getValeur();
         float coeff2 = v.v_x.getValeur() / v.v_y.getValeur();
-        return coeff1 == coeff2;    
+        return Float.compare(coeff1, coeff2)== 0;    
     }
 
     /**
