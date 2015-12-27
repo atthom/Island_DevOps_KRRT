@@ -12,7 +12,7 @@ import fr.unice.polytech.qgl.qae.map.BiomeType;
 
 import java.util.ArrayList;
 
-import fr.unice.polytech.qgl.qae.resources.Resource;
+import fr.unice.polytech.qgl.qae.resources.PrimaryResource;
 import org.json.JSONArray;
 import org.json.JSONObject;
 import org.junit.Before;
@@ -67,10 +67,10 @@ public class JSONFactoryTest {
         int budget = obj.getInt("budget");
 
         JSONArray arr = obj.getJSONArray("contracts");
-        ArrayList<Resource> res = new ArrayList<>();
+        ArrayList<PrimaryResource> res = new ArrayList<>();
         for (int i = 0; i < arr.length(); i++) {
             JSONObject o = arr.getJSONObject(i);
-            res.add(new Resource(o.getInt("amount"), o.getString("resource")));
+            res.add(new PrimaryResource(o.getInt("amount"), o.getString("resource")));
         }
         assertEquals(12, jfk.build_obj(contract).getNb_mens());
         assertEquals(10000, jfk.build_obj(contract).getBudget());

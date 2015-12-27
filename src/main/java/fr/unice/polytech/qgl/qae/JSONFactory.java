@@ -12,7 +12,7 @@ import fr.unice.polytech.qgl.qae.map.BiomeType;
 
 import java.util.ArrayList;
 
-import fr.unice.polytech.qgl.qae.resources.Resource;
+import fr.unice.polytech.qgl.qae.resources.PrimaryResource;
 import org.json.*;
 
 /**
@@ -29,14 +29,14 @@ public class JSONFactory {
     }
 
     /**
-     * String => Resource
+     * String => PrimaryResource
      * @param s chaine convertible
      * @return un objet de ressource extraite
      *
      */
-    public Resource build_res(String s) {
+    public PrimaryResource build_res(String s) {
         JSONObject o = new JSONObject(s);
-        return new Resource(o.getInt("amount"), o.getString("resource"));
+        return new PrimaryResource(o.getInt("amount"), o.getString("resource"));
 
     }
 
@@ -48,7 +48,7 @@ public class JSONFactory {
     public Objectif build_obj(String s) {
         JSONObject o = new JSONObject(s);
         JSONArray arr = o.getJSONArray("contracts");
-        ArrayList<Resource> res = new ArrayList<>();
+        ArrayList<PrimaryResource> res = new ArrayList<>();
         for (int i = 0; i < arr.length(); i++) {
             res.add(build_res(arr.getJSONObject(i).toString()));
         }
@@ -92,8 +92,8 @@ public class JSONFactory {
      * @param s chaine convertible
      *          @return un objet UnextractedRessource
      */
-    public Resource build_unextracted_ressource(String s){
-        Resource r = new Resource();
+    public PrimaryResource build_unextracted_ressource(String s){
+        PrimaryResource r = new PrimaryResource();
         r.setName(s);
         return r;
     }

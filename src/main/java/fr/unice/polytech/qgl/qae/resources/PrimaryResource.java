@@ -1,25 +1,21 @@
 package fr.unice.polytech.qgl.qae.resources;
 
-import fr.unice.polytech.qgl.qae.exceptions.InvalidNumberException;
-import org.omg.CORBA.UNKNOWN;
-
-import java.util.ArrayList;
 
 /**
  * Created by Loïc on 08/12/2015.
  */
-public class Resource {
+public class PrimaryResource {
 
     private String name;
-    private String amountCondition;
-    private String condition;
+    private String amountCondition; /* can be high, medium, low or unknown */
+    private String condition; /* can be harsh, fair, easy or unknown */
     private boolean isPrimaryResource;
     private boolean isNeeded;
     private int nbExploitedRessource;
     private int nbResourcesNeeded;
 
     // section == CONSTRUCTOR
-    public Resource(){
+    public PrimaryResource(){
         this.nbExploitedRessource = 0;
         this.nbResourcesNeeded = 0;
         this.isNeeded = false;
@@ -27,9 +23,9 @@ public class Resource {
         this.name = ResourceType.UNKNOWN.name();
         this.amountCondition = AmountResource.UNKNOWN.name();
         this.condition = ConditionResource.UNKNOWN.name();
-    } /* For any Resource object we  */
+    } /* For any PrimaryResource object we  */
 
-    public Resource(int nbResourcesNeeded, String name){
+    public PrimaryResource(int nbResourcesNeeded, String name){
         this.nbExploitedRessource = 0;
         this.nbResourcesNeeded = nbResourcesNeeded;
         this.isNeeded = false;
@@ -37,7 +33,7 @@ public class Resource {
         this.name = name;
         this.amountCondition = AmountResource.UNKNOWN.name();
         this.condition = ConditionResource.UNKNOWN.name();
-    } /* For any Resource when we know how many resource of what type of resource we need to collect */
+    } /* For any PrimaryResource when we know how many resource of what type of resource we need to collect */
 
 
 
@@ -62,8 +58,8 @@ public class Resource {
         return this.condition;
     }
 
-    public void setCondition(String exploitCondition) {
-        this.condition = exploitCondition;
+    public void setCondition(ConditionResource condition) {
+        this.condition = condition.name();
     }
 
     public boolean isPrimaryRessource() {

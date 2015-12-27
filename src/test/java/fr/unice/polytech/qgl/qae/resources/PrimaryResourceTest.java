@@ -9,16 +9,16 @@ import org.junit.Ignore;
 /**
  * Created by Loïc on 08/12/2015.
  */
-public class ResourceTest {
+public class PrimaryResourceTest {
 
-    Resource r;
+    PrimaryResource r;
 
-    public ResourceTest(){
+    public PrimaryResourceTest(){
         // default constructor
     }
 
     @Before
-    public void setUp(){r = new Resource();}
+    public void setUp(){r = new PrimaryResource();}
 
     @Test
     public void testSetName(){r.setName("FISH"); assertEquals("FISH", r.getName());}
@@ -46,6 +46,18 @@ public class ResourceTest {
         r.setNbExploitedRessource(100);
         r.retrieve(50);
         assertEquals(50, r.getNbExploitedRessource());
+    }
+
+    @Test
+    public void testSetCondition(){
+        r.setCondition(ConditionResource.EASY);
+        assertEquals("EASY", r.getCondition());
+    }
+
+    @Test
+    public void testSetAmountCondition(){
+        r.setAmountCondition(AmountResource.HIGH);
+        assertEquals("HIGH", r.getAmount());
     }
 
 }
