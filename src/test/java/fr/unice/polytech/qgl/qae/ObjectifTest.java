@@ -5,9 +5,10 @@
  */
 package fr.unice.polytech.qgl.qae;
  
-import fr.unice.polytech.qgl.qae.resources.Resource;
+import fr.unice.polytech.qgl.qae.resources.PrimaryResource;
+
 import java.util.ArrayList;
-import org.junit.Before;
+
 import org.junit.BeforeClass;
 import org.junit.Test;
 import static org.junit.Assert.*;
@@ -30,9 +31,9 @@ public class ObjectifTest {
 
     @Test
     public void setUp() {
-        ArrayList<Resource> a = new ArrayList<>();
-        a.add(new Resource(600, "WOOD"));
-        a.add(new Resource(200, "GLASS"));
+        ArrayList<PrimaryResource> a = new ArrayList<>();
+        a.add(new PrimaryResource(600, "WOOD"));
+        a.add(new PrimaryResource(200, "GLASS"));
         o = new Objectif(12, 10000, a);
 
     }
@@ -67,10 +68,10 @@ public class ObjectifTest {
      */
     @Ignore
     public void testGetRessource() {
-        assertEquals(o.getRessource("WOOD").getName(), new Resource(600, "WOOD").getName());
-        assertEquals(o.getRessource("WOOD").getNbExploitedRessource(), new Resource(600, "WOOD").getNbExploitedRessource());
-        assertEquals(o.getRessource("NOPE").getName(), new Resource(0, "").getName());
-        assertEquals(o.getRessource("NOPE").getNbExploitedRessource(), new Resource(0, "").getNbExploitedRessource());
+        assertEquals(o.getRessource("WOOD").getName(), new PrimaryResource(600, "WOOD").getName());
+        assertEquals(o.getRessource("WOOD").getNbExploitedRessource(), new PrimaryResource(600, "WOOD").getNbExploitedRessource());
+        assertEquals(o.getRessource("NOPE").getName(), new PrimaryResource(0, "").getName());
+        assertEquals(o.getRessource("NOPE").getNbExploitedRessource(), new PrimaryResource(0, "").getNbExploitedRessource());
     }
 
     /**
@@ -78,13 +79,13 @@ public class ObjectifTest {
      */
     @Ignore
     public void testEnleve_ressource() {
-        o.enleve_ressource(new Resource(100, "WOOD"));
-        assertEquals(o.getRessource("WOOD").getName(), new Resource(500, "WOOD").getName());
-        assertEquals(o.getRessource("WOOD").getNbExploitedRessource(), new Resource(500, "WOOD").getNbExploitedRessource());
+        o.enleve_ressource(new PrimaryResource(100, "WOOD"));
+        assertEquals(o.getRessource("WOOD").getName(), new PrimaryResource(500, "WOOD").getName());
+        assertEquals(o.getRessource("WOOD").getNbExploitedRessource(), new PrimaryResource(500, "WOOD").getNbExploitedRessource());
 
-        o.enleve_ressource(new Resource(1000, "WOOD"));
-        assertEquals(o.getRessource("WOOD").getName(), new Resource(0, "").getName());
-        assertEquals(o.getRessource("WOOD").getNbExploitedRessource(), new Resource(0, "").getNbExploitedRessource());
+        o.enleve_ressource(new PrimaryResource(1000, "WOOD"));
+        assertEquals(o.getRessource("WOOD").getName(), new PrimaryResource(0, "").getName());
+        assertEquals(o.getRessource("WOOD").getNbExploitedRessource(), new PrimaryResource(0, "").getNbExploitedRessource());
         
     }
 

@@ -13,11 +13,10 @@ import fr.unice.polytech.qgl.qae.map.Map;
 import fr.unice.polytech.qgl.qae.map.Type;
 import fr.unice.polytech.qgl.qae.map.geometry.Coordinates;
 import fr.unice.polytech.qgl.qae.map.tile.Creek;
-import fr.unice.polytech.qgl.qae.resources.Resource;
+import fr.unice.polytech.qgl.qae.resources.PrimaryResource;
 import org.json.JSONObject;
 import org.junit.Before;
 import org.junit.Test;
-import org.junit.internal.RealSystem;
 
 import java.util.ArrayList;
 
@@ -44,9 +43,9 @@ public class ManageReplyTest {
      */
     @Ignore
     public void testManage_echo() {
-        ArrayList<Resource> a = new ArrayList<>();
-        a.add(new Resource(600, "WOOD"));
-        a.add(new Resource(200, "GLASS"));
+        ArrayList<PrimaryResource> a = new ArrayList<>();
+        a.add(new PrimaryResource(600, "WOOD"));
+        a.add(new PrimaryResource(200, "GLASS"));
         JSONObject o = new JSONObject("{ \"cost\": 1, \"extras\": { \"range\": 2, \"found\": \"GROUND\" }, \"status\": \"OK\" }");
         manager.manage(o, map,Direction.E, new Coordinates(0, 0));
         

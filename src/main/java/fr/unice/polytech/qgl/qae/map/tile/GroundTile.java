@@ -6,34 +6,40 @@
 package fr.unice.polytech.qgl.qae.map.tile;
 
 import fr.unice.polytech.qgl.qae.exceptions.MapExeption;
-import fr.unice.polytech.qgl.qae.resources.Resource;
+import fr.unice.polytech.qgl.qae.resources.AmountResource;
+import fr.unice.polytech.qgl.qae.resources.ConditionResource;
+import fr.unice.polytech.qgl.qae.resources.PrimaryResource;
 
 import java.util.ArrayList;
 import java.util.Objects;
 
 /**
- * Classe GroundTile utilisée lors de la phrase d'extraction
- *
- * @author user
+ * This class is used to describe each ground tiles of the map.
+ * @author Loïc
  */
 public class GroundTile extends Tile {
 
     private int altitude;
-    private ArrayList<Resource> res;
+    private AmountResource amount; // represent the amount of this tile's resources
+    private ConditionResource condition; // represent the extraction condition for the resources
+    private ArrayList<PrimaryResource> res;
 
     /**
      *
      */
     public GroundTile() {
         altitude = -1;
+        this.amount = AmountResource.UNKNOWN;
+        this.condition = ConditionResource.UNKNOWN;
         res = new ArrayList<>();
     }
 
-    void addResource(Resource r) {
+    void addResource(PrimaryResource r) {
         res.add(r);
     }
+    public AmountResource getAmountCondition(){return this.amount;}
 
-    Resource getResource(String r) {
+    PrimaryResource getResource(String r) {
         for (int i = 0; i < res.size(); i++) {
             if (res.get(i).getName().equals(r)) {
                 return res.get(i);
