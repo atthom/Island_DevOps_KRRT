@@ -22,7 +22,11 @@ public class ChooseCreek  extends AbstractPhase{
 
     @Override
     public AbstractPhase getNext() {
-        return this;
+        if(!last_have_creek()) {
+            return this;
+        } else {
+            return new InitTerrestre(parent,currents_coords,d,map);
+        }
     }
 
     @Override
@@ -30,7 +34,6 @@ public class ChooseCreek  extends AbstractPhase{
         if (actions.isEmpty()) {
             if(last_have_creek()) {
                 actions.add(new Land(getlast_creek(), 1));
-                actions.add(new Stop());
             } else {
                 actions.add(new Stop());
             }

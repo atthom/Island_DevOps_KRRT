@@ -11,6 +11,7 @@ import org.json.JSONObject;
  */
 public class MoveTo extends ActionWithParameters {
 
+    Direction d;
     /**
      * Action MoveTo avec une direction comme parametre
      *
@@ -18,6 +19,7 @@ public class MoveTo extends ActionWithParameters {
      */
     public MoveTo(Direction d) {
         super(new Parameter("direction", d), "move_to");
+        this.d = d;
     }
 
     /**
@@ -34,8 +36,8 @@ public class MoveTo extends ActionWithParameters {
         return (Direction) parameters.get(0).getValeur();
     }
 
-    public void maj_coord(Coordinates c, Direction new_dir) {
-        switch (new_dir) {
+    public void maj_coord(Coordinates c) {
+        switch (d) {
             case E:
                 c.addX(1);
                 break;

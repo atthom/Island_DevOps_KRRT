@@ -1,5 +1,6 @@
 package fr.unice.polytech.qgl.qae.strategy;
 
+import fr.unice.polytech.qgl.qae.Objectif;
 import fr.unice.polytech.qgl.qae.actions.flyActions.simple.Fly;
 import fr.unice.polytech.qgl.qae.actions.flyActions.simple.Scan;
 import fr.unice.polytech.qgl.qae.actions.flyActions.withparams.Direction;
@@ -21,10 +22,11 @@ public class CreeksFinderTest {
     AbstractStrategy ex;
     CreeksFinder cf;
     Map m;
+    Objectif ob;
 
     @Before
     public void setUp() throws Exception {
-        ex = new FlyingStrategy(Direction.E);
+        ex = new FlyingStrategy(Direction.E, ob);
         m = new Map();
         m.getFlyingmap().put(new Coordinates(5,5), new FlyTile(Type.GROUND));
         cf = new CreeksFinder(ex, new Coordinates(5,5),Direction.E, m);

@@ -39,6 +39,16 @@ public abstract class AbstractPhase {
         this.actions = new ArrayList<>();
     }
 
+
+    // Phase Terrestre
+    public AbstractPhase(AbstractStrategy parent, Coordinates currents_coords, Map m) {
+        this.currents_coords = currents_coords;
+        this.parent = parent;
+        this.map = m;
+        this.manager = new ManageReply();
+        this.actions = new ArrayList<>();
+    }
+
     protected void manageComposedAction(ComposedAction ac) {
         actions.addAll(ac.getAll());
         currents_coords = ac.getCoords();

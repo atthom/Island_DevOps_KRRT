@@ -16,7 +16,7 @@ public class Explorer implements IExplorerRaid {
     public void initialize(String string) {
        jfk = new JSONFactory();
        o = jfk.build_obj(string);
-       strat = new FlyingStrategy(jfk.build_heading(string).getValueParameter());
+       strat = new FlyingStrategy(jfk.build_heading(string).getValueParameter(),o);
     }
 
     private void manage_cost(Objectif o, JSONObject js) {

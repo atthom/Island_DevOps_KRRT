@@ -5,6 +5,7 @@
  */
 package fr.unice.polytech.qgl.qae.strategy;
 
+import fr.unice.polytech.qgl.qae.Objectif;
 import fr.unice.polytech.qgl.qae.actions.AbstractAction;
 import org.json.JSONObject;
 
@@ -15,9 +16,10 @@ import org.json.JSONObject;
 public abstract class AbstractStrategy {
 
     AbstractPhase current_phase;
+    Objectif ob;
 
-    public AbstractStrategy() {
-
+    public AbstractStrategy(Objectif ob) {
+        this.ob = ob;
     }
 
     public void setPhase(AbstractPhase current_phase) {
@@ -33,4 +35,7 @@ public abstract class AbstractStrategy {
         return current_phase.execute();
     }
 
+    public Objectif getObjectif() {
+        return ob;
+    }
 }

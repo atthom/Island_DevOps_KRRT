@@ -10,12 +10,17 @@ import fr.unice.polytech.qgl.qae.actions.flyActions.withparams.Direction;
 import fr.unice.polytech.qgl.qae.map.Biome;
 import fr.unice.polytech.qgl.qae.map.tile.FlyTile;
 import fr.unice.polytech.qgl.qae.map.Map;
+import fr.unice.polytech.qgl.qae.map.tile.GroundTile;
 import fr.unice.polytech.qgl.qae.map.tile.Tile;
 import fr.unice.polytech.qgl.qae.map.tile.Creek;
 import fr.unice.polytech.qgl.qae.map.Type;
 import fr.unice.polytech.qgl.qae.map.geometry.Coordinates;
 import fr.unice.polytech.qgl.qae.map.geometry.Vect;
+import fr.unice.polytech.qgl.qae.resources.PrimaryResource;
 import org.json.*;
+import sun.security.tools.keytool.Resources;
+import sun.security.tools.keytool.Resources_sv;
+
 import java.util.ArrayList;
 
 /**
@@ -47,7 +52,7 @@ public class ManageReply {
             map.getFlyingmap().put(currentCoords, new FlyTile(Type.UNKNOWN_TYPE));
             manage_scan(js, map, currentCoords);
         } else if (extras.has("altitude") && extras.has("resources")) {
-            //scout
+            manage_scout(js, map, currentCoords.getClose(d));
         } else if (extras.has("asked_range") && extras.has("report")) {
             //glimpse
         } else if (extras.has("resources") && extras.has("pois")) {
@@ -96,4 +101,27 @@ public class ManageReply {
 
         map.getFlyingmap().maj(currentCoords, new FlyTile(biomes, creeks, Type.UNKNOWN_TYPE));
     }
+
+    /*
+     Create and initialize ground tile from scoot action
+     */
+    private void manage_scout(JSONObject js, Map map, Coordinates c) {
+        JSONFactory jfk = new JSONFactory();
+        JSONObject extras = js.getJSONObject("extras");
+
+        GroundTile t = new GroundTile();
+        int alt = extras.getInt("altitude");
+        t.setAltitude(alt);
+
+        JSONArray arr_res = extras.getJSONArray("resources");
+        PrimaryResource p;
+        for (int i = 0; i < arr_res.length(); i++) {
+            p = new PrimaryResource();
+            p.setName(arr_res.getString(i));
+            t.getRessource().add(p);
+        }
+
+        map.getGroundmap().put(c, t);
+    }
+
 }

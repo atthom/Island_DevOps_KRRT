@@ -5,6 +5,7 @@
  */
 package fr.unice.polytech.qgl.qae.strategy;
 
+import fr.unice.polytech.qgl.qae.Objectif;
 import fr.unice.polytech.qgl.qae.actions.flyActions.simple.Fly;
 import fr.unice.polytech.qgl.qae.actions.flyActions.withparams.Direction;
 import fr.unice.polytech.qgl.qae.actions.flyActions.withparams.Echo;
@@ -23,13 +24,13 @@ import static org.junit.Assert.*;
 public class InitTest {
     AbstractStrategy ex;
     AbstractPhase ph1;
-    
+    Objectif ob;
     public InitTest() {
     }
     
     @Before
     public void setUp() {
-        ex = new FlyingStrategy(Direction.E);
+        ex = new FlyingStrategy(Direction.E, ob);
         ph1 = new Init(ex, new Coordinates(0, 0), Direction.E, new Map());
 
     }

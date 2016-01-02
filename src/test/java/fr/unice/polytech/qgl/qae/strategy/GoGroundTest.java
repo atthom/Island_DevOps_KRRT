@@ -1,5 +1,6 @@
 package fr.unice.polytech.qgl.qae.strategy;
 
+import fr.unice.polytech.qgl.qae.Objectif;
 import fr.unice.polytech.qgl.qae.actions.flyActions.simple.Fly;
 import fr.unice.polytech.qgl.qae.actions.flyActions.withparams.Direction;
 import fr.unice.polytech.qgl.qae.map.Map;
@@ -19,9 +20,11 @@ public class GoGroundTest {
     GoGround gg;
     Map m;
     AbstractStrategy ex;
+    Objectif ob;
+
     @Before
     public void setUp() throws Exception {
-        ex = new FlyingStrategy(Direction.S);
+        ex = new FlyingStrategy(Direction.S, ob);
         m = new Map();
         m.getFlyingmap().put(new Coordinates(5,10),new FlyTile(Type.GROUND));
         gg = new GoGround(ex, new Coordinates(5, 5), Direction.S, m);

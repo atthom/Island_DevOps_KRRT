@@ -5,6 +5,8 @@
  */
 package fr.unice.polytech.qgl.qae.map.geometry;
 
+import fr.unice.polytech.qgl.qae.actions.flyActions.withparams.Direction;
+import fr.unice.polytech.qgl.qae.exceptions.MapExeption;
 /**
  * Classe coordonée 2D
  *
@@ -88,6 +90,11 @@ public class Coordinates {
         return Math.abs(this.x) + Math.abs(this.y);
     }
 
+    public int hashCode() {
+        int hash = x+131071*y;
+        return hash;
+    }
+
     @Override
     public boolean equals(Object obj) {
         if (this == obj) {
@@ -105,7 +112,21 @@ public class Coordinates {
         }
         return this.y == other.y;
     }
-    
+
+    public Coordinates getClose(Direction d) {
+        switch (d) {
+            case N:
+                return new Coordinates(this.x,this.y+1);
+            case S:
+                return new Coordinates(this.x,this.y-1);
+            case E:
+                return new Coordinates(this.x+1,this.y);
+            case W:
+                return new Coordinates(this.x-1,this.y);
+            default:
+                throw new MapExeption("Bad direction");
+        }
+    }
     
 
 }
