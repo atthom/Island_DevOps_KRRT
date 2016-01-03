@@ -18,8 +18,6 @@ import fr.unice.polytech.qgl.qae.map.geometry.Coordinates;
 import fr.unice.polytech.qgl.qae.map.geometry.Vect;
 import fr.unice.polytech.qgl.qae.resources.PrimaryResource;
 import org.json.*;
-import sun.security.tools.keytool.Resources;
-import sun.security.tools.keytool.Resources_sv;
 
 import java.util.ArrayList;
 
