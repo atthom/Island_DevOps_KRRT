@@ -1,6 +1,7 @@
 package fr.unice.polytech.qgl.qae.strategy;
 
 import fr.unice.polytech.qgl.qae.actions.AbstractAction;
+import fr.unice.polytech.qgl.qae.actions.flyActions.simple.Stop;
 import fr.unice.polytech.qgl.qae.actions.flyActions.withparams.Direction;
 import fr.unice.polytech.qgl.qae.actions.groundActions.withparams.MoveTo;
 import fr.unice.polytech.qgl.qae.actions.groundActions.withparams.Scout;
@@ -14,6 +15,10 @@ public class ScoutPhase extends AbstractPhase {
 
     public ScoutPhase(AbstractStrategy parent, Coordinates currents_coords, Direction d, Map m) {
         super(parent, currents_coords, d,m);
+
+        if(parent.getObjectif().getBudget() < 50) {
+            actions.add(new Stop());
+        }
 
         for(Direction dir : Direction.values()) {
             if (m.getGroundmap().getTile(currents_coords.getClose(dir)) == null) {
