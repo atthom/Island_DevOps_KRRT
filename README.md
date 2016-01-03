@@ -11,6 +11,10 @@
 
 ## Features Change log
 
+### Week 53
+
+The crew can move, scout and stop when the budget is too low, the algorithm is basic and the crew don't recolt so much resource (random move except if the resource is find around our current location) 
+
 ### Week 52
 
 The drone can scan the whole island and the crew access to the ground just after the drone find a creek. 
