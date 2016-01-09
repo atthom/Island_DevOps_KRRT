@@ -9,7 +9,7 @@ package fr.unice.polytech.qgl.qae.resources;
  * Facilitée d'exploitation d'une ressource encore inexploitée
  * @author user
  */
-public enum ConditionResource {
+public enum ResourceConditionType {
 
     HARSH,
     FAIR,
