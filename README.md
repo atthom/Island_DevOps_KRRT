@@ -11,6 +11,12 @@
 
 ## Features Change log
 
+### Week 53
+
+Bug Fixed :
+	- Null pointer when the drone goes to the ground (after seeking for).
+	- Wrong direction echo for seeking the island.
+
 ### Week 52
 
 The drone can scan the whole island and the crew access to the ground just after the drone find a creek. 

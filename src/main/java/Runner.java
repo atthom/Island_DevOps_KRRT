@@ -13,7 +13,7 @@ public class Runner {
     run(Explorer.class)
         .exploring(new File(Runner.class.getResource("_map.json").toURI()))
         .withSeed(0L)
-        .startingAt(1,14, "EAST")
+        .startingAt(1,1, "EAST")
         .backBefore(7000)
         .withCrew(15)
         .collecting(1000, "WOOD")
