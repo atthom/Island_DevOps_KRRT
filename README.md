@@ -13,6 +13,10 @@
 
 ### Week 53
 
+The crew can move, scout and stop when the budget is too low.
+Algorithm is very unefficient (very costly and the crew don't recolt so much resource)
+	Random move except if the resource is find around the current location.
+
 Bug Fixed :
 	- Null pointer when the drone goes to the ground (after seeking for).
 	- Wrong direction echo for seeking the island.
