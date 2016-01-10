@@ -96,7 +96,9 @@ public class InitTest {
         ph1.map.getFlyingmap().put(new Coordinates(5,-10), new FlyTile(Type.GROUND));
         assertEquals(new Heading(Direction.E.right()), ph1.execute());
         ph1.actions.remove(0);
-        assertEquals(new GoGround(ex, ph1.currents_coords, ph1.d, ph1.map), ph1.getNext());
+        GoGround gg = new GoGround(ex, ph1.currents_coords, ph1.d, ph1.map);
+        assertEquals(gg, ph1.getNext());
+        assertEquals(new Coordinates(5,-10), gg.getfirstground());
     }
 
 

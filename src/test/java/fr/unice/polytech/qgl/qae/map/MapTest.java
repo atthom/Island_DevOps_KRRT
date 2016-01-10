@@ -5,7 +5,6 @@
  */
 package fr.unice.polytech.qgl.qae.map;
 
-import fr.unice.polytech.qgl.qae.actions.flyActions.withparams.Direction;
 import fr.unice.polytech.qgl.qae.map.tile.FlyTile;
 import fr.unice.polytech.qgl.qae.map.geometry.Coordinates;
 import fr.unice.polytech.qgl.qae.map.tile.Creek;
@@ -83,9 +82,9 @@ public class MapTest {
         ab.add(new Biome(BiomeType.OCEAN));
         
         FlyTile a =  new FlyTile(ab, cr , Type.UNKNOWN_TYPE);
-        System.out.println(a.nb_biomes());
+     // System.out.println(a.nb_biomes());
         map.getFlyingmap().put(new Coordinates(11, 11), a);
-        map.getFlyTile(new Coordinates(11, 11)).print_biomes();
+        //map.getFlyTile(new Coordinates(11, 11)).print_biomes();
      
         
        //assertTrue(map.last_is_only_ocean());
@@ -93,8 +92,8 @@ public class MapTest {
 
     @Test
     public void last_havecreek() {
-        ArrayList<Creek> lc = new ArrayList<Creek>();
-        ArrayList<Biome> lb = new ArrayList<Biome>();
+        ArrayList<Creek> lc = new ArrayList<>();
+        ArrayList<Biome> lb = new ArrayList<>();
         lb.add(new Biome(BiomeType.ALPINE));
         lc.add(new Creek("id"));
          map.getFlyingmap().put(new Coordinates(5, 5), new FlyTile(lb,lc,Type.GROUND));

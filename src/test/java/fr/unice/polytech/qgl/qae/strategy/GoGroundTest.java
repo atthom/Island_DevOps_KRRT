@@ -22,17 +22,42 @@ public class GoGroundTest {
     AbstractStrategy ex;
     Objectif ob;
 
+    FlyTile ocean;
+    FlyTile ground;
+
     @Before
     public void setUp() throws Exception {
         ex = new FlyingStrategy(Direction.S, ob);
         m = new Map();
-        m.getFlyingmap().put(new Coordinates(5,10),new FlyTile(Type.GROUND));
+        ocean = new FlyTile(Type.OCEAN);
+        ground = new FlyTile(Type.GROUND);
+        m.getFlyingmap().put(new Coordinates(5, 10), ground);
         gg = new GoGround(ex, new Coordinates(5, 5), Direction.S, m);
+
     }
+
+    /**
+     * Test of getfirstground method, of class GoGround.
+     */
+  @Test
+    public void testGetfirstground() {
+        assertEquals(new Coordinates(5, 10), gg.getfirstground());
+    }
+    
+//      @Test
+//    public void testGetfirstground2() {
+//
+//        Coordinates c = new Coordinates(0, 0);
+//        gg.map.getFlyingmap().maj(new Coordinates(5, 10), ocean);
+//        gg.map.getFlyingmap().put(new Coordinates(3, 0), ocean);
+//        gg.map.getFlyingmap().put(new Coordinates(2, 0), ocean);
+//        assertEquals(c, gg.getfirstground());
+//    }
 
     @Test
     public void testExecute() throws Exception {
-        for (int i=0; i<5; i++) {
+
+        for (int i = 0; i < 5; i++) {
             assertEquals(new Fly(), gg.execute());
             assertEquals(gg, gg.getNext());
             gg.actions.remove(0);
@@ -42,4 +67,5 @@ public class GoGroundTest {
         assertEquals(new CreeksFinder(ex, gg.currents_coords, gg.d, gg.map), gg.getNext());
 
     }
+
 }

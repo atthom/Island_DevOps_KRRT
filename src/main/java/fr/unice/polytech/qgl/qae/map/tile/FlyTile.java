@@ -51,10 +51,6 @@ public class FlyTile extends Tile {
     public ArrayList<Creek> getCreeks() {
         return creeks;
     }
-    
-    
-    
-    
 
     /**
      * Case avec un type connu
@@ -108,6 +104,14 @@ public class FlyTile extends Tile {
             return false;
         }
         return Objects.equals(this.creeks, other.creeks);
+    }
+
+    @Override
+    public int hashCode() {
+        int hash = 3;
+        hash = 67 * hash + Objects.hashCode(this.t);
+        hash = 67 * hash + Objects.hashCode(this.creeks);
+        return hash;
     }
 
     
