@@ -10,9 +10,9 @@ import org.json.JSONObject;
  */
 public abstract class AbstractAction {
 
-    private int moy_actionCost;
-    private int nb_set;
-    private final String name;
+    protected int moy_actionCost;
+    protected int nb_set;
+    protected final String name;
 
     /**
      * Permet de crée facilement une action sans parametre sous format JSON

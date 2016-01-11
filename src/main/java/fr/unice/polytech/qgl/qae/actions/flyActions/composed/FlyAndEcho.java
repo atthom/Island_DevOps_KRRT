@@ -1,5 +1,6 @@
 package fr.unice.polytech.qgl.qae.actions.flyActions.composed;
 
+import fr.unice.polytech.qgl.qae.actions.ComposedAction;
 import fr.unice.polytech.qgl.qae.actions.flyActions.withparams.Direction;
 import fr.unice.polytech.qgl.qae.actions.flyActions.withparams.Echo;
 import fr.unice.polytech.qgl.qae.map.geometry.Coordinates;

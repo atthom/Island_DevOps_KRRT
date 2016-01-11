@@ -1,4 +1,4 @@
-package fr.unice.polytech.qgl.qae.strategy;
+package fr.unice.polytech.qgl.qae.strategy.fly;
 
 import fr.unice.polytech.qgl.qae.actions.AbstractAction;
 import fr.unice.polytech.qgl.qae.actions.flyActions.composed.FlyAndScan;
@@ -12,6 +12,9 @@ import fr.unice.polytech.qgl.qae.map.BiomeType;
 import fr.unice.polytech.qgl.qae.map.Map;
 import fr.unice.polytech.qgl.qae.map.geometry.Coordinates;
 import fr.unice.polytech.qgl.qae.map.tile.FlyTile;
+import fr.unice.polytech.qgl.qae.strategy.AbstractPhase;
+import fr.unice.polytech.qgl.qae.strategy.AbstractStrategy;
+import fr.unice.polytech.qgl.qae.strategy.choosecreeks.ChooseCreek;
 
 /**
  * Created by user on 05/12/15.

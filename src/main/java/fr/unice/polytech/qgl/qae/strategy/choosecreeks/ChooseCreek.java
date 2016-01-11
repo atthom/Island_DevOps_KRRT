@@ -1,5 +1,6 @@
-package fr.unice.polytech.qgl.qae.strategy;
+package fr.unice.polytech.qgl.qae.strategy.choosecreeks;
 
+import fr.unice.polytech.qgl.qae.strategy.ground.InitTerrestre;
 import fr.unice.polytech.qgl.qae.actions.AbstractAction;
 import fr.unice.polytech.qgl.qae.actions.flyActions.simple.Stop;
 import fr.unice.polytech.qgl.qae.actions.flyActions.withparams.Direction;
@@ -10,6 +11,8 @@ import fr.unice.polytech.qgl.qae.map.Map;
 import fr.unice.polytech.qgl.qae.map.geometry.Coordinates;
 import fr.unice.polytech.qgl.qae.map.tile.Creek;
 import fr.unice.polytech.qgl.qae.map.tile.FlyTile;
+import fr.unice.polytech.qgl.qae.strategy.AbstractPhase;
+import fr.unice.polytech.qgl.qae.strategy.AbstractStrategy;
 
 /**
  * Created by user on 20/12/2015.

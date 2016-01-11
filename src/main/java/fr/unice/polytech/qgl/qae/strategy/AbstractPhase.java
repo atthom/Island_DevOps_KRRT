@@ -6,7 +6,7 @@
 package fr.unice.polytech.qgl.qae.strategy;
 
 import fr.unice.polytech.qgl.qae.actions.AbstractAction;
-import fr.unice.polytech.qgl.qae.actions.flyActions.composed.ComposedAction;
+import fr.unice.polytech.qgl.qae.actions.ComposedAction;
 import fr.unice.polytech.qgl.qae.actions.flyActions.withparams.Direction;
 import fr.unice.polytech.qgl.qae.actions.flyActions.withparams.Heading;
 import fr.unice.polytech.qgl.qae.map.Map;
@@ -21,14 +21,14 @@ import org.json.JSONObject;
  */
 public abstract class AbstractPhase {
 
-    final Map map;
-    Coordinates currents_coords;
-    Direction d;
-    final AbstractStrategy parent;
-    boolean next = false;
-    final ArrayList<AbstractAction> actions;
-    private final ManageReply manager;
-    private Direction old_direction;
+    protected final Map map;
+    protected Coordinates currents_coords;
+    protected Direction d;
+    protected final AbstractStrategy parent;
+    protected boolean next = false;
+    protected final ArrayList<AbstractAction> actions;
+    protected final ManageReply manager;
+    protected Direction old_direction;
 
     public AbstractPhase(AbstractStrategy parent, Coordinates currents_coords, Direction d, Map m) {
         this.currents_coords = currents_coords;
