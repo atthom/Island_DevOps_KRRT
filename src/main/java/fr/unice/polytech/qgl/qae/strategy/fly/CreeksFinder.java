@@ -6,7 +6,7 @@ import fr.unice.polytech.qgl.qae.actions.flyActions.composed.PrettyTTOL;
 import fr.unice.polytech.qgl.qae.actions.flyActions.composed.PrettyTTOR;
 import fr.unice.polytech.qgl.qae.actions.flyActions.simple.Fly;
 import fr.unice.polytech.qgl.qae.actions.flyActions.simple.Scan;
-import fr.unice.polytech.qgl.qae.actions.flyActions.simple.Stop;
+import fr.unice.polytech.qgl.qae.actions.Stop;
 import fr.unice.polytech.qgl.qae.actions.flyActions.withparams.Direction;
 import fr.unice.polytech.qgl.qae.map.BiomeType;
 import fr.unice.polytech.qgl.qae.map.Map;

@@ -2,7 +2,7 @@ package fr.unice.polytech.qgl.qae.actions.groundActions.withparams;
 
 import fr.unice.polytech.qgl.qae.actions.ActionWithParameters;
 import fr.unice.polytech.qgl.qae.actions.flyActions.withparams.Direction;
-import fr.unice.polytech.qgl.qae.actions.flyActions.withparams.Parameter;
+import fr.unice.polytech.qgl.qae.actions.Parameter;
 import fr.unice.polytech.qgl.qae.map.geometry.Coordinates;
 import org.json.JSONObject;
 
@@ -28,7 +28,7 @@ public class MoveTo extends ActionWithParameters {
      * @param s
      */
     public MoveTo(String s) {
-        super(new Parameter("direction", new JSONObject(s).get("direction")), "move_to");
+        super(new Parameter("direction", new JSONObject(s).getEnum(Direction.class, "direction")), "move_to");
     }
 
     @Override
@@ -41,7 +41,6 @@ public class MoveTo extends ActionWithParameters {
             case E:
                 c.addX(1);
                 break;
-
             case W:
                 c.addX(-1);
                 break;

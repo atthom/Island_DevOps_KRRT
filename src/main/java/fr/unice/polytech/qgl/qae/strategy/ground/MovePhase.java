@@ -4,7 +4,7 @@ import fr.unice.polytech.qgl.qae.Objectif;
 import fr.unice.polytech.qgl.qae.actions.AbstractAction;
 import fr.unice.polytech.qgl.qae.actions.flyActions.withparams.Direction;
 import fr.unice.polytech.qgl.qae.actions.groundActions.withparams.MoveTo;
-import fr.unice.polytech.qgl.qae.actions.flyActions.simple.Stop;
+import fr.unice.polytech.qgl.qae.actions.Stop;
 import fr.unice.polytech.qgl.qae.map.Map;
 import fr.unice.polytech.qgl.qae.map.geometry.Coordinates;
 import fr.unice.polytech.qgl.qae.map.tile.GroundTile;

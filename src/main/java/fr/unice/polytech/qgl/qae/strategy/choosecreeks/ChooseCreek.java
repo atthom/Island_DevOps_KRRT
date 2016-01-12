@@ -2,9 +2,9 @@ package fr.unice.polytech.qgl.qae.strategy.choosecreeks;
 
 import fr.unice.polytech.qgl.qae.strategy.ground.InitTerrestre;
 import fr.unice.polytech.qgl.qae.actions.AbstractAction;
-import fr.unice.polytech.qgl.qae.actions.flyActions.simple.Stop;
+import fr.unice.polytech.qgl.qae.actions.Stop;
 import fr.unice.polytech.qgl.qae.actions.flyActions.withparams.Direction;
-import fr.unice.polytech.qgl.qae.actions.flyActions.withparams.Land;
+import fr.unice.polytech.qgl.qae.actions.Land;
 
 import fr.unice.polytech.qgl.qae.exceptions.MapExeption;
 import fr.unice.polytech.qgl.qae.map.Map;

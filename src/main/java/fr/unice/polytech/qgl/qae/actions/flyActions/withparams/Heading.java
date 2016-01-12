@@ -1,5 +1,6 @@
 package fr.unice.polytech.qgl.qae.actions.flyActions.withparams;
 
+import fr.unice.polytech.qgl.qae.actions.Parameter;
 import fr.unice.polytech.qgl.qae.actions.ActionWithParameters;
 import fr.unice.polytech.qgl.qae.map.geometry.Coordinates;
 import org.json.JSONObject;
@@ -24,7 +25,7 @@ public class Heading extends ActionWithParameters {
      * @param s
      */
     public Heading(String s) {
-        super(new Parameter("direction", new JSONObject(s).get("direction")), "heading");
+        super(new Parameter("direction", new JSONObject(s).getEnum(Direction.class, "direction")), "heading");
     }
 
     @Override

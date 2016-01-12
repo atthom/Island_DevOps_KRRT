@@ -8,7 +8,6 @@ package fr.unice.polytech.qgl.qae.actions;
 import java.util.ArrayList;
 import java.util.Objects;
 
-import fr.unice.polytech.qgl.qae.actions.flyActions.withparams.Parameter;
 import org.json.JSONObject;
 
 /**
@@ -76,6 +75,13 @@ abstract public class ActionWithParameters extends AbstractAction {
         }
         final ActionWithParameters other = (ActionWithParameters) obj;
         return Objects.equals(this.parameters, other.parameters);
+    }
+
+    @Override
+    public int hashCode() {
+        int hash = 5;
+        hash = 19 * hash + Objects.hashCode(this.parameters);
+        return hash;
     }
 
 }

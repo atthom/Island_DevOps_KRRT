@@ -3,7 +3,7 @@ package fr.unice.polytech.qgl.qae.actions.groundActions.withparams;
 
 import fr.unice.polytech.qgl.qae.actions.ActionWithParameters;
 import fr.unice.polytech.qgl.qae.actions.flyActions.withparams.Direction;
-import fr.unice.polytech.qgl.qae.actions.flyActions.withparams.Parameter;
+import fr.unice.polytech.qgl.qae.actions.Parameter;
 import org.json.JSONObject;
 
 /**
@@ -21,11 +21,14 @@ public class Scout extends ActionWithParameters {
      * @param s
      */
     public Scout(String s) {
-        super(new Parameter("direction", new JSONObject(s).get("direction")), "scout");
+      //  Direction.valueOf(name)
+        super(new Parameter("direction", new JSONObject(s).getEnum(Direction.class, "direction")), "scout");
     }
 
     @Override
     public Direction getValueParameter() {
         return (Direction) parameters.get(0).getValeur();
     }
+    
+    
 }

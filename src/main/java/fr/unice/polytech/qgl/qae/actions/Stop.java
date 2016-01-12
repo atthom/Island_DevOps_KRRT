@@ -3,9 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package fr.unice.polytech.qgl.qae.actions.groundActions.simple;
-
-import fr.unice.polytech.qgl.qae.actions.AbstractAction;
+package fr.unice.polytech.qgl.qae.actions;
 
 /**
  *
