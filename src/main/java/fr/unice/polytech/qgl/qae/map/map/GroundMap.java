@@ -1,7 +1,6 @@
 package fr.unice.polytech.qgl.qae.map.map;
 
 import fr.unice.polytech.qgl.qae.map.geometry.Coordinates;
-import fr.unice.polytech.qgl.qae.map.tile.FlyTile;
 import fr.unice.polytech.qgl.qae.map.tile.GroundTile;
 
 import java.util.ArrayList;
@@ -21,6 +20,7 @@ public class GroundMap extends AbstractMap {
 
     /**
      * Ajoute une case dans la map si elle est absente
+     *
      * @param c
      * @param t
      */

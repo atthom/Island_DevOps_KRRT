@@ -1,6 +1,5 @@
 package fr.unice.polytech.qgl.qae.strategy.ground;
 
-import fr.unice.polytech.qgl.qae.Objectif;
 import fr.unice.polytech.qgl.qae.actions.AbstractAction;
 import fr.unice.polytech.qgl.qae.actions.flyActions.withparams.Direction;
 import fr.unice.polytech.qgl.qae.actions.groundActions.withparams.MoveTo;
@@ -42,13 +41,13 @@ public class MovePhase extends AbstractPhase {
 
                 for (int k = 0; k < t.getRessource().size(); k++) {
                     if (parent.getObjectif().getContract().get(i).getName().equals(t.getRessource().get(k).getName())) {
-                        if(t.getRessource().get(k).getName().equals(ResourceType.FISH) && dir.equals(Direction.N))
+                        if(t.getRessource().get(k).getName().equals(ResourceType.FISH.toString()) && dir.equals(Direction.N))
                             fN =true;
-                        if(t.getRessource().get(k).getName().equals(ResourceType.FISH) && dir.equals(Direction.S))
+                        if(t.getRessource().get(k).getName().equals(ResourceType.FISH.toString()) && dir.equals(Direction.S))
                             fS =true;
-                        if(t.getRessource().get(k).getName().equals(ResourceType.FISH) && dir.equals(Direction.E))
+                        if(t.getRessource().get(k).getName().equals(ResourceType.FISH.toString()) && dir.equals(Direction.E))
                             fE =true;
-                        if(t.getRessource().get(k).getName().equals(ResourceType.FISH) && dir.equals(Direction.W))
+                        if(t.getRessource().get(k).getName().equals(ResourceType.FISH.toString()) && dir.equals(Direction.W))
                             fW =true;
                         mt = new MoveTo(dir);
                         find = true;
@@ -83,6 +82,7 @@ public class MovePhase extends AbstractPhase {
         actions.add(mt);
     }
 
+    @Override
     public AbstractPhase getNext() {
         if(find)
             return new ExploitPhase(parent,currents_coords,d,map);

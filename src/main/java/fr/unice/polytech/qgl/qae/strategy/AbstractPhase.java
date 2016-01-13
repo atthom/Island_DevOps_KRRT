@@ -21,12 +21,12 @@ import org.json.JSONObject;
  */
 public abstract class AbstractPhase {
 
-    protected final Map map;
-    protected Coordinates currents_coords;
-    protected Direction d;
+    public final Map map;
+    public Coordinates currents_coords;
+    public Direction d;
     protected final AbstractStrategy parent;
     protected boolean next = false;
-    protected final ArrayList<AbstractAction> actions;
+    public final ArrayList<AbstractAction> actions;
     protected final ManageReply manager;
     protected Direction old_direction;
 
@@ -38,7 +38,6 @@ public abstract class AbstractPhase {
         this.manager = new ManageReply();
         this.actions = new ArrayList<>();
     }
-
 
     // Phase Terrestre
     public AbstractPhase(AbstractStrategy parent, Coordinates currents_coords, Map m) {
@@ -69,9 +68,8 @@ public abstract class AbstractPhase {
     }
 
     public abstract AbstractPhase getNext();
-    
+
     public abstract AbstractAction execute();
-    
 
     public void acknowledge(JSONObject s) {
         Direction dd = d;
@@ -88,14 +86,24 @@ public abstract class AbstractPhase {
 
     @Override
     public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
+        if (this == o) {
+            return true;
+        }
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
 
         AbstractPhase that = (AbstractPhase) o;
 
-        if (!map.equals(that.map)) return false;
-        if (!currents_coords.equals(that.currents_coords)) return false;
-        if (d != that.d) return false;
+        if (!map.equals(that.map)) {
+            return false;
+        }
+        if (!currents_coords.equals(that.currents_coords)) {
+            return false;
+        }
+        if (d != that.d) {
+            return false;
+        }
         return parent.equals(that.parent);
 
     }

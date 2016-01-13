@@ -2,8 +2,6 @@ package fr.unice.polytech.qgl.qae.strategy.ground;
 
 import fr.unice.polytech.qgl.qae.actions.AbstractAction;
 import fr.unice.polytech.qgl.qae.actions.flyActions.withparams.Direction;
-import fr.unice.polytech.qgl.qae.actions.groundActions.withparams.Glimpse;
-import fr.unice.polytech.qgl.qae.actions.groundActions.withparams.MoveTo;
 import fr.unice.polytech.qgl.qae.actions.groundActions.withparams.Scout;
 import fr.unice.polytech.qgl.qae.map.Map;
 import fr.unice.polytech.qgl.qae.map.geometry.Coordinates;
@@ -31,6 +29,7 @@ public class InitTerrestre extends AbstractPhase {
         */
     }
 
+    @Override
     public AbstractPhase getNext() {
         if(actions.isEmpty())
             return new ScoutPhase(parent,currents_coords,d,map);

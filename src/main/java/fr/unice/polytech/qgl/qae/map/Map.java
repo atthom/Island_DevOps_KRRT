@@ -10,9 +10,6 @@ import fr.unice.polytech.qgl.qae.map.map.FlyingMap;
 import fr.unice.polytech.qgl.qae.map.map.GroundMap;
 import fr.unice.polytech.qgl.qae.map.tile.FlyTile;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.LinkedHashMap;
 
 /**
  * Classe Map permettant de stocker les informations sur les cases et les
@@ -46,7 +43,10 @@ public class Map {
         return groundmap;
     }
    
-    
+    public void flush() {
+        this.flyingmap = new FlyingMap();
+        this.groundmap = new GroundMap();
+    }
     
 
    

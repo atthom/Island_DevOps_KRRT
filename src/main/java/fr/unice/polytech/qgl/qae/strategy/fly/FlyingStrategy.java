@@ -16,7 +16,9 @@ import fr.unice.polytech.qgl.qae.strategy.AbstractStrategy;
  * @author Thom
  */
 public class FlyingStrategy extends AbstractStrategy {
+
     final Direction first;
+
     public FlyingStrategy(Direction d, Objectif ob) {
         super(ob);
         this.first = d;

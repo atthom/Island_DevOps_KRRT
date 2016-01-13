@@ -1,15 +1,14 @@
-package fr.unice.polytech.qgl.qae.strategy;
+package fr.unice.polytech.qgl.qae.strategy.fly;
 
-import fr.unice.polytech.qgl.qae.strategy.fly.GoGround;
-import fr.unice.polytech.qgl.qae.strategy.fly.CreeksFinder;
-import fr.unice.polytech.qgl.qae.strategy.fly.FlyingStrategy;
 import fr.unice.polytech.qgl.qae.Objectif;
 import fr.unice.polytech.qgl.qae.actions.flyActions.simple.Fly;
 import fr.unice.polytech.qgl.qae.actions.flyActions.withparams.Direction;
+import fr.unice.polytech.qgl.qae.actions.flyActions.withparams.Echo;
 import fr.unice.polytech.qgl.qae.map.Map;
 import fr.unice.polytech.qgl.qae.map.Type;
 import fr.unice.polytech.qgl.qae.map.geometry.Coordinates;
 import fr.unice.polytech.qgl.qae.map.tile.FlyTile;
+import fr.unice.polytech.qgl.qae.strategy.AbstractStrategy;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -47,7 +46,7 @@ public class GoGroundTest {
         assertEquals(new Coordinates(5, 10), gg.getfirstground());
     }
     
-//      @Test
+//    @Test
 //    public void testGetfirstground2() {
 //
 //        Coordinates c = new Coordinates(0, 0);
@@ -59,16 +58,31 @@ public class GoGroundTest {
 
     @Test
     public void testExecute() throws Exception {
-
         for (int i = 0; i < 5; i++) {
             assertEquals(new Fly(), gg.execute());
             assertEquals(gg, gg.getNext());
             gg.actions.remove(0);
         }
+        
         assertTrue(gg.actions.isEmpty());
+     //   assertEquals(new CreeksFinder(ex, gg.currents_coords, gg.d, gg.map), gg.getNext());
+    }
 
-        assertEquals(new CreeksFinder(ex, gg.currents_coords, gg.d, gg.map), gg.getNext());
-
+    
+    /**
+     * Test of getNext method, of class GoGround.
+     */
+    @Test
+    public void testGetNext() {
+        assertEquals(gg.getNext(), gg);
+        gg.execute();
+        assertEquals(gg.getNext(), gg);
+        gg.actions.clear();
+        gg.execute();
+        assertEquals(gg.getNext(), gg);
+        gg.map.getFlyingmap().put(new Coordinates(5, 5), ocean);
+//        assertEquals(new Echo(gg.d), gg.execute());
+        
     }
 
 }

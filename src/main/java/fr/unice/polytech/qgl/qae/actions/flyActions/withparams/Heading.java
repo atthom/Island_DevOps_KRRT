@@ -6,7 +6,7 @@ import fr.unice.polytech.qgl.qae.map.geometry.Coordinates;
 import org.json.JSONObject;
 
 /**
- * Created by Lo�c on 11/15/2015.
+ * Created by Loic on 11/15/2015.
  */
 public class Heading extends ActionWithParameters {
 

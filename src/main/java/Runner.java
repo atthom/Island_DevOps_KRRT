@@ -1,5 +1,3 @@
-
-
 import fr.unice.polytech.qgl.qae.Explorer;
 
 import java.io.File;

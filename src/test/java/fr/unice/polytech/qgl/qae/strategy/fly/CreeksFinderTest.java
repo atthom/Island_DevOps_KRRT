@@ -1,4 +1,4 @@
-package fr.unice.polytech.qgl.qae.strategy;
+package fr.unice.polytech.qgl.qae.strategy.fly;
 
 import fr.unice.polytech.qgl.qae.strategy.fly.FlyingStrategy;
 import fr.unice.polytech.qgl.qae.strategy.fly.CreeksFinder;
@@ -10,6 +10,7 @@ import fr.unice.polytech.qgl.qae.map.Map;
 import fr.unice.polytech.qgl.qae.map.Type;
 import fr.unice.polytech.qgl.qae.map.geometry.Coordinates;
 import fr.unice.polytech.qgl.qae.map.tile.FlyTile;
+import fr.unice.polytech.qgl.qae.strategy.AbstractStrategy;
 import static org.junit.Assert.*;
 
 import org.json.JSONObject;

@@ -67,7 +67,4 @@ public abstract class ComposedAction {
         return this.actions;
     }
 
-    public void maj_coord(Coordinates c, Direction dir) {
-
-    }
 }

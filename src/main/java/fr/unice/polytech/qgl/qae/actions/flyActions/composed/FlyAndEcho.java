@@ -18,5 +18,27 @@ public final class FlyAndEcho extends ComposedAction {
         super.add(new Echo(dirEcho));
         maj_coord(current, dir);
     }
+    
+    /**
+     * Mise à jour des coordonnées et de la direction
+     * @param c
+     * @param dir
+     */
+    private void maj_coord(Coordinates c, Direction dir) {
+        switch (dir) {
+            case N:
+                super.coords = new Coordinates(c.getX(), c.getY() +1 );
+                break;
+            case S:
+                super.coords = new Coordinates(c.getX(), c.getY() -1 );
+                break;
+            case E:
+                super.coords = new Coordinates(c.getX() +1, c.getY());
+                break;
+            default:
+               super.coords = new Coordinates(c.getX() -1, c.getY());
+                break;
+        }
+    }
 
 }
