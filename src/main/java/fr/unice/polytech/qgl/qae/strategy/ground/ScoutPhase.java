@@ -1,12 +1,13 @@
-package fr.unice.polytech.qgl.qae.strategy;
+package fr.unice.polytech.qgl.qae.strategy.ground;
 
 import fr.unice.polytech.qgl.qae.actions.AbstractAction;
-import fr.unice.polytech.qgl.qae.actions.flyActions.simple.Stop;
+import fr.unice.polytech.qgl.qae.actions.Stop;
 import fr.unice.polytech.qgl.qae.actions.flyActions.withparams.Direction;
-import fr.unice.polytech.qgl.qae.actions.groundActions.withparams.MoveTo;
 import fr.unice.polytech.qgl.qae.actions.groundActions.withparams.Scout;
 import fr.unice.polytech.qgl.qae.map.Map;
 import fr.unice.polytech.qgl.qae.map.geometry.Coordinates;
+import fr.unice.polytech.qgl.qae.strategy.AbstractPhase;
+import fr.unice.polytech.qgl.qae.strategy.AbstractStrategy;
 
 /**
  * Created by user on 26/12/15.
@@ -27,6 +28,7 @@ public class ScoutPhase extends AbstractPhase {
         }
     }
 
+    @Override
     public AbstractPhase getNext() {
         if(actions.isEmpty())
             return new MovePhase(parent,currents_coords,d,map);

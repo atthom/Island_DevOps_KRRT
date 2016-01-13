@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package fr.unice.polytech.qgl.qae.actions.flyActions.withparams;
+package fr.unice.polytech.qgl.qae.actions;
 
 import fr.unice.polytech.qgl.qae.actions.ActionWithParameters;
 import fr.unice.polytech.qgl.qae.map.tile.Creek;
@@ -23,7 +23,7 @@ public class Land  extends ActionWithParameters {
 
     @Override
     public Object getValueParameter() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+       return parameters.get(0);
     }
 
 }

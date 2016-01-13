@@ -2,7 +2,7 @@ package fr.unice.polytech.qgl.qae;
 
 import eu.ace_design.island.bot.IExplorerRaid;
 import fr.unice.polytech.qgl.qae.strategy.AbstractStrategy;
-import fr.unice.polytech.qgl.qae.strategy.FlyingStrategy;
+import fr.unice.polytech.qgl.qae.strategy.fly.FlyingStrategy;
 import org.json.JSONObject;
 
 public class Explorer implements IExplorerRaid {

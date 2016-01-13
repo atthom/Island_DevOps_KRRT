@@ -3,20 +3,16 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package fr.unice.polytech.qgl.qae.strategy;
+package fr.unice.polytech.qgl.qae.strategy.ground;
 
+import fr.unice.polytech.qgl.qae.strategy.fly.FlyingStrategy;
 import fr.unice.polytech.qgl.qae.Objectif;
-import fr.unice.polytech.qgl.qae.actions.flyActions.simple.Fly;
 import fr.unice.polytech.qgl.qae.actions.flyActions.withparams.Direction;
-import fr.unice.polytech.qgl.qae.actions.flyActions.withparams.Echo;
-import fr.unice.polytech.qgl.qae.actions.flyActions.withparams.Heading;
 import fr.unice.polytech.qgl.qae.map.Map;
-import fr.unice.polytech.qgl.qae.map.Type;
 import fr.unice.polytech.qgl.qae.map.geometry.Coordinates;
-import fr.unice.polytech.qgl.qae.map.tile.FlyTile;
+import fr.unice.polytech.qgl.qae.strategy.AbstractPhase;
+import fr.unice.polytech.qgl.qae.strategy.AbstractStrategy;
 import org.junit.Before;
-import org.junit.Test;
-import static org.junit.Assert.*;
 /**
  *
  * @author user

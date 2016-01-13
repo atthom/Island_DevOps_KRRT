@@ -5,7 +5,7 @@
  */
 package fr.unice.polytech.qgl.qae.actions.flyActions.composed;
 
-import fr.unice.polytech.qgl.qae.actions.flyActions.simple.Scan;
+import fr.unice.polytech.qgl.qae.actions.ComposedAction;
 import fr.unice.polytech.qgl.qae.actions.flyActions.withparams.Direction;
 import fr.unice.polytech.qgl.qae.actions.flyActions.withparams.Heading;
 import fr.unice.polytech.qgl.qae.map.geometry.Coordinates;
@@ -20,9 +20,7 @@ public class TurnToOppositeLeft extends ComposedAction {
         super(c_current, d);
         
         super.add(new Heading(d.left()));
-        super.add(new Scan());
         super.add(new Heading(d.left().left()));
-        super.add(new Scan());
 
         maj_coord(d, c_current);
     }

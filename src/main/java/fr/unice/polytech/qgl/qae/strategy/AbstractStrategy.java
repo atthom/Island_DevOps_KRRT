@@ -15,8 +15,8 @@ import org.json.JSONObject;
  */
 public abstract class AbstractStrategy {
 
-    AbstractPhase current_phase;
-    Objectif ob;
+    protected AbstractPhase current_phase;
+    protected Objectif ob;
 
     public AbstractStrategy(Objectif ob) {
         this.ob = ob;

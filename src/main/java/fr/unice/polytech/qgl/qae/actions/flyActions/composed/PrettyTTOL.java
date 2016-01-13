@@ -5,11 +5,10 @@
  */
 package fr.unice.polytech.qgl.qae.actions.flyActions.composed;
 
-import fr.unice.polytech.qgl.qae.actions.AbstractAction;
+import fr.unice.polytech.qgl.qae.actions.ComposedAction;
 import fr.unice.polytech.qgl.qae.actions.flyActions.withparams.Direction;
 import fr.unice.polytech.qgl.qae.actions.flyActions.withparams.Heading;
 import fr.unice.polytech.qgl.qae.actions.flyActions.simple.Fly;
-import fr.unice.polytech.qgl.qae.actions.flyActions.simple.Scan;
 import fr.unice.polytech.qgl.qae.map.geometry.Coordinates;
 
 /**
@@ -20,21 +19,21 @@ public class PrettyTTOL extends ComposedAction {
 
     public PrettyTTOL(Coordinates c_current, Direction d) {
         super(c_current, d);
-       // super.add(new Scan());
+     
         super.add(new Heading(d.right()));
-        //super.add(new Scan());
+        
         super.add(new Heading(d));
-        //super.add(new Scan());
+       
         super.add(new Heading(d.left()));
-       // super.add(new Scan());
+       
         super.add(new Fly());
-       // super.add(new Scan());
+       
         super.add(new Heading(d.opposite()));
        
         super.add(new Fly());
-        //super.add(new Scan());
+        
         super.add(new Fly());
-       //super.add(new Scan());
+      
         maj_coord(d, c_current);
     }
 

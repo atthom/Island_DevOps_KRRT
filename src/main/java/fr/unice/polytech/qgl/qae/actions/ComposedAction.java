@@ -1,6 +1,5 @@
-package fr.unice.polytech.qgl.qae.actions.flyActions.composed;
+package fr.unice.polytech.qgl.qae.actions;
 
-import fr.unice.polytech.qgl.qae.actions.AbstractAction;
 import fr.unice.polytech.qgl.qae.actions.flyActions.withparams.Direction;
 import fr.unice.polytech.qgl.qae.map.geometry.Coordinates;
 
@@ -11,9 +10,9 @@ import java.util.ArrayList;
  * @author user
  */
 public abstract class ComposedAction {
-    ArrayList<AbstractAction> actions;
-    Coordinates coords;
-    Direction dir;
+    protected ArrayList<AbstractAction> actions;
+    protected Coordinates coords;
+    protected Direction dir;
 
     /**
      * Action composé d'autres actions
@@ -68,7 +67,4 @@ public abstract class ComposedAction {
         return this.actions;
     }
 
-    public void maj_coord(Coordinates c, Direction dir) {
-
-    }
 }

@@ -5,6 +5,7 @@
  */
 package fr.unice.polytech.qgl.qae.actions.flyActions.composed;
 
+import fr.unice.polytech.qgl.qae.actions.ComposedAction;
 import fr.unice.polytech.qgl.qae.actions.flyActions.withparams.Direction;
 import fr.unice.polytech.qgl.qae.actions.flyActions.simple.Fly;
 import fr.unice.polytech.qgl.qae.actions.flyActions.simple.Scan;
@@ -33,8 +34,7 @@ public final class FlyAndScan extends ComposedAction {
      * @param c
      * @param dir
      */
-    @Override
-    public void maj_coord(Coordinates c, Direction dir) {
+    private void maj_coord(Coordinates c, Direction dir) {
         switch (dir) {
             case N:
                 super.coords = new Coordinates(c.getX(), c.getY() +1 );

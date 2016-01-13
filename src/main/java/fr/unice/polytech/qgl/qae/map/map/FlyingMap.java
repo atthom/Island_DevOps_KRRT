@@ -9,22 +9,24 @@ import java.util.HashMap;
 /**
  * Created by user on 21/12/2015.
  */
-public class FlyingMap extends  AbstractMap {
+public class FlyingMap extends AbstractMap {
 
     HashMap<Coordinates, FlyTile> map;
 
     public FlyingMap() {
         super(new ArrayList<>());
         this.map = new HashMap<>();
-        put(new Coordinates(0,0), new FlyTile());
+        put(new Coordinates(0, 0), new FlyTile());
+
     }
-    
+
     public int size() {
         return coordinates.size();
     }
 
     /**
      * Renvoie la case si elle existe
+     *
      * @param c2
      * @return
      */
@@ -40,6 +42,7 @@ public class FlyingMap extends  AbstractMap {
 
     /**
      * Met à jour une case déja explorée
+     *
      * @param c
      * @param t
      */
@@ -50,6 +53,7 @@ public class FlyingMap extends  AbstractMap {
 
     /**
      * Ajoute une case dans la map si elle est absente
+     *
      * @param c
      * @param t
      */
@@ -59,7 +63,7 @@ public class FlyingMap extends  AbstractMap {
     }
 
     public FlyTile getlastFlyTile() {
-        return map.get(coordinates.get(coordinates.size()-1));
+        return map.get(coordinates.get(coordinates.size() - 1));
     }
 
 }
