@@ -1,6 +1,7 @@
-package fr.unice.polytech.qgl.qae.map;
+package fr.unice.polytech.qgl.qae.map.tile;
 
-import fr.unice.polytech.qgl.qae.map.tile.GroundTile;
+import fr.unice.polytech.qgl.qae.map.Biome;
+import fr.unice.polytech.qgl.qae.map.BiomeType;
 import org.junit.*;
 
 import static org.junit.Assert.assertEquals;
@@ -8,7 +9,7 @@ import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 
 /**
- * Created by Loïc on 11/21/2015.
+ * Created by Loic on 11/21/2015.
  */
 public class GroundTileTest {
 

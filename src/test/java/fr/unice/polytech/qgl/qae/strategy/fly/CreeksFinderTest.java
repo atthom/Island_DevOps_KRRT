@@ -1,7 +1,7 @@
 package fr.unice.polytech.qgl.qae.strategy.fly;
 
 import fr.unice.polytech.qgl.qae.Objectif;
-import fr.unice.polytech.qgl.qae.actions.AbstractAction;
+import fr.unice.polytech.qgl.qae.actions.Stop;
 import fr.unice.polytech.qgl.qae.actions.flyActions.simple.Fly;
 import fr.unice.polytech.qgl.qae.actions.flyActions.simple.Scan;
 import fr.unice.polytech.qgl.qae.actions.flyActions.withparams.Direction;
@@ -13,6 +13,7 @@ import fr.unice.polytech.qgl.qae.map.geometry.Coordinates;
 import fr.unice.polytech.qgl.qae.map.tile.Creek;
 import fr.unice.polytech.qgl.qae.map.tile.FlyTile;
 import fr.unice.polytech.qgl.qae.strategy.AbstractStrategy;
+import fr.unice.polytech.qgl.qae.strategy.choosecreeks.ChooseCreek;
 import java.util.ArrayList;
 import static org.junit.Assert.*;
 
@@ -114,8 +115,26 @@ public class CreeksFinderTest {
      */
     @Test
     public void testGetNext() {
+        putOcean(); 
+        assertEquals(cf, cf.getNext());
+
+        putcreek();
+        cf.actions.clear();
+        assertEquals(new ChooseCreek(ex, cf.currents_coords, cf.d, m), cf.getNext());
         
-    //    cf.
+       
+    }
+    
+    /**
+     *
+     */
+    @Test
+    public void testGetNext2() {
+        putOcean2();
+        cf.phaseA();
+        cf.actions.clear();
+        assertEquals(cf, cf.getNext());
+        assertEquals(new Stop(),cf.actions.get(0)); 
     }
 
     /**
@@ -147,14 +166,19 @@ public class CreeksFinderTest {
     /**
      * Test of last_have_creek method, of class CreeksFinder.
      */
+    private void putcreek() {
+        ArrayList<Creek> cs = new ArrayList<>();
+        cs.add(new Creek("addad"));
+        cf.map.getFlyingmap().put(new Coordinates(7, 6), new FlyTile(new ArrayList<>(), cs, Type.GROUND));
+    }
+    
     @Test
     public void testLast_have_creek() {
         cf.map.getFlyingmap().put(new Coordinates(6, 6), new FlyTile());
         assertFalse(cf.last_have_creek());
         
-        ArrayList<Creek> cs = new ArrayList<>();
-        cs.add(new Creek("addad"));
-        cf.map.getFlyingmap().put(new Coordinates(7, 6), new FlyTile(new ArrayList<>(), cs, Type.GROUND));
+        putcreek();
+        
         assertTrue(cf.last_have_creek());
         
     }
@@ -172,11 +196,22 @@ public class CreeksFinderTest {
         cf.map.getFlyingmap().setMax(new Coordinates(100, 100));
         cf.currents_coords = new Coordinates(4, 4);
         cf.phaseA();
-        cf.actions.remove(0);        cf.actions.remove(0);  
-        cf.actions.remove(0);        cf.actions.remove(0);
-        cf.actions.remove(0);        cf.actions.remove(0);
-        cf.actions.remove(0);
-        assertEquals(cf.actions.get(0), new Scan());
+        assertEquals(cf.actions.get(7), new Scan());
+        assertEquals(cf.actions.get(8), new Fly());
+        assertEquals(cf.actions.get(9), new Scan());
+      
+        
+        cf.actions.clear();
+        cf.map.flush();
+        putOcean2();
+        cf.map.getFlyingmap().setMin(new Coordinates(0, 0));
+        cf.map.getFlyingmap().setMax(new Coordinates(100, 100));
+        cf.currents_coords = new Coordinates(4, 4);
+        cf.phaseA();
+        assertEquals(cf.actions.get(7), new Scan());
+        assertEquals(cf.actions.get(8), new Fly());
+     
+       
         
         
         

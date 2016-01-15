@@ -79,5 +79,14 @@ public abstract class AbstractAction {
         }
         return Objects.equals(this.name, other.name);
     }
+
+    @Override
+    public int hashCode() {
+        int hash = 3;
+        hash = 53 * hash + this.moy_actionCost;
+        hash = 53 * hash + this.nb_set;
+        hash = 53 * hash + Objects.hashCode(this.name);
+        return hash;
+    }
     
 }
