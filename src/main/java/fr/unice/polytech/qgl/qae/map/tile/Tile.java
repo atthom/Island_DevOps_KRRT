@@ -7,11 +7,8 @@ package fr.unice.polytech.qgl.qae.map.tile;
 
 import fr.unice.polytech.qgl.qae.map.Biome;
 import fr.unice.polytech.qgl.qae.map.BiomeType;
-import fr.unice.polytech.qgl.qae.map.Type;
-import static fr.unice.polytech.qgl.qae.map.Type.GROUND;
-import static fr.unice.polytech.qgl.qae.map.Type.OCEAN;
-import static fr.unice.polytech.qgl.qae.map.Type.UNKNOWN_TYPE;
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Objects;
 
 /**
@@ -21,7 +18,7 @@ import java.util.Objects;
  */
 abstract public class Tile {
 
-    private ArrayList<Biome> biomes;
+    private List<Biome> biomes;
 
     public Tile() {
         biomes = new ArrayList<>();

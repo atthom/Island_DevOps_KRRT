@@ -5,7 +5,6 @@
  */
 package fr.unice.polytech.qgl.qae.map.tile;
 
-import fr.unice.polytech.qgl.qae.map.Biome;
 import fr.unice.polytech.qgl.qae.map.Type;
 import java.util.ArrayList;
 import org.junit.Before;
@@ -27,8 +26,8 @@ public class FlyTileTest {
     @Before
     public void setUp() {
         ft = new FlyTile();
-        ArrayList<Creek> cs = new ArrayList<>();
-        cs.add(new Creek("aaa"));
+        ArrayList<String> cs = new ArrayList<>();
+        cs.add("aaa");
         wicree = new FlyTile(new ArrayList<>(), cs, Type.OCEAN); 
         witype = new FlyTile(Type.UNKNOWN_TYPE);
         assertEquals(witype, ft);

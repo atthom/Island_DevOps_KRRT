@@ -87,8 +87,8 @@ public class ManageReplyTest {
         
         ArrayList<Biome> b = new ArrayList<>();
         b.add(new Biome(BiomeType.BEACH));
-        ArrayList<Creek> c= new ArrayList<>();
-        c.add(new Creek("id"));
+        ArrayList<String> c= new ArrayList<>();
+        c.add("id");
         FlyTile ft = new FlyTile(b, c, Type.UNKNOWN_TYPE);
         assertEquals(ft, map.getFlyTile(new Coordinates(5,5)));
         o = new JSONObject("{\"cost\": 2, \"extras\": { \"biomes\": [\"OCEAN\"], \"creeks\": []}, \"status\": \"OK\"}");

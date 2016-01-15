@@ -3,7 +3,6 @@ package fr.unice.polytech.qgl.qae.strategy.fly;
 import fr.unice.polytech.qgl.qae.Objectif;
 import fr.unice.polytech.qgl.qae.actions.flyActions.simple.Fly;
 import fr.unice.polytech.qgl.qae.actions.flyActions.withparams.Direction;
-import fr.unice.polytech.qgl.qae.actions.flyActions.withparams.Echo;
 import fr.unice.polytech.qgl.qae.map.Map;
 import fr.unice.polytech.qgl.qae.map.Type;
 import fr.unice.polytech.qgl.qae.map.geometry.Coordinates;

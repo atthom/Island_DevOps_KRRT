@@ -11,7 +11,6 @@ import fr.unice.polytech.qgl.qae.map.Biome;
 import fr.unice.polytech.qgl.qae.map.tile.FlyTile;
 import fr.unice.polytech.qgl.qae.map.Map;
 import fr.unice.polytech.qgl.qae.map.tile.GroundTile;
-import fr.unice.polytech.qgl.qae.map.tile.Tile;
 import fr.unice.polytech.qgl.qae.map.tile.Creek;
 import fr.unice.polytech.qgl.qae.map.Type;
 import fr.unice.polytech.qgl.qae.map.geometry.Coordinates;
@@ -89,9 +88,9 @@ public class ManageReply {
         }
 
         JSONArray arr_creeks = extras.getJSONArray("creeks");
-        ArrayList<Creek> creeks = new ArrayList<>();
+        ArrayList<String> creeks = new ArrayList<>();
         for (int i = 0; i < arr_creeks.length(); i++) {
-            creeks.add(new Creek(arr_creeks.getString(i)));
+            creeks.add(arr_creeks.getString(i));
         }
 
         map.getFlyingmap().maj(currentCoords, new FlyTile(biomes, creeks, Type.UNKNOWN_TYPE));

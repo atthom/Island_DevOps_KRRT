@@ -6,6 +6,7 @@
 package fr.unice.polytech.qgl.qae.actions;
 
 import fr.unice.polytech.qgl.qae.map.tile.Creek;
+import org.json.JSONObject;
 import org.junit.Before;
 import org.junit.Test;
 import static org.junit.Assert.*;
@@ -22,17 +23,21 @@ public class LandTest {
     
     @Before
     public void setUp() {
-        Creek c = new Creek("la");
-        l = new Land(c, 8);
-       
+    
+        l = new Land("la", 8);
     }
 
     /**
      * Test of getValueParameter method, of class Land.
      */
     @Test
-    public void testGetValueParameter() {
-        assertEquals(8, l.getValueParameter());
+    public void testToJSON() {
+        JSONObject o = new JSONObject("{ \"action\": \"land\", \"parameters\": { \"creek\": \"la\", \"people\": 8}}");
+        
+        assertEquals(o.get("action"), l.toJSON().get("action"));
+        
+        assertEquals(o.getJSONObject("parameters").get("creek"), l.toJSON().getJSONObject("parameters").get("creek"));
+        assertEquals(o.getJSONObject("parameters").get("people"), l.toJSON().getJSONObject("parameters").get("people"));
     }
     
 }

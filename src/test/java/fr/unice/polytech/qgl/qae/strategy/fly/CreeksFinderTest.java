@@ -120,9 +120,7 @@ public class CreeksFinderTest {
 
         putcreek();
         cf.actions.clear();
-        assertEquals(new ChooseCreek(ex, cf.currents_coords, cf.d, m), cf.getNext());
-        
-       
+        assertEquals(new ChooseCreek(ex, cf.currents_coords, cf.d, m), cf.getNext());    
     }
     
     /**
@@ -167,8 +165,8 @@ public class CreeksFinderTest {
      * Test of last_have_creek method, of class CreeksFinder.
      */
     private void putcreek() {
-        ArrayList<Creek> cs = new ArrayList<>();
-        cs.add(new Creek("addad"));
+        ArrayList<String> cs = new ArrayList<>();
+        cs.add("addad");
         cf.map.getFlyingmap().put(new Coordinates(7, 6), new FlyTile(new ArrayList<>(), cs, Type.GROUND));
     }
     
@@ -176,11 +174,8 @@ public class CreeksFinderTest {
     public void testLast_have_creek() {
         cf.map.getFlyingmap().put(new Coordinates(6, 6), new FlyTile());
         assertFalse(cf.last_have_creek());
-        
         putcreek();
-        
         assertTrue(cf.last_have_creek());
-        
     }
 
     /**
@@ -209,15 +204,7 @@ public class CreeksFinderTest {
         cf.currents_coords = new Coordinates(4, 4);
         cf.phaseA();
         assertEquals(cf.actions.get(7), new Scan());
-        assertEquals(cf.actions.get(8), new Fly());
-     
-       
-        
-        
-        
-        
-        
-        
+        assertEquals(cf.actions.get(8), new Fly()); 
     }
 
     /**
@@ -258,8 +245,6 @@ public class CreeksFinderTest {
         cf.manageBC();
         assertEquals(Direction.N.opposite(), cf.d);
         assertEquals(new Coordinates(48, 100), cf.currents_coords);
-        
-        
     }
 
     /**
