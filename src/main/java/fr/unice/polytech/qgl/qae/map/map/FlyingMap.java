@@ -66,4 +66,11 @@ public class FlyingMap extends AbstractMap {
         return map.get(coordinates.get(coordinates.size() - 1));
     }
 
+    @Override
+    public String toString() {
+        return "FlyingMap{" + "map=" + map + '}';
+    }
+    
+    
+
 }

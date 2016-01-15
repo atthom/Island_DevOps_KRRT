@@ -36,9 +36,6 @@ public class ManageReply {
 
     public void manage(JSONObject js, Map map, Direction d, Coordinates currentCoords) {
 
-         
-        
-         
         JSONObject extras = js.getJSONObject("extras");
 
         if (extras.length() == 0) {
@@ -104,7 +101,6 @@ public class ManageReply {
      Create and initialize ground tile from scoot action
      */
     private void manage_scout(JSONObject js, Map map, Coordinates c) {
-        JSONFactory jfk = new JSONFactory();
         JSONObject extras = js.getJSONObject("extras");
 
         GroundTile t = new GroundTile();

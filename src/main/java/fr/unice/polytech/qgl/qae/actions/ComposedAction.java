@@ -4,6 +4,7 @@ import fr.unice.polytech.qgl.qae.actions.flyActions.withparams.Direction;
 import fr.unice.polytech.qgl.qae.map.geometry.Coordinates;
 
 import java.util.ArrayList;
+import java.util.Objects;
 
 /**
  *
@@ -66,5 +67,6 @@ public abstract class ComposedAction {
     public ArrayList<AbstractAction> getAll() {
         return this.actions;
     }
+
 
 }

@@ -19,7 +19,7 @@ import fr.unice.polytech.qgl.qae.strategy.choosecreeks.ChooseCreek;
  */
 public class CreeksFinder extends AbstractPhase {
 
-    private boolean turnleft = false;
+    public boolean turnleft = false;
 
     public CreeksFinder(AbstractStrategy parent, Coordinates currents_coords, Direction d, Map m) {
         super(parent, currents_coords, d, m);
@@ -51,7 +51,7 @@ public class CreeksFinder extends AbstractPhase {
         return actions.get(0);
     }
 
-    private void phaseA() {
+    public void phaseA() {
         manageBC();
         actions.add(new Scan());
         if (last_is_only_ocean()) {
@@ -66,7 +66,7 @@ public class CreeksFinder extends AbstractPhase {
         }
     }
 
-    private void manageBC() {
+    public void manageBC() {
         Coordinates min = map.getFlyingmap().getMin();
         Coordinates max = map.getFlyingmap().getMax();
         int c_X = currents_coords.getX();
@@ -82,8 +82,7 @@ public class CreeksFinder extends AbstractPhase {
         }
     }
 
-    private void phaseB() {
-
+    public void phaseB() {
         if (turnleft) {
             manageComposedAction(new PrettyTTOL(currents_coords, d));
             turnleft = false;
@@ -92,8 +91,9 @@ public class CreeksFinder extends AbstractPhase {
             turnleft = true;
         }
     }
+    
 
-    private void phaseC() {
+    public void phaseC() {
         if (turnleft) {
             manageComposedAction(new TurnToOppositeLeft(currents_coords, d));
             turnleft = false;
@@ -109,7 +109,6 @@ public class CreeksFinder extends AbstractPhase {
     }
 
     public boolean two_last_is_only_ocean() {
-
         FlyTile t = map.getLastFlyTile();
         FlyTile tt = map.getFlyTile(map.getFlyingmap().preced(map.getFlyingmap().getlastCoord()));
         return t.have_biome(BiomeType.OCEAN) && t.nb_biomes() == 1

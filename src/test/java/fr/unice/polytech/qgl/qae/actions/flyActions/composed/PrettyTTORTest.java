@@ -44,10 +44,10 @@ public class PrettyTTORTest {
         assertEquals(new Coordinates(0, 1), PrettyttorW.getCoords() );
         assertEquals(W.opposite(), PrettyttorW.getDir() );
         
-        assertEquals(new Coordinates(1, 0),PrettyttorS.getCoords() );
+        assertEquals(new Coordinates(-1, 0),PrettyttorS.getCoords() );
         assertEquals(S.opposite(),PrettyttorS.getDir() );
         
-        assertEquals(new Coordinates(-1, 0), PrettyttorN.getCoords());
+        assertEquals(new Coordinates(1, 0), PrettyttorN.getCoords());
         assertEquals(N.opposite(),PrettyttorN.getDir() );
     }
     

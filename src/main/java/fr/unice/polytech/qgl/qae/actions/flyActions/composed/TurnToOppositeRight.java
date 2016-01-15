@@ -36,10 +36,10 @@ public class TurnToOppositeRight extends ComposedAction {
                 this.coords = new Coordinates(c_curent.getX(), c_curent.getY() + 2);
                 break;
             case S:
-                this.coords = new Coordinates(c_curent.getX() + 2, c_curent.getY());
+                this.coords = new Coordinates(c_curent.getX() - 2, c_curent.getY());
                 break;
             default:
-                this.coords = new Coordinates(c_curent.getX() - 2, c_curent.getY());
+                this.coords = new Coordinates(c_curent.getX() + 2, c_curent.getY());
                 break;
         }
     }

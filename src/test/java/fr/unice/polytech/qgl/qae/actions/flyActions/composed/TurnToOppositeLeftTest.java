@@ -39,17 +39,17 @@ public class TurnToOppositeLeftTest {
 
     @Test
     public void testSomeMethod() {
-        assertEquals(ttolE.getCoords(), new Coordinates(0, 2));
-        assertEquals(ttolE.getDir(), E.opposite());
+        assertEquals(new Coordinates(0, 2),ttolE.getCoords() );
+        assertEquals(E.opposite(),ttolE.getDir() );
 
-        assertEquals(ttolW.getCoords(), new Coordinates(0, -2));
-        assertEquals(ttolW.getDir(), W.opposite());
+        assertEquals( new Coordinates(0, -2),ttolW.getCoords());
+        assertEquals(W.opposite(), ttolW.getDir());
 
-        assertEquals(ttolS.getCoords(), new Coordinates(-2, 0));
-        assertEquals(ttolS.getDir(), S.opposite());
+        assertEquals(new Coordinates(2, 0), ttolS.getCoords());
+        assertEquals(S.opposite() , ttolS.getDir());
 
-        assertEquals(ttolN.getCoords(), new Coordinates(2, 0));
-        assertEquals(ttolN.getDir(), N.opposite());
+        assertEquals(new Coordinates(-2, 0), ttolN.getCoords() );
+        assertEquals(N.opposite(), ttolN.getDir());
 
     }
 

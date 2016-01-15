@@ -47,10 +47,10 @@ public class PrettyTTOR extends ComposedAction {
                 this.coords = new Coordinates(c_curent.getX(), c_curent.getY() + 1);
                 break;
             case S:
-                this.coords = new Coordinates(c_curent.getX() + 1, c_curent.getY());
+                this.coords = new Coordinates(c_curent.getX() - 1, c_curent.getY());
                 break;
             default:
-                this.coords = new Coordinates(c_curent.getX() - 1, c_curent.getY());
+                this.coords = new Coordinates(c_curent.getX() + 1, c_curent.getY());
                 break;
         }
     }

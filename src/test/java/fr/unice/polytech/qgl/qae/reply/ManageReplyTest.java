@@ -13,6 +13,7 @@ import fr.unice.polytech.qgl.qae.map.Map;
 import fr.unice.polytech.qgl.qae.map.Type;
 import fr.unice.polytech.qgl.qae.map.geometry.Coordinates;
 import fr.unice.polytech.qgl.qae.map.tile.Creek;
+import fr.unice.polytech.qgl.qae.map.tile.GroundTile;
 import fr.unice.polytech.qgl.qae.resources.PrimaryResource;
 import org.json.JSONObject;
 import org.junit.Before;
@@ -29,11 +30,13 @@ import org.junit.Ignore;
 public class ManageReplyTest {
     ManageReply manager;
     Map map;
+    ArrayList<PrimaryResource> a;
     public ManageReplyTest() {
     }
     
     @Before
     public void setUp() {
+        a = new ArrayList<>();
         manager = new ManageReply();
         map = new Map();
     }
@@ -43,7 +46,6 @@ public class ManageReplyTest {
      */
     @Ignore
     public void testManage_echo() {
-        ArrayList<PrimaryResource> a = new ArrayList<>();
         a.add(new PrimaryResource(600, "WOOD"));
         a.add(new PrimaryResource(200, "GLASS"));
         JSONObject o = new JSONObject("{ \"cost\": 1, \"extras\": { \"range\": 2, \"found\": \"GROUND\" }, \"status\": \"OK\" }");
@@ -89,16 +91,9 @@ public class ManageReplyTest {
         c.add(new Creek("id"));
         FlyTile ft = new FlyTile(b, c, Type.UNKNOWN_TYPE);
         assertEquals(ft, map.getFlyTile(new Coordinates(5,5)));
-        
-        
-        
         o = new JSONObject("{\"cost\": 2, \"extras\": { \"biomes\": [\"OCEAN\"], \"creeks\": []}, \"status\": \"OK\"}");
         manager.manage(o, map, Direction.E, new Coordinates(10, 10));
-     //   assertTrue(map.last_is_only_ocean());
-        
-        
-        
-  
+        assertTrue(map.getLastFlyTile().have_only(BiomeType.OCEAN));
         
     }
 
@@ -107,7 +102,20 @@ public class ManageReplyTest {
      */
     @Test
     public void testManage_scoot(){
-
+        JSONObject scoot_reply = new JSONObject("{ \"cost\": 5, \"extras\": { \"altitude\": 5, \"resources\": [\"FUR\", \"WOOD\"] }, \"status\": \"OK\" }");
+        
+        manager.manage(scoot_reply, map, Direction.E, new Coordinates(5, 5));
+        GroundTile g = map.getLastGroundTile();
+        assertEquals(5, g.getAltitude());
+       
+        PrimaryResource fur = new PrimaryResource();
+        fur.setName("FUR");
+        PrimaryResource wood = new PrimaryResource();
+        wood.setName("WOOD");
+        assertEquals(fur, g.getRessource().get(0));
+        assertEquals(wood, g.getRessource().get(1));
+        assertEquals(2,g.getRessource().size());
+    
     }
 
 }
