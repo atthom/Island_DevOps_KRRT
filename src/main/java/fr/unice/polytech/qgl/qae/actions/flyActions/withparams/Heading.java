@@ -34,6 +34,9 @@ public class Heading extends ActionWithParameters {
     }
 
     public void maj_coord(Coordinates c, Direction old_dir, Direction new_dir) {
+        if(old_dir==new_dir.opposite()) {
+            // throw invalid Direction exeption
+        }
         switch (old_dir) {
             case E:
                 c.addX(1);

@@ -5,7 +5,6 @@
  */
 package fr.unice.polytech.qgl.qae.actions;
 
-import fr.unice.polytech.qgl.qae.map.tile.Creek;
 import org.json.JSONObject;
 import org.junit.Before;
 import org.junit.Test;

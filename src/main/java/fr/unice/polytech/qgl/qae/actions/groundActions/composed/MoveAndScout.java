@@ -17,25 +17,26 @@ public class MoveAndScout extends ComposedAction {
         super.add(new MoveTo(dir));
         maj_coord(current, dir);
     }
-    
+
     /**
      * Mise à jour des coordonnées et de la direction
+     *
      * @param c
      * @param dir
      */
     private void maj_coord(Coordinates c, Direction dir) {
         switch (dir) {
             case N:
-                super.coords = new Coordinates(c.getX(), c.getY() +1 );
+                super.coords = new Coordinates(c.getX(), c.getY() + 1);
                 break;
             case S:
-                super.coords = new Coordinates(c.getX(), c.getY() -1 );
+                super.coords = new Coordinates(c.getX(), c.getY() - 1);
                 break;
             case E:
-                super.coords = new Coordinates(c.getX() +1, c.getY());
+                super.coords = new Coordinates(c.getX() + 1, c.getY());
                 break;
             default:
-               super.coords = new Coordinates(c.getX() -1, c.getY());
+                super.coords = new Coordinates(c.getX() - 1, c.getY());
                 break;
         }
     }
