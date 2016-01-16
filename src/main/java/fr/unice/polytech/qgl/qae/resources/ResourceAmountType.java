@@ -9,7 +9,7 @@ package fr.unice.polytech.qgl.qae.resources;
  * Quantité de ressource inexploitée sur la case
  * @author user
  */
-public enum AmountResource {
+public enum ResourceAmountType {
 
     HIGH,
     MEDIUM,
