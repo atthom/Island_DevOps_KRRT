@@ -5,6 +5,8 @@
  */
 package fr.unice.polytech.qgl.qae.actions;
 
+import fr.unice.polytech.qgl.qae.actions.ActionWithParameters;
+import fr.unice.polytech.qgl.qae.map.tile.Creek;
 import java.util.ArrayList;
 
 /**

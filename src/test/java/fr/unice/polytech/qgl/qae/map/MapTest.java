@@ -7,6 +7,7 @@ package fr.unice.polytech.qgl.qae.map;
 
 import fr.unice.polytech.qgl.qae.map.tile.FlyTile;
 import fr.unice.polytech.qgl.qae.map.geometry.Coordinates;
+import fr.unice.polytech.qgl.qae.map.tile.Creek;
 import java.util.ArrayList;
 import org.junit.Before;
 import org.junit.Test;
