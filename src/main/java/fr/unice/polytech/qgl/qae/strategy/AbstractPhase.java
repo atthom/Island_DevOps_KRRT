@@ -9,8 +9,8 @@ import fr.unice.polytech.qgl.qae.actions.AbstractAction;
 import fr.unice.polytech.qgl.qae.actions.ComposedAction;
 import fr.unice.polytech.qgl.qae.actions.flyActions.withparams.Direction;
 import fr.unice.polytech.qgl.qae.actions.flyActions.withparams.Heading;
-import fr.unice.polytech.qgl.qae.map.Map;
 import fr.unice.polytech.qgl.qae.map.geometry.Coordinates;
+import fr.unice.polytech.qgl.qae.map.map.FlyingMap;
 import fr.unice.polytech.qgl.qae.reply.ManageReply;
 import java.util.ArrayList;
 import org.json.JSONObject;
@@ -21,26 +21,16 @@ import org.json.JSONObject;
  */
 public abstract class AbstractPhase {
 
-    public final Map map;
+    public final FlyingMap map;
     public Coordinates currents_coords;
-    public Direction d;
+    
     protected final AbstractStrategy parent;
     protected boolean next = false;
     public final ArrayList<AbstractAction> actions;
     protected final ManageReply manager;
-    protected Direction old_direction;
+    
 
-    public AbstractPhase(AbstractStrategy parent, Coordinates currents_coords, Direction d, Map m) {
-        this.currents_coords = currents_coords;
-        this.d = d;
-        this.parent = parent;
-        this.map = m;
-        this.manager = new ManageReply();
-        this.actions = new ArrayList<>();
-    }
-
-    // Phase Terrestre
-    public AbstractPhase(AbstractStrategy parent, Coordinates currents_coords, Map m) {
+    public AbstractPhase(AbstractStrategy parent, Coordinates currents_coords, Direction d, FlyingMap m) {
         this.currents_coords = currents_coords;
         this.parent = parent;
         this.map = m;
@@ -48,38 +38,16 @@ public abstract class AbstractPhase {
         this.actions = new ArrayList<>();
     }
 
-    protected void manageComposedAction(ComposedAction ac) {
-        actions.addAll(ac.getAll());
-        currents_coords = ac.getCoords();
-        if (ac.getDir() != d) {
-            old_direction = d;
-            d = ac.getDir();
-        }
-    }
+   
 
-    protected void change_dir(Direction dd) {
-        if (dd != d) {
-            old_direction = d;
-            d = dd;
-            Heading h = new Heading(dd);
-            actions.add(h);
-            h.maj_coord(currents_coords, old_direction, dd);
-        }
-    }
+    
 
     public abstract AbstractPhase getNext();
 
     public abstract AbstractAction execute();
 
     public void acknowledge(JSONObject s) {
-        Direction dd = d;
-        if (!actions.isEmpty()) {
-            JSONObject act = actions.get(0).toJSON();
-            if (act.has("parameters") && act.getJSONObject("parameters").has("direction")) {
-                dd = act.getJSONObject("parameters").getEnum(Direction.class, "direction");
-            }
-            actions.remove(0);
-        }
+        
 
         manager.manage(s, map, dd, currents_coords);
     }

@@ -3,25 +3,24 @@ package fr.unice.polytech.qgl.qae.map.map;
 import fr.unice.polytech.qgl.qae.map.geometry.Coordinates;
 import fr.unice.polytech.qgl.qae.map.tile.FlyTile;
 
-import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.LinkedHashMap;
+import java.util.Set;
 
 /**
  * Created by user on 21/12/2015.
  */
 public class FlyingMap extends AbstractMap {
-
     HashMap<Coordinates, FlyTile> map;
-
+    
     public FlyingMap() {
-        super(new ArrayList<>());
-        this.map = new HashMap<>();
+        super();
+        this.map = new LinkedHashMap<>();
         put(new Coordinates(0, 0), new FlyTile());
-
     }
 
     public int size() {
-        return coordinates.size();
+        return map.size();
     }
 
     /**
@@ -30,14 +29,9 @@ public class FlyingMap extends AbstractMap {
      * @param c2
      * @return
      */
-    public FlyTile getFlyTile(Coordinates c2) {
-        for (Coordinates c : coordinates) {
-            if (c.equals(c2)) {
-                return map.get(c);
-            }
-        }
+    public FlyTile getTile(Coordinates c2) {
         //TODO : Générer une exception à la place de ça
-        return null;
+        return  map.get(c2);
     }
 
     /**
@@ -47,8 +41,9 @@ public class FlyingMap extends AbstractMap {
      * @param t
      */
     public void maj(Coordinates c, FlyTile t) {
-        coordinates.stream().filter((cc) -> (cc.equals(c))).forEach((cc) -> map.replace(cc, t));
-        put(c, t);
+        if(map.replace(c,t)==null) {
+            map.put(c, t);
+        }
     }
 
     /**
@@ -59,11 +54,20 @@ public class FlyingMap extends AbstractMap {
      */
     public final void put(Coordinates c, FlyTile t) {
         map.putIfAbsent(c, t);
-        coordinates.add(c);
+    }
+    
+    public FlyTile getFirstTile() {
+        return  map.entrySet().iterator().next().getValue();
     }
 
-    public FlyTile getlastFlyTile() {
-        return map.get(coordinates.get(coordinates.size() - 1));
+    public FlyTile getLastTile() {
+        Set<Coordinates> c = map.keySet();
+        Coordinates last = new Coordinates(0, 0);
+        while(c.iterator().hasNext()) {
+            last = c.iterator().next();
+        }
+
+        return map.get(last);
     }
 
     @Override
@@ -71,6 +75,7 @@ public class FlyingMap extends AbstractMap {
         return "FlyingMap{" + "map=" + map + '}';
     }
     
-    
-
+    public void flush() {
+        map.clear();
+    }
 }

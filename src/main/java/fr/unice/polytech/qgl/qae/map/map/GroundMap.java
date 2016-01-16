@@ -5,6 +5,7 @@ import fr.unice.polytech.qgl.qae.map.tile.GroundTile;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.LinkedHashMap;
 
 /**
  * Created by user on 21/12/2015.
@@ -14,8 +15,8 @@ public class GroundMap extends AbstractMap {
     HashMap<Coordinates, GroundTile> map;
 
     public GroundMap() {
-        super(new ArrayList<>());
-        this.map = new HashMap<>();
+        super();
+        this.map = new LinkedHashMap<>();
     }
 
     /**
@@ -26,7 +27,6 @@ public class GroundMap extends AbstractMap {
      */
     public void put(Coordinates c, GroundTile t) {
         map.putIfAbsent(c, t);
-        coordinates.add(c);
     }
 
     public GroundTile getTile(Coordinates c) {
@@ -35,5 +35,9 @@ public class GroundMap extends AbstractMap {
 
     public int size() {
         return map.size();
+    }
+    
+    public void flush() {
+        map.clear();
     }
 }

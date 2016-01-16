@@ -9,12 +9,14 @@ import fr.unice.polytech.qgl.qae.JSONFactory;
 import fr.unice.polytech.qgl.qae.actions.flyActions.withparams.Direction;
 import fr.unice.polytech.qgl.qae.map.Biome;
 import fr.unice.polytech.qgl.qae.map.tile.FlyTile;
-import fr.unice.polytech.qgl.qae.map.Map;
 import fr.unice.polytech.qgl.qae.map.tile.GroundTile;
 import fr.unice.polytech.qgl.qae.map.tile.Creek;
 import fr.unice.polytech.qgl.qae.map.Type;
 import fr.unice.polytech.qgl.qae.map.geometry.Coordinates;
 import fr.unice.polytech.qgl.qae.map.geometry.Vect;
+import fr.unice.polytech.qgl.qae.map.map.AbstractMap;
+import fr.unice.polytech.qgl.qae.map.map.FlyingMap;
+import fr.unice.polytech.qgl.qae.map.map.GroundMap;
 import fr.unice.polytech.qgl.qae.resources.PrimaryResource;
 import org.json.*;
 
@@ -33,20 +35,18 @@ public class ManageReply {
     public ManageReply() {
     }
 
-    public void manage(JSONObject js, Map map, Direction d, Coordinates currentCoords) {
+    public void manage(JSONObject js, AbstractMap map, Direction d, Coordinates cc) {
 
         JSONObject extras = js.getJSONObject("extras");
 
         if (extras.length() == 0) {
 
-        } else if (extras.has("range")) {
-            map.getFlyingmap().put(currentCoords, new FlyTile(Type.UNKNOWN_TYPE));
-            manage_echo(js, map, d);
+        } else if (extras.has("range")) {           
+            manage_echo(js, (FlyingMap) map,cc,d);
         } else if (extras.has("biomes") && extras.has("creeks")) {
-            map.getFlyingmap().put(currentCoords, new FlyTile(Type.UNKNOWN_TYPE));
-            manage_scan(js, map, currentCoords);
+            manage_scan(js,(FlyingMap) map, cc);
         } else if (extras.has("altitude") && extras.has("resources")) {
-            manage_scout(js, map, currentCoords.getClose(d));
+            manage_scout(js, (GroundMap)map, cc.getClose(d));
         } else if (extras.has("asked_range") && extras.has("report")) {
             //glimpse
         } else if (extras.has("resources") && extras.has("pois")) {
@@ -64,7 +64,10 @@ public class ManageReply {
      * @param map la carte utilisée
      * @param d la direction de l'appel à echo
      */
-    private void manage_echo(JSONObject js, Map map, Direction d) {
+    private void manage_echo(JSONObject js,FlyingMap map, Coordinates cc, Direction d) {
+        
+        map.put(cc, new FlyTile(Type.UNKNOWN_TYPE));
+        
         JSONObject extras = js.getJSONObject("extras");
         int range = extras.getInt("range");
         Type found = extras.getEnum(Type.class, "found");
@@ -72,11 +75,12 @@ public class ManageReply {
         Vect v = new Vect(range, d);
         FlyTile t = new FlyTile(found);
 
-        map.getFlyingmap().put(v.toCoord(), t);
+        map.put(v.toCoord(), t);
 
     }
 
-    private void manage_scan(JSONObject js, Map map, Coordinates currentCoords) {
+    private void manage_scan(JSONObject js, FlyingMap map, Coordinates cc) {
+        
         JSONFactory jfk = new JSONFactory();
         JSONObject extras = js.getJSONObject("extras");
 
@@ -93,15 +97,14 @@ public class ManageReply {
             creeks.add(arr_creeks.getString(i));
         }
 
-        map.getFlyingmap().maj(currentCoords, new FlyTile(biomes, creeks, Type.UNKNOWN_TYPE));
+        map.maj(cc, new FlyTile(biomes, creeks, Type.UNKNOWN_TYPE));
     }
 
     /*
      Create and initialize ground tile from scoot action
      */
-    private void manage_scout(JSONObject js, Map map, Coordinates c) {
+    private void manage_scout(JSONObject js, GroundMap map, Coordinates c) {
         JSONObject extras = js.getJSONObject("extras");
-
         GroundTile t = new GroundTile();
         int alt = extras.getInt("altitude");
         t.setAltitude(alt);
@@ -114,7 +117,7 @@ public class ManageReply {
             t.getRessource().add(p);
         }
 
-        map.getGroundmap().put(c, t);
+        map.put(c, t);
     }
 
 }
