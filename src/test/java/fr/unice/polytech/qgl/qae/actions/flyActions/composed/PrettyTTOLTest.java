@@ -16,16 +16,17 @@ import static org.junit.Assert.*;
  * @author user
  */
 public class PrettyTTOLTest {
-    PrettyTTOL PrettyttolE, PrettyttolS, PrettyttolN, PrettyttolW ;
+
+    PrettyTTOL PrettyttolE, PrettyttolS, PrettyttolN, PrettyttolW;
     Coordinates c;
-    Direction E,S,N,W;
-    
+    Direction E, S, N, W;
+
     public PrettyTTOLTest() {
     }
-    
+
     @Before
     public void setUp() {
-        c = new Coordinates(0,0);
+        c = new Coordinates(0, 0);
         E = Direction.E;
         S = Direction.S;
         W = Direction.W;
@@ -38,17 +39,17 @@ public class PrettyTTOLTest {
 
     @Test
     public void testSomeMethod() {
-        assertEquals( new Coordinates(0, 1),PrettyttolE.getCoords());
-        assertEquals(PrettyttolE.getDir(), E.opposite());
+        assertEquals(new Coordinates(0, 1), PrettyttolE.getCoords());
+        assertEquals(E.opposite(), PrettyttolE.getDir());
 
-        assertEquals(new Coordinates(0, -1),PrettyttolW.getCoords() );
-        assertEquals(W.opposite(),PrettyttolW.getDir() );
+        assertEquals(new Coordinates(0, -1), PrettyttolW.getCoords());
+        assertEquals(W.opposite(), PrettyttolW.getDir());
 
-        assertEquals( new Coordinates(1, 0),PrettyttolS.getCoords());
-        assertEquals( S.opposite(),PrettyttolS.getDir());
+        assertEquals(new Coordinates(1, 0), PrettyttolS.getCoords());
+        assertEquals(S.opposite(), PrettyttolS.getDir());
 
         assertEquals(new Coordinates(-1, 0), PrettyttolN.getCoords());
         assertEquals(N.opposite(), PrettyttolN.getDir());
     }
-    
+
 }
