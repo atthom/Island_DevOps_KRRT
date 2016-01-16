@@ -10,9 +10,9 @@ import org.json.JSONObject;
  */
 public abstract class AbstractAction {
 
-    private int moy_actionCost;
-    private int nb_set;
-    private final String name;
+    protected int moy_actionCost;
+    protected int nb_set;
+    protected final String name;
 
     /**
      * Permet de crée facilement une action sans parametre sous format JSON
@@ -78,6 +78,15 @@ public abstract class AbstractAction {
             return false;
         }
         return Objects.equals(this.name, other.name);
+    }
+
+    @Override
+    public int hashCode() {
+        int hash = 3;
+        hash = 53 * hash + this.moy_actionCost;
+        hash = 53 * hash + this.nb_set;
+        hash = 53 * hash + Objects.hashCode(this.name);
+        return hash;
     }
     
 }

@@ -9,6 +9,8 @@ import fr.unice.polytech.qgl.qae.map.Biome;
 import fr.unice.polytech.qgl.qae.map.Type;
 import static fr.unice.polytech.qgl.qae.map.Type.UNKNOWN_TYPE;
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 import java.util.Objects;
 
 /**
@@ -19,7 +21,8 @@ import java.util.Objects;
 public class FlyTile extends Tile {
 
     private Type t;
-    private ArrayList<Creek> creeks;
+   // private ArrayList<Creek> creeks;
+    private List<String> creeks;
 
     /**
      * Case par défaut (type non connu et sans biomes)
@@ -30,7 +33,7 @@ public class FlyTile extends Tile {
         this.t = UNKNOWN_TYPE;
     }
     
-    public FlyTile(ArrayList<Biome> bs, ArrayList<Creek> cs, Type t) {
+    public FlyTile(ArrayList<Biome> bs, ArrayList<String> cs, Type t) {
         super(bs);
         this.t = t;
         creeks = new ArrayList<>(cs);
@@ -48,13 +51,9 @@ public class FlyTile extends Tile {
         return !creeks.isEmpty();
     }
 
-    public ArrayList<Creek> getCreeks() {
+    public List<String> getCreeks() {
         return creeks;
     }
-    
-    
-    
-    
 
     /**
      * Case avec un type connu
@@ -74,15 +73,6 @@ public class FlyTile extends Tile {
     public Type getT() {
         return t;
     }
-
-    /**
-     *
-     * @return la liste de creek
-     */
-    public ArrayList<Creek> getC() {
-        return creeks;
-    }
-
 
     /**
      *
@@ -108,6 +98,14 @@ public class FlyTile extends Tile {
             return false;
         }
         return Objects.equals(this.creeks, other.creeks);
+    }
+
+    @Override
+    public int hashCode() {
+        int hash = 3;
+        hash = 67 * hash + Objects.hashCode(this.t);
+        hash = 67 * hash + Objects.hashCode(this.creeks);
+        return hash;
     }
 
     

@@ -2,7 +2,7 @@ package fr.unice.polytech.qgl.qae.actions.groundActions.withparams;
 
 import fr.unice.polytech.qgl.qae.actions.ActionWithParameters;
 import fr.unice.polytech.qgl.qae.actions.flyActions.withparams.Direction;
-import fr.unice.polytech.qgl.qae.actions.flyActions.withparams.Parameter;
+import fr.unice.polytech.qgl.qae.actions.Parameter;
 import org.json.JSONObject;
 
 import java.util.ArrayList;

@@ -17,20 +17,21 @@ import static org.junit.Assert.*;
  * @author user
  */
 public class HeadingTest {
-    Heading h;
+    Heading h,h2;
     public HeadingTest() {
     }
     
     @Before
     public void setUp() {
         h = new Heading(Direction.E);
-        h = new Heading("{\"direction\":\"N\"}");
+        h2 = new Heading("{\"direction\":\"E\"}");
+        assertEquals(h, h2);
     }
 
     @Test
     public void testSomeMethod() {
                
-        JSONObject o = new JSONObject("{\"action\":\"heading\",\"parameters\":{\"direction\":\"N\"}}");
+        JSONObject o = new JSONObject("{\"action\":\"heading\",\"parameters\":{\"direction\":\"E\"}}");
         assertEquals(o.get("action"), h.toJSON().get("action"));
         assertEquals(o.getJSONObject("parameters").getEnum(Direction.class, "direction"),
                 h.toJSON().getJSONObject("parameters").getEnum(Direction.class, "direction"));

@@ -87,7 +87,7 @@ public class JSONFactoryTest {
     @Test
     public void testBuild_biome() {
         
-        assertEquals(jfk.build_biome("GLACIER").getBiomeType(), new Biome(BiomeType.GLACIER).getBiomeType());
+        assertEquals(new Biome(BiomeType.GLACIER).getBiomeType(),jfk.build_biome("GLACIER").getBiomeType() );
         
     }
 
@@ -96,8 +96,18 @@ public class JSONFactoryTest {
      */
     @Test
     public void testBuild_heading() {
-        assertEquals(jfk.build_heading("{ \"action\": \"heading\", \"parameters\": { \"direction\": \"N\" } }"), new Heading(Direction.N));
+        assertEquals(new Heading(Direction.N), jfk.build_heading("{ \"action\": \"heading\", \"parameters\": { \"direction\": \"N\" } }"));
         
+    }
+
+    /**
+     * Test of build_unextracted_ressource method, of class JSONFactory.
+     */
+    @Test
+    public void testBuild_unextracted_ressource() {
+        PrimaryResource a = new PrimaryResource();
+        a.setName("WOOD");
+        assertEquals(a, jfk.build_unextracted_ressource("WOOD"));
     }
     
     

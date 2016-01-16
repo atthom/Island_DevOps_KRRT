@@ -83,13 +83,13 @@ public class Objectif {
      * @param r ressource à extraire.
      */
     public void enleve_ressource(PrimaryResource r) {
-        for(PrimaryResource res : contract) {
+        contract.stream().forEach((res) -> {
             if (res.getNbExploitedRessource() > r.getNbExploitedRessource()) {
                 res.retrieve(r.getNbExploitedRessource());
             } else {
                 this.contract.remove(res);
             }
-        }
+        });
     }
 
     /**
@@ -121,12 +121,8 @@ public class Objectif {
         if (this.budget != other.budget) {
             return false;
         }
-        if (!Objects.equals(this.contract, other.contract)) {
-            return false;
-        }
-        return true;
+        return Objects.equals(this.contract, other.contract);
     }
     
-    
-
+   
 }
