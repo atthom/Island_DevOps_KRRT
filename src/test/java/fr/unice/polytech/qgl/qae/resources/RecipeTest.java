@@ -12,6 +12,7 @@ import static org.junit.Assert.*;
 public class RecipeTest {
 
     Recipe theRecipeWeAreTesting;
+    Recipe theRecipeWhoTrowException;
     Ingredient ingredient_1;
     Ingredient ingredient_2;
 
@@ -20,6 +21,7 @@ public class RecipeTest {
         ingredient_1 = new Ingredient(PrimaryResourceType.QUARTZ, 5);
         ingredient_2 = new Ingredient(PrimaryResourceType.WOOD, 10);
         theRecipeWeAreTesting = new Recipe(ManufacturedResourceType.GLASS, 1);
+        theRecipeWhoTrowException = new Recipe(ManufacturedResourceType.PLANK, 4);
     }
 
     @Test
@@ -45,13 +47,11 @@ public class RecipeTest {
 
     @Test
     public void getIngredientsTestWithIncorrectAmount(){
-        theRecipeWeAreTesting.addIngredient(PrimaryResourceType.QUARTZ, 5);
-        theRecipeWeAreTesting.addIngredient(PrimaryResourceType.WOOD, 10);
         try {
-            theRecipeWeAreTesting.getIngredients(-5);
-            fail("Error: negative amount...");
+            // For the PLANK, the unitary amount is 4, so we cannot craft exactly 13 PLANK (not a multiple of 4)
+            theRecipeWhoTrowException.getIngredients(13);
+            fail("Error: wrong amount given");
         } catch (InvalidResourceAmountException e){
-            assert (e.getMessage().contains("Negative number"));
         }
     }
 
