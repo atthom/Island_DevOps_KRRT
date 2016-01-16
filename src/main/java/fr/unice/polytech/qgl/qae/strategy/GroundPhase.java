@@ -5,10 +5,37 @@
  */
 package fr.unice.polytech.qgl.qae.strategy;
 
+import fr.unice.polytech.qgl.qae.actions.AbstractAction;
+import fr.unice.polytech.qgl.qae.actions.flyActions.withparams.Direction;
+import fr.unice.polytech.qgl.qae.map.geometry.Coordinates;
+import fr.unice.polytech.qgl.qae.map.map.FlyingMap;
+import fr.unice.polytech.qgl.qae.map.map.GroundMap;
+import fr.unice.polytech.qgl.qae.reply.ManageGroundReply;
+import org.json.JSONObject;
+
 /**
  *
  * @author user
  */
-public class GroundPhase {
-    
+public abstract class GroundPhase extends AbstractPhase {
+    protected ManageGroundReply mgr;
+    public GroundMap gm;
+    protected Direction scout_dir;
+
+    public GroundPhase(AbstractStrategy parent, Coordinates currents_coords, Direction d, FlyingMap m, GroundMap gm) {
+        super(parent, currents_coords, d, m);
+        this.gm = gm;
+        mgr = new ManageGroundReply();
+    }
+
+    @Override
+    public abstract AbstractPhase getNext();
+
+    @Override
+    public abstract AbstractAction execute();
+
+    @Override
+    public void acknowledge(JSONObject s) {
+        mgr.manage(s, gm, scout_dir, currents_coords);
+    }
 }

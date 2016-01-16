@@ -11,6 +11,7 @@ import fr.unice.polytech.qgl.qae.actions.flyActions.withparams.Direction;
 import fr.unice.polytech.qgl.qae.actions.flyActions.withparams.Heading;
 import fr.unice.polytech.qgl.qae.map.geometry.Coordinates;
 import fr.unice.polytech.qgl.qae.map.map.FlyingMap;
+import fr.unice.polytech.qgl.qae.reply.ManageFlyingReply;
 import org.json.JSONObject;
 
 /**
@@ -21,10 +22,12 @@ public abstract class FlyingPhase extends AbstractPhase {
 
     public Direction d;
     protected Direction old_direction;
+    protected ManageFlyingReply mrp;
     
     public FlyingPhase(AbstractStrategy parent, Coordinates currents_coords, Direction d, FlyingMap m) {
         super(parent, currents_coords, d, m);
-         this.d = d;
+        this.d = d;
+        mrp = new ManageFlyingReply();
     }
     
     protected void manageComposedAction(ComposedAction ac) {
@@ -57,19 +60,14 @@ public abstract class FlyingPhase extends AbstractPhase {
             actions.remove(0);
         }
         
-        super.acknowledge(s); //To change body of generated methods, choose Tools | Templates.
+       mrp.manage(s, map, dd, currents_coords);
+        
     }
     
-    
+    @Override
+    public abstract AbstractPhase getNext();
 
     @Override
-    public AbstractPhase getNext() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
-    public AbstractAction execute() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
+    public abstract AbstractAction execute();
     
 }

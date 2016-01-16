@@ -6,9 +6,7 @@
 package fr.unice.polytech.qgl.qae.strategy;
 
 import fr.unice.polytech.qgl.qae.actions.AbstractAction;
-import fr.unice.polytech.qgl.qae.actions.ComposedAction;
 import fr.unice.polytech.qgl.qae.actions.flyActions.withparams.Direction;
-import fr.unice.polytech.qgl.qae.actions.flyActions.withparams.Heading;
 import fr.unice.polytech.qgl.qae.map.geometry.Coordinates;
 import fr.unice.polytech.qgl.qae.map.map.FlyingMap;
 import fr.unice.polytech.qgl.qae.reply.ManageReply;
@@ -27,14 +25,11 @@ public abstract class AbstractPhase {
     protected final AbstractStrategy parent;
     protected boolean next = false;
     public final ArrayList<AbstractAction> actions;
-    protected final ManageReply manager;
-    
-
     public AbstractPhase(AbstractStrategy parent, Coordinates currents_coords, Direction d, FlyingMap m) {
         this.currents_coords = currents_coords;
         this.parent = parent;
         this.map = m;
-        this.manager = new ManageReply();
+        
         this.actions = new ArrayList<>();
     }
 
@@ -46,11 +41,7 @@ public abstract class AbstractPhase {
 
     public abstract AbstractAction execute();
 
-    public void acknowledge(JSONObject s) {
-        
-
-        manager.manage(s, map, dd, currents_coords);
-    }
+    public abstract void acknowledge(JSONObject s);
 
     @Override
     public boolean equals(Object o) {
@@ -69,9 +60,7 @@ public abstract class AbstractPhase {
         if (!currents_coords.equals(that.currents_coords)) {
             return false;
         }
-        if (d != that.d) {
-            return false;
-        }
+       
         return parent.equals(that.parent);
 
     }
@@ -80,7 +69,6 @@ public abstract class AbstractPhase {
     public int hashCode() {
         int result = map.hashCode();
         result = 31 * result + currents_coords.hashCode();
-        result = 31 * result + d.hashCode();
         result = 31 * result + parent.hashCode();
         return result;
     }
