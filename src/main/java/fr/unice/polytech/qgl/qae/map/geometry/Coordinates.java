@@ -90,8 +90,11 @@ public class Coordinates {
         return Math.abs(this.x) + Math.abs(this.y);
     }
 
+    @Override
     public int hashCode() {
-        int hash = x+131071*y;
+        int hash = 7;
+        hash = 11 * hash + this.x;
+        hash = 11 * hash + this.y;
         return hash;
     }
 

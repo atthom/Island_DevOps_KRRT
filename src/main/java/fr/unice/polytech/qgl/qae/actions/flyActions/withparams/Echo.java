@@ -4,7 +4,7 @@ import fr.unice.polytech.qgl.qae.actions.Parameter;
 import fr.unice.polytech.qgl.qae.actions.ActionWithParameters;
 
 /**
- * Created by Lo�c on 11/15/2015.
+ * Created by Loic on 11/15/2015.
  */
 public class Echo extends ActionWithParameters {
 

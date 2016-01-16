@@ -15,15 +15,15 @@ import java.util.ArrayList;
  */
 public class Land  extends ActionWithParameters {
     
-    public Land(Creek c, int nbPeople) {
+    public Land(String c, int nbPeople) {
         super(new ArrayList<>(), "land");
-        parameters.add(new Parameter("creek",c.getId()));
+        parameters.add(new Parameter("creek",c));
         parameters.add(new Parameter("people",nbPeople));     
     }
 
     @Override
     public Object getValueParameter() {
-       return parameters.get(0);
+       return parameters.get(0).getValeur();
     }
 
 }

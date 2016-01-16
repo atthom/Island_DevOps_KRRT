@@ -20,7 +20,7 @@ import static org.junit.Assert.*;
 public class MapTest {
 
     Map map;
-    ArrayList<Creek> cr;
+    ArrayList<String> cr;
 
     public MapTest() {
     }
@@ -92,11 +92,10 @@ public class MapTest {
 
     @Test
     public void last_havecreek() {
-        ArrayList<Creek> lc = new ArrayList<>();
         ArrayList<Biome> lb = new ArrayList<>();
         lb.add(new Biome(BiomeType.ALPINE));
-        lc.add(new Creek("id"));
-         map.getFlyingmap().put(new Coordinates(5, 5), new FlyTile(lb,lc,Type.GROUND));
+        cr.add("id");
+        map.getFlyingmap().put(new Coordinates(5, 5), new FlyTile(lb,cr,Type.GROUND));
        // assertEquals(true,map.last_havecreek());
     }
 

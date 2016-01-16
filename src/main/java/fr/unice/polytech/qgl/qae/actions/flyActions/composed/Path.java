@@ -24,13 +24,13 @@ public final class Path extends ComposedAction {
             Coordinates path = current.coords_between(c);
             int Xval = path.getX();
             int Yval = path.getY();
-            if ((Xval < 0 && Yval < 0 && !current_Dir.is_minus())) {
-//                super.addAll(new TurnAround(current_Dir).getAll());
-                current = maj_turnaround(current, current_Dir);
-            } else if (Xval > 0 && Yval > 0 && current_Dir.is_minus()) {
-  //              super.addAll(new TurnAround(current_Dir).getAll());
-                current = maj_turnaround(current, current_Dir);
-            }
+//            if ((Xval < 0 && Yval < 0 && !current_Dir.is_minus())) {
+//               super.addAll(new TurnAround(current_Dir).getAll());
+//               current = maj_turnaround(current, current_Dir);
+//            } else if (Xval > 0 && Yval > 0 && current_Dir.is_minus()) {
+//             super.addAll(new TurnAround(current_Dir).getAll());
+//                current = maj_turnaround(current, current_Dir);
+//            }
 
             path = current.coords_between(c);
 
@@ -53,20 +53,6 @@ public final class Path extends ComposedAction {
                 super.add(new Fly());
                 Yval--;
             }
-        }
-    }
-    
-
-    private Coordinates maj_turnaround(Coordinates c_curent, Direction d) {
-        switch (d) {
-            case E:
-                return new Coordinates(c_curent.getX(), c_curent.getY() + 2);
-            case W:
-                return new Coordinates(c_curent.getX(), c_curent.getY() - 2);
-            case S:
-                return new Coordinates(c_curent.getX() + 2, c_curent.getY());
-            default:
-                return new Coordinates(c_curent.getX() - 2, c_curent.getY());
         }
     }
 }

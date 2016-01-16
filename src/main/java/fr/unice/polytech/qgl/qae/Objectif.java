@@ -124,6 +124,5 @@ public class Objectif {
         return Objects.equals(this.contract, other.contract);
     }
     
-    
-
+   
 }

@@ -26,6 +26,7 @@ public class GroundMap extends AbstractMap {
      */
     public void put(Coordinates c, GroundTile t) {
         map.putIfAbsent(c, t);
+        coordinates.add(c);
     }
 
     public GroundTile getTile(Coordinates c) {

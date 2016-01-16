@@ -9,6 +9,7 @@ import fr.unice.polytech.qgl.qae.map.geometry.Coordinates;
 import fr.unice.polytech.qgl.qae.map.map.FlyingMap;
 import fr.unice.polytech.qgl.qae.map.map.GroundMap;
 import fr.unice.polytech.qgl.qae.map.tile.FlyTile;
+import fr.unice.polytech.qgl.qae.map.tile.GroundTile;
 
 
 /**
@@ -37,6 +38,10 @@ public class Map {
 
     public FlyingMap getFlyingmap() {
         return flyingmap;
+    }
+    
+    public GroundTile getLastGroundTile() {
+        return groundmap.getTile(groundmap.getlastCoord());
     }
 
     public GroundMap getGroundmap() {

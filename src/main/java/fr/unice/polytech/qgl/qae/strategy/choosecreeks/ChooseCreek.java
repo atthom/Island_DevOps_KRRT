@@ -44,7 +44,7 @@ public class ChooseCreek  extends AbstractPhase{
         return actions.get(0);
     }
 
-    public Creek getlast_creek() {
+    public String getlast_creek() {
         if(last_have_creek()) {
             FlyTile t =map.getLastFlyTile();
             return t.getCreeks().get(0);

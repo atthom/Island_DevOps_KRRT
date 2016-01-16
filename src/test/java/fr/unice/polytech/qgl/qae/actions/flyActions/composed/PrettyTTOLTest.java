@@ -38,17 +38,17 @@ public class PrettyTTOLTest {
 
     @Test
     public void testSomeMethod() {
-        assertEquals(PrettyttolE.getCoords(), new Coordinates(0, 1));
+        assertEquals( new Coordinates(0, 1),PrettyttolE.getCoords());
         assertEquals(PrettyttolE.getDir(), E.opposite());
 
-        assertEquals(PrettyttolW.getCoords(), new Coordinates(0, -1));
-        assertEquals(PrettyttolW.getDir(), W.opposite());
+        assertEquals(new Coordinates(0, -1),PrettyttolW.getCoords() );
+        assertEquals(W.opposite(),PrettyttolW.getDir() );
 
-        assertEquals(PrettyttolS.getCoords(), new Coordinates(-1, 0));
-        assertEquals(PrettyttolS.getDir(), S.opposite());
+        assertEquals( new Coordinates(1, 0),PrettyttolS.getCoords());
+        assertEquals( S.opposite(),PrettyttolS.getDir());
 
-        assertEquals(PrettyttolN.getCoords(), new Coordinates(1, 0));
-        assertEquals(PrettyttolN.getDir(), N.opposite());
+        assertEquals(new Coordinates(-1, 0), PrettyttolN.getCoords());
+        assertEquals(N.opposite(), PrettyttolN.getDir());
     }
     
 }
