@@ -25,7 +25,7 @@ public abstract class AbstractPhase {
     protected final AbstractStrategy parent;
     protected boolean next = false;
     public final ArrayList<AbstractAction> actions;
-    public AbstractPhase(AbstractStrategy parent, Coordinates currents_coords, Direction d, FlyingMap m) {
+    public AbstractPhase(AbstractStrategy parent, Coordinates currents_coords, FlyingMap m) {
         this.currents_coords = currents_coords;
         this.parent = parent;
         this.map = m;

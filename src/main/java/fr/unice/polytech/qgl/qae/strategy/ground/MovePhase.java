@@ -4,24 +4,26 @@ import fr.unice.polytech.qgl.qae.actions.AbstractAction;
 import fr.unice.polytech.qgl.qae.actions.flyActions.withparams.Direction;
 import fr.unice.polytech.qgl.qae.actions.groundActions.withparams.MoveTo;
 import fr.unice.polytech.qgl.qae.actions.Stop;
-import fr.unice.polytech.qgl.qae.map.Map;
 import fr.unice.polytech.qgl.qae.map.geometry.Coordinates;
+import fr.unice.polytech.qgl.qae.map.map.FlyingMap;
+import fr.unice.polytech.qgl.qae.map.map.GroundMap;
 import fr.unice.polytech.qgl.qae.map.tile.GroundTile;
 import fr.unice.polytech.qgl.qae.resources.ResourceType;
 import fr.unice.polytech.qgl.qae.strategy.AbstractPhase;
 import fr.unice.polytech.qgl.qae.strategy.AbstractStrategy;
+import fr.unice.polytech.qgl.qae.strategy.GroundPhase;
 
 import java.util.Random;
 
 /**
  * Created by user on 26/12/15.
  */
-public class MovePhase extends AbstractPhase {
+public class MovePhase extends GroundPhase {
 
     boolean find;
 
-    public MovePhase(AbstractStrategy parent, Coordinates currents_coords, Direction d, Map m) {
-        super(parent, currents_coords, d,m);
+    public MovePhase(AbstractStrategy parent, Coordinates currents_coords, FlyingMap m, GroundMap g) {
+        super(parent, currents_coords, m, g);
         find = false;
         boolean fN = false, fS = false, fE = false, fW = false;
         MoveTo mt = null;
@@ -33,7 +35,7 @@ public class MovePhase extends AbstractPhase {
         for (int i = 0; i < parent.getObjectif().getContract().size(); i++) {
 
             for (Direction dir : Direction.values()) {
-                GroundTile t = map.getGroundmap().getTile(currents_coords.getClose(dir));
+                GroundTile t = gm.getTile(currents_coords.getClose(dir));
 
                 // Si la case n'est pas scouter, on passe a la suivante
                 if(t == null)
@@ -85,9 +87,9 @@ public class MovePhase extends AbstractPhase {
     @Override
     public AbstractPhase getNext() {
         if(find)
-            return new ExploitPhase(parent,currents_coords,d,map);
+            return new ExploitPhase(parent,currents_coords,map,gm);
         else
-            return new ScoutPhase(parent,currents_coords,d,map);
+            return new ScoutPhase(parent,currents_coords,map, gm);
     }
 
 

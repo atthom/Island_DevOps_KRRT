@@ -22,8 +22,8 @@ public abstract class GroundPhase extends AbstractPhase {
     public GroundMap gm;
     protected Direction scout_dir;
 
-    public GroundPhase(AbstractStrategy parent, Coordinates currents_coords, Direction d, FlyingMap m, GroundMap gm) {
-        super(parent, currents_coords, d, m);
+    public GroundPhase(AbstractStrategy parent, Coordinates currents_coords, FlyingMap m, GroundMap gm) {
+        super(parent, currents_coords, m);
         this.gm = gm;
         mgr = new ManageGroundReply();
     }

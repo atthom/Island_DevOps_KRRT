@@ -4,25 +4,27 @@ import fr.unice.polytech.qgl.qae.actions.AbstractAction;
 import fr.unice.polytech.qgl.qae.actions.Stop;
 import fr.unice.polytech.qgl.qae.actions.flyActions.withparams.Direction;
 import fr.unice.polytech.qgl.qae.actions.groundActions.withparams.Scout;
-import fr.unice.polytech.qgl.qae.map.Map;
 import fr.unice.polytech.qgl.qae.map.geometry.Coordinates;
+import fr.unice.polytech.qgl.qae.map.map.FlyingMap;
+import fr.unice.polytech.qgl.qae.map.map.GroundMap;
 import fr.unice.polytech.qgl.qae.strategy.AbstractPhase;
 import fr.unice.polytech.qgl.qae.strategy.AbstractStrategy;
+import fr.unice.polytech.qgl.qae.strategy.GroundPhase;
 
 /**
  * Created by user on 26/12/15.
  */
-public class ScoutPhase extends AbstractPhase {
+public class ScoutPhase extends GroundPhase {
 
-    public ScoutPhase(AbstractStrategy parent, Coordinates currents_coords, Direction d, Map m) {
-        super(parent, currents_coords, d,m);
+    public ScoutPhase(AbstractStrategy parent, Coordinates currents_coords,FlyingMap m, GroundMap g) {
+        super(parent, currents_coords,m, g);
 
         if(parent.getObjectif().getBudget() < 50) {
             actions.add(new Stop());
         }
 
         for(Direction dir : Direction.values()) {
-            if (m.getGroundmap().getTile(currents_coords.getClose(dir)) == null) {
+            if (gm.getTile(currents_coords.getClose(dir)) == null) {
                 actions.add(new Scout(dir));
             }
         }
@@ -31,7 +33,7 @@ public class ScoutPhase extends AbstractPhase {
     @Override
     public AbstractPhase getNext() {
         if(actions.isEmpty())
-            return new MovePhase(parent,currents_coords,d,map);
+            return new MovePhase(parent,currents_coords,map, gm);
         else
             return  this;
     }

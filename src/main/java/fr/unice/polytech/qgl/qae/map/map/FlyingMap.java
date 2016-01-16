@@ -5,6 +5,7 @@ import fr.unice.polytech.qgl.qae.map.tile.FlyTile;
 
 import java.util.HashMap;
 import java.util.LinkedHashMap;
+import java.util.Map;
 import java.util.Set;
 
 /**
@@ -25,7 +26,6 @@ public class FlyingMap extends AbstractMap {
 
     /**
      * Renvoie la case si elle existe
-     *
      * @param c2
      * @return
      */
@@ -36,7 +36,6 @@ public class FlyingMap extends AbstractMap {
 
     /**
      * Met à jour une case déja explorée
-     *
      * @param c
      * @param t
      */
@@ -48,7 +47,6 @@ public class FlyingMap extends AbstractMap {
 
     /**
      * Ajoute une case dans la map si elle est absente
-     *
      * @param c
      * @param t
      */
@@ -56,25 +54,56 @@ public class FlyingMap extends AbstractMap {
         map.putIfAbsent(c, t);
     }
     
-    public FlyTile getFirstTile() {
-        return  map.entrySet().iterator().next().getValue();
+    public Map.Entry<Coordinates, FlyTile> getFirstTile() {
+        return  map.entrySet().iterator().next();
     }
 
-    public FlyTile getLastTile() {
-        Set<Coordinates> c = map.keySet();
-        Coordinates last = new Coordinates(0, 0);
+    public Map.Entry<Coordinates, FlyTile> getLastTile() {
+        Set<Map.Entry<Coordinates, FlyTile>> c = map.entrySet();
+     
+        Map.Entry<Coordinates, FlyTile> last = null;
         while(c.iterator().hasNext()) {
             last = c.iterator().next();
         }
-
-        return map.get(last);
+        return last;
     }
-
+    
+    public Map.Entry<Coordinates, FlyTile> preced(FlyTile f) {
+        Set<Map.Entry<Coordinates, FlyTile>> c = map.entrySet();
+        Map.Entry<Coordinates, FlyTile> last = null;
+        while(c.iterator().hasNext() && !f.equals(c.iterator().next().getValue())){
+            last = c.iterator().next();
+        }
+        return last;
+    }
+    
+    public Coordinates preced(Coordinates c) {
+        Set<Coordinates> set = map.keySet();
+        Coordinates last = null;
+        while(set.iterator().hasNext() && !c.equals(set.iterator().next())){
+            last = set.iterator().next();
+        }
+        return last;
+    }
+    
+    public Coordinates get(int i) {
+        Set<Coordinates> set = map.keySet();
+        Coordinates last = null;
+        while(set.iterator().hasNext() && i>0){
+            last = set.iterator().next();
+        }
+        return last;
+    }
+    
     @Override
     public String toString() {
         return "FlyingMap{" + "map=" + map + '}';
     }
-    
+
+    public HashMap<Coordinates, FlyTile> getMap() {
+        return map;
+    }
+
     public void flush() {
         map.clear();
     }

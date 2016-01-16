@@ -25,7 +25,7 @@ public abstract class FlyingPhase extends AbstractPhase {
     protected ManageFlyingReply mrp;
     
     public FlyingPhase(AbstractStrategy parent, Coordinates currents_coords, Direction d, FlyingMap m) {
-        super(parent, currents_coords, d, m);
+        super(parent, currents_coords, m);
         this.d = d;
         mrp = new ManageFlyingReply();
     }
