@@ -6,7 +6,7 @@ import org.junit.Test;
 import static org.junit.Assert.*;
 
 /**
- * Created by Loïc on 08/01/2016.
+ * @author Loïc
  */
 public class ContractTest {
 

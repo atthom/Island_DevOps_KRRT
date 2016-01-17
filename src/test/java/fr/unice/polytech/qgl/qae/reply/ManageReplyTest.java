@@ -12,9 +12,8 @@ import fr.unice.polytech.qgl.qae.map.tile.FlyTile;
 import fr.unice.polytech.qgl.qae.map.Map;
 import fr.unice.polytech.qgl.qae.map.Type;
 import fr.unice.polytech.qgl.qae.map.geometry.Coordinates;
-import fr.unice.polytech.qgl.qae.map.tile.Creek;
 import fr.unice.polytech.qgl.qae.map.tile.GroundTile;
-import fr.unice.polytech.qgl.qae.resources.PrimaryResource;
+import fr.unice.polytech.qgl.qae.resources.ResourceTile;
 import org.json.JSONObject;
 import org.junit.Before;
 import org.junit.Test;
@@ -30,7 +29,7 @@ import org.junit.Ignore;
 public class ManageReplyTest {
     ManageReply manager;
     Map map;
-    ArrayList<PrimaryResource> a;
+    ArrayList<ResourceTile> a;
     public ManageReplyTest() {
     }
     
@@ -46,8 +45,8 @@ public class ManageReplyTest {
      */
     @Ignore
     public void testManage_echo() {
-        a.add(new PrimaryResource(600, "WOOD"));
-        a.add(new PrimaryResource(200, "GLASS"));
+        //a.add(new ResourceTile(600, "WOOD"));
+        //a.add(new ResourceTile(200, "GLASS"));
         JSONObject o = new JSONObject("{ \"cost\": 1, \"extras\": { \"range\": 2, \"found\": \"GROUND\" }, \"status\": \"OK\" }");
         manager.manage(o, map,Direction.E, new Coordinates(0, 0));
         
@@ -108,10 +107,10 @@ public class ManageReplyTest {
         GroundTile g = map.getLastGroundTile();
         assertEquals(5, g.getAltitude());
        
-        PrimaryResource fur = new PrimaryResource();
-        fur.setName("FUR");
-        PrimaryResource wood = new PrimaryResource();
-        wood.setName("WOOD");
+        ResourceTile fur = new ResourceTile();
+        fur.setResourceName("FUR");
+        ResourceTile wood = new ResourceTile();
+        wood.setResourceName("WOOD");
         assertEquals(fur, g.getRessource().get(0));
         assertEquals(wood, g.getRessource().get(1));
         assertEquals(2,g.getRessource().size());

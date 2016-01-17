@@ -6,9 +6,7 @@
 package fr.unice.polytech.qgl.qae.map.tile;
 
 import fr.unice.polytech.qgl.qae.exceptions.MapExeption;
-import fr.unice.polytech.qgl.qae.resources.AmountResource;
-import fr.unice.polytech.qgl.qae.resources.ConditionResource;
-import fr.unice.polytech.qgl.qae.resources.PrimaryResource;
+import fr.unice.polytech.qgl.qae.resources.ResourceTile;
 
 import java.util.ArrayList;
 import java.util.Objects;
@@ -22,7 +20,7 @@ public class GroundTile extends Tile {
     private int altitude;
     //private AmountResource amount; // represent the amount of this tile's resources
     //private ConditionResource condition; // represent the extraction condition for the resources
-    private ArrayList<PrimaryResource> res;
+    private ArrayList<ResourceTile> res;
 
     /**
      *
@@ -34,15 +32,15 @@ public class GroundTile extends Tile {
         res = new ArrayList<>();
     }
 
-    void addResource(PrimaryResource r) {
+    void addResource(ResourceTile r) {
         res.add(r);
     }
 
     //public AmountResource getAmountCondition(){return this.amount;}
 
-    PrimaryResource getResource(String r) {
+    ResourceTile getResource(String r) {
         for (int i = 0; i < res.size(); i++) {
-            if (res.get(i).getName().equals(r)) {
+            if (res.get(i).getResourceName().equals(r)) {
                 return res.get(i);
             }
         }
@@ -58,7 +56,7 @@ public class GroundTile extends Tile {
         return altitude;
     }
 
-    public ArrayList<PrimaryResource> getRessource() {
+    public ArrayList<ResourceTile> getRessource() {
         return res;
     }
 

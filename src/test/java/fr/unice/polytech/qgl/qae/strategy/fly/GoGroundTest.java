@@ -1,12 +1,12 @@
 package fr.unice.polytech.qgl.qae.strategy.fly;
 
-import fr.unice.polytech.qgl.qae.Objectif;
 import fr.unice.polytech.qgl.qae.actions.flyActions.simple.Fly;
 import fr.unice.polytech.qgl.qae.actions.flyActions.withparams.Direction;
 import fr.unice.polytech.qgl.qae.map.Map;
 import fr.unice.polytech.qgl.qae.map.Type;
 import fr.unice.polytech.qgl.qae.map.geometry.Coordinates;
 import fr.unice.polytech.qgl.qae.map.tile.FlyTile;
+import fr.unice.polytech.qgl.qae.resources.MissionAssignment;
 import fr.unice.polytech.qgl.qae.strategy.AbstractStrategy;
 import org.junit.Before;
 import org.junit.Test;
@@ -21,14 +21,14 @@ public class GoGroundTest {
     GoGround gg;
     Map m;
     AbstractStrategy ex;
-    Objectif ob;
+    MissionAssignment mission;
 
     FlyTile ocean;
     FlyTile ground;
 
     @Before
     public void setUp() throws Exception {
-        ex = new FlyingStrategy(Direction.S, ob);
+        ex = new FlyingStrategy(Direction.S, mission);
         m = new Map();
         ocean = new FlyTile(Type.OCEAN);
         ground = new FlyTile(Type.GROUND);

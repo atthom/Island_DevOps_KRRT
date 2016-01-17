@@ -5,17 +5,16 @@
  */
 package fr.unice.polytech.qgl.qae.reply;
 
-import fr.unice.polytech.qgl.qae.JSONFactory;
 import fr.unice.polytech.qgl.qae.actions.flyActions.withparams.Direction;
 import fr.unice.polytech.qgl.qae.map.Biome;
 import fr.unice.polytech.qgl.qae.map.tile.FlyTile;
 import fr.unice.polytech.qgl.qae.map.Map;
 import fr.unice.polytech.qgl.qae.map.tile.GroundTile;
-import fr.unice.polytech.qgl.qae.map.tile.Creek;
 import fr.unice.polytech.qgl.qae.map.Type;
 import fr.unice.polytech.qgl.qae.map.geometry.Coordinates;
 import fr.unice.polytech.qgl.qae.map.geometry.Vect;
-import fr.unice.polytech.qgl.qae.resources.PrimaryResource;
+import fr.unice.polytech.qgl.qae.resources.ResourceTile;
+import fr.unice.polytech.qgl.qae.tools.JSONFactory;
 import org.json.*;
 
 import java.util.ArrayList;
@@ -76,8 +75,9 @@ public class ManageReply {
 
     }
 
-    private void manage_scan(JSONObject js, Map map, Coordinates currentCoords) {
+    private void manage_scan(JSONObject js, Map theMap, Coordinates currentCoords) {
         JSONFactory jfk = new JSONFactory();
+        //JSONHelper jsh = new JSONHelper();
         JSONObject extras = js.getJSONObject("extras");
 
         JSONArray arr_biomes = extras.getJSONArray("biomes");
@@ -93,7 +93,7 @@ public class ManageReply {
             creeks.add(arr_creeks.getString(i));
         }
 
-        map.getFlyingmap().maj(currentCoords, new FlyTile(biomes, creeks, Type.UNKNOWN_TYPE));
+        theMap.getFlyingmap().maj(currentCoords, new FlyTile(biomes, creeks, Type.UNKNOWN_TYPE));
     }
 
     /*
@@ -107,10 +107,10 @@ public class ManageReply {
         t.setAltitude(alt);
 
         JSONArray arr_res = extras.getJSONArray("resources");
-        PrimaryResource p;
+        ResourceTile p;
         for (int i = 0; i < arr_res.length(); i++) {
-            p = new PrimaryResource();
-            p.setName(arr_res.getString(i));
+            p = new ResourceTile();
+            p.setResourceName(arr_res.getString(i));
             t.getRessource().add(p);
         }
 

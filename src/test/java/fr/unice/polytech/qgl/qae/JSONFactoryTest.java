@@ -3,6 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
+/*
 package fr.unice.polytech.qgl.qae;
 
 import fr.unice.polytech.qgl.qae.actions.flyActions.withparams.Direction;
@@ -12,18 +13,17 @@ import fr.unice.polytech.qgl.qae.map.BiomeType;
 
 import java.util.ArrayList;
 
-import fr.unice.polytech.qgl.qae.resources.PrimaryResource;
 import org.json.JSONArray;
 import org.json.JSONObject;
 import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
-import static org.junit.Assert.*;
 
 /**
  *
  * @author user
  */
+/*
 public class JSONFactoryTest {
 
     JSONFactory jfk;
@@ -40,6 +40,7 @@ public class JSONFactoryTest {
     /**
      * Test of build_res method, of class JSONFactory.
      */
+/*
     @Test
     public void testBuild_res() {
         String res = "{ \"amount\": 600, \"resource\": \"WOOD\" }";
@@ -50,6 +51,7 @@ public class JSONFactoryTest {
     /**
      * Test of build_obj method, of class JSONFactory.
      */
+/*
  
     @Test
     public void testBuild_obj() {
@@ -84,6 +86,7 @@ public class JSONFactoryTest {
     /**
      * Test of build_biome method, of class JSONFactory.
      */
+/*
     @Test
     public void testBuild_biome() {
         
@@ -94,6 +97,7 @@ public class JSONFactoryTest {
     /**
      * Test of build_heading method, of class JSONFactory.
      */
+/*
     @Test
     public void testBuild_heading() {
         assertEquals(new Heading(Direction.N), jfk.build_heading("{ \"action\": \"heading\", \"parameters\": { \"direction\": \"N\" } }"));
@@ -103,6 +107,7 @@ public class JSONFactoryTest {
     /**
      * Test of build_unextracted_ressource method, of class JSONFactory.
      */
+/*
     @Test
     public void testBuild_unextracted_ressource() {
         PrimaryResource a = new PrimaryResource();
@@ -113,3 +118,4 @@ public class JSONFactoryTest {
     
 
 }
+*/

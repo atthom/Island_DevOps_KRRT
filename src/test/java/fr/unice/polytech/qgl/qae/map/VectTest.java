@@ -5,9 +5,8 @@
  */
 package fr.unice.polytech.qgl.qae.map;
 
+import fr.unice.polytech.qgl.qae.actions.flyActions.withparams.Direction;
 import fr.unice.polytech.qgl.qae.map.geometry.Vect;
-import fr.unice.polytech.qgl.qae.actions.flyActions.composed.*;
-import fr.unice.polytech.qgl.qae.actions.flyActions.simple.*;
 import fr.unice.polytech.qgl.qae.actions.flyActions.withparams.*;
 import org.junit.Before;
 import org.junit.Test;

@@ -3,18 +3,16 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package fr.unice.polytech.qgl.qae;
+package fr.unice.polytech.qgl.qae.resources;
  
+import fr.unice.polytech.qgl.qae.actions.flyActions.withparams.Direction;
 import fr.unice.polytech.qgl.qae.map.HeadingType;
 import fr.unice.polytech.qgl.qae.resources.*;
-
-import java.util.ArrayList;
 
 import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
 import static org.junit.Assert.*;
-import org.junit.Ignore;
 
 /**
  *
@@ -69,7 +67,7 @@ public class MissionAssignmentTest {
      */
     @Test
     public void testGetHeading(){
-        theMission.setHeading(fr.unice.polytech.qgl.qae.actions.flyActions.withparams.HeadingType.E);
+        theMission.setHeading(Direction.E);
         assertEquals(theMission.getHeading(), HeadingType.E);
     }
 

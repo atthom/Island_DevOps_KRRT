@@ -5,24 +5,24 @@ package fr.unice.polytech.qgl.qae.resources;
  */
 public class ResourceTile {
 
-    private PrimaryResourceType resourceName;
+    private String resourceName;
     private ResourceAmountType quantity;
     private ResourceConditionType difficulty;
 
-    public ResourceTile(PrimaryResourceType aName, ResourceAmountType aQuantity, ResourceConditionType aDifficulty){
+    public ResourceTile(){}
+
+
+
+    public ResourceTile(String aName, ResourceAmountType aQuantity, ResourceConditionType aDifficulty){
         this.resourceName = aName;
         this.quantity = aQuantity;
         this.difficulty = aDifficulty;
     }
 
-    // Getters and Setter if needed
-
-    /*
-
-    public PrimaryResourceType getResourceName() {
+    public String getResourceName() {
         return resourceName;
     }
-    public void setResourceName(PrimaryResourceType resourceName) {
+    public void setResourceName(String resourceName) {
         this.resourceName = resourceName;
     }
     public ResourceAmountType getQuantity() {
@@ -38,5 +38,4 @@ public class ResourceTile {
         this.difficulty = difficulty;
     }
 
-    */
 }

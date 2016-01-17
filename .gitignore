@@ -1,8 +1,5 @@
+/.idea
 target/*
-/nbproject/
-outputs/log.json
-outputs/log.json
-outputs/log.json
 outputs/*
 pom.xml
 pom.xml~

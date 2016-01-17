@@ -5,9 +5,12 @@
  */
 package fr.unice.polytech.qgl.qae.strategy;
 
-import fr.unice.polytech.qgl.qae.Objectif;
 import fr.unice.polytech.qgl.qae.actions.AbstractAction;
+import fr.unice.polytech.qgl.qae.resources.Contract;
+import fr.unice.polytech.qgl.qae.resources.MissionAssignment;
 import org.json.JSONObject;
+
+import java.util.ArrayList;
 
 /**
  *
@@ -16,10 +19,10 @@ import org.json.JSONObject;
 public abstract class AbstractStrategy {
 
     protected AbstractPhase current_phase;
-    protected Objectif ob;
+    protected MissionAssignment mission;
 
-    public AbstractStrategy(Objectif ob) {
-        this.ob = ob;
+    public AbstractStrategy(MissionAssignment theMission) {
+        this.mission = theMission;
     }
 
     public void setPhase(AbstractPhase current_phase) {
@@ -35,7 +38,7 @@ public abstract class AbstractStrategy {
         return current_phase.execute();
     }
 
-    public Objectif getObjectif() {
-        return ob;
+    public MissionAssignment getMission() {
+        return mission;
     }
 }
