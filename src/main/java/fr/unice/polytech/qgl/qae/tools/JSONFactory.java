@@ -6,8 +6,7 @@
 package fr.unice.polytech.qgl.qae.tools;
 
 import fr.unice.polytech.qgl.qae.actions.flyActions.withparams.Direction;
-import fr.unice.polytech.qgl.qae.map.Biome;
-import fr.unice.polytech.qgl.qae.map.BiomeType;
+
 
 import fr.unice.polytech.qgl.qae.resources.Contract;
 import fr.unice.polytech.qgl.qae.resources.MissionAssignment;
@@ -70,9 +69,9 @@ public class JSONFactory {
      * @param s chaine convertible
      * @return un objet Biome
      */
-    public Biome build_biome(String s) {
+   /* public Biome build_biome(String s) {
         return new Biome(BiomeType.valueOf(s));
-    }
+    }*/
     
     /**
      * String => Heading

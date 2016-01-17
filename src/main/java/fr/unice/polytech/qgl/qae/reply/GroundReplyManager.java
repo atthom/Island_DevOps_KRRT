@@ -40,7 +40,7 @@ public class GroundReplyManager {
      Create and initialize ground tile from scoot action
      */
     private void manage_scout(JSONObject js, GroundMap map, Coordinates c) {
-        JSONObject extras = js.getJSONObject("extras");
+       /* JSONObject extras = js.getJSONObject("extras");
         GroundTile t = new GroundTile();
         int alt = extras.getInt("altitude");
         t.setAltitude(alt);
@@ -53,6 +53,6 @@ public class GroundReplyManager {
             t.getRessource().add(p);
         }
 
-        map.put(c, t);
+        map.put(c, t)*/
     }
 }

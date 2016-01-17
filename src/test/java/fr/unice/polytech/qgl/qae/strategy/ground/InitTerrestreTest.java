@@ -1,6 +1,5 @@
 package fr.unice.polytech.qgl.qae.strategy.ground;
 
-import fr.unice.polytech.qgl.qae.Objectif;
 import fr.unice.polytech.qgl.qae.actions.flyActions.withparams.Direction;
 import fr.unice.polytech.qgl.qae.actions.groundActions.withparams.Glimpse;
 import fr.unice.polytech.qgl.qae.map.FlyingMap;
@@ -19,16 +18,16 @@ import static org.junit.Assert.assertEquals;
  */
 public class InitTerrestreTest {
 
-    InitTerrestre it;
+ /*   InitTerrestre it;
     GroundMap m;
     AbstractStrategy ex;
-    Objectif ob;
+    //Objectif ob;
     Coordinates c;
     GroundTile gt;
 
     @Before
     public void setUp() throws Exception {
-        ex = new FlyingStrategy(Direction.S, ob);
+        //ex = new FlyingStrategy(Direction.S, ob);
         m = new GroundMap();
         c = new Coordinates(0,0);
         m.put(new Coordinates(5, 10), new GroundTile());
@@ -54,5 +53,5 @@ public class InitTerrestreTest {
         assertEquals(it, it.getNext());
         it.actions.remove(0);
 
-    }
+    }*/
 }

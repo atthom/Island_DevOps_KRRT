@@ -1,6 +1,7 @@
 package fr.unice.polytech.qgl.qae.strategy.ground;
 
 import fr.unice.polytech.qgl.qae.actions.AbstractAction;
+import fr.unice.polytech.qgl.qae.actions.Stop;
 import fr.unice.polytech.qgl.qae.actions.flyActions.composed.FlyAndScan;
 import fr.unice.polytech.qgl.qae.actions.flyActions.withparams.Direction;
 import fr.unice.polytech.qgl.qae.actions.groundActions.composed.Glimpse360;
@@ -25,11 +26,12 @@ public class InitTerrestre extends GroundPhase {
     //Coordinates initialCord;
     public InitTerrestre(AbstractStrategy parent, Coordinates currents_coords, FlyingMap m, GroundMap gm) {
         super(parent, currents_coords, m, gm);
+        actions.add(new Stop());
 
 
         //initialCord = new Coordinates(currents_coords.getX(),currents_coords.getY());
         //list = new ArrayList<>();
-        manageComposedAction(new Glimpse360(currents_coords,3));
+        //manageComposedAction(new Glimpse360(currents_coords,3));
 
         //if(map.getLastGroundTile().getListe_biomes().get(0) == BiomeType.BEACH)
            // if(map.getGroundmap().getlastCoord().getX() == currents_coords.getX())

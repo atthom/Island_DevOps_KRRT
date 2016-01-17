@@ -4,7 +4,6 @@ import fr.unice.polytech.qgl.qae.resources.MissionAssignment;
 import fr.unice.polytech.qgl.qae.actions.groundActions.withparams.MoveTo;
 import fr.unice.polytech.qgl.qae.actions.groundActions.withparams.Scout;
 import fr.unice.polytech.qgl.qae.map.tile.GroundTile;
-import fr.unice.polytech.qgl.qae.resources.PrimaryResource;
 import fr.unice.polytech.qgl.qae.strategy.fly.FlyingStrategy;
 import fr.unice.polytech.qgl.qae.actions.flyActions.withparams.Direction;
 import fr.unice.polytech.qgl.qae.map.geometry.Coordinates;
@@ -24,7 +23,7 @@ import static org.junit.Assert.assertEquals;
  */
 public class ScoutPhaseTest {
 
-    AbstractStrategy ex;
+   /* AbstractStrategy ex;
     ScoutPhase sp;
     AbstractPhase ph0, ph1;
     MissionAssignment ob;
@@ -66,6 +65,6 @@ public class ScoutPhaseTest {
         assertEquals(sp,sp.getNext());
         sp.actions.remove(0);
 
-    }
+    }*/
 
 }

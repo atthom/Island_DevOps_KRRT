@@ -4,7 +4,6 @@ import fr.unice.polytech.qgl.qae.resources.MissionAssignment;
 import fr.unice.polytech.qgl.qae.actions.groundActions.withparams.MoveTo;
 import fr.unice.polytech.qgl.qae.map.tile.GroundTile;
 
-import fr.unice.polytech.qgl.qae.resources.PrimaryResource;
 import fr.unice.polytech.qgl.qae.strategy.fly.FlyingStrategy;
 import fr.unice.polytech.qgl.qae.actions.flyActions.withparams.Direction;
 import fr.unice.polytech.qgl.qae.map.FlyingMap;
@@ -25,7 +24,7 @@ import static org.junit.Assert.assertEquals;
  */
 public class MovePhaseTest {
 
-    AbstractStrategy ex;
+    /*AbstractStrategy ex;
     MovePhase mp;
     MissionAssignment mission;
     GroundMap m;
@@ -72,5 +71,5 @@ public class MovePhaseTest {
         assertEquals(30,ob.getBudget());
 //        assertEquals(new Stop(),mp.execute());
 
-    }
+    }*/
 }

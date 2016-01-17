@@ -24,7 +24,7 @@ public class MovePhase extends GroundPhase {
 
     public MovePhase(AbstractStrategy parent, Coordinates currents_coords, FlyingMap m, GroundMap g) {
         super(parent, currents_coords, m, g);
-        find = false;
+       /* find = false;
         MoveTo mt = null;
 
         if(theParentStrategy.getMission().getBudget() < 50) {
@@ -80,7 +80,7 @@ public class MovePhase extends GroundPhase {
         }
         // Ajouter l'action et update les coordonnée
         mt.maj_coord(theCurrentCoordinates);
-        actions.add(mt);
+        actions.add(mt);*/
     }
 
     @Override
