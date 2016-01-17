@@ -19,7 +19,7 @@ public class ResourceTile {
         this.difficulty = aDifficulty;
     }
 
-    public String getResourceName() {
+    public String getName() {
         return resourceName;
     }
     public void setResourceName(String resourceName) {

@@ -28,6 +28,13 @@ public abstract class ComposedAction {
     }
 
     /**
+     * Second constructeur sans direction
+     */
+    public ComposedAction(Coordinates c) {
+        actions = new ArrayList<>();
+        this.coords = c;
+    }
+    /**
      * @return les coordonées à la fin de l'action
      */
     public Coordinates getCoords() {

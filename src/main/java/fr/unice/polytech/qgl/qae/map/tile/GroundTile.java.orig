@@ -6,9 +6,14 @@
 package fr.unice.polytech.qgl.qae.map.tile;
 
 import fr.unice.polytech.qgl.qae.exceptions.MapExeption;
-import fr.unice.polytech.qgl.qae.map.BiomeType;
+<<<<<<< HEAD
 import fr.unice.polytech.qgl.qae.resources.ResourceTile;
-
+=======
+import fr.unice.polytech.qgl.qae.map.BiomeType;
+import fr.unice.polytech.qgl.qae.resources.AmountResource;
+import fr.unice.polytech.qgl.qae.resources.ConditionResource;
+import fr.unice.polytech.qgl.qae.resources.PrimaryResource;
+>>>>>>> origin/test_improvement
 
 import java.util.ArrayList;
 import java.util.Objects;
@@ -22,8 +27,13 @@ public class GroundTile extends Tile {
     private int altitude;
     //private AmountResource amount; // represent the amount of this tile's resources
     //private ConditionResource condition; // represent the extraction condition for the resources
+<<<<<<< HEAD
     private ArrayList<ResourceTile> res;
+
+=======
+    private ArrayList<PrimaryResource> res;
     private ArrayList<BiomeType> liste_biomes;
+>>>>>>> origin/test_improvement
     /**
      *
      */
@@ -35,15 +45,18 @@ public class GroundTile extends Tile {
         liste_biomes = new ArrayList<BiomeType>();
     }
 
+<<<<<<< HEAD
     void addResource(ResourceTile r) {
         res.add(r);
     }
+=======
+>>>>>>> origin/test_improvement
 
     //public AmountResource getAmountCondition(){return this.amount;}
 
     ResourceTile getResource(String r) {
         for (int i = 0; i < res.size(); i++) {
-            if (res.get(i).getName().equals(r)) {
+            if (res.get(i).getResourceName().equals(r)) {
                 return res.get(i);
             }
         }
@@ -59,6 +72,10 @@ public class GroundTile extends Tile {
         return altitude;
     }
 
+<<<<<<< HEAD
+    public ArrayList<ResourceTile> getRessource() {
+=======
+
     /**
      *
      * @return l'altitde de la case
@@ -67,10 +84,11 @@ public class GroundTile extends Tile {
         return liste_biomes;
     }
 
-    public ArrayList<ResourceTile> getRessource() {
+
+    public ArrayList<PrimaryResource> getRessource() {
+>>>>>>> origin/test_improvement
         return res;
     }
-    
 
     /**
      *
@@ -78,6 +96,15 @@ public class GroundTile extends Tile {
      */
     public void setAltitude(int altitude) {
         this.altitude = altitude;
+    }
+
+
+    /**
+     *
+     * @param res a mettre à jour
+     */
+    public void addRes(PrimaryResource res) {
+        this.res.add(res);
     }
 
     @Override

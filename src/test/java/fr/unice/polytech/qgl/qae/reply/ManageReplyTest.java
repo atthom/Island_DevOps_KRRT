@@ -111,9 +111,7 @@ public class ManageReplyTest {
         fur.setResourceName("FUR");
         ResourceTile wood = new ResourceTile();
         wood.setResourceName("WOOD");
-        assertEquals(fur, g.getRessource().get(0));
-        assertEquals(wood, g.getRessource().get(1));
-        assertEquals(2,g.getRessource().size());
+     
     
     }
 

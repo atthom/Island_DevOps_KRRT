@@ -22,6 +22,8 @@ public class ChooseCreek  extends AbstractPhase{
     public ChooseCreek(AbstractStrategy parent, Coordinates currents_coords, Direction d, Map m) {
         super(parent, currents_coords, d, m);
     }
+    
+   
 
     @Override
     public AbstractPhase getNext() {
@@ -44,16 +46,16 @@ public class ChooseCreek  extends AbstractPhase{
         return actions.get(0);
     }
 
-    public String getlast_creek() {
+    private String getlast_creek() {
         if(last_have_creek()) {
             FlyTile t =map.getLastFlyTile();
             return t.getCreeks().get(0);
         } else {
-            throw new MapExeption("add");
+            throw new MapExeption("NO LAST CREEK");
         }
     }
 
-    public boolean last_have_creek() {
+    private boolean last_have_creek() {
         FlyTile f =  map.getLastFlyTile();
         return f.havecreeks();
     }

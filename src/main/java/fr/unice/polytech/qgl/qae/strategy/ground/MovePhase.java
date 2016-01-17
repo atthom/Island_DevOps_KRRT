@@ -7,7 +7,6 @@ import fr.unice.polytech.qgl.qae.actions.Stop;
 import fr.unice.polytech.qgl.qae.map.Map;
 import fr.unice.polytech.qgl.qae.map.geometry.Coordinates;
 import fr.unice.polytech.qgl.qae.map.tile.GroundTile;
-import fr.unice.polytech.qgl.qae.resources.ResourceType;
 import fr.unice.polytech.qgl.qae.strategy.AbstractPhase;
 import fr.unice.polytech.qgl.qae.strategy.AbstractStrategy;
 
@@ -19,11 +18,11 @@ import java.util.Random;
 public class MovePhase extends AbstractPhase {
 
     boolean find;
+    boolean fN = false, fS = false, fE = false, fW = false;
 
     public MovePhase(AbstractStrategy theParentStrategy, Coordinates theCurrentCoordinates, Direction theDirection, Map theMap) {
         super(theParentStrategy, theCurrentCoordinates, theDirection,theMap);
         find = false;
-        boolean fN = false, fS = false, fE = false, fW = false;
         MoveTo mt = null;
 
         if(theParentStrategy.getMission().getBudget() < 50) {
@@ -40,15 +39,15 @@ public class MovePhase extends AbstractPhase {
                     continue;
 
                 for (int k = 0; k < t.getRessource().size(); k++) {
-                    if (theParentStrategy.getMission().getContracts().get(i).getResourceName().equals(t.getRessource().get(k).getResourceName())) {
-                        if(t.getRessource().get(k).getResourceName().equals(ResourceType.FISH.toString()) && dir.equals(Direction.N))
+                        if(t.getRessource().get(k).getName().equals("FISH") && dir == Direction.N)
                             fN =true;
-                        if(t.getRessource().get(k).getResourceName().equals(ResourceType.FISH.toString()) && dir.equals(Direction.S))
+                        if(t.getRessource().get(k).getName().equals("FISH") && dir == Direction.S)
                             fS =true;
-                        if(t.getRessource().get(k).getResourceName().equals(ResourceType.FISH.toString()) && dir.equals(Direction.E))
+                        if(t.getRessource().get(k).getName().equals("FISH") && dir == Direction.E)
                             fE =true;
-                        if(t.getRessource().get(k).getResourceName().equals(ResourceType.FISH.toString()) && dir.equals(Direction.W))
+                        if(t.getRessource().get(k).getName().equals("FISH") && dir == Direction.W)
                             fW =true;
+                    if (parent.getMission().getContracts().get(i).getResourceName().equals(t.getRessource().get(k).getName())) {
                         mt = new MoveTo(dir);
                         find = true;
                         break;
@@ -61,9 +60,10 @@ public class MovePhase extends AbstractPhase {
                 break;
         }
 
-        // On se déplace dans une direction aléatoire si on ne trouve pas de ressources recherché
+
+
         if(!find) {
-            if(!fN && !fS && !fE && !fW) {
+            if(!fN && !fE && !fS && !fW) {
                 int r = new Random().nextInt(Direction.values().length);
                 mt = new MoveTo(Direction.values()[r]);
             }
@@ -75,7 +75,6 @@ public class MovePhase extends AbstractPhase {
                 mt = new MoveTo(Direction.E);
             else if(!fW)
                 mt = new MoveTo(Direction.W);
-
         }
         // Ajouter l'action et update les coordonnée
         mt.maj_coord(theCurrentCoordinates);

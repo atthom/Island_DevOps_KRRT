@@ -20,7 +20,13 @@ public class Glimpse extends ActionWithParameters {
      */
     public Glimpse(Direction d, int r) {
         super(new ArrayList<>(), "glimpse");
+<<<<<<< HEAD
+=======
+        if(r<1 || r>4) {
+            // throw GlimpseRangeExeption
+        }
         this.r = r;
+>>>>>>> origin/test_improvement
         parameters.add(new Parameter("direction",d));
         parameters.add(new Parameter("range",r));
     }

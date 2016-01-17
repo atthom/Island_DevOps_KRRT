@@ -7,6 +7,7 @@ package fr.unice.polytech.qgl.qae.reply;
 
 import fr.unice.polytech.qgl.qae.actions.flyActions.withparams.Direction;
 import fr.unice.polytech.qgl.qae.map.Biome;
+import fr.unice.polytech.qgl.qae.map.BiomeType;
 import fr.unice.polytech.qgl.qae.map.tile.FlyTile;
 import fr.unice.polytech.qgl.qae.map.Map;
 import fr.unice.polytech.qgl.qae.map.tile.GroundTile;
@@ -47,7 +48,7 @@ public class ManageReply {
         } else if (extras.has("altitude") && extras.has("resources")) {
             manage_scout(js, map, currentCoords.getClose(d));
         } else if (extras.has("asked_range") && extras.has("report")) {
-            //glimpse
+            manage_glimpse(js,map,currentCoords,d);
         } else if (extras.has("resources") && extras.has("pois")) {
             // explore
         }
@@ -111,10 +112,34 @@ public class ManageReply {
         for (int i = 0; i < arr_res.length(); i++) {
             p = new ResourceTile();
             p.setResourceName(arr_res.getString(i));
-            t.getRessource().add(p);
+          
         }
 
         map.getGroundmap().put(c, t);
     }
 
+    private void manage_glimpse(JSONObject js, Map map,Coordinates c,Direction d) {
+
+        Coordinates newCord = new Coordinates(c.getX(),c.getY());
+        JSONObject extras = js.getJSONObject("extras");
+
+        GroundTile t = new GroundTile();
+        int range = extras.getInt("asked_range");
+
+        if(d == Direction.N || d == Direction.S)
+            newCord.setY(range);
+        else
+            newCord.setX(range);
+
+        JSONArray arr_biomes = extras.getJSONArray("report");
+
+        for (int i = 0; i < arr_biomes.getJSONArray(2).length(); i++) {
+            if(arr_biomes.getJSONArray(2).get(i).equals("OCEAN"))
+                t.getListe_biomes().add(BiomeType.OCEAN);
+            if(arr_biomes.getJSONArray(2).get(i).equals("BEACH"))
+                t.getListe_biomes().add(BiomeType.BEACH);
+        }
+
+        map.getGroundmap().put(c, t);
+    }
 }
