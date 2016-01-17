@@ -7,11 +7,9 @@ import fr.unice.polytech.qgl.qae.actions.flyActions.withparams.Echo;
 import fr.unice.polytech.qgl.qae.map.biomes.Type;
 import fr.unice.polytech.qgl.qae.map.geometry.Coordinates;
 import fr.unice.polytech.qgl.qae.map.FlyingMap;
-import fr.unice.polytech.qgl.qae.map.tile.FlyTile;
 import fr.unice.polytech.qgl.qae.strategy.AbstractPhase;
 import fr.unice.polytech.qgl.qae.strategy.AbstractStrategy;
 import fr.unice.polytech.qgl.qae.strategy.FlyingPhase;
-import java.util.Map;
 
 /**
  * Created by user on 03/12/15.
@@ -55,10 +53,12 @@ public class Init extends FlyingPhase {
 
         map.setMin(echo_left);
 
+        map.setMaxX(echo_right.getX());
+        
         if (map.getTile(echo_front).getT() == Type.OUT_OF_RANGE) {
-            Coordinates max = new Coordinates(echo_right.getX(), echo_front.getY());
-            map.setMax(max);
+            map.setMaxY(echo_front.getY());
         }
+        
     }
 
     /**

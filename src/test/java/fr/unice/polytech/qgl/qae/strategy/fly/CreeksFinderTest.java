@@ -187,7 +187,8 @@ public class CreeksFinderTest {
         cf.map.flush();
         putOcean();
         cf.map.setMin(new Coordinates(0, 0));
-        cf.map.setMax(new Coordinates(100, 100));
+        cf.map.setMaxX(100);
+        cf.map.setMaxY(100);
         cf.currents_coords = new Coordinates(4, 4);
         cf.phaseA();
         assertEquals(cf.actions.get(7), new Scan());
@@ -199,7 +200,8 @@ public class CreeksFinderTest {
         cf.map.flush();
         putOcean2();
         cf.map.setMin(new Coordinates(0, 0));
-        cf.map.setMax(new Coordinates(100, 100));
+         cf.map.setMaxX(100);
+        cf.map.setMaxY(100);
         cf.currents_coords = new Coordinates(4, 4);
         cf.phaseA();
         assertEquals(cf.actions.get(7), new Scan());
@@ -213,7 +215,8 @@ public class CreeksFinderTest {
     public void testManageBC() {
         cf.turnleft = true;
         cf.map.setMin(new Coordinates(0, 0));
-        cf.map.setMax(new Coordinates(100, 100));
+          cf.map.setMaxX(100);
+        cf.map.setMaxY(100);
         cf.currents_coords = new Coordinates(4, 4);
         
         cf.manageBC();

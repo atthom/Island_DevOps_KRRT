@@ -2,12 +2,17 @@ package fr.unice.polytech.qgl.qae.strategy.fly;
 
 import fr.unice.polytech.qgl.qae.Objectif;
 import fr.unice.polytech.qgl.qae.actions.flyActions.simple.Fly;
+import fr.unice.polytech.qgl.qae.actions.flyActions.simple.Scan;
 import fr.unice.polytech.qgl.qae.actions.flyActions.withparams.Direction;
+import fr.unice.polytech.qgl.qae.actions.flyActions.withparams.Echo;
 import fr.unice.polytech.qgl.qae.map.biomes.Type;
 import fr.unice.polytech.qgl.qae.map.geometry.Coordinates;
 import fr.unice.polytech.qgl.qae.map.FlyingMap;
+import fr.unice.polytech.qgl.qae.map.biomes.Biome;
+import fr.unice.polytech.qgl.qae.map.biomes.BiomeType;
 import fr.unice.polytech.qgl.qae.map.tile.FlyTile;
 import fr.unice.polytech.qgl.qae.strategy.AbstractStrategy;
+import java.util.ArrayList;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -30,23 +35,67 @@ public class GoGroundTest {
     public void setUp() throws Exception {
         ex = new FlyingStrategy(Direction.S, ob);
         m = new FlyingMap();
-        ocean = new FlyTile(Type.OCEAN);
+        ArrayList<Biome> bs = new ArrayList<>();
+        bs.add(new Biome(BiomeType.OCEAN));
+        ocean = new FlyTile(bs, new ArrayList<>(), Type.OCEAN);
         ground = new FlyTile(Type.GROUND);
         m.put(new Coordinates(5, 10), ground);
+        
         gg = new GoGround(ex, new Coordinates(5, 5), Direction.S, m);
 
     }
 
+
     @Test
-    public void testExecute() throws Exception {
+    public void testExecute() {
+       
+        gg.map.setMaxX(100);
+        gg.map.setMaxY(100);
+        gg.execute();
         for (int i = 0; i < 5; i++) {
             assertEquals(new Fly(), gg.execute());
             assertEquals(gg, gg.getNext());
+            gg.execute();
             gg.actions.remove(0);
         }
-        
         assertTrue(gg.actions.isEmpty());
-     //   assertEquals(new CreeksFinder(ex, gg.currents_coords, gg.d, gg.map), gg.getNext());
+        System.out.println(gg.map.Max_is_Not_set());
+        assertEquals(new CreeksFinder(ex, gg.currents_coords, gg.d, gg.map), gg.getNext());
+    }
+    
+    @Test
+    public void testExecuteN() {
+       
+        gg.execute();
+        for (int i = 0; i < 5; i++) {
+            assertEquals(new Fly(), gg.execute());
+            assertEquals(gg, gg.getNext());
+            gg.execute();
+            gg.actions.remove(0);
+        }
+        assertTrue(gg.actions.isEmpty());
+        assertEquals(gg, gg.getNext());
+        gg.execute();  
+        assertEquals(new Fly(), gg.actions.get(0));
+        assertEquals(new Scan(), gg.actions.get(1));
+        gg.actions.clear();
+        gg.execute();  
+        assertEquals(new Fly(), gg.actions.get(0));
+        assertEquals(new Scan(), gg.actions.get(1));
+        gg.actions.clear();
+        gg.map.setMaxX(6);
+        gg.map.put(new Coordinates(6, 6),ocean);
+        gg.execute();
+        assertEquals(new Echo(gg.d), gg.actions.get(0));
+        
+        gg.map.put(new Coordinates(15,14), new FlyTile(Type.OUT_OF_RANGE));
+        gg.actions.clear();
+        gg.execute();
+        gg.actions.clear();
+        assertEquals(new Coordinates(6, 14), gg.map.getMax());
+        assertEquals(new CreeksFinder(ex, gg.currents_coords, gg.d, gg.map), gg.getNext());
+        //gg.map.put(new Coordinates(25,10), );
+        
     }
 
     
@@ -55,15 +104,17 @@ public class GoGroundTest {
      */
     @Test
     public void testGetNext() {
-        assertEquals(gg.getNext(), gg);
+        assertEquals(gg, gg.getNext());
         gg.execute();
-        assertEquals(gg.getNext(), gg);
+        assertEquals(gg, gg.getNext() );
         gg.actions.clear();
         gg.execute();
-        assertEquals(gg.getNext(), gg);
-        gg.map.put(new Coordinates(5, 5), ocean);
-//        assertEquals(new Echo(gg.d), gg.execute());
-        
+        assertEquals(gg,gg.getNext());
+        gg.map.setMaxX(5);
+        gg.map.setMaxY(5);
+        assertEquals(gg, gg.getNext());
+        gg.actions.clear();
+        assertEquals(new CreeksFinder(ex, gg.currents_coords, gg.d, gg.map), gg.getNext());
     }
 
 }

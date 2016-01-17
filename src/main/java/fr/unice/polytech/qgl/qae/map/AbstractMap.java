@@ -1,5 +1,6 @@
 package fr.unice.polytech.qgl.qae.map;
 
+import fr.unice.polytech.qgl.qae.actions.flyActions.withparams.Direction;
 import fr.unice.polytech.qgl.qae.map.geometry.Coordinates;
 
 /**
@@ -27,7 +28,16 @@ public abstract class AbstractMap {
         return max;
     }
 
-    public void setMax(Coordinates max) {
-        this.max = max;
+    public boolean Max_is_Not_set() {
+        return (max.getX() == 0 || max.getY() == 0);
     }
+
+    public void setMaxY(int max) {
+        this.max.setY(max);
+    }
+
+    public void setMaxX(int max) {
+        this.max.setX(max);
+    }
+
 }
