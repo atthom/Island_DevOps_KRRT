@@ -23,11 +23,11 @@ public class GroundReplyManager {
     }
     
     
-     public void manage(JSONObject js, GroundMap map, Direction d, Coordinates cc) {
+     public void manage(JSONObject js, GroundMap map, Coordinates cc) {
         JSONObject extras = js.getJSONObject("extras");
 
         if (extras.has("altitude") && extras.has("resources")) {
-            manage_scout(js, map, cc.getClose(d));
+            manage_scout(js, map, cc);
         } else if (extras.has("asked_range") && extras.has("report")) {
             //glimpse
         } else if (extras.has("resources") && extras.has("pois")) {

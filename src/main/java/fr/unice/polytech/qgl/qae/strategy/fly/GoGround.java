@@ -33,7 +33,7 @@ public class GoGround extends FlyingPhase {
 
     @Override
     public AbstractAction execute() {
-        if (actions.isEmpty() && map.Max_is_Not_set()) {
+      /*  if (actions.isEmpty() && map.Max_is_Not_set()) {
             FlyTile ft = map.getLastTile().getValue();
             if (ft.have_only(BiomeType.OCEAN) && first) {
                 actions.add(new Echo(d));
@@ -44,13 +44,13 @@ public class GoGround extends FlyingPhase {
             if (ft.getT() == Type.OUT_OF_RANGE) {
                 map.setMaxY(map.getLastTile().getKey().getY());  
             }
-        }
+        }*/
         return actions.get(0);
     }
 
     @Override
     public AbstractPhase getNext() {
-        if (actions.isEmpty() && !map.Max_is_Not_set()) {
+        if (actions.isEmpty() /*&& !map.Max_is_Not_set()*/) {
             return new CreeksFinder(parent, currents_coords, d, map);
         } else {
             return this;

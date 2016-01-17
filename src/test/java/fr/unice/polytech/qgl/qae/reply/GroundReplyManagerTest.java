@@ -38,7 +38,7 @@ public class GroundReplyManagerTest {
     public void testManage_scoot(){
         JSONObject scoot_reply = new JSONObject("{ \"cost\": 5, \"extras\": { \"altitude\": 5, \"resources\": [\"FUR\", \"WOOD\"] }, \"status\": \"OK\" }");
         
-        grm.manage(scoot_reply, gm, Direction.E, new Coordinates(5, 5));
+        grm.manage(scoot_reply, gm, new Coordinates(5, 5));
         GroundTile g = gm.getLastTile().getValue();
         assertEquals(5, g.getAltitude());
        

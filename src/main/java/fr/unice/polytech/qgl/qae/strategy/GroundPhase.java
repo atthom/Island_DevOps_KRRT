@@ -20,8 +20,7 @@ import org.json.JSONObject;
 public abstract class GroundPhase extends AbstractPhase {
     protected GroundReplyManager mgr;
     public GroundMap gm;
-    protected Direction scout_dir;
-
+    
     public GroundPhase(AbstractStrategy parent, Coordinates currents_coords, FlyingMap m, GroundMap gm) {
         super(parent, currents_coords, m);
         this.gm = gm;
@@ -36,6 +35,6 @@ public abstract class GroundPhase extends AbstractPhase {
 
     @Override
     public void acknowledge(JSONObject s) {
-        mgr.manage(s, gm, scout_dir, currents_coords);
+        mgr.manage(s, gm,currents_coords);
     }
 }
