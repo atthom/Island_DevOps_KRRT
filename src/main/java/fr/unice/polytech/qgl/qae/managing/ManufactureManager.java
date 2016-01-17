@@ -42,7 +42,7 @@ public class ManufactureManager {
         recipes.put(recipe.getManufacturedResource(), recipe);
     }
 
-    public ArrayList<Ingredient> getIngredients(ManufacturedResourceType resourceName, int anAmount) throws InvalidResourceAmountException{
+    public HashMap<PrimaryResourceType,Ingredient> getIngredients(ManufacturedResourceType resourceName, int anAmount) throws InvalidResourceAmountException{
         return recipes.get(resourceName).getIngredients(anAmount);
     }
 
