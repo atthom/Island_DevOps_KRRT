@@ -39,10 +39,21 @@ public class InitTerrestreTest {
 
     @Test
     public void testExecute() {
-      //  assertEquals(new Glimpse(Direction.N,3), it.execute());
-        assertEquals(it, it.getNext());
-       // assertEquals(new Glimpse(Direction.E,3), it.execute());
 
+        assertEquals(new Glimpse(Direction.N,3), it.execute());
+        assertEquals(it, it.getNext());
+        it.actions.remove(0);
+
+        assertEquals(new Glimpse(Direction.E,3), it.execute());
+        assertEquals(it, it.getNext());
+        it.actions.remove(0);
+
+        assertEquals(new Glimpse(Direction.S,3), it.execute());
+        assertEquals(it, it.getNext());
+        it.actions.remove(0);
+
+        assertEquals(new Glimpse(Direction.W,3), it.execute());
+        assertEquals(it, it.getNext());
         it.actions.remove(0);
 
     }
