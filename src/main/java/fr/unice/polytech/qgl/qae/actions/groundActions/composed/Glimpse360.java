@@ -9,8 +9,8 @@ import fr.unice.polytech.qgl.qae.map.geometry.Coordinates;
  * Created by user on 16/01/16.
  */
 public class Glimpse360 extends ComposedAction {
-    public Glimpse360(Coordinates current, Direction dir, int nb) {
-        super(current, dir);
+    public Glimpse360(Coordinates current,int nb) {
+        super(current);
         super.add(new Glimpse(Direction.N,nb));
         super.add(new Glimpse(Direction.E,nb));
         super.add(new Glimpse(Direction.S,nb));

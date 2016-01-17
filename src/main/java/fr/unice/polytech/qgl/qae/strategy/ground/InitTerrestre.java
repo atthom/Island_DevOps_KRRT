@@ -19,7 +19,7 @@ public class InitTerrestre extends AbstractPhase {
     public InitTerrestre(AbstractStrategy parent, Coordinates currents_coords, Direction d, Map m) {
         super(parent, currents_coords, d,m);
 
-        manageComposedAction(new Glimpse360(currents_coords, d,3));
+        manageComposedAction(new Glimpse360(currents_coords,3));
         manageComposedAction(new MoveDiag(currents_coords,Direction.N, Direction.E,3));
 
         /*
