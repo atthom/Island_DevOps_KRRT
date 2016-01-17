@@ -23,16 +23,22 @@ import static org.junit.Assert.assertEquals;
  */
 public class ScoutPhaseTest {
 
-
     AbstractStrategy ex;
     ScoutPhase sp;
     Objectif ob;
     Map m;
     Coordinates c;
     GroundTile g1,g2,g3,g4;
+    ArrayList<PrimaryResource> contract;
 
     @Before
     public void setUp() {
+        contract = new ArrayList<>();
+        contract.add(new PrimaryResource(15,"WOOD"));
+
+        ob = new Objectif(10,150,contract);
+
+
         ex = new FlyingStrategy(Direction.S, ob);
         m = new Map();
         c = new Coordinates(0,0);
@@ -42,7 +48,22 @@ public class ScoutPhaseTest {
 
     @Test
     public void testExecute() {
-       assertEquals(new Scout(Direction.N),sp.execute());
+        assertEquals(new Scout(Direction.E),sp.execute());
+        assertEquals(sp,sp.getNext());
+        sp.actions.remove(0);
+
+        assertEquals(new Scout(Direction.W),sp.execute());
+        assertEquals(sp,sp.getNext());
+        sp.actions.remove(0);
+
+        assertEquals(new Scout(Direction.S),sp.execute());
+        assertEquals(sp,sp.getNext());
+        sp.actions.remove(0);
+
+        assertEquals(new Scout(Direction.N),sp.execute());
+        assertEquals(sp,sp.getNext());
+        sp.actions.remove(0);
+
     }
 
 }
