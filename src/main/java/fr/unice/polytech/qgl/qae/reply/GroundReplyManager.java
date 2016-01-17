@@ -9,6 +9,7 @@ import fr.unice.polytech.qgl.qae.actions.flyActions.withparams.Direction;
 import fr.unice.polytech.qgl.qae.map.geometry.Coordinates;
 import fr.unice.polytech.qgl.qae.map.GroundMap;
 import fr.unice.polytech.qgl.qae.map.tile.GroundTile;
+import fr.unice.polytech.qgl.qae.resources.ResourceTile;
 import org.json.JSONArray;
 import org.json.JSONObject;
 
@@ -46,10 +47,10 @@ public class GroundReplyManager {
         t.setAltitude(alt);
 
         JSONArray arr_res = extras.getJSONArray("resources");
-        PrimaryResource p;
+        ResourceTile p;
         for (int i = 0; i < arr_res.length(); i++) {
-            p = new PrimaryResource();
-            p.setName(arr_res.getString(i));
+            p = new ResourceTile();
+            p.setResourceName(arr_res.getString(i));
             t.getRessource().add(p);
         }
 
