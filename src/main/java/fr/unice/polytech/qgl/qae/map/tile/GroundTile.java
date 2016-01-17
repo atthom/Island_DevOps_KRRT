@@ -85,10 +85,10 @@ public class GroundTile extends Tile {
 
     /**
      *
-     * @param biomes a mettre à jour
+     * @param res a mettre à jour
      */
-    public void setListe_biomes(ArrayList<BiomeType> biomes) {
-        this.liste_biomes = biomes;
+    public void addRes(PrimaryResource res) {
+        this.res.add(res);
     }
 
     @Override
