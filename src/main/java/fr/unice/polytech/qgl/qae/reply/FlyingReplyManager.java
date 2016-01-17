@@ -7,11 +7,11 @@ package fr.unice.polytech.qgl.qae.reply;
 
 import fr.unice.polytech.qgl.qae.JSONFactory;
 import fr.unice.polytech.qgl.qae.actions.flyActions.withparams.Direction;
-import fr.unice.polytech.qgl.qae.map.Biome;
-import fr.unice.polytech.qgl.qae.map.Type;
+import fr.unice.polytech.qgl.qae.map.biomes.Biome;
+import fr.unice.polytech.qgl.qae.map.biomes.Type;
 import fr.unice.polytech.qgl.qae.map.geometry.Coordinates;
 import fr.unice.polytech.qgl.qae.map.geometry.Vect;
-import fr.unice.polytech.qgl.qae.map.map.FlyingMap;
+import fr.unice.polytech.qgl.qae.map.FlyingMap;
 import fr.unice.polytech.qgl.qae.map.tile.FlyTile;
 import java.util.ArrayList;
 import org.json.JSONArray;

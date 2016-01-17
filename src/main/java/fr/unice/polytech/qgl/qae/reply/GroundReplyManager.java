@@ -7,7 +7,7 @@ package fr.unice.polytech.qgl.qae.reply;
 
 import fr.unice.polytech.qgl.qae.actions.flyActions.withparams.Direction;
 import fr.unice.polytech.qgl.qae.map.geometry.Coordinates;
-import fr.unice.polytech.qgl.qae.map.map.GroundMap;
+import fr.unice.polytech.qgl.qae.map.GroundMap;
 import fr.unice.polytech.qgl.qae.map.tile.GroundTile;
 import fr.unice.polytech.qgl.qae.resources.PrimaryResource;
 import org.json.JSONArray;

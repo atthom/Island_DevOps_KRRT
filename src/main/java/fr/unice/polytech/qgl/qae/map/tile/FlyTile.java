@@ -5,9 +5,9 @@
  */
 package fr.unice.polytech.qgl.qae.map.tile;
 
-import fr.unice.polytech.qgl.qae.map.Biome;
-import fr.unice.polytech.qgl.qae.map.Type;
-import static fr.unice.polytech.qgl.qae.map.Type.UNKNOWN_TYPE;
+import fr.unice.polytech.qgl.qae.map.biomes.Biome;
+import fr.unice.polytech.qgl.qae.map.biomes.Type;
+import static fr.unice.polytech.qgl.qae.map.biomes.Type.UNKNOWN_TYPE;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;

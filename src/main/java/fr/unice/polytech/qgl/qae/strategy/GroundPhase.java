@@ -8,8 +8,8 @@ package fr.unice.polytech.qgl.qae.strategy;
 import fr.unice.polytech.qgl.qae.actions.AbstractAction;
 import fr.unice.polytech.qgl.qae.actions.flyActions.withparams.Direction;
 import fr.unice.polytech.qgl.qae.map.geometry.Coordinates;
-import fr.unice.polytech.qgl.qae.map.map.FlyingMap;
-import fr.unice.polytech.qgl.qae.map.map.GroundMap;
+import fr.unice.polytech.qgl.qae.map.FlyingMap;
+import fr.unice.polytech.qgl.qae.map.GroundMap;
 import fr.unice.polytech.qgl.qae.reply.GroundReplyManager;
 import org.json.JSONObject;
 

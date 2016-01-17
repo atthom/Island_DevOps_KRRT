@@ -1,9 +1,10 @@
-package fr.unice.polytech.qgl.qae.map.map;
+package fr.unice.polytech.qgl.qae.map;
 
 import fr.unice.polytech.qgl.qae.map.geometry.Coordinates;
 import fr.unice.polytech.qgl.qae.map.tile.FlyTile;
 
 import java.util.HashMap;
+import java.util.Iterator;
 import java.util.LinkedHashMap;
 import java.util.Map;
 import java.util.Set;
@@ -12,7 +13,7 @@ import java.util.Set;
  * Created by user on 21/12/2015.
  */
 public class FlyingMap extends AbstractMap {
-    HashMap<Coordinates, FlyTile> map;
+    LinkedHashMap<Coordinates, FlyTile> map;
     
     public FlyingMap() {
         super();
@@ -59,13 +60,7 @@ public class FlyingMap extends AbstractMap {
     }
 
     public Map.Entry<Coordinates, FlyTile> getLastTile() {
-        Set<Map.Entry<Coordinates, FlyTile>> c = map.entrySet();
-     
-        Map.Entry<Coordinates, FlyTile> last = null;
-        while(c.iterator().hasNext()) {
-            last = c.iterator().next();
-        }
-        return last;
+        return (Map.Entry<Coordinates, FlyTile>) map.entrySet().toArray()[map.size()-1];
     }
     
     public Map.Entry<Coordinates, FlyTile> preced(FlyTile f) {

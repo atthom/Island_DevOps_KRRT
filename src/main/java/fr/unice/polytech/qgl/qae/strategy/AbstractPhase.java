@@ -7,7 +7,7 @@ package fr.unice.polytech.qgl.qae.strategy;
 
 import fr.unice.polytech.qgl.qae.actions.AbstractAction;
 import fr.unice.polytech.qgl.qae.map.geometry.Coordinates;
-import fr.unice.polytech.qgl.qae.map.map.FlyingMap;
+import fr.unice.polytech.qgl.qae.map.FlyingMap;
 import java.util.ArrayList;
 import java.util.Objects;
 import org.json.JSONObject;

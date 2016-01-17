@@ -7,8 +7,8 @@ package fr.unice.polytech.qgl.qae;
 
 import fr.unice.polytech.qgl.qae.actions.flyActions.withparams.Direction;
 import fr.unice.polytech.qgl.qae.actions.flyActions.withparams.Heading;
-import fr.unice.polytech.qgl.qae.map.Biome;
-import fr.unice.polytech.qgl.qae.map.BiomeType;
+import fr.unice.polytech.qgl.qae.map.biomes.Biome;
+import fr.unice.polytech.qgl.qae.map.biomes.BiomeType;
 
 import java.util.ArrayList;
 

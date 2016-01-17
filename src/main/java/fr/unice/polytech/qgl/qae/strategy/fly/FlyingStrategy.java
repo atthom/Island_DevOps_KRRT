@@ -8,7 +8,7 @@ package fr.unice.polytech.qgl.qae.strategy.fly;
 import fr.unice.polytech.qgl.qae.Objectif;
 import fr.unice.polytech.qgl.qae.actions.flyActions.withparams.Direction;
 import fr.unice.polytech.qgl.qae.map.geometry.Coordinates;
-import fr.unice.polytech.qgl.qae.map.map.FlyingMap;
+import fr.unice.polytech.qgl.qae.map.FlyingMap;
 import fr.unice.polytech.qgl.qae.strategy.AbstractStrategy;
 
 /**

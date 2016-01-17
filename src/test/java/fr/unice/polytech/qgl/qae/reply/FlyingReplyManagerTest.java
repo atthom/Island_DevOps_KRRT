@@ -6,11 +6,11 @@
 package fr.unice.polytech.qgl.qae.reply;
 
 import fr.unice.polytech.qgl.qae.actions.flyActions.withparams.Direction;
-import fr.unice.polytech.qgl.qae.map.Biome;
-import fr.unice.polytech.qgl.qae.map.BiomeType;
-import fr.unice.polytech.qgl.qae.map.Type;
+import fr.unice.polytech.qgl.qae.map.biomes.Biome;
+import fr.unice.polytech.qgl.qae.map.biomes.BiomeType;
+import fr.unice.polytech.qgl.qae.map.biomes.Type;
 import fr.unice.polytech.qgl.qae.map.geometry.Coordinates;
-import fr.unice.polytech.qgl.qae.map.map.FlyingMap;
+import fr.unice.polytech.qgl.qae.map.FlyingMap;
 import fr.unice.polytech.qgl.qae.map.tile.FlyTile;
 import fr.unice.polytech.qgl.qae.resources.PrimaryResource;
 import java.util.ArrayList;
