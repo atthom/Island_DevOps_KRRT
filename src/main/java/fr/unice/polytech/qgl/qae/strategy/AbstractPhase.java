@@ -32,6 +32,7 @@ public abstract class AbstractPhase {
         this.actions = new ArrayList<>();
     }
     
+    
     public abstract AbstractPhase getNext();
 
     public abstract AbstractAction execute();

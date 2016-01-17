@@ -6,6 +6,7 @@
 package fr.unice.polytech.qgl.qae.strategy;
 
 import fr.unice.polytech.qgl.qae.actions.AbstractAction;
+import fr.unice.polytech.qgl.qae.actions.ComposedAction;
 import fr.unice.polytech.qgl.qae.actions.flyActions.withparams.Direction;
 import fr.unice.polytech.qgl.qae.map.geometry.Coordinates;
 import fr.unice.polytech.qgl.qae.map.FlyingMap;
@@ -25,6 +26,11 @@ public abstract class GroundPhase extends AbstractPhase {
         super(parent, currents_coords, m);
         this.gm = gm;
         mgr = new GroundReplyManager();
+    }
+    
+    protected void manageComposedAction(ComposedAction ac) {
+        actions.addAll(ac.getAll());
+        currents_coords = ac.getCoords();
     }
 
     @Override

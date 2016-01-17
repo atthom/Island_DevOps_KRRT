@@ -21,11 +21,11 @@ import java.util.Random;
 public class MovePhase extends GroundPhase {
 
     boolean find;
+    boolean fN = false, fS = false, fE = false, fW = false;
 
     public MovePhase(AbstractStrategy parent, Coordinates currents_coords, FlyingMap m, GroundMap g) {
         super(parent, currents_coords, m, g);
         find = false;
-        boolean fN = false, fS = false, fE = false, fW = false;
         MoveTo mt = null;
 
         if(parent.getObjectif().getBudget() < 50) {
@@ -42,15 +42,15 @@ public class MovePhase extends GroundPhase {
                     continue;
 
                 for (int k = 0; k < t.getRessource().size(); k++) {
-                    if (parent.getObjectif().getContract().get(i).getName().equals(t.getRessource().get(k).getName())) {
-                        if(t.getRessource().get(k).getName().equals(ResourceType.FISH.toString()) && dir.equals(Direction.N))
+                        if(t.getRessource().get(k).getName().equals("FISH") && dir == Direction.N)
                             fN =true;
-                        if(t.getRessource().get(k).getName().equals(ResourceType.FISH.toString()) && dir.equals(Direction.S))
+                        if(t.getRessource().get(k).getName().equals("FISH") && dir == Direction.S)
                             fS =true;
-                        if(t.getRessource().get(k).getName().equals(ResourceType.FISH.toString()) && dir.equals(Direction.E))
+                        if(t.getRessource().get(k).getName().equals("FISH") && dir == Direction.E)
                             fE =true;
-                        if(t.getRessource().get(k).getName().equals(ResourceType.FISH.toString()) && dir.equals(Direction.W))
+                        if(t.getRessource().get(k).getName().equals("FISH") && dir == Direction.W)
                             fW =true;
+                    if (parent.getObjectif().getContract().get(i).getName().equals(t.getRessource().get(k).getName())) {
                         mt = new MoveTo(dir);
                         find = true;
                         break;
@@ -65,11 +65,7 @@ public class MovePhase extends GroundPhase {
 
         // On se déplace dans une direction aléatoire si on ne trouve pas de ressources recherché
         if(!find) {
-            if(!fN && !fS && !fE && !fW) {
-                int r = new Random().nextInt(Direction.values().length);
-                mt = new MoveTo(Direction.values()[r]);
-            }
-            else if(!fN)
+            if(!fN)
                 mt = new MoveTo(Direction.N);
             else if(!fS)
                 mt = new MoveTo(Direction.S);
@@ -77,7 +73,10 @@ public class MovePhase extends GroundPhase {
                 mt = new MoveTo(Direction.E);
             else if(!fW)
                 mt = new MoveTo(Direction.W);
-
+            else {
+                int r = new Random().nextInt(Direction.values().length);
+                mt = new MoveTo(Direction.values()[r]);
+            }
         }
         // Ajouter l'action et update les coordonnée
         mt.maj_coord(currents_coords);
