@@ -1,6 +1,11 @@
 package fr.unice.polytech.qgl.qae.strategy.ground;
 
+<<<<<<< HEAD
 import fr.unice.polytech.qgl.qae.resources.MissionAssignment;
+import fr.unice.polytech.qgl.qae.actions.Stop;
+=======
+
+>>>>>>> map_improvement
 import fr.unice.polytech.qgl.qae.actions.groundActions.withparams.MoveTo;
 import fr.unice.polytech.qgl.qae.map.tile.GroundTile;
 
@@ -27,8 +32,13 @@ public class MovePhaseTest {
 
     AbstractStrategy ex;
     MovePhase mp;
+<<<<<<< HEAD
     MissionAssignment mission;
+    Map m;
+=======
+    Objectif ob;
     GroundMap m;
+>>>>>>> map_improvement
     Coordinates c;
     GroundTile g1,g2,g3,g4;
     ArrayList<PrimaryResource> contract;

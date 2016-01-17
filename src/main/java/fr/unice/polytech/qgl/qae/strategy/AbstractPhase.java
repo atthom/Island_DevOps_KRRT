@@ -6,13 +6,10 @@
 package fr.unice.polytech.qgl.qae.strategy;
 
 import fr.unice.polytech.qgl.qae.actions.AbstractAction;
-import fr.unice.polytech.qgl.qae.actions.ComposedAction;
-import fr.unice.polytech.qgl.qae.actions.flyActions.withparams.Direction;
-import fr.unice.polytech.qgl.qae.actions.flyActions.withparams.Heading;
-import fr.unice.polytech.qgl.qae.map.Map;
 import fr.unice.polytech.qgl.qae.map.geometry.Coordinates;
-import fr.unice.polytech.qgl.qae.reply.ManageReply;
+import fr.unice.polytech.qgl.qae.map.FlyingMap;
 import java.util.ArrayList;
+import java.util.Objects;
 import org.json.JSONObject;
 
 /**
@@ -21,99 +18,56 @@ import org.json.JSONObject;
  */
 public abstract class AbstractPhase {
 
-    public final Map map;
+    public final FlyingMap map;
     public Coordinates currents_coords;
-    public Direction d;
+    
     protected final AbstractStrategy parent;
     protected boolean next = false;
     public final ArrayList<AbstractAction> actions;
-    protected final ManageReply manager;
-    protected Direction old_direction;
-
-    public AbstractPhase(AbstractStrategy parent, Coordinates currents_coords, Direction d, Map m) {
-        this.currents_coords = currents_coords;
-        this.d = d;
-        this.parent = parent;
-        this.map = m;
-        this.manager = new ManageReply();
-        this.actions = new ArrayList<>();
-    }
-
-    // Phase Terrestre
-    public AbstractPhase(AbstractStrategy parent, Coordinates currents_coords, Map m) {
+    public AbstractPhase(AbstractStrategy parent, Coordinates currents_coords, FlyingMap m) {
         this.currents_coords = currents_coords;
         this.parent = parent;
         this.map = m;
-        this.manager = new ManageReply();
+        
         this.actions = new ArrayList<>();
     }
-
-    protected void manageComposedAction(ComposedAction ac) {
-        actions.addAll(ac.getAll());
-        currents_coords = ac.getCoords();
-        if (ac.getDir() != d) {
-            old_direction = d;
-            d = ac.getDir();
-        }
-    }
-
-    protected void change_dir(Direction dd) {
-        if (dd != d) {
-            old_direction = d;
-            d = dd;
-            Heading h = new Heading(dd);
-            actions.add(h);
-            h.maj_coord(currents_coords, old_direction, dd);
-        }
-    }
-
+    
+    
     public abstract AbstractPhase getNext();
 
     public abstract AbstractAction execute();
 
-    public void acknowledge(JSONObject s) {
-        Direction dd = d;
-        if (!actions.isEmpty()) {
-            JSONObject act = actions.get(0).toJSON();
-            if (act.has("parameters") && act.getJSONObject("parameters").has("direction")) {
-                dd = act.getJSONObject("parameters").getEnum(Direction.class, "direction");
-            }
-            actions.remove(0);
-        }
-
-        manager.manage(s, map, dd, currents_coords);
-    }
-
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) {
-            return true;
-        }
-        if (o == null || getClass() != o.getClass()) {
-            return false;
-        }
-
-        AbstractPhase that = (AbstractPhase) o;
-
-        if (!map.equals(that.map)) {
-            return false;
-        }
-        if (!currents_coords.equals(that.currents_coords)) {
-            return false;
-        }
-        if (d != that.d) {
-            return false;
-        }
-        return parent.equals(that.parent);
-
-    }
+    public abstract void acknowledge(JSONObject s);
 
     @Override
     public int hashCode() {
-        int result = map.hashCode();
-        result = 31 * result + currents_coords.hashCode();
-        result = 31 * result + d.hashCode();
-        result = 31 * result + parent.hashCode();
-        return result;
+        int hash = 7;
+        hash = 83 * hash + Objects.hashCode(this.map);
+        hash = 83 * hash + Objects.hashCode(this.currents_coords);
+        hash = 83 * hash + Objects.hashCode(this.actions);
+        return hash;
     }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (obj == null) {
+            return false;
+        }
+        if (getClass() != obj.getClass()) {
+            return false;
+        }
+        final AbstractPhase other = (AbstractPhase) obj;
+        if (!Objects.equals(this.map, other.map)) {
+            return false;
+        }
+        if (!Objects.equals(this.currents_coords, other.currents_coords)) {
+            return false;
+        }
+        return Objects.equals(this.actions, other.actions);
+    }
+
+    
 }

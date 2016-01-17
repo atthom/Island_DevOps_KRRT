@@ -6,22 +6,23 @@ import fr.unice.polytech.qgl.qae.actions.flyActions.composed.*;
 import fr.unice.polytech.qgl.qae.actions.flyActions.simple.Fly;
 import fr.unice.polytech.qgl.qae.actions.flyActions.simple.Scan;
 import fr.unice.polytech.qgl.qae.actions.flyActions.withparams.Direction;
-import fr.unice.polytech.qgl.qae.map.BiomeType;
-import fr.unice.polytech.qgl.qae.map.Map;
+import fr.unice.polytech.qgl.qae.map.biomes.BiomeType;
 import fr.unice.polytech.qgl.qae.map.geometry.Coordinates;
+import fr.unice.polytech.qgl.qae.map.FlyingMap;
 import fr.unice.polytech.qgl.qae.map.tile.FlyTile;
 import fr.unice.polytech.qgl.qae.strategy.AbstractPhase;
 import fr.unice.polytech.qgl.qae.strategy.AbstractStrategy;
+import fr.unice.polytech.qgl.qae.strategy.FlyingPhase;
 import fr.unice.polytech.qgl.qae.strategy.choosecreeks.ChooseCreek;
 
 /**
  * Created by user on 05/12/15.
  */
-public class CreeksFinder extends AbstractPhase {
+public class CreeksFinder extends FlyingPhase {
 
     public boolean turnleft = false;
 
-    public CreeksFinder(AbstractStrategy parent, Coordinates currents_coords, Direction d, Map m) {
+    public CreeksFinder(AbstractStrategy parent, Coordinates currents_coords, Direction d, FlyingMap m) {
         super(parent, currents_coords, d, m);
         Direction first = ((FlyingStrategy) parent).getFirst();
         if (first.right() == d) {
@@ -67,8 +68,8 @@ public class CreeksFinder extends AbstractPhase {
     }
 
     public void manageBC() {
-        Coordinates min = map.getFlyingmap().getMin();
-        Coordinates max = map.getFlyingmap().getMax();
+        Coordinates min = map.getMin();
+        Coordinates max = map.getMax();
         int c_X = currents_coords.getX();
         int c_Y = currents_coords.getY();
 
@@ -104,19 +105,22 @@ public class CreeksFinder extends AbstractPhase {
     }
 
     public boolean last_is_only_ocean() {
-        FlyTile t = map.getLastFlyTile();
+        FlyTile t = map.getLastTile().getValue();
         return t.have_biome(BiomeType.OCEAN) && t.nb_biomes() == 1;
     }
 
     public boolean two_last_is_only_ocean() {
-        FlyTile t = map.getLastFlyTile();
-        FlyTile tt = map.getFlyTile(map.getFlyingmap().preced(map.getFlyingmap().getlastCoord()));
+        if(map.size()<2) {
+            return false;
+        }
+        FlyTile t =map.getLastTile().getValue();
+        FlyTile tt = map.preced(map.getLastTile()).getValue();
         return t.have_biome(BiomeType.OCEAN) && t.nb_biomes() == 1
                 && tt.have_biome(BiomeType.OCEAN) && tt.nb_biomes() == 1;
     }
 
     public boolean last_have_creek() {
-        FlyTile f = map.getLastFlyTile();
+        FlyTile f = map.getLastTile().getValue();
         return f.havecreeks();
     }
 

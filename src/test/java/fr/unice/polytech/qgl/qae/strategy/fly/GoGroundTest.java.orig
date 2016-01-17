@@ -34,11 +34,17 @@ public class GoGroundTest {
 
     @Before
     public void setUp() throws Exception {
+<<<<<<< HEAD
         ex = new FlyingStrategy(Direction.S, mission);
+        m = new Map();
+        ocean = new FlyTile(Type.OCEAN);
+=======
+        ex = new FlyingStrategy(Direction.S, ob);
         m = new FlyingMap();
         ArrayList<Biome> bs = new ArrayList<>();
         bs.add(new Biome(BiomeType.OCEAN));
         ocean = new FlyTile(bs, new ArrayList<>(), Type.OCEAN);
+>>>>>>> map_improvement
         ground = new FlyTile(Type.GROUND);
         m.put(new Coordinates(5, 10), ground);
         

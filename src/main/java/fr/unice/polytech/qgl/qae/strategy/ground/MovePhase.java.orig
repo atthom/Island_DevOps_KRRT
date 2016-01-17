@@ -22,8 +22,13 @@ public class MovePhase extends GroundPhase {
     boolean find;
     boolean fN = false, fS = false, fE = false, fW = false;
 
+<<<<<<< HEAD
+    public MovePhase(AbstractStrategy theParentStrategy, Coordinates theCurrentCoordinates, Direction theDirection, Map theMap) {
+        super(theParentStrategy, theCurrentCoordinates, theDirection,theMap);
+=======
     public MovePhase(AbstractStrategy parent, Coordinates currents_coords, FlyingMap m, GroundMap g) {
         super(parent, currents_coords, m, g);
+>>>>>>> map_improvement
         find = false;
         MoveTo mt = null;
 
@@ -34,7 +39,11 @@ public class MovePhase extends GroundPhase {
         for (int i = 0; i < theParentStrategy.getMission().getContracts().size(); i++) {
 
             for (Direction dir : Direction.values()) {
+<<<<<<< HEAD
+                GroundTile t = map.getGroundmap().getTile(theCurrentCoordinates.getClose(dir));
+=======
                 GroundTile t = gm.getTile(currents_coords.getClose(dir));
+>>>>>>> map_improvement
 
                 // Si la case n'est pas scouter, on passe a la suivante
                 if(t == null)

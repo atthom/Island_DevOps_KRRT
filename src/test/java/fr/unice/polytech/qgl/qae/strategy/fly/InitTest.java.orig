@@ -34,8 +34,13 @@ public class InitTest {
 
     @Before
     public void setUp() {
+<<<<<<< HEAD
         ex = new FlyingStrategy(Direction.E, mission);
+        ph1 = new Init(ex, new Coordinates(0, 0), Direction.E, new Map());
+=======
+        ex = new FlyingStrategy(Direction.E, ob);
         ph1 = new Init(ex, new Coordinates(0, 0), Direction.E, new FlyingMap());
+>>>>>>> map_improvement
     }
 
     private void addGround() {

@@ -25,8 +25,8 @@ import static org.junit.Assert.assertEquals;
 public class ScoutPhaseTest {
 
     AbstractStrategy ex;
+<<<<<<< HEAD
     ScoutPhase sp;
-    AbstractPhase ph0, ph1;
     MissionAssignment ob;
     Map m;
     Coordinates c;
@@ -35,10 +35,10 @@ public class ScoutPhaseTest {
 
     @Before
     public void setUp() {
-        GroundMap m = new GroundMap();
+        contract = new ArrayList<>();
         contract.add(new PrimaryResource(15,"WOOD"));
-        ph0 = new InitTerrestre(ex, new Coordinates(0, 0), new FlyingMap(), m);
-        ph1 = new MovePhase(ex, new Coordinates(0, 0), new FlyingMap(), m);
+
+        ob = new Objectif(10,150,contract);
 
 
         ex = new FlyingStrategy(Direction.S, ob);
@@ -65,6 +65,20 @@ public class ScoutPhaseTest {
         assertEquals(new Scout(Direction.N),sp.execute());
         assertEquals(sp,sp.getNext());
         sp.actions.remove(0);
+=======
+    AbstractPhase ph0, ph1;
+    Objectif ob;
+
+    public ScoutPhaseTest() {
+    }
+
+    @Before
+    public void setUp() {
+        GroundMap m = new GroundMap();
+        ex = new FlyingStrategy(Direction.E, ob);
+        ph0 = new InitTerrestre(ex, new Coordinates(0, 0), new FlyingMap(), m);
+        ph1 = new MovePhase(ex, new Coordinates(0, 0), new FlyingMap(), m);
+>>>>>>> map_improvement
 
     }
 

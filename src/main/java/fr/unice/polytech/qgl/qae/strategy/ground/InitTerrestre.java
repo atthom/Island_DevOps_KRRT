@@ -7,25 +7,26 @@ import fr.unice.polytech.qgl.qae.actions.groundActions.composed.Glimpse360;
 import fr.unice.polytech.qgl.qae.actions.groundActions.composed.MoveDiag;
 import fr.unice.polytech.qgl.qae.actions.groundActions.composed.MoveUntil;
 import fr.unice.polytech.qgl.qae.actions.groundActions.withparams.Scout;
-import fr.unice.polytech.qgl.qae.map.BiomeType;
-import fr.unice.polytech.qgl.qae.map.Map;
 import fr.unice.polytech.qgl.qae.map.geometry.Coordinates;
+import fr.unice.polytech.qgl.qae.map.FlyingMap;
+import fr.unice.polytech.qgl.qae.map.GroundMap;
 import fr.unice.polytech.qgl.qae.strategy.AbstractPhase;
 import fr.unice.polytech.qgl.qae.strategy.AbstractStrategy;
+import fr.unice.polytech.qgl.qae.strategy.GroundPhase;
 
 import java.util.ArrayList;
 
 /**
  * Created by user on 26/12/15.
  */
-public class InitTerrestre extends AbstractPhase {
+public class InitTerrestre extends GroundPhase {
 
     //ArrayList<BiomeType> list;
     //Coordinates initialCord;
+    public InitTerrestre(AbstractStrategy parent, Coordinates currents_coords, FlyingMap m, GroundMap gm) {
+        super(parent, currents_coords, m, gm);
 
-    public InitTerrestre(AbstractStrategy parent, Coordinates currents_coords, Direction d, Map m) {
 
-        super(parent, currents_coords, d,m);
         //initialCord = new Coordinates(currents_coords.getX(),currents_coords.getY());
         //list = new ArrayList<>();
         manageComposedAction(new Glimpse360(currents_coords,3));
@@ -44,9 +45,9 @@ public class InitTerrestre extends AbstractPhase {
     @Override
     public AbstractPhase getNext() {
         if(actions.isEmpty()) //  dans le if && (currents_coords.getX() != initialCord.getX() || currents_coords.getY() != initialCord.getY())
-            return new ScoutPhase(parent,currents_coords,d,map);
+            return new ScoutPhase(parent,currents_coords, map, gm);
         else
-            return  this;
+            return this;
     }
 
 

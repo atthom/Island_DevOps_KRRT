@@ -5,7 +5,7 @@
  */
 package fr.unice.polytech.qgl.qae.map.tile;
 
-import fr.unice.polytech.qgl.qae.map.Type;
+import fr.unice.polytech.qgl.qae.map.biomes.Type;
 import java.util.ArrayList;
 import org.junit.Before;
 import org.junit.Test;

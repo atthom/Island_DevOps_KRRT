@@ -1,6 +1,8 @@
 package fr.unice.polytech.qgl.qae.map;
 
 
+import fr.unice.polytech.qgl.qae.map.biomes.BiomeType;
+import fr.unice.polytech.qgl.qae.map.biomes.Biome;
 import org.junit.*;
 
 import static org.junit.Assert.assertEquals;

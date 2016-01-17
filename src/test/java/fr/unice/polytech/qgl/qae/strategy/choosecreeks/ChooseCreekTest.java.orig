@@ -8,12 +8,18 @@ package fr.unice.polytech.qgl.qae.strategy.choosecreeks;
 import fr.unice.polytech.qgl.qae.actions.Land;
 import fr.unice.polytech.qgl.qae.actions.Stop;
 import fr.unice.polytech.qgl.qae.actions.flyActions.withparams.Direction;
-import fr.unice.polytech.qgl.qae.exceptions.MapExeption;
+<<<<<<< HEAD
+import fr.unice.polytech.qgl.qae.map.Biome;
+import fr.unice.polytech.qgl.qae.map.BiomeType;
+import fr.unice.polytech.qgl.qae.map.Map;
+import fr.unice.polytech.qgl.qae.map.Type;
+=======
 import fr.unice.polytech.qgl.qae.map.FlyingMap;
 import fr.unice.polytech.qgl.qae.map.GroundMap;
 import fr.unice.polytech.qgl.qae.map.biomes.Biome;
 import fr.unice.polytech.qgl.qae.map.biomes.BiomeType;
 import fr.unice.polytech.qgl.qae.map.biomes.Type;
+>>>>>>> map_improvement
 import fr.unice.polytech.qgl.qae.map.geometry.Coordinates;
 import fr.unice.polytech.qgl.qae.map.tile.FlyTile;
 import fr.unice.polytech.qgl.qae.resources.MissionAssignment;
@@ -33,6 +39,11 @@ public class ChooseCreekTest {
 
     ChooseCreek cc;
     AbstractStrategy ex;
+<<<<<<< HEAD
+    Map m;
+=======
+    Objectif ob;
+>>>>>>> map_improvement
     FlyTile ocean;
 
     public ChooseCreekTest() {
