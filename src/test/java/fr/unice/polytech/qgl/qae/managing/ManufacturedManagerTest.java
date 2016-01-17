@@ -2,6 +2,7 @@ package fr.unice.polytech.qgl.qae.managing;
 
 import fr.unice.polytech.qgl.qae.exceptions.InvalidResourceAmountException;
 import fr.unice.polytech.qgl.qae.resources.ManufacturedResourceType;
+import fr.unice.polytech.qgl.qae.resources.PrimaryResourceType;
 import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
@@ -22,9 +23,9 @@ public class ManufacturedManagerTest {
     @Test
     public void getIngredientTest() throws InvalidResourceAmountException{
         // If we want to create 2 GLASS we need to collect 10 QUARTZ (which is the first element in the list... cf. ManufacturedManager.java)
-        assertEquals(10, theManufacturedManagerWeAreTesting.getIngredients(ManufacturedResourceType.GLASS, 2).get(0));
+        assertEquals(10, theManufacturedManagerWeAreTesting.getIngredients(ManufacturedResourceType.GLASS, 2).get(PrimaryResourceType.QUARTZ).getAmount());
         // If we want to create 2 GLASS we need to collect 20 WOODS (wich is the second element in the list... cf. ManufacturedManager.java)
-        assertEquals(20, theManufacturedManagerWeAreTesting.getIngredients(ManufacturedResourceType.GLASS, 2).get(1));
+        assertEquals(20, theManufacturedManagerWeAreTesting.getIngredients(ManufacturedResourceType.GLASS, 2).get(PrimaryResourceType.WOOD).getAmount());
     }
 
     @Test
