@@ -10,7 +10,7 @@ import fr.unice.polytech.qgl.qae.actions.flyActions.withparams.Direction;
 import fr.unice.polytech.qgl.qae.map.geometry.Coordinates;
 import fr.unice.polytech.qgl.qae.map.map.FlyingMap;
 import fr.unice.polytech.qgl.qae.map.map.GroundMap;
-import fr.unice.polytech.qgl.qae.reply.ManageGroundReply;
+import fr.unice.polytech.qgl.qae.reply.GroundReplyManager;
 import org.json.JSONObject;
 
 /**
@@ -18,14 +18,14 @@ import org.json.JSONObject;
  * @author user
  */
 public abstract class GroundPhase extends AbstractPhase {
-    protected ManageGroundReply mgr;
+    protected GroundReplyManager mgr;
     public GroundMap gm;
     protected Direction scout_dir;
 
     public GroundPhase(AbstractStrategy parent, Coordinates currents_coords, FlyingMap m, GroundMap gm) {
         super(parent, currents_coords, m);
         this.gm = gm;
-        mgr = new ManageGroundReply();
+        mgr = new GroundReplyManager();
     }
 
     @Override

@@ -3,9 +3,9 @@ package fr.unice.polytech.qgl.qae.strategy.fly;
 import fr.unice.polytech.qgl.qae.Objectif;
 import fr.unice.polytech.qgl.qae.actions.flyActions.simple.Fly;
 import fr.unice.polytech.qgl.qae.actions.flyActions.withparams.Direction;
-import fr.unice.polytech.qgl.qae.map.Map;
 import fr.unice.polytech.qgl.qae.map.Type;
 import fr.unice.polytech.qgl.qae.map.geometry.Coordinates;
+import fr.unice.polytech.qgl.qae.map.map.FlyingMap;
 import fr.unice.polytech.qgl.qae.map.tile.FlyTile;
 import fr.unice.polytech.qgl.qae.strategy.AbstractStrategy;
 import org.junit.Before;
@@ -19,7 +19,7 @@ import static org.junit.Assert.*;
 public class GoGroundTest {
 
     GoGround gg;
-    Map m;
+    FlyingMap m;
     AbstractStrategy ex;
     Objectif ob;
 
@@ -29,31 +29,13 @@ public class GoGroundTest {
     @Before
     public void setUp() throws Exception {
         ex = new FlyingStrategy(Direction.S, ob);
-        m = new Map();
+        m = new FlyingMap();
         ocean = new FlyTile(Type.OCEAN);
         ground = new FlyTile(Type.GROUND);
-        m.getFlyingmap().put(new Coordinates(5, 10), ground);
+        m.put(new Coordinates(5, 10), ground);
         gg = new GoGround(ex, new Coordinates(5, 5), Direction.S, m);
 
     }
-
-    /**
-     * Test of getfirstground method, of class GoGround.
-     */
-  @Test
-    public void testGetfirstground() {
-        assertEquals(new Coordinates(5, 10), gg.getfirstground());
-    }
-    
-//    @Test
-//    public void testGetfirstground2() {
-//
-//        Coordinates c = new Coordinates(0, 0);
-//        gg.map.getFlyingmap().maj(new Coordinates(5, 10), ocean);
-//        gg.map.getFlyingmap().put(new Coordinates(3, 0), ocean);
-//        gg.map.getFlyingmap().put(new Coordinates(2, 0), ocean);
-//        assertEquals(c, gg.getfirstground());
-//    }
 
     @Test
     public void testExecute() throws Exception {
@@ -79,7 +61,7 @@ public class GoGroundTest {
         gg.actions.clear();
         gg.execute();
         assertEquals(gg.getNext(), gg);
-        gg.map.getFlyingmap().put(new Coordinates(5, 5), ocean);
+        gg.map.put(new Coordinates(5, 5), ocean);
 //        assertEquals(new Echo(gg.d), gg.execute());
         
     }

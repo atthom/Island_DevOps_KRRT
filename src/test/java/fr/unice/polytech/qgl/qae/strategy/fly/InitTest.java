@@ -10,9 +10,9 @@ import fr.unice.polytech.qgl.qae.actions.flyActions.simple.Fly;
 import fr.unice.polytech.qgl.qae.actions.flyActions.withparams.Direction;
 import fr.unice.polytech.qgl.qae.actions.flyActions.withparams.Echo;
 import fr.unice.polytech.qgl.qae.actions.flyActions.withparams.Heading;
-import fr.unice.polytech.qgl.qae.map.Map;
 import fr.unice.polytech.qgl.qae.map.Type;
 import fr.unice.polytech.qgl.qae.map.geometry.Coordinates;
+import fr.unice.polytech.qgl.qae.map.map.FlyingMap;
 import fr.unice.polytech.qgl.qae.map.tile.FlyTile;
 import fr.unice.polytech.qgl.qae.strategy.AbstractStrategy;
 import org.junit.Before;
@@ -35,19 +35,19 @@ public class InitTest {
     @Before
     public void setUp() {
         ex = new FlyingStrategy(Direction.E, ob);
-        ph1 = new Init(ex, new Coordinates(0, 0), Direction.E, new Map());
+        ph1 = new Init(ex, new Coordinates(0, 0), Direction.E, new FlyingMap());
     }
 
     private void addGround() {
-        ph1.map.getFlyingmap().put(new Coordinates(0, 5), new FlyTile(Type.OUT_OF_RANGE));
-        ph1.map.getFlyingmap().put(new Coordinates(0, -25), new FlyTile(Type.OUT_OF_RANGE));
-        ph1.map.getFlyingmap().put(new Coordinates(10, 0), new FlyTile(Type.GROUND));
+        ph1.map.put(new Coordinates(0, 5), new FlyTile(Type.OUT_OF_RANGE));
+        ph1.map.put(new Coordinates(0, -25), new FlyTile(Type.OUT_OF_RANGE));
+        ph1.map.put(new Coordinates(10, 0), new FlyTile(Type.GROUND));
     }
 
     private void addNotGround() {
-        ph1.map.getFlyingmap().put(new Coordinates(0, 5), new FlyTile(Type.OUT_OF_RANGE));
-        ph1.map.getFlyingmap().put(new Coordinates(0, -25), new FlyTile(Type.OUT_OF_RANGE));
-        ph1.map.getFlyingmap().put(new Coordinates(10, 0), new FlyTile(Type.OUT_OF_RANGE));
+        ph1.map.put(new Coordinates(0, 5), new FlyTile(Type.OUT_OF_RANGE));
+        ph1.map.put(new Coordinates(0, -25), new FlyTile(Type.OUT_OF_RANGE));
+        ph1.map.put(new Coordinates(10, 0), new FlyTile(Type.OUT_OF_RANGE));
     }
 
     /**
@@ -95,12 +95,11 @@ public class InitTest {
         assertEquals(ph1, ph1.getNext());
         ph1.actions.remove(0);
 
-        ph1.map.getFlyingmap().put(new Coordinates(5, -10), new FlyTile(Type.GROUND));
+        ph1.map.put(new Coordinates(5, -10), new FlyTile(Type.GROUND));
         assertEquals(new Heading(Direction.E.right()), ph1.execute());
         ph1.actions.remove(0);
         GoGround gg = new GoGround(ex, ph1.currents_coords, ph1.d, ph1.map);
         assertEquals(gg, ph1.getNext());
-        assertEquals(new Coordinates(5, -10), gg.getfirstground());
     }
 
     /**
@@ -114,7 +113,7 @@ public class InitTest {
         ph1.execute();
         ph1.execute();
 
-        ph1.map.getFlyingmap().put(new Coordinates(5, 10), new FlyTile(Type.OUT_OF_RANGE));
+        ph1.map.put(new Coordinates(5, 10), new FlyTile(Type.OUT_OF_RANGE));
         ph1.execute();
         assertEquals(ph1.getNext(), ph1);
     }
@@ -136,14 +135,14 @@ public class InitTest {
      */
     @Test
     public void testBest_dir() {
-        ph1.map.getFlyingmap().put(new Coordinates(0, 4), new FlyTile());
-        ph1.map.getFlyingmap().put(new Coordinates(0, 38), new FlyTile());
+        ph1.map.put(new Coordinates(0, 4), new FlyTile());
+        ph1.map.put(new Coordinates(0, 38), new FlyTile());
         
         assertEquals(ph1.d.right(), ph1.best_dir());
         ph1.map.flush();
 
-        ph1.map.getFlyingmap().put(new Coordinates(0, 38), new FlyTile());
-        ph1.map.getFlyingmap().put(new Coordinates(0, 8), new FlyTile());
+        ph1.map.put(new Coordinates(0, 38), new FlyTile());
+        ph1.map.put(new Coordinates(0, 8), new FlyTile());
         
         assertEquals(ph1.d.left(), ph1.best_dir());
     }

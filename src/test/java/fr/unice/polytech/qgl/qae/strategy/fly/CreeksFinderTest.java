@@ -7,10 +7,9 @@ import fr.unice.polytech.qgl.qae.actions.flyActions.simple.Scan;
 import fr.unice.polytech.qgl.qae.actions.flyActions.withparams.Direction;
 import fr.unice.polytech.qgl.qae.map.Biome;
 import fr.unice.polytech.qgl.qae.map.BiomeType;
-import fr.unice.polytech.qgl.qae.map.Map;
 import fr.unice.polytech.qgl.qae.map.Type;
 import fr.unice.polytech.qgl.qae.map.geometry.Coordinates;
-import fr.unice.polytech.qgl.qae.map.tile.Creek;
+import fr.unice.polytech.qgl.qae.map.map.FlyingMap;
 import fr.unice.polytech.qgl.qae.map.tile.FlyTile;
 import fr.unice.polytech.qgl.qae.strategy.AbstractStrategy;
 import fr.unice.polytech.qgl.qae.strategy.choosecreeks.ChooseCreek;
@@ -29,7 +28,7 @@ public class CreeksFinderTest {
 
     AbstractStrategy ex, ex2;
     CreeksFinder cf, cf2;
-    Map m;
+    FlyingMap m;
     FlyTile ocean;
     Objectif ob;
 
@@ -41,8 +40,8 @@ public class CreeksFinderTest {
         bs.add(new Biome(BiomeType.OCEAN));
         ocean = new FlyTile(bs, new ArrayList<>(), Type.OCEAN);
         
-        m = new Map();
-        m.getFlyingmap().put(new Coordinates(5,5), new FlyTile(Type.GROUND));
+        m = new FlyingMap();
+        m.put(new Coordinates(5,5), new FlyTile(Type.GROUND));
         cf = new CreeksFinder(ex, new Coordinates(5,5),Direction.S, m);
         cf2 = new CreeksFinder(ex2, new Coordinates(5,5),Direction.N, m);
         
@@ -79,18 +78,18 @@ public class CreeksFinderTest {
     }
     
     private void putOcean2() {
-        cf.map.getFlyingmap().put(new Coordinates(6, 6),ocean);
-        cf.map.getFlyingmap().put(new Coordinates(7, 6),ocean);
+        cf.map.put(new Coordinates(6, 6),ocean);
+        cf.map.put(new Coordinates(7, 6),ocean);
     }
     private void putOcean() {
-        cf.map.getFlyingmap().put(new Coordinates(6, 6),ocean);
+        cf.map.put(new Coordinates(6, 6),ocean);
     }
     private void putNotOcean2() {
-        cf.map.getFlyingmap().put(new Coordinates(6, 6),new FlyTile());
-        cf.map.getFlyingmap().put(new Coordinates(7, 6),new FlyTile());
+        cf.map.put(new Coordinates(6, 6),new FlyTile());
+        cf.map.put(new Coordinates(7, 6),new FlyTile());
     }
     private void putNotOcean() {
-        cf.map.getFlyingmap().put(new Coordinates(6, 6),new FlyTile());
+        cf.map.put(new Coordinates(6, 6),new FlyTile());
     }
 
 
@@ -167,12 +166,12 @@ public class CreeksFinderTest {
     private void putcreek() {
         ArrayList<String> cs = new ArrayList<>();
         cs.add("addad");
-        cf.map.getFlyingmap().put(new Coordinates(7, 6), new FlyTile(new ArrayList<>(), cs, Type.GROUND));
+        cf.map.put(new Coordinates(7, 6), new FlyTile(new ArrayList<>(), cs, Type.GROUND));
     }
     
     @Test
     public void testLast_have_creek() {
-        cf.map.getFlyingmap().put(new Coordinates(6, 6), new FlyTile());
+        cf.map.put(new Coordinates(6, 6), new FlyTile());
         assertFalse(cf.last_have_creek());
         putcreek();
         assertTrue(cf.last_have_creek());
@@ -187,8 +186,8 @@ public class CreeksFinderTest {
         
         cf.map.flush();
         putOcean();
-        cf.map.getFlyingmap().setMin(new Coordinates(0, 0));
-        cf.map.getFlyingmap().setMax(new Coordinates(100, 100));
+        cf.map.setMin(new Coordinates(0, 0));
+        cf.map.setMax(new Coordinates(100, 100));
         cf.currents_coords = new Coordinates(4, 4);
         cf.phaseA();
         assertEquals(cf.actions.get(7), new Scan());
@@ -199,8 +198,8 @@ public class CreeksFinderTest {
         cf.actions.clear();
         cf.map.flush();
         putOcean2();
-        cf.map.getFlyingmap().setMin(new Coordinates(0, 0));
-        cf.map.getFlyingmap().setMax(new Coordinates(100, 100));
+        cf.map.setMin(new Coordinates(0, 0));
+        cf.map.setMax(new Coordinates(100, 100));
         cf.currents_coords = new Coordinates(4, 4);
         cf.phaseA();
         assertEquals(cf.actions.get(7), new Scan());
@@ -213,8 +212,8 @@ public class CreeksFinderTest {
     @Test
     public void testManageBC() {
         cf.turnleft = true;
-        cf.map.getFlyingmap().setMin(new Coordinates(0, 0));
-        cf.map.getFlyingmap().setMax(new Coordinates(100, 100));
+        cf.map.setMin(new Coordinates(0, 0));
+        cf.map.setMax(new Coordinates(100, 100));
         cf.currents_coords = new Coordinates(4, 4);
         
         cf.manageBC();

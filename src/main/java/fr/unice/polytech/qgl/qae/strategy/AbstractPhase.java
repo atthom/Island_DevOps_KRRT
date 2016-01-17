@@ -6,11 +6,10 @@
 package fr.unice.polytech.qgl.qae.strategy;
 
 import fr.unice.polytech.qgl.qae.actions.AbstractAction;
-import fr.unice.polytech.qgl.qae.actions.flyActions.withparams.Direction;
 import fr.unice.polytech.qgl.qae.map.geometry.Coordinates;
 import fr.unice.polytech.qgl.qae.map.map.FlyingMap;
-import fr.unice.polytech.qgl.qae.reply.ManageReply;
 import java.util.ArrayList;
+import java.util.Objects;
 import org.json.JSONObject;
 
 /**
@@ -32,11 +31,7 @@ public abstract class AbstractPhase {
         
         this.actions = new ArrayList<>();
     }
-
-   
-
     
-
     public abstract AbstractPhase getNext();
 
     public abstract AbstractAction execute();
@@ -44,32 +39,34 @@ public abstract class AbstractPhase {
     public abstract void acknowledge(JSONObject s);
 
     @Override
-    public boolean equals(Object o) {
-        if (this == o) {
-            return true;
-        }
-        if (o == null || getClass() != o.getClass()) {
-            return false;
-        }
-
-        AbstractPhase that = (AbstractPhase) o;
-
-        if (!map.equals(that.map)) {
-            return false;
-        }
-        if (!currents_coords.equals(that.currents_coords)) {
-            return false;
-        }
-       
-        return parent.equals(that.parent);
-
+    public int hashCode() {
+        int hash = 7;
+        hash = 83 * hash + Objects.hashCode(this.map);
+        hash = 83 * hash + Objects.hashCode(this.currents_coords);
+        hash = 83 * hash + Objects.hashCode(this.actions);
+        return hash;
     }
 
     @Override
-    public int hashCode() {
-        int result = map.hashCode();
-        result = 31 * result + currents_coords.hashCode();
-        result = 31 * result + parent.hashCode();
-        return result;
+    public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (obj == null) {
+            return false;
+        }
+        if (getClass() != obj.getClass()) {
+            return false;
+        }
+        final AbstractPhase other = (AbstractPhase) obj;
+        if (!Objects.equals(this.map, other.map)) {
+            return false;
+        }
+        if (!Objects.equals(this.currents_coords, other.currents_coords)) {
+            return false;
+        }
+        return Objects.equals(this.actions, other.actions);
     }
+
+    
 }

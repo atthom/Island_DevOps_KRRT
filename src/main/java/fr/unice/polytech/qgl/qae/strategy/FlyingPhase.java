@@ -11,7 +11,7 @@ import fr.unice.polytech.qgl.qae.actions.flyActions.withparams.Direction;
 import fr.unice.polytech.qgl.qae.actions.flyActions.withparams.Heading;
 import fr.unice.polytech.qgl.qae.map.geometry.Coordinates;
 import fr.unice.polytech.qgl.qae.map.map.FlyingMap;
-import fr.unice.polytech.qgl.qae.reply.ManageFlyingReply;
+import fr.unice.polytech.qgl.qae.reply.FlyingReplyManager;
 import org.json.JSONObject;
 
 /**
@@ -22,12 +22,12 @@ public abstract class FlyingPhase extends AbstractPhase {
 
     public Direction d;
     protected Direction old_direction;
-    protected ManageFlyingReply mrp;
+    protected FlyingReplyManager mrp;
     
     public FlyingPhase(AbstractStrategy parent, Coordinates currents_coords, Direction d, FlyingMap m) {
         super(parent, currents_coords, m);
         this.d = d;
-        mrp = new ManageFlyingReply();
+        mrp = new FlyingReplyManager();
     }
     
     protected void manageComposedAction(ComposedAction ac) {

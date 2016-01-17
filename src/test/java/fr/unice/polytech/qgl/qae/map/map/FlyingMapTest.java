@@ -6,9 +6,6 @@ import fr.unice.polytech.qgl.qae.map.tile.FlyTile;
 import org.junit.Before;
 import org.junit.Test;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-
 import static org.junit.Assert.*;
 
 /**
@@ -28,16 +25,15 @@ public class FlyingMapTest {
     public void testPut() throws Exception {
         FlyTile t = new FlyTile(Type.GROUND);
         map.put( new Coordinates(5,5), t);
-        assertEquals(t, map.getFlyTile(new Coordinates(5,5)));
+        assertEquals(t, map.getTile(new Coordinates(5,5)));
     }
 
     @Test
     public void getFlyTile() throws Exception {
         FlyTile t = new FlyTile(Type.GROUND);
         map.put( new Coordinates(5,5), t);
-        assertEquals(t, map.getFlyTile(new Coordinates(5,5)));
-
-        assertNull(map.getFlyTile(new Coordinates(4,400)));
+        assertEquals(t, map.getTile(new Coordinates(5,5)));
+        assertNull(map.getTile(new Coordinates(4,400)));
     }
 
     @Test
@@ -49,7 +45,7 @@ public class FlyingMapTest {
 
         FlyTile t = new FlyTile(Type.OUT_OF_RANGE);
         map.maj(new Coordinates(5,5),t);
-        assertEquals(t, map.getFlyTile(new Coordinates(5,5)));
+        assertEquals(t, map.getTile(new Coordinates(5,5)));
     }
 
 
@@ -61,8 +57,9 @@ public class FlyingMapTest {
         map.put( new Coordinates(2,5), t);
         FlyTile ttt = new FlyTile(Type.GROUND);
         map.put( new Coordinates(5,5), t);
-        assertEquals(ttt, map.getlastFlyTile());
-        assertNotSame(tt, map.getlastFlyTile());
+        assertEquals(ttt, map.getLastTile().getValue());
+        assertEquals(new Coordinates(5,5), map.getLastTile().getKey());
+        assertNotSame(tt, map.getLastTile().getValue());
     }
 
 }

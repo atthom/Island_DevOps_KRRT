@@ -1,11 +1,13 @@
 package fr.unice.polytech.qgl.qae.map.map;
 
 import fr.unice.polytech.qgl.qae.map.geometry.Coordinates;
+import fr.unice.polytech.qgl.qae.map.tile.FlyTile;
 import fr.unice.polytech.qgl.qae.map.tile.GroundTile;
 
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.LinkedHashMap;
+import java.util.Map;
+import java.util.Set;
 
 /**
  * Created by user on 21/12/2015.
@@ -21,7 +23,6 @@ public class GroundMap extends AbstractMap {
 
     /**
      * Ajoute une case dans la map si elle est absente
-     *
      * @param c
      * @param t
      */
@@ -31,6 +32,20 @@ public class GroundMap extends AbstractMap {
 
     public GroundTile getTile(Coordinates c) {
         return map.get(c);
+    }
+    
+    public Map.Entry<Coordinates, GroundTile> getFirstTile() {
+        return  map.entrySet().iterator().next();
+    }
+
+    public Map.Entry<Coordinates, GroundTile> getLastTile() {
+        Set<Map.Entry<Coordinates, GroundTile>> c = map.entrySet();
+     
+        Map.Entry<Coordinates, GroundTile> last = null;
+        while(c.iterator().hasNext()) {
+            last = c.iterator().next();
+        }
+        return last;
     }
 
     public int size() {

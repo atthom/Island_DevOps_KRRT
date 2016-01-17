@@ -11,7 +11,6 @@ import fr.unice.polytech.qgl.qae.map.Biome;
 import fr.unice.polytech.qgl.qae.map.Type;
 import fr.unice.polytech.qgl.qae.map.geometry.Coordinates;
 import fr.unice.polytech.qgl.qae.map.geometry.Vect;
-import fr.unice.polytech.qgl.qae.map.map.AbstractMap;
 import fr.unice.polytech.qgl.qae.map.map.FlyingMap;
 import fr.unice.polytech.qgl.qae.map.tile.FlyTile;
 import java.util.ArrayList;
@@ -22,14 +21,13 @@ import org.json.JSONObject;
  *
  * @author user
  */
-public class ManageFlyingReply {
+public class FlyingReplyManager {
 
-    public ManageFlyingReply() {
+    public FlyingReplyManager() {
     }
     
     public void manage(JSONObject js, FlyingMap map, Direction d, Coordinates cc) {
         JSONObject extras = js.getJSONObject("extras");
-
         if (extras.has("range")) {           
             manage_echo(js, map,cc,d);
         } else if (extras.has("biomes") && extras.has("creeks")) {
