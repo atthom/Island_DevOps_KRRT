@@ -1,12 +1,10 @@
 package fr.unice.polytech.qgl.qae.resources;
 
-import java.util.Objects;
-
 
 /**
  * Created by Loïc on 08/12/2015.
  */
-public class PrimaryResource {
+public class OldResource {
 
     private String name;
     private String amountCondition; /* can be high, medium, low or unknown */
@@ -17,25 +15,26 @@ public class PrimaryResource {
     private int nbResourcesNeeded;
 
     // section == CONSTRUCTOR
-    public PrimaryResource(){
+    public OldResource(){
         this.nbExploitedRessource = 0;
         this.nbResourcesNeeded = 0;
         this.isNeeded = false;
         this.isPrimaryResource = false;
         this.name = ResourceType.UNKNOWN.name();
-        this.amountCondition = AmountResource.UNKNOWN.name();
-        this.condition = ConditionResource.UNKNOWN.name();
-    } /* For any PrimaryResource object we  */
+        this.amountCondition = ResourceAmountType.UNKNOWN.name();
+        this.condition = ResourceConditionType.UNKNOWN.name();
+    } /* For any OldResource object we  */
 
-    public PrimaryResource(int nbResourcesNeeded, String name){
+    public OldResource(int nbResourcesNeeded, String name){
         this.nbExploitedRessource = 0;
         this.nbResourcesNeeded = nbResourcesNeeded;
         this.isNeeded = false;
         this.isPrimaryResource = false;
         this.name = name;
-        this.amountCondition = AmountResource.UNKNOWN.name();
-        this.condition = ConditionResource.UNKNOWN.name();
-    } /* For any PrimaryResource when we know how many resource of what type of resource we need to collect */
+        this.amountCondition = ResourceAmountType.UNKNOWN.name();
+        this.condition = ResourceConditionType.UNKNOWN.name();
+    } /* For any OldResource when we know how many resource of what type of resource we need to collect */
+
 
 
     // section == SETTER & GETTER
@@ -51,7 +50,7 @@ public class PrimaryResource {
         return this.amountCondition;
     }
 
-    public void setAmountCondition(AmountResource amount) {
+    public void setAmountCondition(ResourceAmountType amount) {
         this.amountCondition = amount.name();
     }
 
@@ -59,7 +58,7 @@ public class PrimaryResource {
         return this.condition;
     }
 
-    public void setCondition(ConditionResource condition) {
+    public void setCondition(ResourceConditionType condition) {
         this.condition = condition.name();
     }
 
@@ -112,45 +111,4 @@ public class PrimaryResource {
             this.nbExploitedRessource -= n;
         }
     }
-
-    @Override
-    public int hashCode() {
-        int hash = 7;
-        return hash;
-    }
-
-    @Override
-    public boolean equals(Object obj) {
-        if (this == obj) {
-            return true;
-        }
-        if (obj == null) {
-            return false;
-        }
-        if (getClass() != obj.getClass()) {
-            return false;
-        }
-        final PrimaryResource other = (PrimaryResource) obj;
-        if (this.isPrimaryResource != other.isPrimaryResource) {
-            return false;
-        }
-        if (this.isNeeded != other.isNeeded) {
-            return false;
-        }
-        if (this.nbExploitedRessource != other.nbExploitedRessource) {
-            return false;
-        }
-        if (this.nbResourcesNeeded != other.nbResourcesNeeded) {
-            return false;
-        }
-        if (!Objects.equals(this.name, other.name)) {
-            return false;
-        }
-        if (!Objects.equals(this.amountCondition, other.amountCondition)) {
-            return false;
-        }
-        return Objects.equals(this.condition, other.condition);
-    }
-    
-    
 }
