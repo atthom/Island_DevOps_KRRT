@@ -5,11 +5,10 @@
  */
 package fr.unice.polytech.qgl.qae.reply;
 
-import fr.unice.polytech.qgl.qae.actions.flyActions.withparams.Direction;
 import fr.unice.polytech.qgl.qae.map.geometry.Coordinates;
 import fr.unice.polytech.qgl.qae.map.GroundMap;
 import fr.unice.polytech.qgl.qae.map.tile.GroundTile;
-import fr.unice.polytech.qgl.qae.resources.PrimaryResource;
+import fr.unice.polytech.qgl.qae.resources.ResourceTile;
 import org.json.JSONObject;
 import org.junit.Before;
 import org.junit.Test;
@@ -42,10 +41,10 @@ public class GroundReplyManagerTest {
         GroundTile g = gm.getLastTile().getValue();
         assertEquals(5, g.getAltitude());
        
-        PrimaryResource fur = new PrimaryResource();
-        fur.setName("FUR");
-        PrimaryResource wood = new PrimaryResource();
-        wood.setName("WOOD");
+        ResourceTile fur = new ResourceTile();
+        fur.setResourceName("FUR");
+        ResourceTile wood = new ResourceTile();
+        wood.setResourceName("WOOD");
         assertEquals(fur, g.getRessource().get(0));
         assertEquals(wood, g.getRessource().get(1));
         assertEquals(2,g.getRessource().size());
