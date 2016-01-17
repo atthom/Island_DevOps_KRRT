@@ -45,7 +45,7 @@ public enum Direction {
             case W:
                 return Direction.S;
             default:
-                return Direction.E; //pour Direction.S   
+                return Direction.E; //pour Direction.S
         }
     }
 
@@ -62,7 +62,7 @@ public enum Direction {
             case W:
                 return Direction.N;
             default:
-                return Direction.W; //pour Direction.S   
+                return Direction.W; //pour Direction.S
         }
     }
 

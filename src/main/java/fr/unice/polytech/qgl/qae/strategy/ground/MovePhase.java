@@ -20,34 +20,34 @@ public class MovePhase extends AbstractPhase {
 
     boolean find;
 
-    public MovePhase(AbstractStrategy parent, Coordinates currents_coords, Direction d, Map m) {
-        super(parent, currents_coords, d,m);
+    public MovePhase(AbstractStrategy theParentStrategy, Coordinates theCurrentCoordinates, Direction theDirection, Map theMap) {
+        super(theParentStrategy, theCurrentCoordinates, theDirection,theMap);
         find = false;
         boolean fN = false, fS = false, fE = false, fW = false;
         MoveTo mt = null;
 
-        if(parent.getObjectif().getBudget() < 50) {
+        if(theParentStrategy.getMission().getBudget() < 50) {
             actions.add(new Stop());
         }
 
-        for (int i = 0; i < parent.getObjectif().getContract().size(); i++) {
+        for (int i = 0; i < theParentStrategy.getMission().getContracts().size(); i++) {
 
             for (Direction dir : Direction.values()) {
-                GroundTile t = map.getGroundmap().getTile(currents_coords.getClose(dir));
+                GroundTile t = map.getGroundmap().getTile(theCurrentCoordinates.getClose(dir));
 
                 // Si la case n'est pas scouter, on passe a la suivante
                 if(t == null)
                     continue;
 
                 for (int k = 0; k < t.getRessource().size(); k++) {
-                    if (parent.getObjectif().getContract().get(i).getName().equals(t.getRessource().get(k).getName())) {
-                        if(t.getRessource().get(k).getName().equals(ResourceType.FISH.toString()) && dir.equals(Direction.N))
+                    if (theParentStrategy.getMission().getContracts().get(i).getResourceName().equals(t.getRessource().get(k).getResourceName())) {
+                        if(t.getRessource().get(k).getResourceName().equals(ResourceType.FISH.toString()) && dir.equals(Direction.N))
                             fN =true;
-                        if(t.getRessource().get(k).getName().equals(ResourceType.FISH.toString()) && dir.equals(Direction.S))
+                        if(t.getRessource().get(k).getResourceName().equals(ResourceType.FISH.toString()) && dir.equals(Direction.S))
                             fS =true;
-                        if(t.getRessource().get(k).getName().equals(ResourceType.FISH.toString()) && dir.equals(Direction.E))
+                        if(t.getRessource().get(k).getResourceName().equals(ResourceType.FISH.toString()) && dir.equals(Direction.E))
                             fE =true;
-                        if(t.getRessource().get(k).getName().equals(ResourceType.FISH.toString()) && dir.equals(Direction.W))
+                        if(t.getRessource().get(k).getResourceName().equals(ResourceType.FISH.toString()) && dir.equals(Direction.W))
                             fW =true;
                         mt = new MoveTo(dir);
                         find = true;
@@ -78,7 +78,7 @@ public class MovePhase extends AbstractPhase {
 
         }
         // Ajouter l'action et update les coordonnée
-        mt.maj_coord(currents_coords);
+        mt.maj_coord(theCurrentCoordinates);
         actions.add(mt);
     }
 

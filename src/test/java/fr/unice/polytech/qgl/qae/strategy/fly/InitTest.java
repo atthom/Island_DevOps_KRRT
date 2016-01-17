@@ -5,7 +5,6 @@
  */
 package fr.unice.polytech.qgl.qae.strategy.fly;
 
-import fr.unice.polytech.qgl.qae.Objectif;
 import fr.unice.polytech.qgl.qae.actions.flyActions.simple.Fly;
 import fr.unice.polytech.qgl.qae.actions.flyActions.withparams.Direction;
 import fr.unice.polytech.qgl.qae.actions.flyActions.withparams.Echo;
@@ -14,6 +13,7 @@ import fr.unice.polytech.qgl.qae.map.Map;
 import fr.unice.polytech.qgl.qae.map.Type;
 import fr.unice.polytech.qgl.qae.map.geometry.Coordinates;
 import fr.unice.polytech.qgl.qae.map.tile.FlyTile;
+import fr.unice.polytech.qgl.qae.resources.MissionAssignment;
 import fr.unice.polytech.qgl.qae.strategy.AbstractStrategy;
 import org.junit.Before;
 import org.junit.Test;
@@ -27,14 +27,14 @@ public class InitTest {
 
     AbstractStrategy ex;
     Init ph1;
-    Objectif ob;
+    MissionAssignment mission;
 
     public InitTest() {
     }
 
     @Before
     public void setUp() {
-        ex = new FlyingStrategy(Direction.E, ob);
+        ex = new FlyingStrategy(Direction.E, mission);
         ph1 = new Init(ex, new Coordinates(0, 0), Direction.E, new Map());
     }
 

@@ -15,6 +15,11 @@ public class Contract {
         this.amount = theAmount;
     }
 
+    public Contract(String theResourceName, int theAmount){
+        this.name = theResourceName;
+        this.amount = theAmount;
+    }
+
     public int getAmount(){
         return this.amount;
     }

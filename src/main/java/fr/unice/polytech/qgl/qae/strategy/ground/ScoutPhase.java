@@ -17,7 +17,7 @@ public class ScoutPhase extends AbstractPhase {
     public ScoutPhase(AbstractStrategy parent, Coordinates currents_coords, Direction d, Map m) {
         super(parent, currents_coords, d,m);
 
-        if(parent.getObjectif().getBudget() < 50) {
+        if(parent.getMission().getBudget() < 50) {
             actions.add(new Stop());
         }
 

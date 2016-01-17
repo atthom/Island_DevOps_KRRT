@@ -18,7 +18,7 @@ public class InitTerrestre extends AbstractPhase {
 
         actions.add(new Scout(Direction.N));
         /*
-           for(int i =0; i<parent.getObjectif().getContract().size(); i++) {
+           for(int i =0; i<parent.getContracts().getContract().size(); i++) {
 
         }
 

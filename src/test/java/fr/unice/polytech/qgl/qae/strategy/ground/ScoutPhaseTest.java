@@ -1,7 +1,7 @@
 package fr.unice.polytech.qgl.qae.strategy.ground;
 
+import fr.unice.polytech.qgl.qae.resources.MissionAssignment;
 import fr.unice.polytech.qgl.qae.strategy.fly.FlyingStrategy;
-import fr.unice.polytech.qgl.qae.Objectif;
 import fr.unice.polytech.qgl.qae.actions.flyActions.withparams.Direction;
 import fr.unice.polytech.qgl.qae.map.Map;
 import fr.unice.polytech.qgl.qae.map.geometry.Coordinates;
@@ -16,7 +16,7 @@ public class ScoutPhaseTest {
 
     AbstractStrategy ex;
     AbstractPhase ph0,ph1;
-    Objectif ob;
+    MissionAssignment ob;
 
     public ScoutPhaseTest() {
     }

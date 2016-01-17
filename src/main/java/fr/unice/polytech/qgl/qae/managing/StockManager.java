@@ -19,6 +19,7 @@ public class StockManager {
      * @param aResourceName : name of resource to increment
      * @param incrementValue
      * @return the amount of resource after adding the decrement value
+     * TODO - Check if the increment value is a positive value
      */
     public int addToStock(String aResourceName, int incrementValue){
         // We get the resource type from the resource name.

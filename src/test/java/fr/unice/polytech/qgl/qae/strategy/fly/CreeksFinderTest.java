@@ -1,6 +1,5 @@
 package fr.unice.polytech.qgl.qae.strategy.fly;
 
-import fr.unice.polytech.qgl.qae.Objectif;
 import fr.unice.polytech.qgl.qae.actions.Stop;
 import fr.unice.polytech.qgl.qae.actions.flyActions.simple.Fly;
 import fr.unice.polytech.qgl.qae.actions.flyActions.simple.Scan;
@@ -10,8 +9,8 @@ import fr.unice.polytech.qgl.qae.map.BiomeType;
 import fr.unice.polytech.qgl.qae.map.Map;
 import fr.unice.polytech.qgl.qae.map.Type;
 import fr.unice.polytech.qgl.qae.map.geometry.Coordinates;
-import fr.unice.polytech.qgl.qae.map.tile.Creek;
 import fr.unice.polytech.qgl.qae.map.tile.FlyTile;
+import fr.unice.polytech.qgl.qae.resources.MissionAssignment;
 import fr.unice.polytech.qgl.qae.strategy.AbstractStrategy;
 import fr.unice.polytech.qgl.qae.strategy.choosecreeks.ChooseCreek;
 import java.util.ArrayList;
@@ -31,12 +30,12 @@ public class CreeksFinderTest {
     CreeksFinder cf, cf2;
     Map m;
     FlyTile ocean;
-    Objectif ob;
+    MissionAssignment mission;
 
     @Before
     public void setUp() throws Exception {
-        ex = new FlyingStrategy(Direction.E, ob);
-        ex2 = new FlyingStrategy(Direction.E, ob);
+        ex = new FlyingStrategy(Direction.E, mission);
+        ex2 = new FlyingStrategy(Direction.E, mission);
         ArrayList<Biome> bs = new ArrayList<>();
         bs.add(new Biome(BiomeType.OCEAN));
         ocean = new FlyTile(bs, new ArrayList<>(), Type.OCEAN);
