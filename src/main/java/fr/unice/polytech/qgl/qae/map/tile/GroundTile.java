@@ -36,9 +36,6 @@ public class GroundTile extends Tile {
         liste_biomes = new ArrayList<BiomeType>();
     }
 
-    void addResource(PrimaryResource r) {
-        res.add(r);
-    }
 
     //public AmountResource getAmountCondition(){return this.amount;}
 

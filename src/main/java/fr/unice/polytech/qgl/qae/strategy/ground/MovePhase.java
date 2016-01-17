@@ -61,9 +61,14 @@ public class MovePhase extends AbstractPhase {
                 break;
         }
 
-        // On se déplace dans une direction aléatoire si on ne trouve pas de ressources recherché
+
+
         if(!find) {
-            if(!fN)
+            if(!fN && !fE && !fS && !fW) {
+                int r = new Random().nextInt(Direction.values().length);
+                mt = new MoveTo(Direction.values()[r]);
+            }
+            else if(!fN)
                 mt = new MoveTo(Direction.N);
             else if(!fS)
                 mt = new MoveTo(Direction.S);
@@ -71,10 +76,6 @@ public class MovePhase extends AbstractPhase {
                 mt = new MoveTo(Direction.E);
             else if(!fW)
                 mt = new MoveTo(Direction.W);
-            else {
-                int r = new Random().nextInt(Direction.values().length);
-                mt = new MoveTo(Direction.values()[r]);
-            }
         }
         // Ajouter l'action et update les coordonnée
         mt.maj_coord(currents_coords);
