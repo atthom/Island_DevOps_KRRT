@@ -117,4 +117,25 @@ public class ManageReplyTest {
     
     }
 
+    /**
+     * Test of manage_scoot method, of class ManageReply.
+     */
+    @Test
+    public void testManage_glimpse(){
+        JSONObject glimpse_reply = new JSONObject("{ \"cost\": 5, \"extras\": { \"asked_range\": 4, \"report\": [" +
+                "[ [\"BEACH\", 59.35], [\"OCEAN\",40.65] ] ," +
+                "[ [\"OCEAN\",70.2], [\"BEACH\",29.8] ]," +
+                " [\"OCEAN\", \"BEACH\"]," +
+                " [\"OCEAN\" ] " +
+                "] " +
+                "}, \"status\": \"OK\" }");
+
+        manager.manage(glimpse_reply, map, Direction.E, new Coordinates(5, 5));
+        GroundTile g = map.getLastGroundTile();
+        assertEquals(g.getListe_biomes().get(0),BiomeType.OCEAN);
+        assertEquals(g.getListe_biomes().get(1),BiomeType.BEACH);
+
+
+    }
+
 }

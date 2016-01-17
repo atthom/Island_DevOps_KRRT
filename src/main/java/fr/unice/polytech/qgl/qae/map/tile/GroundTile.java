@@ -6,6 +6,7 @@
 package fr.unice.polytech.qgl.qae.map.tile;
 
 import fr.unice.polytech.qgl.qae.exceptions.MapExeption;
+import fr.unice.polytech.qgl.qae.map.BiomeType;
 import fr.unice.polytech.qgl.qae.resources.AmountResource;
 import fr.unice.polytech.qgl.qae.resources.ConditionResource;
 import fr.unice.polytech.qgl.qae.resources.PrimaryResource;
@@ -23,7 +24,7 @@ public class GroundTile extends Tile {
     //private AmountResource amount; // represent the amount of this tile's resources
     //private ConditionResource condition; // represent the extraction condition for the resources
     private ArrayList<PrimaryResource> res;
-
+    private ArrayList<BiomeType> liste_biomes;
     /**
      *
      */
@@ -32,6 +33,7 @@ public class GroundTile extends Tile {
         //this.amount = AmountResource.UNKNOWN;
         //this.condition = ConditionResource.UNKNOWN;
         res = new ArrayList<>();
+        liste_biomes = new ArrayList<BiomeType>();
     }
 
     void addResource(PrimaryResource r) {
@@ -58,6 +60,16 @@ public class GroundTile extends Tile {
         return altitude;
     }
 
+
+    /**
+     *
+     * @return l'altitde de la case
+     */
+    public ArrayList<BiomeType> getListe_biomes() {
+        return liste_biomes;
+    }
+
+
     public ArrayList<PrimaryResource> getRessource() {
         return res;
     }
@@ -68,6 +80,15 @@ public class GroundTile extends Tile {
      */
     public void setAltitude(int altitude) {
         this.altitude = altitude;
+    }
+
+
+    /**
+     *
+     * @param biomes a mettre à jour
+     */
+    public void setListe_biomes(ArrayList<BiomeType> biomes) {
+        this.liste_biomes = biomes;
     }
 
     @Override
