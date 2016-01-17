@@ -110,8 +110,11 @@ public class CreeksFinder extends FlyingPhase {
     }
 
     public boolean two_last_is_only_ocean() {
+        if(map.size()<2) {
+            return false;
+        }
         FlyTile t =map.getLastTile().getValue();
-        FlyTile tt = map.preced(t).getValue();
+        FlyTile tt = map.preced(map.getLastTile()).getValue();
         return t.have_biome(BiomeType.OCEAN) && t.nb_biomes() == 1
                 && tt.have_biome(BiomeType.OCEAN) && tt.nb_biomes() == 1;
     }

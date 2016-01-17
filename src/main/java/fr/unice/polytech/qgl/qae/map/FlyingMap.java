@@ -62,32 +62,27 @@ public class FlyingMap extends AbstractMap {
     public Map.Entry<Coordinates, FlyTile> getLastTile() {
         return (Map.Entry<Coordinates, FlyTile>) map.entrySet().toArray()[map.size()-1];
     }
-    
-    public Map.Entry<Coordinates, FlyTile> preced(FlyTile f) {
-        Set<Map.Entry<Coordinates, FlyTile>> c = map.entrySet();
-        Map.Entry<Coordinates, FlyTile> last = null;
-        while(c.iterator().hasNext() && !f.equals(c.iterator().next().getValue())){
-            last = c.iterator().next();
+
+    public Coordinates get(int i) {
+        return (i<0 || i> map.size()) ? null : (Coordinates) map.keySet().toArray()[i];
+    }
+
+    public Map.Entry<Coordinates, FlyTile> preced(Map.Entry<Coordinates, FlyTile> f) {
+        Iterator<Map.Entry<Coordinates, FlyTile>> it = map.entrySet().iterator();
+        Map.Entry<Coordinates, FlyTile> pre = null;
+        while (it.hasNext() && !it.next().equals(f)) {
+             pre = it.next(); 
         }
-        return last;
+        return pre;
     }
     
     public Coordinates preced(Coordinates c) {
-        Set<Coordinates> set = map.keySet();
-        Coordinates last = null;
-        while(set.iterator().hasNext() && !c.equals(set.iterator().next())){
-            last = set.iterator().next();
+        Iterator<Coordinates> it = map.keySet().iterator();
+        Coordinates pre = null;
+        while (it.hasNext() && !it.next().equals(c)) {
+             pre = it.next(); 
         }
-        return last;
-    }
-    
-    public Coordinates get(int i) {
-        Set<Coordinates> set = map.keySet();
-        Coordinates last = null;
-        while(set.iterator().hasNext() && i>0){
-            last = set.iterator().next();
-        }
-        return last;
+        return pre;
     }
     
     @Override

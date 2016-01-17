@@ -140,7 +140,7 @@ public class InitTest {
         
         assertEquals(ph1.d.right(), ph1.best_dir());
         ph1.map.flush();
-
+        ph1.map.put(new Coordinates(0, 0), new FlyTile());
         ph1.map.put(new Coordinates(0, 38), new FlyTile());
         ph1.map.put(new Coordinates(0, 8), new FlyTile());
         

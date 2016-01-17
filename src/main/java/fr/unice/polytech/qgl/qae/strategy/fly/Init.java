@@ -70,13 +70,12 @@ public class Init extends FlyingPhase {
     }
 
     public Direction best_dir() {
+        if(map.size()<3) {
+            return null;
+        }
         int dist1 = map.get(0).distance(map.get(1));
         int dist2 = map.get(0).distance(map.get(2));
-        if (dist1 > dist2) {
-            return d.left();
-        } else {
-            return d.right();
-        }
+        return (dist1 > dist2) ? d.left() : d.right();
     }
 
     @Override
