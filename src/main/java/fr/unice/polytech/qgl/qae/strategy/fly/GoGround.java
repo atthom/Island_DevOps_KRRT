@@ -4,6 +4,7 @@ import fr.unice.polytech.qgl.qae.actions.AbstractAction;
 import fr.unice.polytech.qgl.qae.actions.flyActions.composed.FlyAndScan;
 import fr.unice.polytech.qgl.qae.actions.flyActions.composed.FlyUntil;
 import fr.unice.polytech.qgl.qae.actions.flyActions.simple.Fly;
+import fr.unice.polytech.qgl.qae.actions.flyActions.simple.Scan;
 import fr.unice.polytech.qgl.qae.actions.flyActions.withparams.Direction;
 import fr.unice.polytech.qgl.qae.actions.flyActions.withparams.Echo;
 import fr.unice.polytech.qgl.qae.map.biomes.BiomeType;
@@ -20,6 +21,8 @@ import fr.unice.polytech.qgl.qae.strategy.FlyingPhase;
  */
 public class GoGround extends FlyingPhase {
 
+    boolean first = false;
+    
     public GoGround(AbstractStrategy parent, Coordinates currents_coords, Direction d, FlyingMap m) {
         super(parent, currents_coords, d, m);
 
@@ -30,16 +33,16 @@ public class GoGround extends FlyingPhase {
 
     @Override
     public AbstractAction execute() {
-
         if (actions.isEmpty() && map.Max_is_Not_set()) {
             FlyTile ft = map.getLastTile().getValue();
-            if (ft.have_biome(BiomeType.OCEAN)) {
+            if (ft.have_only(BiomeType.OCEAN) && first) {
                 actions.add(new Echo(d));
-            } else if (ft.getT() == Type.OUT_OF_RANGE) {
-                map.setMaxY(map.getLastTile().getKey().getY());
-                actions.add(new Fly());
             } else {
+                first = true;
                 manageComposedAction(new FlyAndScan(currents_coords, d));
+            }
+            if (ft.getT() == Type.OUT_OF_RANGE) {
+                map.setMaxY(map.getLastTile().getKey().getY());  
             }
         }
         return actions.get(0);

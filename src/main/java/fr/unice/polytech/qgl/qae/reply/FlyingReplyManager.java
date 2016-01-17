@@ -53,7 +53,7 @@ public class FlyingReplyManager {
         Vect v = new Vect(range, d);
         FlyTile t = new FlyTile(found);
 
-        map.put(v.toCoord(), t);
+        map.maj(v.toCoord(), t);
 
     }
 

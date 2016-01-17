@@ -2,6 +2,7 @@ package fr.unice.polytech.qgl.qae.strategy.fly;
 
 import fr.unice.polytech.qgl.qae.actions.AbstractAction;
 import fr.unice.polytech.qgl.qae.actions.flyActions.composed.FlyAndEcho;
+import fr.unice.polytech.qgl.qae.actions.flyActions.simple.Fly;
 import fr.unice.polytech.qgl.qae.actions.flyActions.withparams.Direction;
 import fr.unice.polytech.qgl.qae.actions.flyActions.withparams.Echo;
 import fr.unice.polytech.qgl.qae.map.biomes.Type;
@@ -28,7 +29,7 @@ public class Init extends FlyingPhase {
 
     @Override
     public AbstractPhase getNext() {
-        if (actions.isEmpty() && next) {
+        if (next) {
             return new GoGround(parent, currents_coords, d, map);
         } else if (actions.isEmpty()) {
             try {
@@ -58,7 +59,6 @@ public class Init extends FlyingPhase {
         if (map.getTile(echo_front).getT() == Type.OUT_OF_RANGE) {
             map.setMaxY(echo_front.getY());
         }
-        
     }
 
     /**
@@ -85,13 +85,13 @@ public class Init extends FlyingPhase {
                 manage_echo();
                 manage_echo = true;
             }
-
             if (have_ground()) {
                 // si pas dans la bonne direction
                 if (dir_to_echo != null) {
                     change_dir(dir_to_echo);
                 }
                 next = true;
+                actions.add(new Fly());
             } else {
                 dir_to_echo = best_dir();
                 manageComposedAction(new FlyAndEcho(currents_coords, d, dir_to_echo));

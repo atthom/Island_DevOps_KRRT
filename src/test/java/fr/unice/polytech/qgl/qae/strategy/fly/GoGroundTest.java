@@ -59,7 +59,7 @@ public class GoGroundTest {
             gg.actions.remove(0);
         }
         assertTrue(gg.actions.isEmpty());
-        System.out.println(gg.map.Max_is_Not_set());
+      
         assertEquals(new CreeksFinder(ex, gg.currents_coords, gg.d, gg.map), gg.getNext());
     }
     

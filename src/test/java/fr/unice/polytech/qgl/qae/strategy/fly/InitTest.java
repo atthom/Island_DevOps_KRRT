@@ -64,33 +64,19 @@ public class InitTest {
         assertEquals(new Echo(Direction.E), ph1.execute());
         ph1.actions.remove(0);
         addGround();
+        ph1.execute();
+        ph1.actions.clear();
+        assertTrue(ph1.map.Max_is_Not_set());
         assertEquals(new GoGround(ex, ph1.currents_coords, ph1.d, ph1.map), ph1.getNext());
     }
 
     @Test
     public void testExecuteBis() {
-        assertEquals(new Echo(Direction.E.left()), ph1.execute());
-        assertEquals(ph1, ph1.getNext());
-        ph1.actions.remove(0);
-        assertEquals(new Echo(Direction.E.right()), ph1.execute());
-        assertEquals(ph1, ph1.getNext());
-        ph1.actions.remove(0);
-        assertEquals(new Echo(Direction.E), ph1.execute());
-        assertEquals(ph1, ph1.getNext());
-        ph1.actions.remove(0);
         addNotGround();
-
+        ph1.actions.clear();
+        ph1.execute();
         assertEquals(new Fly(), ph1.execute());
-        assertEquals(ph1, ph1.getNext());
         ph1.actions.remove(0);
-        assertEquals(new Echo(Direction.E.right()), ph1.execute());
-        assertEquals(ph1, ph1.getNext());
-        ph1.actions.remove(0);
-
-        assertEquals(new Fly(), ph1.execute());
-        assertEquals(ph1, ph1.getNext());
-        ph1.actions.remove(0);
-
         assertEquals(new Echo(Direction.E.right()), ph1.execute());
         assertEquals(ph1, ph1.getNext());
         ph1.actions.remove(0);
@@ -100,6 +86,7 @@ public class InitTest {
         ph1.actions.remove(0);
         GoGround gg = new GoGround(ex, ph1.currents_coords, ph1.d, ph1.map);
         assertEquals(gg, ph1.getNext());
+        
     }
 
     /**
