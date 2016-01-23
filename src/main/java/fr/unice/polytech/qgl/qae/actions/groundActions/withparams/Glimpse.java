@@ -12,7 +12,6 @@ import java.util.ArrayList;
  */
 public class Glimpse extends ActionWithParameters {
 
-    private int r;
     /**
      * Action MoveTo avec une direction comme parametre
      *
@@ -20,7 +19,6 @@ public class Glimpse extends ActionWithParameters {
      */
     public Glimpse(Direction d, int r) {
         super(new ArrayList<>(), "glimpse");
-        this.r = r;
         parameters.add(new Parameter("direction",d));
         parameters.add(new Parameter("range",r));
     }
@@ -31,6 +29,6 @@ public class Glimpse extends ActionWithParameters {
     }
 
     public int getRange(){
-        return r;
+        return (int) parameters.get(1).getValeur();
     }
 }

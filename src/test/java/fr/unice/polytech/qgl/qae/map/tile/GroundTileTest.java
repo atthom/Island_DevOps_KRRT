@@ -2,6 +2,9 @@ package fr.unice.polytech.qgl.qae.map.tile;
 
 import fr.unice.polytech.qgl.qae.map.biomes.Biome;
 import fr.unice.polytech.qgl.qae.map.biomes.BiomeType;
+import fr.unice.polytech.qgl.qae.resources.ResourceAmountType;
+import fr.unice.polytech.qgl.qae.resources.ResourceConditionType;
+import fr.unice.polytech.qgl.qae.resources.ResourceTile;
 import org.junit.*;
 
 import static org.junit.Assert.assertEquals;
@@ -25,15 +28,9 @@ public class GroundTileTest {
     }
 
     @Test
-    public void testAddRessource() {
-
-    }
-
-    @Test
     public void testGetB() {
         gt.addBiome(b);
         assertTrue(gt.have_biome(BiomeType.UNKNOWN_BIOME));
-
         assertFalse(gt.have_biome(BiomeType.LAKE));
 
     }
@@ -44,14 +41,17 @@ public class GroundTileTest {
         assertTrue(gt.have_biome(BiomeType.LAKE));
     }
 
-    @Test
-    public void testGetAltitude() {
-        assertEquals(-1, gt.getAltitude());
-    }
+  /**
+   * Test of addResource method, of class GroundTile.
+   */
+  @Test
+  public void testAddGetResource() {
+    ResourceTile rt = new ResourceTile("WOOD", ResourceAmountType.HIGH, ResourceConditionType.HARSH);
+    gt.addResource(rt);
+    assertEquals(rt, gt.getResource("WOOD"));
+  }
 
-    @Test
-    public void testSetAltitude() {
-        gt.setAltitude(2);
-        assertEquals(2, gt.getAltitude());
-    }
+
+
+
 }

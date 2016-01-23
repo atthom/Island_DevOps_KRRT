@@ -39,13 +39,13 @@ public class PrettyTTOLTest {
     @Test
     public void testSomeMethod() {
         assertEquals( new Coordinates(0, 1),PrettyttolE.getCoords());
-        assertEquals(PrettyttolE.getDir(), E.opposite());
+        assertEquals(E.opposite(), PrettyttolE.getDir());
 
         assertEquals(new Coordinates(0, -1),PrettyttolW.getCoords() );
         assertEquals(W.opposite(),PrettyttolW.getDir() );
 
         assertEquals( new Coordinates(1, 0),PrettyttolS.getCoords());
-        assertEquals( S.opposite(),PrettyttolS.getDir());
+        assertEquals(S.opposite(),PrettyttolS.getDir());
 
         assertEquals(new Coordinates(-1, 0), PrettyttolN.getCoords());
         assertEquals(N.opposite(), PrettyttolN.getDir());

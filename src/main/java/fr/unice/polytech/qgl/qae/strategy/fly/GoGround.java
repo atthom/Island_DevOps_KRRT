@@ -1,17 +1,10 @@
 package fr.unice.polytech.qgl.qae.strategy.fly;
 
 import fr.unice.polytech.qgl.qae.actions.AbstractAction;
-import fr.unice.polytech.qgl.qae.actions.flyActions.composed.FlyAndScan;
 import fr.unice.polytech.qgl.qae.actions.flyActions.composed.FlyUntil;
-import fr.unice.polytech.qgl.qae.actions.flyActions.simple.Fly;
-import fr.unice.polytech.qgl.qae.actions.flyActions.simple.Scan;
 import fr.unice.polytech.qgl.qae.actions.flyActions.withparams.Direction;
-import fr.unice.polytech.qgl.qae.actions.flyActions.withparams.Echo;
-import fr.unice.polytech.qgl.qae.map.biomes.BiomeType;
-import fr.unice.polytech.qgl.qae.map.biomes.Type;
 import fr.unice.polytech.qgl.qae.map.geometry.Coordinates;
 import fr.unice.polytech.qgl.qae.map.FlyingMap;
-import fr.unice.polytech.qgl.qae.map.tile.FlyTile;
 import fr.unice.polytech.qgl.qae.strategy.AbstractPhase;
 import fr.unice.polytech.qgl.qae.strategy.AbstractStrategy;
 import fr.unice.polytech.qgl.qae.strategy.FlyingPhase;

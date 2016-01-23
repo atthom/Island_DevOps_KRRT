@@ -5,6 +5,8 @@
  */
 package fr.unice.polytech.qgl.qae.map.biomes;
 
+import java.util.Objects;
+
 /**
  * Classe de Biome
  * @author user
@@ -17,6 +19,7 @@ public class Biome {
      */
     public Biome() {
         b = BiomeType.UNKNOWN_BIOME;
+        
     }
 
     /**
@@ -57,11 +60,15 @@ public class Biome {
             return false;
         }
         final Biome other = (Biome) obj;
-        if (this.b != other.b) {
-            return false;
-        }
-        return true;
+        return this.b == other.b;
     }
+
+  @Override
+  public int hashCode() {
+    int hash = 7;
+    hash = 41 * hash + Objects.hashCode(this.b);
+    return hash;
+  }
     
     
     

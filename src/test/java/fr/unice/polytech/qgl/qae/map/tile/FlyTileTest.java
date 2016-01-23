@@ -5,6 +5,8 @@
  */
 package fr.unice.polytech.qgl.qae.map.tile;
 
+import fr.unice.polytech.qgl.qae.map.biomes.Biome;
+import fr.unice.polytech.qgl.qae.map.biomes.BiomeType;
 import fr.unice.polytech.qgl.qae.map.biomes.Type;
 import java.util.ArrayList;
 import org.junit.Before;
@@ -31,6 +33,7 @@ public class FlyTileTest {
         wicree = new FlyTile(new ArrayList<>(), cs, Type.OCEAN); 
         witype = new FlyTile(Type.UNKNOWN_TYPE);
         assertEquals(witype, ft);
+        assertNotEquals(witype, wicree);
     }
 
     /**
@@ -53,4 +56,15 @@ public class FlyTileTest {
         assertEquals(Type.GROUND, ft.getT());
     }
     
+    @Test
+    public void testTile(){
+        assertTrue(ft.have_only(BiomeType.UNKNOWN_BIOME));
+        ft.addBiome(new Biome(BiomeType.LAKE));
+        assertTrue(ft.have_biome(BiomeType.LAKE));
+        assertFalse(ft.have_biome(BiomeType.GLACIER));
+        assertTrue(ft.have_only(BiomeType.LAKE));
+        assertEquals(1, ft.nb_biomes());
+        
+    }
+
 }

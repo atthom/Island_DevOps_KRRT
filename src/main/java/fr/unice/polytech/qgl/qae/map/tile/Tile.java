@@ -50,12 +50,7 @@ abstract public class Tile {
     }
     
     public boolean have_biome(BiomeType bb) {
-        for (int i = 0; i < biomes.size(); i++) {
-            if (biomes.get(i).getBiomeType() == bb) {
-                return true;
-            }
-        }
-        return false;
+        return biomes.stream().anyMatch((biome) -> (biome.getBiomeType() == bb));
     }
 
     @Override
@@ -72,5 +67,12 @@ abstract public class Tile {
         final Tile other = (Tile) obj;
         return Objects.equals(this.biomes, other.biomes);
     }
+
+  @Override
+  public int hashCode() {
+    int hash = 5;
+    hash = 41 * hash + Objects.hashCode(this.biomes);
+    return hash;
+  }
 
 }

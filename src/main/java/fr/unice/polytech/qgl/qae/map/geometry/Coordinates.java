@@ -40,11 +40,11 @@ public class Coordinates {
     }
 
     public void addX(int x) {
-        this.x = this.x + x;
+        this.x += x;
     }
 
     public void addY(int y) {
-        this.y = this.y + y;
+        this.y += y;
     }
 
     /**
@@ -124,10 +124,8 @@ public class Coordinates {
                 return new Coordinates(this.x,this.y-1);
             case E:
                 return new Coordinates(this.x+1,this.y);
-            case W:
+            default :
                 return new Coordinates(this.x-1,this.y);
-            default:
-                throw new MapExeption("Bad direction");
         }
     }
     

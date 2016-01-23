@@ -33,9 +33,7 @@ public class Vect2DTest {
         
         v7 = new Vect2D(new Coordinates(-1, 1), new Coordinates(3, -6));
         
-        v8 = new Vect2D(new Coordinates(-2, 3));
-       
-        
+        v8 = new Vect2D(new Coordinates(-2, 3));  
         
     }
 
@@ -54,10 +52,8 @@ public class Vect2DTest {
     @Test
     public void testIs_colinear() {
         assertTrue(v3.is_colinear(v5));
-        
         assertTrue(v3.is_colinear(v4));
-        assertTrue(v4.is_colinear(v8));
-        
+        assertTrue(v4.is_colinear(v8));  
         assertTrue(v3.is_colinear(v1));
     }
 
@@ -67,23 +63,8 @@ public class Vect2DTest {
     @Test
     public void testToCoord() {
         Coordinates c = v5.toCoord();
-      
         assertEquals(new Coordinates(4, -5), c);
     
-    }
-
-    /**
-     * Test of getV_x method, of class Vect2D.
-     */
-    @Test
-    public void testGetV_x() {
-    }
-
-    /**
-     * Test of getV_y method, of class Vect2D.
-     */
-    @Test
-    public void testGetV_y() {
     }
 
     /**
@@ -91,9 +72,8 @@ public class Vect2DTest {
      */
     @Test
     public void testEquals() {
-        
-        
          assertEquals(v3, v7);
     }
+
 
 }

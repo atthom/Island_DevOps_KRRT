@@ -5,6 +5,7 @@
  */
 package fr.unice.polytech.qgl.qae.map.geometry;
 
+import fr.unice.polytech.qgl.qae.actions.flyActions.withparams.Direction;
 import org.junit.Before;
 import org.junit.Test;
 import static org.junit.Assert.*;
@@ -104,5 +105,28 @@ public class CoordinatesTest {
         c.addY(-1);
         assertEquals(new Coordinates(5, -7), c);
     }
+
+
+  /**
+   * Test of equals method, of class Coordinates.
+   */
+  @Test
+  public void testEquals() {
+    Coordinates cc = new Coordinates(5, -6);
+    assertEquals(cc, c);
+    assertNotSame(cc, c);
+    assertNotEquals(cc, new Coordinates(5, 5));
+  }
+
+  /**
+   * Test of getClose method, of class Coordinates.
+   */
+  @Test
+  public void testGetClose() {
+    assertEquals(new Coordinates(6, -6), c.getClose(Direction.E));
+    assertEquals(new Coordinates(4, -6), c.getClose(Direction.W));
+    assertEquals(new Coordinates(5, -5), c.getClose(Direction.N));
+    assertEquals(new Coordinates(5, -7), c.getClose(Direction.S));
+  }
     
 }

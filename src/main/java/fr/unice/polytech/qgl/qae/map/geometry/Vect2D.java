@@ -42,7 +42,7 @@ public class Vect2D {
         int x1 = c2.getX() - c.getX();
         Direction d;
         if (x1 < 0) {
-            x1 = x1 * -1;
+            x1 *= -1;
             d = Direction.W;
         } else {
             d = Direction.E;
@@ -54,7 +54,7 @@ public class Vect2D {
         int y1 = c2.getY() - c.getY();
         Direction d2;
         if (y1 < 0) {
-            y1 = y1 * -1;
+            y1 *= -1;
             d2 = Direction.S;
         } else {
             d2 = Direction.N;
@@ -130,4 +130,12 @@ public class Vect2D {
         }
         return Objects.equals(this.v_y, other.v_y);
     }  
+
+  @Override
+  public int hashCode() {
+    int hash = 5;
+    hash = 41 * hash + Objects.hashCode(this.v_x);
+    hash = 41 * hash + Objects.hashCode(this.v_y);
+    return hash;
+  }
 }

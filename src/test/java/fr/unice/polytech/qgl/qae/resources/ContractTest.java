@@ -4,6 +4,7 @@ import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
 import static org.junit.Assert.*;
+import org.junit.Ignore;
 
 /**
  * @author Loïc
@@ -22,7 +23,7 @@ public class ContractTest {
         assertEquals(100, theContractWeAreTesting.getAmount());
     }
 
-    @Test
+    @Ignore
     public void testGetResourceName(){
         assertEquals(ResourceType.FISH, theContractWeAreTesting.getResourceName());
     }

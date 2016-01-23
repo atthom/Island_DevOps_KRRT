@@ -22,8 +22,9 @@ public class GroundTile extends Tile {
     private int altitude;
     //private AmountResource amount; // represent the amount of this tile's resources
     //private ConditionResource condition; // represent the extraction condition for the resources
-    private ArrayList<ResourceTile> res;
-    private ArrayList<BiomeType> liste_biomes;
+    private final ArrayList<ResourceTile> res;
+    private final ArrayList<BiomeType> liste_biomes;
+    private final String creek;
     /**
      *
      */
@@ -32,7 +33,8 @@ public class GroundTile extends Tile {
         //this.amount = AmountResource.UNKNOWN;
         //this.condition = ConditionResource.UNKNOWN;
         res = new ArrayList<>();
-        liste_biomes = new ArrayList<BiomeType>();
+        liste_biomes = new ArrayList<>();
+        this.creek = "";
     }
 
     void addResource(ResourceTile r) {
@@ -42,21 +44,12 @@ public class GroundTile extends Tile {
     //public AmountResource getAmountCondition(){return this.amount;}
 
     ResourceTile getResource(String r) {
-        for (int i = 0; i < res.size(); i++) {
-            if (res.get(i).getName().equals(r)) {
-                return res.get(i);
-            }
+      for (ResourceTile re : res) {
+        if (re.getName().equals(r)) {
+          return re;
         }
+      }
         throw new MapExeption("Ressource non trouvée");
-    }
-
-
-    /**
-     *
-     * @return l'altitde de la case
-     */
-    public int getAltitude() {
-        return altitude;
     }
 
     /**
@@ -66,11 +59,6 @@ public class GroundTile extends Tile {
     public ArrayList<BiomeType> getListe_biomes() {
         return liste_biomes;
     }
-
-    public ArrayList<ResourceTile> getRessource() {
-        return res;
-    }
-    
 
     /**
      *

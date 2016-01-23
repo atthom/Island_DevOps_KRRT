@@ -7,6 +7,7 @@ package fr.unice.polytech.qgl.qae.map.geometry;
 
 import fr.unice.polytech.qgl.qae.actions.flyActions.withparams.Direction;
 import fr.unice.polytech.qgl.qae.actions.flyActions.withparams.Heading;
+import java.util.Objects;
 
 /**
  * Classe de vecteur qui facilite le passage entre les coordonnée de la map et
@@ -103,6 +104,14 @@ public class Vect {
         }
         return this.d == other.d;
     }
+
+  @Override
+  public int hashCode() {
+    int hash = 5;
+    hash = 71 * hash + this.valeur;
+    hash = 71 * hash + Objects.hashCode(this.d);
+    return hash;
+  }
     
     
 }
