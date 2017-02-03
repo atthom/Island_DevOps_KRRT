@@ -69,6 +69,11 @@ Accurate Exploreur-->
       <version>2.44.0</version>
     </dependency>
     <dependency>
+      <groupId>fr.inria.gforge.spoon</groupId>
+      <artifactId>spoon-core</artifactId>
+      <version>5.5.0</version>
+    </dependency>
+    <dependency>
       <groupId>com.opera</groupId>
       <artifactId>operadriver</artifactId>
       <scope>test</scope>
@@ -95,9 +100,33 @@ Accurate Exploreur-->
         <configuration>
           <source>1.8</source>
           <target>1.8</target>
-          
-      
         </configuration>
+      </plugin>
+      <plugin>
+        <groupId>fr.inria.gforge.spoon</groupId>
+        <artifactId>spoon-maven-plugin</artifactId>
+        <version>2.2</version>
+        <executions>
+          <execution>
+            <phase>generate-sources</phase>
+            <goals>
+              <goal>generate</goal>
+            </goals>
+          </execution>
+        </executions>
+        <configuration>
+          <processors>
+            <processor>fr.inria.gforge.spoon.processors.CatchProcessor</processor>
+          </processors>
+        </configuration>
+        <!-- To be sure that you use the latest version of Spoon, specify it as dependency. -->
+        <dependencies>
+          <dependency>
+            <groupId>fr.inria.gforge.spoon</groupId>
+            <artifactId>spoon-core</artifactId>
+            <version>5.5.0</version>
+          </dependency>
+        </dependencies>
       </plugin>
      
     </plugins>
