@@ -1,8 +1,6 @@
 /.idea
 target/*
 outputs/*
-pom.xml
-pom.xml~
 qae.iml
 start.bat
 island.drjava
