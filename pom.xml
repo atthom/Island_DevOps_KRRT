@@ -4,140 +4,29 @@
   <modelVersion>4.0.0</modelVersion>
 
   <groupId>fr.unice.polytech.3a.qgl</groupId>
-  <artifactId>qae</artifactId> <!-- CHANGE ME -->
+  <artifactId>island-main</artifactId> <!-- CHANGE ME -->
   <version>0.1-SNAPSHOT</version>
   <packaging>pom</packaging>
   <!-- <packaging>jar</packaging> -->
 
-  <name>Amazing Explorer</name> <!-- CHANGE ME 
+  <name>Island Main</name> <!-- CHANGE ME
 Internet Exploreur
 Accurate Exploreur-->
   <url>http://www.i3s.unice.fr/~mosser/teaching/15_16/se</url>
+
+  <modules>
+    <module>
+      Processors
+    </module>
+    <module>
+      Amazing Explorer
+    </module>
+  </modules>
 
   <properties>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     <compiler.source>1.8</compiler.source>
     <compiler.target>1.8</compiler.target>
   </properties>
-
-  <repositories>
-    <repository>
-      <id>oss.sonatype.org-releases</id>
-      <name>releases</name>
-      <url>http://oss.sonatype.org/content/repositories/releases</url>
-    </repository>
-    
-    <repository>
-      <id>oss.sonatype.org-snapshots</id>
-      <name>snapshots</name>
-      <url>http://oss.sonatype.org/content/repositories/snapshots</url>
-    </repository>
-    
-    <repository>
-      <id>central</id>
-      <name>Maven repository</name>
-      <url>http://repo1.maven.org/maven2</url>
-    </repository>
-  </repositories>
-
-  <modules>
-    <module>
-      Processors
-    </module>
-  </modules>
-
-  <dependencies>
-    <dependency>
-      <groupId>eu.ace-design</groupId>
-      <artifactId>island-player</artifactId>
-      <version>1.0-SNAPSHOT</version>
-    </dependency>
-    <dependency>
-      <groupId>org.json</groupId>
-      <artifactId>json</artifactId>
-      <version>20150729</version>
-    </dependency>
-    
-    <dependency>
-      <groupId>eu.ace-design</groupId>
-      <artifactId>island-runner</artifactId>
-      <version>1.0-SNAPSHOT</version>
-    </dependency>
-    <dependency>
-      <groupId>junit</groupId>
-      <artifactId>junit</artifactId>
-      <version>4.12</version>
-      <scope>test</scope>
-    </dependency>
-    <dependency>
-      <groupId>org.seleniumhq.selenium</groupId>
-      <artifactId>selenium-java</artifactId>
-      <scope>test</scope>
-      <version>2.44.0</version>
-    </dependency>
-    <dependency>
-      <groupId>fr.inria.gforge.spoon</groupId>
-      <artifactId>spoon-core</artifactId>
-      <version>5.5.0</version>
-    </dependency>
-    <dependency>
-      <groupId>com.opera</groupId>
-      <artifactId>operadriver</artifactId>
-      <scope>test</scope>
-      <version>1.5</version>
-      <exclusions>
-        <exclusion>
-          <groupId>org.seleniumhq.selenium</groupId>
-          <artifactId>selenium-remote-driver</artifactId>
-        </exclusion>
-      </exclusions>
-    </dependency>
-  </dependencies>
-
-  <build>
-    <plugins>
-      <plugin>
-        <groupId>org.apache.maven.plugins</groupId>
-        <artifactId>maven-compiler-plugin</artifactId>
-        <version>3.2</version>
-        <configuration>
-          <source>1.8</source>
-          <target>1.8</target>
-        </configuration>
-      </plugin>
-      <plugin>
-        <groupId>fr.inria.gforge.spoon</groupId>
-        <artifactId>spoon-maven-plugin</artifactId>
-        <version>2.2</version>
-        <executions>
-          <execution>
-            <phase>generate-sources</phase>
-            <goals>
-              <goal>generate</goal>
-            </goals>
-          </execution>
-        </executions>
-        <configuration>
-          <processors>
-            <processor>fr.unice.polytech.qgl.qae.CatchProcessor</processor>
-          </processors>
-        </configuration>
-        <!-- To be sure that you use the latest version of Spoon, specify it as dependency. -->
-        <dependencies>
-          <dependency>
-            <groupId>fr.inria.gforge.spoon</groupId>
-            <artifactId>spoon-core</artifactId>
-            <version>5.5.0</version>
-          </dependency>
-        </dependencies>
-      </plugin>
-    </plugins>
-
-
-
-
-
-  </build>
-
 
 </project>
