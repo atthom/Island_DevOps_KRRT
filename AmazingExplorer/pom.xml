@@ -39,8 +39,6 @@ Accurate Exploreur-->
         </repository>
     </repositories>
 
-
-
     <dependencies>
         <dependency>
             <groupId>eu.ace-design</groupId>
@@ -87,6 +85,12 @@ Accurate Exploreur-->
                 </exclusion>
             </exclusions>
         </dependency>
+        <dependency>
+            <groupId>fr.unice.polytech.4a.qgl</groupId>
+            <artifactId>Processors</artifactId>
+            <version>0.1-SNAPSHOT</version>
+            <scope>compile</scope>
+        </dependency>
     </dependencies>
 
     <build>
@@ -98,6 +102,24 @@ Accurate Exploreur-->
                 <configuration>
                     <source>1.8</source>
                     <target>1.8</target>
+                </configuration>
+            </plugin>
+            <plugin>
+                <groupId>fr.inria.gforge.spoon</groupId>
+                <artifactId>spoon-maven-plugin</artifactId>
+                <version>2.4.1</version>
+                <executions>
+                    <execution>
+                        <phase>generate-sources</phase>
+                        <goals>
+                            <goal>generate</goal>
+                        </goals>
+                    </execution>
+                </executions>
+                <configuration>
+                    <processors>
+                        <processor>fr.unice.polytech.qgl.qae.OperatorProcessor</processor>
+                    </processors>
                 </configuration>
             </plugin>
         </plugins>
