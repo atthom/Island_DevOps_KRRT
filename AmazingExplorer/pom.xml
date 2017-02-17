@@ -118,7 +118,7 @@ Accurate Exploreur-->
                 </executions>
                 <configuration>
                     <processors>
-                        <processor>fr.unice.polytech.devops.g1.OperatorProcessor</processor>
+                        <processor>fr.unice.polytech.devops.g1.BinaryRelationInverter</processor>
                     </processors>
                 </configuration>
             </plugin>
