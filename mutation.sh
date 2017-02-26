@@ -9,6 +9,7 @@ Processors[1]='BinaryRelationInverter'
 rm -rf generated
 mkdir generated
 
+wait
 for p in "${Processors[@]}"
 do
     mvn clean
@@ -26,7 +27,8 @@ do
     # mv les sources générées vers generated/nomProcessor/src/main/java
     mv AmazingExplorer/target/generated-sources/spoon/* generated/$p/src/main/java
     cd generated/$p
-    # lance les tests sur les sources mutés
-    mvn test
+    # lance les tests sur les sources mutés et produit un rapport au format html
+    mvn site
+    mvn surefire-report:report
     cd ../..
 done

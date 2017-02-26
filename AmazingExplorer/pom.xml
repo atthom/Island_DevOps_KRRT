@@ -91,12 +91,6 @@ Accurate Exploreur-->
             <version>0.1-SNAPSHOT</version>
             <scope>compile</scope>
         </dependency>
-        <dependency>
-            <groupId>org.apache.maven.plugins</groupId>
-            <artifactId>maven-surefire-report-plugin</artifactId>
-            <version>2.19.1</version>
-            <type>maven-plugin</type>
-        </dependency>
     </dependencies>
 
     <build>
@@ -124,7 +118,7 @@ Accurate Exploreur-->
                 </executions>
                 <configuration>
                     <processors>
-                        <processor>fr.unice.polytech.devops.g1.BinaryRelationOpposite</processor>
+<processor>fr.unice.polytech.devops.g1.BinaryRelationInverter</processor>
                     </processors>
                 </configuration>
             </plugin>
