@@ -5,6 +5,7 @@ cd `dirname $0`
 Class='fr.unice.polytech.devops.g1.'
 Processors[0]='OperatorProcessor'
 Processors[1]='BinaryRelationInverter'
+Processors[2]='Add1ToAllNumber'
 
 rm -rf generated
 mkdir generated
