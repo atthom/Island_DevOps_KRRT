@@ -14,6 +14,5 @@ public class BinaryRelationInverter extends AbstractProcessor<CtBinaryOperator> 
         element.setLeftHandOperand(element.getRightHandOperand());
         element.setRightHandOperand(left);
 
-
     }
 }
