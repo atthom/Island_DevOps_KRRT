@@ -10,7 +10,12 @@ Processors[2]='Add1ToAllNumber'
 rm -rf generated
 mkdir generated
 
-wait
+# Mise en place de "l'environnement" pour les rapports de test
+mkdir generated/reports
+cp resources/index.html generated/reports
+cp -r resources/css generated/reports
+cp -r resources/images generated/reports
+
 for p in "${Processors[@]}"
 do
     mvn clean
@@ -29,7 +34,14 @@ do
     mv AmazingExplorer/target/generated-sources/spoon/* generated/$p/src/main/java
     cd generated/$p
     # lance les tests sur les sources mutés et produit un rapport au format html
-    mvn site
     mvn surefire-report:report
+    if [ -f target/site/surefire-report.html ];then
+        # les rapports sont placés dans le repertoire reports prévu à cet effet
+        mv target/site/surefire-report.html ../reports/$p-report.html
+        # un index liste tous les rapports disponible
+        sed -i "46i\<li><a href=\"./$p-report.html\" title=\"$p\">Processor $p report<\/li>" ../reports/index.html
+    else
+        sed -i "46i\<li>Processor $p doesn't produce a report. There may be a problem with the compilation.<\/li>" ../reports/index.html
+    fi
     cd ../..
 done
